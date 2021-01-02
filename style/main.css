@@ -1,0 +1,250 @@
+@font-face {
+  font-family: "Sansation_Regular";
+  src: url('Sansation_Regular.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+	background:	url(background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: Sansation_Regular;
+  overflow: hidden;
+}
+
+h1,
+.title,
+.sites > li {
+  background: rgba(20, 20, 20, 0.7);
+}
+h1,
+a,
+a:visited,
+.categories {
+  color: #eee;
+  text-decoration: none;
+}
+
+/* Header */
+h1 {
+	margin: 0;
+  width: 100%;
+  height: 90px;
+  text-align: right;
+  padding: 30px 120px 0 0;
+  box-sizing: border-box;
+  font-size: 45pt;
+  position: fixed;
+}
+#icon {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  background: url(icon.png) no-repeat;
+  width: 80px;
+  height: 87px;
+  opacity: 0.6;
+}
+
+/* Categories */
+.categories {
+  position: absolute;
+  overflow: visible;
+  right: 25px;
+  top: 115px;
+  bottom: 10px;
+  list-style-type: none;
+  text-align: center;
+  width: 668px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  font-size: 12pt;
+}
+.categories > li {
+  margin-bottom: 15px;
+}
+.categories .title {
+  padding: 2px 10px;
+  margin-bottom: 5px;
+}
+
+/* Sites */
+.sites {
+  padding: 0;
+}
+.sites > li {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  border-radius: 5px;
+  margin: 0 1px;
+}
+.sites > li:hover {
+  opacity: 0.8;
+  -webkit-filter: contrast(160%);
+}
+.sites a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 70%;
+}
+
+.sites .tooltip {
+  display: none;
+  z-index: 99;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+}
+.sites .tooltip .center {
+  position: relative;
+  left: -50%;
+  background: #111;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 10pt;
+  text-align: center;
+  padding: 5px 10px;
+}
+.sites .tooltip .center:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: calc(50% - 10px);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #111 transparent transparent transparent;
+}
+.sites > li:hover .tooltip {
+  display: block;
+}
+
+/* Titles */
+#voyages .title {
+  width: 283px;
+  margin-left: 384px;
+}
+#albums .title {
+  width: 473px;
+  margin-left: 193px;
+}
+#carle .title {
+  width: 380px;
+  margin-left: 288px;
+}
+
+/* Icons */
+#eve {
+  background-image: url(eve.png);
+}
+#r1 {
+  background-image: url(r1.png);
+}
+#souvenirs {
+  background-image: url(souvenirs.png);
+}
+#itineraires {
+  background-image: url(itineraires.png);
+}
+#z2014 {
+  background-image: url(2014.png);
+}
+#z2015 {
+  background-image: url(2015.png);
+}
+#z2016 {
+  background-image: url(2016.png);
+}
+#z2017 {
+  background-image: url(2017.png);
+}
+#z2018 {
+  background-image: url(2018.png);
+}
+#z2019 {
+  background-image: url(2019.png);
+}
+#z2020 {
+  background-image: url(2020.png);
+}
+
+#ve {
+  background-image: url(ve.png);
+}
+#tdf {
+  background-image: url(tdf.png);
+}
+#mg {
+  background-image: url(mg.png);
+  background-size: 90%;
+}
+#fmp {
+  background-image: url(fmp.png);
+}
+#vp {
+  background-image: url(fmp.png);
+}
+#autos {
+  background-image: url(autos.png);
+}
+#espace {
+  background-image: url(espace.png);
+}
+#rosine {
+  background-image: url(rosine.png);
+}
+#andre {
+  background-image: url(andre.png);
+} 
+#barles {
+  background-image: url(barles.png);
+} 
+#francois {
+  background-image: url(francois.png);
+} 
+#chefs {
+  background-image: url(chefs.png);
+}
+#guerrevincent {
+  background-image: url(guerrevincent.png);
+}
+#vpnew {
+  background-image: url(vpnew.png);
+}
+#presidentielles {
+  background-image: url(presidentielles.png);
+}
+#domiciles {
+ background-image: url(domiciles.png);
+}
+#archives {
+ background-image: url(archives.png);
+}
+#nicolas {
+  background-image: url(nicolas.png);
+}
+#lemesle {
+  background-image: url(lemesle.png);
+}
+#sthippolyte {
+  background-image: url(sthippolyte.png);
+}
+#florian {
+  background-image: url(florian.png);
+}
+
+
+
+
+
