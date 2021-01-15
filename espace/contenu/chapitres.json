@@ -1,0 +1,916 @@
+{
+  "titre_site": "Espace",
+  "chapitres": [
+    {
+      "titre": "Système Solaire",
+      "dossier": "13_systeme",
+      "x": 410,
+      "y": 100,
+      "image": "vert.png"
+    },
+    {
+      "titre": "Lanceurs",
+      "dossier": "2_lanceurs",
+      "x": -100,
+      "y": 150,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "ensemble"
+        },
+        {
+          "titre": "Allemagne",
+          "dossier": "v2"
+        },
+        {
+          "titre": "URSS/Russie",
+          "dossier": "urss",
+          "chapitres": [
+            {
+              "titre": "Panorama",
+              "dossier": "1_ensemble"
+            },
+            {
+              "titre": "R7 et dérivés",
+              "dossier": "2_semiorka"
+            },
+            {
+              "titre": "Cosmos",
+              "dossier": "2a_cosmos"
+            },
+            {
+              "titre": "Proton",
+              "dossier": "3_proton"
+            },
+            {
+              "titre": "N1",
+              "dossier": "4_n1"
+            },
+            {
+              "titre": "Energia",
+              "dossier": "5_energia"
+            },
+            {
+              "titre": "Zenit",
+              "dossier": "6_zenit"
+            },
+            {
+              "titre": "Rockot",
+              "dossier": "7_rockot"
+            },
+            {
+              "titre": "Angara",
+              "dossier": "8_angara"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis",
+          "dossier": "nasa"
+        },
+        {
+          "titre": "États-Unis (privé)",
+          "dossier": "prive",
+          "chapitres": [
+            {
+              "titre": "Falcon 1",
+              "dossier": "falcon"
+            },
+            {
+              "titre": "Falcon 9",
+              "dossier": "falcon9"
+            },
+            {
+              "titre": "Falcon Heavy",
+              "dossier": "heavy"
+            },
+            {
+              "titre": "Antarès",
+              "dossier": "antares"
+            },
+            {
+              "titre": "Vulcan",
+              "dossier": "vulcan"
+            },
+            {
+              "titre": "New Shepard",
+              "dossier": "shepard"
+            },
+            {
+              "titre": "New Glenn",
+              "dossier": "glenn"
+            }
+          ]
+        },
+        {
+          "titre": "France",
+          "dossier": "france"
+        },
+        {
+          "titre": "Europe",
+          "dossier": "europe",
+          "chapitres": [
+            {
+              "titre": "Europa",
+              "dossier": "europa"
+            },
+            {
+              "titre": "Ariane",
+              "dossier": "ariane"
+            }
+          ]
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine"
+        },
+        {
+          "titre": "Japon",
+          "dossier": "japon"
+        },
+        {
+          "titre": "Inde",
+          "dossier": "inde"
+        },
+        {
+          "titre": "Grande-Bretagne",
+          "dossier": "gb"
+        },
+        {
+          "titre": "Autres",
+          "dossier": "autres"
+        }
+      ]
+    },
+    {
+      "titre": "Cabines habitées",
+      "dossier": "1_cabines",
+      "x": -100,
+      "y": 250,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "ensemble"
+        },
+        {
+          "titre": "URSS/Russie",
+          "dossier": "russie",
+          "chapitres": [
+            {
+              "titre": "Spoutnik-Korabl",
+              "dossier": "korabl"
+            },
+            {
+              "titre": "Vostok 1",
+              "dossier": "vostok1"
+            },
+            {
+              "titre": "Vostok 2 à 6",
+              "dossier": "vostok2"
+            },
+            {
+              "titre": "Voskhod",
+              "dossier": "voskhod"
+            },
+            {
+              "titre": "Soyouz",
+              "dossier": "soyouz"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis (NASA)",
+          "dossier": "nasa",
+          "chapitres": [
+            {
+              "titre": "Mercury",
+              "dossier": "mercury"
+            },
+            {
+              "titre": "Gemini",
+              "dossier": "gemini"
+            },
+            {
+              "titre": "Apollo",
+              "dossier": "apollo"
+            },
+            {
+              "titre": "Orion",
+              "dossier": "orion"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis (privé)",
+          "dossier": "prive",
+          "chapitres": [
+            {
+              "titre": "Crew Dragon",
+              "dossier": "dragon"
+            },
+            {
+              "titre": "Starliner",
+              "dossier": "boeing"
+            },
+            {
+              "titre": "Dream Chaser",
+              "dossier": "dream"
+            },
+            {
+              "titre": "New Shepard",
+              "dossier": "shepard"
+            }
+          ]
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Shenzhou",
+              "dossier": "shenzhou"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Vaisseaux cargo",
+      "dossier": "8_cargo",
+      "x": -100,
+      "y": 350,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
+        {
+          "titre": "URSS/Russie",
+          "dossier": "progress"
+        },
+        {
+          "titre": "États-Unis (NASA)",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Cygnus",
+              "dossier": "cygnus"
+            },
+            {
+              "titre": "Dragon",
+              "dossier": "dragon"
+            }
+          ]
+        },
+        {
+          "titre": "Japon",
+          "dossier": "htv"
+        },
+        {
+          "titre": "Europe",
+          "dossier": "atv"
+        }
+      ]
+    },
+    {
+      "titre": "Navettes",
+      "dossier": "3_navettes",
+      "x": -100,
+      "y": 450,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "États-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Dyna Soar",
+              "dossier": "dyna"
+            },
+            {
+              "titre": "Avion Orbital",
+              "dossier": "avion"
+            },
+            {
+              "titre": "Shuttle",
+              "dossier": "shuttle"
+            },
+            {
+              "titre": "Spaceship",
+              "dossier": "spaceship"
+            },
+            {
+              "titre": "X-37B",
+              "dossier": "x37b"
+            }
+          ]
+        },
+        {
+          "titre": "URSS",
+          "dossier": "urss",
+          "chapitres": [
+            {
+              "titre": "BOR-4",
+              "dossier": "bor"
+            },
+            {
+              "titre": "Buran",
+              "dossier": "buran"
+            }
+          ]
+        },
+        {
+          "titre": "Europe",
+          "dossier": "hermes"
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Aotian-1",
+              "dossier": "aotian"
+            },
+            {
+              "titre": "Shenlong",
+              "dossier": "shenlong"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Stations spatiales",
+      "dossier": "4_stations",
+      "x": -100,
+      "y": 550,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "MOL",
+          "dossier": "mol"
+        },
+        {
+          "titre": "Skylab",
+          "dossier": "skylab"
+        },
+        {
+          "titre": "Saliout",
+          "dossier": "saliout"
+        },
+        {
+          "titre": "MIR",
+          "dossier": "mir"
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Tiangong 1",
+              "dossier": "tian_1",
+              "chapitres": []
+            },
+            {
+              "titre": "Tiangong 2",
+              "dossier": "tian_2"
+            }
+          ]
+        },
+        {
+          "titre": "ISS",
+          "dossier": "iss"
+        }
+      ]
+    },
+    {
+      "titre": "Lune : vue d'ensemble",
+      "dossier": "5_lune",
+      "x": 900,
+      "y": 150,
+      "image": "orange.png"
+    },
+    {
+      "titre": "Lune : missions non habitées",
+      "dossier": "xxxxxxxxxxxx",
+      "x": 900,
+      "y": 200,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "URSS",
+          "dossier": "4_urss",
+          "chapitres": [
+            {
+              "titre": "Panorama",
+              "dossier": "ensemble"
+            },
+            {
+              "titre": "Luna (1)",
+              "dossier": "luna_1"
+            },
+            {
+              "titre": "Luna (2)",
+              "dossier": "luna_2"
+            },
+            {
+              "titre": "Luna (3) et Lunokhod",
+              "dossier": "luna_3"
+            },
+            {
+              "titre": "Zond",
+              "dossier": "zond"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis",
+          "dossier": "5_eu",
+          "chapitres": [
+            {
+              "titre": "Pioneer",
+              "dossier": "pioneer"
+            },
+            {
+              "titre": "Ranger",
+              "dossier": "ranger"
+            },
+            {
+              "titre": "Lunar Orbiter",
+              "dossier": "Orbiter"
+            },
+            {
+              "titre": "Surveyor",
+              "dossier": "surveyor"
+            }
+          ]
+        },
+        {
+          "titre": "Japon",
+          "dossier": "6_japon"
+        },
+        {
+          "titre": "Chine",
+          "dossier": "7_chine",
+          "chapitres": [
+            {
+              "titre": "Chang'e 1 et 2",
+              "dossier": "chang_1"
+            },
+            {
+              "titre": "Chang'e 3",
+              "dossier": "chang_3"
+            },
+            {
+              "titre": "Chang'e 5 T1",
+              "dossier": "chang_5t1"
+            },
+            {
+              "titre": "Chang'e 4",
+              "dossier": "chang_4"
+            },
+            {
+              "titre": "Chang'e 5",
+              "dossier": "chang_5"
+            }
+          ]
+        },
+        {
+          "titre": "Inde",
+          "dossier": "8_inde"
+        }
+      ]
+    },
+    {
+      "titre": "Lune: missions habitées",
+      "dossier": "xxxxxxxxxxxxx",
+      "x": 900,
+      "y": 250,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "États-Unis",
+          "dossier": "2_h_eu",
+          "chapitres": [
+            {
+              "titre": "LEM",
+              "dossier": "2_h_lem"
+            },
+            {
+              "titre": "Rover lunaire",
+              "dossier": "2_h_rover"
+            }
+          ]
+        },
+        {
+          "titre": "URSS",
+          "dossier": "2_h_urss",
+          "chapitres": [
+            {
+              "titre": "ur700",
+              "dossier": "ur700"
+            },
+            {
+              "titre": "Proton-Zond",
+              "dossier": "lok"
+            },
+            {
+              "titre": "N1-L3",
+              "dossier": "lk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Mars",
+      "dossier": "6_mars",
+      "x": 900,
+      "y": 325,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "1_ensemble"
+        },
+        {
+          "titre": "URSS",
+          "dossier": "urss_1",
+          "chapitres": [
+            {
+              "titre": "Mars 1960",
+              "dossier": "mars60"
+            },
+            {
+              "titre": "Mars 1962",
+              "dossier": "mars62"
+            },
+            {
+              "titre": "Zond 2",
+              "dossier": "zond"
+            },
+            {
+              "titre": "Mars 1969",
+              "dossier": "mars69"
+            },
+            {
+              "titre": "Mars 1971",
+              "dossier": "mars71"
+            },
+            {
+              "titre": "Mars 1973",
+              "dossier": "mars73"
+            },
+            {
+              "titre": "Phobos 1 et 2",
+              "dossier": "phobos"
+            }
+          ]
+        },
+        {
+          "titre": "Russie",
+          "dossier": "russie",
+          "chapitres": [
+            {
+              "titre": "Phobos 1 et 2",
+              "dossier": "phobos"
+            },
+            {
+              "titre": "Mars 1996",
+              "dossier": "mars96"
+            }
+          ]
+        },
+        {
+          "titre": "Europe",
+          "dossier": "europe",
+          "chapitres": [
+            {
+              "titre": "Mars Express",
+              "dossier": "express"
+            },
+            {
+              "titre": "Exo Mars",
+              "dossier": "exomars"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis (1)",
+          "dossier": "eu_1",
+          "chapitres": [
+            {
+              "titre": "Mariner 3 & 4",
+              "dossier": "mariner_4"
+            },
+            {
+              "titre": "Mariner 6 & 7",
+              "dossier": "mariner_6"
+            },
+            {
+              "titre": "Mariner 8 & 9",
+              "dossier": "mariner_8"
+            },
+            {
+              "titre": "Viking 1 & 2",
+              "dossier": "viking"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis (2)",
+          "dossier": "eu_3",
+          "chapitres": [
+            {
+              "titre": "Mars Observer",
+              "dossier": "1_observer"
+            },
+            {
+              "titre": "Mars Global Surveyor",
+              "dossier": "2_surveyor"
+            },
+            {
+              "titre": "Mars Pathfinder",
+              "dossier": "3_pathfinder"
+            },
+            {
+              "titre": "Mars Climate Orbiter",
+              "dossier": "4_climate"
+            },
+            {
+              "titre": "Mars Polar Lander",
+              "dossier": "5_polar"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis (3)",
+          "dossier": "eu_3",
+          "chapitres": [
+            {
+              "titre": "Mars Odyssey",
+              "dossier": "1_odyssey"
+            },
+            {
+              "titre": "Mars Exploration Rover",
+              "dossier": "2_rover"
+            },
+            {
+              "titre": "Mars Reconnaissance Orbiter",
+              "dossier": "3_orbiter"
+            },
+            {
+              "titre": "Phoenix",
+              "dossier": "4_phoenix"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis (4)",
+          "dossier": "eu_4",
+          "chapitres": [
+            {
+              "titre": "Curiosity",
+              "dossier": "1_curiosity"
+            },
+            {
+              "titre": "MAVEN",
+              "dossier": "2_maven"
+            },
+            {
+              "titre": "Insight",
+              "dossier": "3_insight"
+            },
+            {
+              "titre": "Perseverance",
+              "dossier": "4_mars2020"
+            }
+          ]
+        },
+        {
+          "titre": "Japon",
+          "dossier": "japon",
+          "chapitres": [
+            {
+              "titre": "Nozomi",
+              "dossier": "nozomi"
+            }
+          ]
+        },
+        {
+          "titre": "Inde",
+          "dossier": "inde",
+          "chapitres": [
+            {
+              "titre": "Mangalyaan",
+              "dossier": "manga"
+            }
+          ]
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Yinghuo",
+              "dossier": "yinghuo"
+            },
+            {
+              "titre": "Tianwen",
+              "dossier": "tianwen"
+            }
+          ]
+        },
+        {
+          "titre": "Autres",
+          "dossier": "autres",
+          "chapitres": [
+            {
+              "titre": "Émirats Arabes Unis",
+              "dossier": "eua"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Vénus",
+      "dossier": "7_venus",
+      "x": 900,
+      "y": 400,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "1_ensemble"
+        },
+        {
+          "titre": "URSS",
+          "dossier": "urss",
+          "chapitres": [
+            {
+              "titre": "Venera",
+              "dossier": "venera"
+            }
+          ]
+        },
+        {
+          "titre": "États-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Mariner",
+              "dossier": "mariner"
+            },
+            {
+              "titre": "Galileo",
+              "dossier": "galileo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Mercure",
+      "dossier": "9_mercure",
+      "x": 900,
+      "y": 475,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
+        {
+          "titre": "États-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Messenger",
+              "dossier": "messenger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Saturne",
+      "dossier": "12_saturne",
+      "x": 900,
+      "y": 550,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama",
+          "chapitres": []
+        },
+        {
+          "titre": "États-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Voyager",
+              "dossier": "voyager"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Jupiter",
+      "dossier": "10_jupiter",
+      "x": 900,
+      "y": 625,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
+        {
+          "titre": "États-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Voyager",
+              "dossier": "voyager"
+            },
+            {
+              "titre": "Juno",
+              "dossier": "juno"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Astéroïdes & Comètes",
+      "dossier": "14_aster",
+      "x": 900,
+      "y": 700,
+      "image": "orange.png"
+    },
+    {
+      "titre": "Soleil",
+      "dossier": "11_soleil",
+      "x": 900,
+      "y": 775,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
+        {
+          "titre": "Voyager",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "ISEE 3 (1978)",
+              "dossier": "isee"
+            },
+            {
+              "titre": "Max (1980)",
+              "dossier": "max"
+            },
+            {
+              "titre": "Ulysse (1990)",
+              "dossier": "ulysse"
+            },
+            {
+              "titre": "Soho (1995)",
+              "dossier": "soho"
+            },
+            {
+              "titre": "Cluster (2000)",
+              "dossier": "cluster"
+            },
+            {
+              "titre": "Stereo (2006)",
+              "dossier": "stereo"
+            },
+            {
+              "titre": "Genesis (2001)",
+              "dossier": "genesis"
+            }
+          ]
+        },
+        {
+          "titre": "CNES",
+          "dossier": "cnes"
+        }
+      ]
+    },
+    {
+      "titre": "Au-delà du Système Solaire",
+      "dossier": "13_systeme",
+      "x": 900,
+      "y": 850,
+      "image": "orange.png"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<header>{{titre_site}}</header>
+
+<div id="breadcrumb">
+  <ul>
+    <li>
+      <a ng-href="#">&#127968;</a>
+    </li>
+    <li ng-repeat="config in breadcrumb">
+       <a ng-href="{{config.link}}">{{config.titre}}</a>
+    </li>
+  </ul>
+</div>
+
+<div id="chapitre">
+  <div ng-show="htmlContent" ng-bind-html="htmlContent"></div>
+  <div ng-show="!htmlContent" id="sous-chapitres">
+    <div class="titre-chapitre">{{titreChapitre}}</div>
+    <a ng-repeat="chapitre in chapitres" ng-href="{{chapitre.link}}">{{chapitre.titre}}</a>
+  </div>
+</div>

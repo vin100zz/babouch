@@ -1,0 +1,202 @@
+@font-face {
+  font-family: "TitleFont";
+  src: url('transformers.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #eee;
+}
+body, a, a:visited {
+  color: #222;
+}
+
+/* Title */
+header {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 130px;
+  line-height: 105px;
+  background: url(header.png);
+  color: #ccc;
+  text-shadow: 2px 2px 4px #fff;
+  padding: 20px 0 15px 0;
+  font-family: TitleFont;
+  font-size: 90px;
+  font-weight: normal;
+  letter-spacing: 5px;
+  text-align: center;
+}
+#breadcrumb {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 130px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  background: #000;
+  font-size: 16px;
+}
+#breadcrumb,
+#breadcrumb a,
+#breadcrumb a:visited {
+  color: #ccc;
+  text-decoration: none;
+}
+#breadcrumb a {
+  opacity: 0.75;
+}
+#breadcrumb a:hover {
+  opacity: 1;
+}
+#breadcrumb li {
+  display: inline-block;
+}
+#breadcrumb li:first-child {
+  font-size: 125%;
+}
+#breadcrumb li:not(:last-child):after {
+  content: '>';
+  padding: 0 10px;
+  font-size: 75%;
+  color: gold;
+}
+
+/* Content */
+#chapitre {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 180px;
+  bottom: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+
+#chapitre .titre-chapitre {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+#sous-chapitres a {
+  display: block;
+  margin: 10px 25%;
+  padding: 5px 0;
+  background: #ddd;
+  font-size: 16px;
+  opacity: 1;
+}
+#sous-chapitres a,
+#sous-chapitres a:visited {
+  text-decoration: none;
+}
+#sous-chapitres a:hover {
+  opacity: 0.75;
+}
+
+/* Map */
+#map {
+  margin: 40px;
+  font-size: 10pt;
+}
+
+#map span {
+  color: #aaa;
+}
+
+#map .map-save {
+  border: 1px solid #333;
+  background: white;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  padding: 5px;
+}
+#map .map-save:hover {
+  opacity: 1;
+}
+
+#map li {
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #ccc;
+}
+#map li > * {
+  vertical-align: middle;
+}
+
+#map .map-indent-1 {
+  padding-left: 40px;
+}
+#map .map-indent-2 {
+  padding-left: 80px;
+}
+#map .map-indent-3 {
+  padding-left: 120px;
+}
+#map .map-indent-4 {
+  padding-left: 160px;
+}
+#map .map-indent-5 {
+  padding-left: 200px;
+}
+
+#map input {
+  border: none;
+  background: none;
+}
+#map input.map-titre {
+  font-weight: bold;
+  font-size: 110%;
+}
+#map input.map-coord {
+  width: 60px;
+}
+
+#map li .map-action {
+  visibility: hidden;
+}
+#map li:hover .map-action {
+  visibility: visible;
+}
+
+#map .map-action {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  line-height: 20px;
+  border: none; 
+  padding: 0;
+  color: #999;
+  font-size: 125%;
+}
+#map button:hover {
+  cursor: pointer;
+  color: black;
+}
+
+#map .map-collapse,
+#map .map-no-child {
+  width: 14px;
+  height: 14px;
+}
+#map .map-collapse {
+  visibility: visible;
+  line-height: 14px;
+  border-radius: 0;
+  border: 1px solid black;
+  padding: 0;
+  color: black;
+  font-size: 100%;
+}
+#map .map-no-child {
+  display: inline-block;
+  background: #aaa;
+}

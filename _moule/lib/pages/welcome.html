@@ -1,0 +1,20 @@
+<div class="home">
+
+  <a id="to-map" href="#/map">&#9997;</a>
+
+  <div class="home-title">{{titre_site}}</div>
+
+  <div class="home-background">
+  </div>
+
+  <div class="home-content">
+    <div ng-repeat="chapitre in chapitres()" class="thumbnail {{chapitre.style}}" style="top: {{chapitre.y}}px; left: {{chapitre.x}}px;">
+      <a ng-href="#/chapitre/{{chapitre.dossier}}">
+        <img ng-src="contenu/pages/{{chapitre.image}}" />
+        <span>{{chapitre.titre}}</span>
+      </a>
+    </div>
+  
+  </div>
+
+</div>
