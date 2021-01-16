@@ -87,7 +87,10 @@ app.controller('MapCtrl', ['$scope', '$timeout', '$http', 'ChapitresSvc', functi
   }
 
   $scope.save = function () {
-    $http.post('../_moule/lib/save.php', clean())
+    var urlPaths = window.location.pathname.split('/').filter(x => !!x);
+    var site = urlPaths[urlPaths.length-1];
+
+    $http.post('../_moule/lib/save.php?site=' + site, clean())
     .success(function (data, status) {
       ChapitresSvc.refresh();
       window.location = '#';

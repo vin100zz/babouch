@@ -60,7 +60,7 @@ app.config(['$routeProvider',
         controller: 'ChapitreCtrl'
       })
       .when('/map', {
-        templateUrl: 'lib/pages/map.html',
+        templateUrl: '../_moule/lib/pages/map.html',
         controller: 'MapCtrl'
       })
       .otherwise({

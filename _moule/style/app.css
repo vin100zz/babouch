@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "TitleFont";
-  src: url('transformers.ttf');
-}
-
 * {
   box-sizing: border-box;
 }
@@ -13,25 +8,95 @@ body, a, a:visited {
   color: #222;
 }
 
-/* Title */
-header {
+/* Home */
+#to-map {
   position: fixed;
-  z-index: 2;
+  top: 5px;
+  right: 5px;
+  z-index: 999;
+  font-size: 20px;
+}
+
+.home-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat:repeat;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+}
+
+.home-title {
+  position: fixed;
   top: 0;
-  height: 130px;
-  line-height: 105px;
-  background: url(header.png);
-  color: #ccc;
-  text-shadow: 2px 2px 4px #fff;
-  padding: 20px 0 15px 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  z-index: 99;
+}
+
+.home a,
+.home a span {
+  text-decoration: none;
+}
+
+.home .home-content {
+  position: relative;
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.home .title .main {
+  position: absolute;
+  top: 800px;
+  left: 800px;
+  display: block;
   font-family: TitleFont;
-  font-size: 90px;
-  font-weight: normal;
-  letter-spacing: 5px;
+  font-size: 40pt;
+}
+.home .title .date {
+  position: absolute;
+  top: 390px;
+  left: 705px;
+  font-family: TitleFont;
+  font-size: 10pt;
+}
+.home .title a {
+  position: absolute;
+  top: 450px;
+  left: 680px;
+  font-size: 10pt;
+}
+
+.home .thumbnail {
+  position: absolute;
   text-align: center;
 }
+
+.home .thumbnail img {
+  margin-bottom: 5px;
+}
+
+.home .thumbnail span {
+  color: black;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  font-size: 13pt;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Breadcrumb */
 #breadcrumb {
   position: fixed;
   z-index: 2;
@@ -70,6 +135,17 @@ header {
 }
 
 /* Content */
+header {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 130px;
+  line-height: 105px;
+  text-align: center;
+  padding: 20px 0 15px 0;
+}
 #chapitre {
   position: absolute;
   left: 20px;

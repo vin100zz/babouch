@@ -1,16 +1,40 @@
 _hetm/*
+videos/*
+
+chefs/*
 itineraires/*
 mesautos/*
 tdf/*
-videos/*
+
+1_barles/*
+2_andre/*
+3_francois/*
+4_rosine/*
+5_fmp/*
+6_vpnew/*
+7_guerrevincent/*
+11_florian/*
+12_lemesle/*
+13_nicolas/*
+2014/*
+2015/*
+2016/*
+2017/*
+2018/*
+2019/*
+2020/*
+2021/*
+domiciles_site/*
+eve/*
+itineraires_r2/*
+mg/*
+r1/*
+tdf-saisie/*
+ve/*
 
 espace/contenu/pages/*
-
-2014/admin/*
-2017/admin/*
 
 **/.buildpath
 **/.project
 **/angular/i18n/*
 
-**/contenu/pages/**/*.jpg

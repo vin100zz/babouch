@@ -38,6 +38,7 @@ app.controller('ChapitreCtrl', ['$scope', '$http', '$routeParams', '$sce', '$tim
     } else {
       var urlPaths = window.location.pathname.split('/').filter(x => !!x);
       var site = urlPaths[urlPaths.length-1];
+      
       $http.get('../_moule/lib/page.php', {
         params: {
           site: site,

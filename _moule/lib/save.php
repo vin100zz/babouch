@@ -1,7 +1,9 @@
 <?php
 
-$content = file_get_contents('php://input');;
+$site = $_REQUEST["site"];
 
-file_put_contents("../contenu/chapitres.json", $content);
+$content = file_get_contents('php://input');
+
+file_put_contents("../../" . $site . "../contenu/chapitres.json", $content);
 
 ?>
