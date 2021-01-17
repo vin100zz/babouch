@@ -9,7 +9,6 @@ tdf/*
 1_barles/*
 2_andre/*
 3_francois/*
-4_rosine/*
 5_fmp/*
 6_vpnew/*
 7_guerrevincent/*
@@ -32,7 +31,7 @@ r1/*
 tdf-saisie/*
 ve/*
 
-espace/contenu/pages/*
+**/contenu/pages/*
 
 **/.buildpath
 **/.project

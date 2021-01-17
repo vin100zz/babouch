@@ -1,0 +1,325 @@
+{
+  "titre_site": "Rose Charlotte PAYAN (1819-1855) : les secrets de Rosine",
+  "chapitres": [
+    {
+      "x": 630,
+      "y": 300,
+      "image": "toto.jpg"
+    },
+    {
+      "x": 230,
+      "y": 500,
+      "image": "sait.jpg"
+    },
+    {
+      "x": 900,
+      "y": 500,
+      "image": "saitpas.jpg"
+    },
+    {
+      "x": 250,
+      "y": 100,
+      "image": "rosine.png"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x": 50,
+      "y": 490,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "Les sources",
+      "dossier": "0_sources",
+      "x": 650,
+      "y": 590,
+      "image": "naissance.jpg",
+      "chapitres": [
+        {
+          "titre": "Pour commencer",
+          "dossier": "1_intro"
+        },
+        {
+          "titre": "L'état civil",
+          "dossier": "2_etatcivil"
+        },
+        {
+          "titre": "Les recensements",
+          "dossier": "3_recensements"
+        },
+        {
+          "titre": "Les registres paroissiaux",
+          "dossier": "4_paroisses"
+        },
+        {
+          "titre": "Autres sources",
+          "dossier": "5_autres"
+        }
+      ]
+    },
+    {
+      "titre": "En détail",
+      "dossier": "0a_releve",
+      "x": 680,
+      "y": 700,
+      "image": "tableau.jpg"
+    },
+    {
+      "titre": "Son époque",
+      "dossier": "1_temps",
+      "x": 90,
+      "y": 300,
+      "image": "ville.jpg",
+      "chapitres": [
+        {
+          "titre": "En marge de l'Histoire",
+          "dossier": "1_marge"
+        },
+        {
+          "titre": "Sa ville",
+          "dossier": "2_ville"
+        }
+      ]
+    },
+    {
+      "titre": "Quelle enfance ?",
+      "dossier": "2a_enfance",
+      "x": 930,
+      "y": 330,
+      "image": "enfance.jpg",
+      "chapitres": [
+        {
+          "titre": "Des conditions précaires",
+          "dossier": "1_precaire"
+        },
+        {
+          "titre": "Sans instruction",
+          "dossier": "2_instruction"
+        }
+      ]
+    },
+    {
+      "titre": "Les enfants de Félicité",
+      "dossier": "3c_enfantsF",
+      "x": 460,
+      "y": 300,
+      "image": "cycles2.png",
+      "chapitres": [
+        {
+          "titre": "Ensemble",
+          "dossier": "0_ensemble"
+        },
+        {
+          "titre": "Jules Félix",
+          "dossier": "1_jules"
+        },
+        {
+          "titre": "Ses autres enfants",
+          "dossier": "2_autres"
+        }
+      ]
+    },
+    {
+      "titre": "Les enfants de Rosine",
+      "dossier": "3b_enfantsR",
+      "x": 320,
+      "y": 300,
+      "image": "enfant.jpg",
+      "chapitres": [
+        {
+          "titre": "Ensemble",
+          "dossier": "0_ensemble"
+        },
+        {
+          "titre": "Charles Louis",
+          "dossier": "1_charles"
+        },
+        {
+          "titre": "Jacques",
+          "dossier": "2_jacques"
+        },
+        {
+          "titre": "François Marius",
+          "dossier": "3_francois"
+        },
+        {
+          "titre": "Louis Henri",
+          "dossier": "4_louis"
+        },
+        {
+          "titre": "Félix Louis",
+          "dossier": "5_felix"
+        },
+        {
+          "titre": "Marie Delphine",
+          "dossier": "6_marie"
+        }
+      ]
+    },
+    {
+      "titre": "Rosine et Félicité : pourquoi ne se sont-elles pas mariées ?",
+      "dossier": "3a_rosefeli",
+      "x": 1090,
+      "y": 250,
+      "image": "les2.png",
+      "chapitres": [
+        {
+          "titre": "Des femmes seules",
+          "dossier": "1_seules"
+        },
+        {
+          "titre": "De nombreux enfants",
+          "dossier": "2_enfants"
+        },
+        {
+          "titre": "Des vies courtes et difficiles",
+          "dossier": "3_courtes"
+        }
+      ]
+    },
+    {
+      "titre": "De quoi vivaient-elles ?",
+      "dossier": "3a1_metiers",
+      "x": 890,
+      "y": 650,
+      "image": "chiffon.jpg"
+    },
+    {
+      "titre": "Filles mères et enfants abandonnés",
+      "dossier": "7_filles",
+      "x": 100,
+      "y": 650,
+      "image": "fille.jpg",
+      "chapitres": [
+        {
+          "titre": "L'abandon d'enfants",
+          "dossier": "1_abandon"
+        },
+        {
+          "titre": "Des milliers d'enfants assistés",
+          "dossier": "2_statistiques"
+        },
+        {
+          "titre": "Le secours aux filles mères",
+          "dossier": "3_secours"
+        },
+        {
+          "titre": "Nourrices et médecins",
+          "dossier": "4_personnel"
+        }
+      ]
+    },
+    {
+      "titre": "Ses domiciles",
+      "dossier": "5_domiciles",
+      "x": 330,
+      "y": 620,
+      "image": "rue.jpg",
+      "chapitres": [
+        {
+          "titre": "Les Vieux Quartiers",
+          "dossier": "0_vieux"
+        },
+        {
+          "titre": "De la place d'Aix aux Carmes",
+          "dossier": "1_aix/1_hier"
+        },
+        {
+          "titre": "De nos jours",
+          "dossier": "1_aix/2_auj"
+        },
+        {
+          "titre": "Rue Sainte-Françoise",
+          "dossier": "2_sainte/1_hier"
+        },
+        {
+          "titre": "De nos jours",
+          "dossier": "2_sainte/2_auj"
+        },
+        {
+          "titre": "Entre Hôtel Dieu et Vieux Port",
+          "dossier": "3_hotel/1_hier"
+        },
+        {
+          "titre": "De nos jours",
+          "dossier": "3_hotel/2_auj"
+        }
+      ]
+    },
+    {
+      "titre": "Dans un quartier mal famé",
+      "dossier": "5a_quartier",
+      "x": 250,
+      "y": 800,
+      "image": "quartier.jpg",
+      "chapitres": [
+        {
+          "titre": "Réglementer la prostitution",
+          "dossier": "1_prostitution"
+        },
+        {
+          "titre": "Protestations des propriétaires",
+          "dossier": "1a_protestations"
+        },
+        {
+          "titre": "Regards sur le «quartier réservé»",
+          "dossier": "2_plan"
+        },
+        {
+          "titre": "Sa destruction",
+          "dossier": "3_destruction"
+        }
+      ]
+    },
+    {
+      "titre": "Rosine morte du choléra ?",
+      "dossier": "6_mort",
+      "x": 1090,
+      "y": 650,
+      "image": "cholera.png",
+      "chapitres": [
+        {
+          "titre": "Le choléra",
+          "dossier": "1_cholera"
+        },
+        {
+          "titre": "L'épidémie de 1834-35",
+          "dossier": "2_1834"
+        },
+        {
+          "titre": "L'épidémie de 1853-55",
+          "dossier": "3_1855"
+        },
+        {
+          "titre": "Mort de Rosine",
+          "dossier": "4_morts"
+        }
+      ]
+    },
+    {
+      "titre": "Les tombeaux",
+      "dossier": "6a_tombeau",
+      "x": 480,
+      "y": 650,
+      "image": "tombeau.png",
+      "chapitres": [
+        {
+          "titre": "Cimetières de Marseille",
+          "dossier": "0_cimetieres"
+        },
+        {
+          "titre": "Les Payan de St-Charles...",
+          "dossier": "1_charles"
+        },
+        {
+          "titre": "...à St-Pierre",
+          "dossier": "2_pierre"
+        },
+        {
+          "titre": "D'autres tombes familiales",
+          "dossier": "3_famille"
+        }
+      ]
+    }
+  ]
+}

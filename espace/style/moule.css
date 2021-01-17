@@ -3,10 +3,12 @@
   src: url('transformers.ttf');
 }
 
+/* Background */
 .home-background {
   background: url(background.jpg);
 }
 
+/* Titre */
 header,
 .home-title {
   font-family: TitleFont;
@@ -15,9 +17,11 @@ header,
   text-shadow: 2px 2px 4px #8BC9E3;
   letter-spacing: 5px;
 }
-.home-title {
-  
-}
 header {
   background: url(header.png);
+}
+
+/* Thumbnails */
+.home .thumbnail span {
+  top: 5px;
 }

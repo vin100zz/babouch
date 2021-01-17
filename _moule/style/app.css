@@ -86,14 +86,42 @@ body, a, a:visited {
 .home .thumbnail span {
   color: black;
   position: absolute;
-  top: 5px;
   left: 0;
   width: 100%;
-  height: 40px;
   font-size: 13pt;
   text-align: center;
   display: block;
   box-sizing: border-box;
+}
+
+/* Shadow Thumbnails */
+.shadow-thumbnails .home {
+  font-family: Verdana;
+  font-size: 10pt;
+  line-height: 1em;
+}
+.shadow-thumbnails .home span {
+  color: #ccc;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.shadow-thumbnails .home .thumbnail:not(.static-image) {
+  box-shadow: 0 0 10px 2px #333;
+}
+.shadow-thumbnails .home a:hover img {
+  box-shadow: 0 0 10px 4px #111;
+}
+.shadow-thumbnails .home .thumbnail span {
+  color: #ccc;
+  bottom: 0;
+  width: 100%;
+  background: #111;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 3px;
+}
+.shadow-thumbnails .home img {
+  margin: 0;
 }
 
 /* Breadcrumb */
@@ -157,31 +185,33 @@ header {
 }
 
 #chapitre .titre-chapitre {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 25px;
 }
 
 #sous-chapitres a {
   display: block;
-  margin: 10px 25%;
+  margin: 15px 25%;
   padding: 5px 0;
   background: #ddd;
-  font-size: 16px;
-  opacity: 1;
+  font-size: 18px;
+  opacity: 0.8;
 }
 #sous-chapitres a,
 #sous-chapitres a:visited {
   text-decoration: none;
 }
 #sous-chapitres a:hover {
-  opacity: 0.75;
+  opacity: 1;
 }
 
 /* Map */
 #map {
   margin: 40px;
+  padding: 20px;
   font-size: 10pt;
+  background: #eee;
 }
 
 #map span {
@@ -224,13 +254,23 @@ header {
   padding-left: 200px;
 }
 
+#map span {
+  color: #666;
+}
+
 #map input {
   border: none;
-  background: none;
+  margin-right: 10px;
+  padding: 3px;
+  background: #eee;
+}
+#map input:hover {
+  background: #ddd;
 }
 #map input.map-titre {
   font-weight: bold;
   font-size: 110%;
+  width: 400px;
 }
 #map input.map-coord {
   width: 60px;
