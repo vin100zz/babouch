@@ -24,50 +24,54 @@
           "dossier": "v2"
         },
         {
-          "titre": "URSS/Russie",
-          "dossier": "urss",
+          "titre": "États-Unis",
+          "dossier": "nasa",
           "chapitres": [
             {
-              "titre": "Panorama",
-              "dossier": "1_ensemble"
+              "titre": "Redstone",
+              "dossier": "redstone"
             },
             {
-              "titre": "R7 et dérivés",
-              "dossier": "2_semiorka"
+              "titre": "Juno",
+              "dossier": "juno"
             },
             {
-              "titre": "Cosmos",
-              "dossier": "2a_cosmos"
+              "titre": "Vanguard",
+              "dossier": "vanguard"
             },
             {
-              "titre": "Proton",
-              "dossier": "3_proton"
+              "titre": "Agena",
+              "dossier": "agena"
             },
             {
-              "titre": "N1",
-              "dossier": "4_n1"
+              "titre": "Atlas",
+              "dossier": "atlas"
             },
             {
-              "titre": "Energia",
-              "dossier": "5_energia"
+              "titre": "Centaur",
+              "dossier": "centaur"
             },
             {
-              "titre": "Zenit",
-              "dossier": "6_zenit"
+              "titre": "Scout",
+              "dossier": "scout"
             },
             {
-              "titre": "Rockot",
-              "dossier": "7_rockot"
+              "titre": "Thor",
+              "dossier": "thor"
             },
             {
-              "titre": "Angara",
-              "dossier": "8_angara"
+              "titre": "Titan",
+              "dossier": "titan"
+            },
+            {
+              "titre": "Saturn",
+              "dossier": "saturn"
+            },
+            {
+              "titre": "SLS",
+              "dossier": "sls"
             }
           ]
-        },
-        {
-          "titre": "États-Unis",
-          "dossier": "nasa"
         },
         {
           "titre": "États-Unis (privé)",
@@ -104,6 +108,67 @@
           ]
         },
         {
+          "titre": "URSS/Russie",
+          "dossier": "urss",
+          "chapitres": [
+            {
+              "titre": "Panorama",
+              "dossier": "1_ensemble"
+            },
+            {
+              "titre": "R7 et dérivés",
+              "dossier": "2_semiorka",
+              "chapitres": [
+                {
+                  "titre": "Le lanceur",
+                  "dossier": "lanceur"
+                },
+                {
+                  "titre": "Spoutnik 1",
+                  "dossier": "spoutnik1",
+                  "chapitres": []
+                },
+                {
+                  "titre": "Spoutnik 2",
+                  "dossier": "spoutnik2"
+                },
+                {
+                  "titre": "Spoutnik 3",
+                  "dossier": "spoutnik3"
+                }
+              ]
+            },
+            {
+              "titre": "Cosmos",
+              "dossier": "2a_cosmos"
+            },
+            {
+              "titre": "Proton",
+              "dossier": "3_proton"
+            },
+            {
+              "titre": "N1",
+              "dossier": "4_n1"
+            },
+            {
+              "titre": "Energia",
+              "dossier": "5_energia"
+            },
+            {
+              "titre": "Zenit",
+              "dossier": "6_zenit"
+            },
+            {
+              "titre": "Rockot",
+              "dossier": "7_rockot"
+            },
+            {
+              "titre": "Angara",
+              "dossier": "8_angara"
+            }
+          ]
+        },
+        {
           "titre": "France",
           "dossier": "france"
         },
@@ -123,15 +188,33 @@
         },
         {
           "titre": "Chine",
-          "dossier": "chine"
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "ensemble"
+            }
+          ]
         },
         {
           "titre": "Japon",
-          "dossier": "japon"
+          "dossier": "japon",
+          "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "ensemble"
+            }
+          ]
         },
         {
           "titre": "Inde",
-          "dossier": "inde"
+          "dossier": "inde",
+          "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "ensemble"
+            }
+          ]
         },
         {
           "titre": "Grande-Bretagne",
@@ -163,12 +246,24 @@
               "dossier": "korabl"
             },
             {
+              "titre": "Le programme Vostok",
+              "dossier": "programme"
+            },
+            {
               "titre": "Vostok 1",
               "dossier": "vostok1"
             },
             {
-              "titre": "Vostok 2 à 6",
+              "titre": "Vostok 2",
               "dossier": "vostok2"
+            },
+            {
+              "titre": "Vostok 3 & 4",
+              "dossier": "vostok3"
+            },
+            {
+              "titre": "Vostok 5 & 6",
+              "dossier": "vostok5"
             },
             {
               "titre": "Voskhod",
@@ -186,7 +281,38 @@
           "chapitres": [
             {
               "titre": "Mercury",
-              "dossier": "mercury"
+              "dossier": "mercury",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "programme"
+                },
+                {
+                  "titre": "Shepard",
+                  "dossier": "shepard",
+                  "chapitres": []
+                },
+                {
+                  "titre": "Grissom",
+                  "dossier": "grissom"
+                },
+                {
+                  "titre": "Glenn",
+                  "dossier": "glenn"
+                },
+                {
+                  "titre": "Carpenter",
+                  "dossier": "carpenter"
+                },
+                {
+                  "titre": "Schirra",
+                  "dossier": "schirra"
+                },
+                {
+                  "titre": "Cooper",
+                  "dossier": "cooper"
+                }
+              ]
             },
             {
               "titre": "Gemini",
@@ -391,11 +517,12 @@
       "dossier": "5_lune",
       "x": 900,
       "y": 150,
-      "image": "orange.png"
+      "image": "orange.png",
+      "chapitres": []
     },
     {
       "titre": "Lune : missions non habitées",
-      "dossier": "xxxxxxxxxxxx",
+      "dossier": "5b_lune_nonhab",
       "x": 900,
       "y": 200,
       "image": "orange.png",
@@ -480,34 +607,48 @@
         },
         {
           "titre": "Inde",
-          "dossier": "8_inde"
+          "dossier": "8_inde",
+          "chapitres": [
+            {
+              "titre": "Chandra_2",
+              "dossier": "chandra_2"
+            }
+          ]
+        },
+        {
+          "titre": "Israël",
+          "dossier": "9_israel"
         }
       ]
     },
     {
       "titre": "Lune: missions habitées",
-      "dossier": "xxxxxxxxxxxxx",
+      "dossier": "5a_lune_hab",
       "x": 900,
       "y": 250,
       "image": "orange.png",
       "chapitres": [
         {
           "titre": "États-Unis",
-          "dossier": "2_h_eu",
+          "dossier": "eu",
           "chapitres": [
             {
+              "titre": "Apollo",
+              "dossier": "apollo"
+            },
+            {
               "titre": "LEM",
-              "dossier": "2_h_lem"
+              "dossier": "lem"
             },
             {
               "titre": "Rover lunaire",
-              "dossier": "2_h_rover"
+              "dossier": "rover"
             }
           ]
         },
         {
           "titre": "URSS",
-          "dossier": "2_h_urss",
+          "dossier": "urss",
           "chapitres": [
             {
               "titre": "ur700",
@@ -622,7 +763,7 @@
         },
         {
           "titre": "États-Unis (2)",
-          "dossier": "eu_3",
+          "dossier": "eu_2",
           "chapitres": [
             {
               "titre": "Mars Observer",
@@ -725,12 +866,12 @@
           ]
         },
         {
-          "titre": "Autres",
-          "dossier": "autres",
+          "titre": "Emirats Arabes Unis",
+          "dossier": "e_a_u",
           "chapitres": [
             {
-              "titre": "Émirats Arabes Unis",
-              "dossier": "eua"
+              "titre": "Hope",
+              "dossier": "hope"
             }
           ]
         }
@@ -852,7 +993,104 @@
       "dossier": "14_aster",
       "x": 900,
       "y": 700,
-      "image": "orange.png"
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "aster"
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Chang",
+              "dossier": "chang"
+            }
+          ]
+        },
+        {
+          "titre": "Etats-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "Contour",
+              "dossier": "contour"
+            },
+            {
+              "titre": "Deep Impact",
+              "dossier": "deep",
+              "chapitres": []
+            },
+            {
+              "titre": "Galileo",
+              "dossier": "galileo"
+            },
+            {
+              "titre": "ICE",
+              "dossier": "ice"
+            },
+            {
+              "titre": "New Horizons",
+              "dossier": "new"
+            },
+            {
+              "titre": "Osiris-Rex",
+              "dossier": "osiris"
+            },
+            {
+              "titre": "Stardust",
+              "dossier": "stardust"
+            }
+          ]
+        },
+        {
+          "titre": "Europe",
+          "dossier": "europe",
+          "chapitres": [
+            {
+              "titre": "Giotto",
+              "dossier": "giotto"
+            },
+            {
+              "titre": "Rosetta",
+              "dossier": "rosetta"
+            }
+          ]
+        },
+        {
+          "titre": "Japon",
+          "dossier": "japon",
+          "chapitres": [
+            {
+              "titre": "Sakigake",
+              "dossier": "sakigake"
+            },
+            {
+              "titre": "Suise",
+              "dossier": "suise"
+            },
+            {
+              "titre": "Hasabuya",
+              "dossier": "hasabuya"
+            },
+            {
+              "titre": "Hasabuya 2",
+              "dossier": "hasa_2"
+            }
+          ]
+        },
+        {
+          "titre": "URSS",
+          "dossier": "urss",
+          "chapitres": [
+            {
+              "titre": "Vega",
+              "dossier": "vega"
+            }
+          ]
+        }
+      ]
     },
     {
       "titre": "Soleil",
@@ -866,7 +1104,7 @@
           "dossier": "panorama"
         },
         {
-          "titre": "Voyager",
+          "titre": "Etats-Unis",
           "dossier": "eu",
           "chapitres": [
             {
@@ -907,10 +1145,28 @@
     },
     {
       "titre": "Au-delà du Système Solaire",
-      "dossier": "13_systeme",
+      "dossier": "15_au_dela",
       "x": 900,
       "y": 850,
-      "image": "orange.png"
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
+        {
+          "titre": "Pioneer 10",
+          "dossier": "pioneer_10"
+        },
+        {
+          "titre": "Pioneer 11",
+          "dossier": "pioneer_11"
+        },
+        {
+          "titre": "Voyager",
+          "dossier": "voyager"
+        }
+      ]
     }
   ]
 }

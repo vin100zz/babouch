@@ -392,9 +392,10 @@ justify-content:space-between;
  cursor: pointer; }
  
  .center  {
-	 text-align : center}_
+	 text-align : center}
  
- 
+  .left  {
+	 text-align : left}
  
 img1 { 
  border:10px red groove; }  
