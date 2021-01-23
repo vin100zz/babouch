@@ -122,6 +122,7 @@ body, a, a:visited {
 }
 .shadow-thumbnails .home img {
   margin: 0;
+  max-width: none;
 }
 
 /* Breadcrumb */

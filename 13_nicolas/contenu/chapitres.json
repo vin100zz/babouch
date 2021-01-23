@@ -1,0 +1,50 @@
+{
+    "titre_site": "Nicolas Carlé (1861-1912) : ouvrier à l'Arsenal de Toulon",
+    "chapitres": [
+    	{
+            "image": "toto.jpg",
+            "x": 700,
+            "y": 300
+        },
+        {
+            "image": "nicolas.png",
+            "x": 300,
+            "y": 120
+        },
+        {
+            "titre": "Dans notre arbre",
+            "dossier": "arbre",
+            "image": "arbre.png",
+            "x": 210,
+            "y": 300
+        },
+        {
+            "titre": "Sa naissance",
+            "dossier": "1_naissance",
+            "image": "naissance.jpg",
+            "x": 100,
+            "y": 450
+        },
+        {
+            "titre": "Ouvrier à l'arsenal",
+            "dossier": "2_arsenal",
+            "image": "arsenal.jpg",
+            "x": 1000,
+            "y": 350
+        },
+        {
+            "titre": "Son mariage",
+            "dossier": "3_renee",
+            "image": "renee.jpg",
+            "x": 420,
+            "y": 320
+        },
+        {
+            "titre": " Sa mort",
+            "dossier": "4_mort",
+            "image": "mort.jpg",
+            "x": 1000,
+            "y": 600
+        }
+    ]
+}

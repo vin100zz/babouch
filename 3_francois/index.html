@@ -1,0 +1,24 @@
+<html ng-app="App">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1600, initial-scale=1" />
+    <link rel="stylesheet" href="../_moule/style/reset.css">
+    <link rel="stylesheet" href="../_moule/style/app.css">
+    <link rel="stylesheet" href="style/moule.css">
+    <link rel="stylesheet" href="style/pages.css">
+    <script src="../_moule/lib/angular/angular.js"></script>
+    <script src="../_moule/lib/angular/angular-route.js"></script>
+    <script src="../_moule/lib/app.js"></script>
+    <script src="../_moule/lib/pages/welcomeCtrl.js"></script>
+    <script src="../_moule/lib/pages/mapCtrl.js"></script>
+    <script src="../_moule/lib/pages/chapitreCtrl.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl" class="shadow-thumbnails">
+    
+    <div ng-view></div>
+
+  </body>
+
+</html>
