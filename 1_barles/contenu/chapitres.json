@@ -1,0 +1,132 @@
+{
+    "titre_site": "Jean, Charles, Martin PAYAN : au début était Barles...",
+    "chapitres": [
+        {
+            "image": "louis.png",
+            "x": 700,
+            "y": 100
+        },
+        {
+            "titre": "Jean PAYAN",
+            "dossier": "1_jean",
+            "image": "jean2.png",
+            "x": 0,
+            "y": 90
+        },
+        {
+            "titre": "Charles PAYAN",
+            "dossier": "2_charles",
+            "image": "charles2.png",
+            "x": 300,
+            "y": 250,
+            "chapitres": [
+                {
+                    "titre": "Son premier mariage",
+                    "dossier": "1_mariage1"
+                },
+                {
+                    "titre": "Son remariage",
+                    "dossier": "2_mariage2"
+                }
+            ]
+        },
+        {
+            "titre": "Martin PAYAN (1723-1783)",
+            "dossier": "3_martin",
+            "image": "martin.png",
+            "x": 750,
+            "y": 410,
+            "chapitres": [
+                {
+                    "titre": "Son mariage",
+                    "dossier": "1_mariage"
+                },
+                {
+                    "titre": "Un tisseur à drap",
+                    "dossier": "2_tisseur"
+                },
+                {
+                    "titre": "Un enfant imprimeur",
+                    "dossier": "3_imprimeur"
+                },
+                {
+                    "titre": "Sa mort",
+                    "dossier": "4_mort"
+                }
+            ]
+        },
+        {
+            "titre": "Barles",
+            "dossier": "5_village",
+            "image": "barles.jpg",
+            "x": 100,
+            "y": 700,
+            "chapitres": [
+                {
+                    "titre": "Sa situation",
+                    "dossier": "1_situation"
+                },
+                {
+                    "titre": "Le village",
+                    "dossier": "2_village"
+                },
+                {
+                    "titre": "Les paysages",
+                    "dossier": "3_clues"
+                }
+            ]
+        },
+        {
+            "titre": "Les sources",
+            "dossier": "4_sources",
+            "image": "sources.jpg",
+            "x": 500,
+            "y": 700,
+            "chapitres": [
+                {
+                    "titre": "Un registre paroissial",
+                    "dossier": "1_registre"
+                },
+                {
+                    "titre": "Le cachet",
+                    "dossier": "2_cachet"
+                },
+                {
+                    "titre": "Avec la Révolution",
+                    "dossier": "3_revol"
+                }
+            ]
+        },
+        {
+            "titre": "Le texte",
+            "dossier": "6_texte",
+            "image": "1.jpg",
+            "x": 750,
+            "y": 700
+        },
+        {
+            "titre": "Les Payan en bref",
+            "dossier": "8_bref",
+            "image": "carte.jpg",
+            "x": 1000,
+            "y": 700
+        },
+        {
+            "titre": "Annexe",
+            "dossier": "7_releves",
+            "image": "annexe.jpg",
+            "x": 1300,
+            "y": 700,
+            "chapitres": [
+                {
+                    "titre": "Relevé...",
+                    "dossier": "1_barles"
+                },
+                {
+                    "titre": "...et dans ceux... ",
+                    "dossier": "2_marseille"
+                }
+            ]
+        }
+    ]
+}

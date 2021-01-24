@@ -43,10 +43,14 @@ body, a, a:visited {
 .home a span {
   text-decoration: none;
 }
+.home img {
+  margin: 0;
+  max-width: none;
+}
 
 .home .home-content {
   position: relative;
-  width: 1200px;
+  width: 1500px;
   height: 100%;
   margin: auto;
   margin-top: 20px;
@@ -92,36 +96,6 @@ body, a, a:visited {
   text-align: center;
   display: block;
   box-sizing: border-box;
-}
-
-/* Shadow Thumbnails */
-.shadow-thumbnails .home {
-  font-family: Verdana;
-  font-size: 10pt;
-  line-height: 1em;
-}
-.shadow-thumbnails .home span {
-  color: #ccc;
-  padding: 2px;
-  box-sizing: border-box;
-}
-.shadow-thumbnails .home .thumbnail:not(.static-image) {
-  box-shadow: 0 0 10px 2px #333;
-}
-.shadow-thumbnails .home a:hover img {
-  box-shadow: 0 0 10px 4px #111;
-}
-.shadow-thumbnails .home .thumbnail span {
-  color: #ccc;
-  bottom: 0;
-  width: 100%;
-  background: #111;
-  font-size: 13px;
-  line-height: 15px;
-  padding: 3px;
-}
-.shadow-thumbnails .home img {
-  margin: 0;
 }
 
 /* Breadcrumb */
@@ -170,9 +144,8 @@ header {
   right: 0;
   top: 0;
   height: 130px;
-  line-height: 105px;
+  line-height: 130px;
   text-align: center;
-  padding: 20px 0 15px 0;
 }
 #chapitre {
   position: absolute;

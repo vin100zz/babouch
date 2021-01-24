@@ -1,0 +1,52 @@
+{
+    "titre_site": "André PAYAN (1759-1813) : l'adieu à Barles",
+    "chapitres": [
+    	{
+            "image": "revol.png",
+            "x": 700,
+            "y": 330
+        },
+        {
+            "titre": "André PAYAN",
+            "dossier": "1_andre",
+            "image": "andre.png",
+            "x": 250,
+            "y": 250,
+            "chapitres": [
+                {
+                    "titre": "Un premier mariage à Barles",
+                    "dossier": "1_naissance"
+                },
+                {
+                    "titre": "Un second mariage à Seyne",
+                    "dossier": "2_mariage2"
+                },
+                {
+                    "titre": "Louise Charlotte Silve,son épouse",
+                    "dossier": "2a_silve"
+                },
+                {
+                    "titre": "L'exil et la mort à Marseille",
+                    "dossier": "3_mort"
+                }
+            ]
+        },
+        {
+            "titre": "Seyne",
+            "dossier": "2_seyne",
+            "image": "seyne.jpg",
+            "x": 500,
+            "y": 600,
+            "chapitres": [
+                {
+                    "titre": "Le village",
+                    "dossier": "1_village"
+                },
+                {
+                    "titre": "L'apport",
+                    "dossier": "2_apport"
+                }
+            ]
+        }
+    ]
+}

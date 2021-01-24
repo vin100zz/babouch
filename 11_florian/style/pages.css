@@ -1,0 +1,142 @@
+body {
+  font-family: Segoe Print;
+  font-size: 14pt;
+  line-height: 2em;
+}
+
+
+
+h1 {
+  font-size: 26pt;
+  font-weight: bold;
+  padding-left: 40px;
+   background-color:#B7EDF7;
+   height:70px;
+}
+
+td{  
+vertical-align:middle;
+padding:20px;
+
+}
+
+table {
+width:100%;
+left:auto;
+}
+
+
+h2 {
+  font-size: 25pt;
+  font-weight: bold;
+  padding-left: 40px;
+}
+
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+
+
+
+p {
+  text-align: justify;
+  text-indent: 40px;
+   background-color:#DFF3F7;
+   padding-right: 20px;
+   padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+}
+
+.blanc {
+   background-color:white;
+   padding-right: 20px;
+   padding-left: 20px;
+}
+
+.gras {
+font-weight: bold;
+text-decoration:underline;
+}
+
+.grassimple {
+font-weight: bold;
+}
+
+ 
+p#bleu {
+  color: blue;
+}
+
+
+
+.cadregris {
+ border:2px solid gray;
+ padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+ }
+
+.cadrebleu {
+ border:2px solid blue;
+ padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+ }
+
+.centrer {
+ text-align:center
+ }
+ 
+  .fond {
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:40px;
+width:400px;
+padding:50px;
+}
+
+  .fond1 {  
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:150px;
+width:500px;
+padding:auto;
+}
+
+  .fond2 {  
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:100px;
+width:1500px;
+padding:auto;
+}
+
+ .decor {
+
+    background: silver;
+}
+
+  .retrait{
+  
+    margin-left:150px;
+    background: silver;
+    border:2px solid gray;
+    padding-right: 20px;
+    padding-left: 200px;
+    padding-top:30px;
+    padding-bottom :30px;
+    
+}
+  
+  
+  
+  
