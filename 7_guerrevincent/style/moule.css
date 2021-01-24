@@ -11,7 +11,12 @@ body,
 
 #breadcrumb {
   top: 90px;
-  background: #333;
+  background: #634a1f;
+}
+#breadcrumb,
+#breadcrumb a,
+#breadcrumb a:visited {
+  color: #f5c854;
 }
 #chapitre {
   top: 140px;
@@ -104,6 +109,10 @@ header:after,
 }
 .home img {
   margin: 0;
+}
+.home .static-image img {
+  border: none;
+}
 }
 
 
