@@ -23,10 +23,6 @@
   line-height: 15px;
   padding: 3px;
 }
-.home img {
-  margin: 0;
-  max-width: none;
-}
 
 body,
 .home-background {
@@ -43,7 +39,6 @@ body,
 #sous-chapitres a {
   background: #D8D9E9;
 }
-
 
 header,
 .home-title {

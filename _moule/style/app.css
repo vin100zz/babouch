@@ -43,10 +43,14 @@ body, a, a:visited {
 .home a span {
   text-decoration: none;
 }
+.home img {
+  margin: 0;
+  max-width: none;
+}
 
 .home .home-content {
   position: relative;
-  width: 1200px;
+  width: 1500px;
   height: 100%;
   margin: auto;
   margin-top: 20px;
