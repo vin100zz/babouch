@@ -1,17 +1,4 @@
-/* Background */
-body {
-	background: url(background.png);
-}
-.home-background {
-  background: url(background.png);
-}
-
 .home-title:before,
 header:before {
   background-image: url(../../style/rosine.png);
-}
-
-/* Sous-chapitres */
-#sous-chapitres a {
-  background: #D8D9E9;
 }

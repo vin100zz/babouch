@@ -1,0 +1,66 @@
+.home {
+  font-family: Verdana;
+  font-size: 10pt;
+  line-height: 1em;
+}
+.home span {
+  color: #ccc;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.home .thumbnail:not(.static-image) {
+  box-shadow: 0 0 10px 2px #333;
+}
+.home a:hover img {
+  box-shadow: 0 0 10px 4px #111;
+}
+.home .thumbnail span {
+  color: #ccc;
+  bottom: 0;
+  width: 100%;
+  background: #111;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 3px;
+}
+.home img {
+  margin: 0;
+  max-width: none;
+}
+
+#breadcrumb {
+  top: 90px;
+  background: #333;
+}
+#chapitre {
+  top: 140px;
+}
+#sous-chapitres a {
+  background: #D8D9E9;
+}
+
+
+header,
+.home-title {
+  font-family: Segoe Print;
+  font-size: 35px;
+  font-weight: bold;
+  height: 90px;
+  line-height: 90px;
+  background-color: #000;
+  color: #ccc;
+}
+.home-title:before,
+header:before {
+  content: '';
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ccc;
+  background-size: 85%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
