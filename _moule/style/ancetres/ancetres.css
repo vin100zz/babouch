@@ -28,6 +28,11 @@
   max-width: none;
 }
 
+body,
+.home-background {
+  background: url(background.png);
+}
+
 #breadcrumb {
   top: 90px;
   background: #333;
