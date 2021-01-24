@@ -1,0 +1,311 @@
+{
+    "titre_site": "La guerre de Vincent",
+    "chapitres": [
+    	{
+            "image": "carte.png",
+            "x": 160,
+            "y": 455
+        },
+        {
+            "image": "vp.jpg",
+            "x": 1220,
+            "y": 230
+        },
+        {
+            "titre": "Les sources",
+            "dossier": "0_sources",
+            "image": "jmo.jpg",
+            "x": 1030,
+            "y": 100
+        },
+        {
+            "titre": "Champagne (sept.-oct. 1915)",
+            "dossier": "1_champagne1",
+            "image": "case1.png",
+            "x": 150,
+            "y": 60,
+            "chapitres": [
+                {
+                    "titre": "Prélude",
+                    "page_html": "0_prelude/orange.html"
+                },
+                {
+                    "titre": "L'échec d'une offensive",
+                    "page_html": "1_offensive/index.html"
+                },
+                {
+                    "titre": "Le baptème du feu",
+                    "page_html": "2_jonchery/index.html"
+                },
+                {
+                    "titre": "La craie",
+                    "page_html": "3_craie/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "Vosges (oct. 1915-juillet 1916)",
+            "dossier": "2_vosges1",
+            "image": "case4.png",
+            "x": 200,
+            "y": 125,
+            "chapitres": [
+                {
+                    "titre": "Le front",
+                    "page_html": "1_front/index.html"
+                },
+                {
+                    "titre": "Sur les pas du 55e R.A.C.",
+                    "page_html": "2_55/index.html"
+                },
+                {
+                    "titre": "L'hiver",
+                    "page_html": "3_hiver/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "Somme (août-nov. 1916)",
+            "dossier": "3_somme",
+            "image": "case3.png",
+            "x": 450,
+            "y": 190,
+            "chapitres": [
+                {
+                    "titre": "L'offensive",
+                    "page_html": "1_offensive/index.html"
+                },
+                {
+                    "titre": "La préparation",
+                    "page_html": "2_preparation/index.html"
+                },
+                {
+                    "titre": "La participation",
+                    "page_html": "3_part/index.html"
+                },
+                {
+                    "titre": "La reconstruction",
+                    "page_html": "4_reconst/index.html"
+                },
+                {
+                    "titre": "deux",
+                    "page_html": "5_deux/index.html"
+                },
+                {
+                    "titre": "La boue",
+                    "page_html": "6_boue/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "Vosges (déc. 1916-janvier 1917)",
+            "dossier": "4_vosges2",
+            "image": "case2.png",
+            "x": 550,
+            "y": 250
+        },
+        {
+            "titre": "Aisne (avril-juin 1917)",
+            "dossier": "5_aisne",
+            "image": "case5.png",
+            "x": 600,
+            "y": 315,
+            "chapitres": [
+                {
+                    "titre": "La bataille",
+                    "page_html": "1_bataille/bataille.html"
+                },
+                {
+                    "titre": "avortée",
+                    "page_html": "2_avortee/avortee.html"
+                },
+                {
+                    "titre": "Les combats",
+                    "page_html": "3_combats/combats.html"
+                }
+            ]
+        },
+        {
+            "titre": "Chemin des Dames (juillet-oct. 1917)",
+            "dossier": "6_dames",
+            "image": "case6.png",
+            "x": 670,
+            "y": 380
+        },
+        {
+            "titre": "Italie (nov. 1917-avril 1918)",
+            "dossier": "7_italie",
+            "image": "case7.png",
+            "x": 775,
+            "y": 440,
+            "chapitres": [
+                {
+                    "titre": "secours",
+                    "page_html": "1_secours/secours.html"
+                },
+                {
+                    "titre": "tomba",
+                    "page_html": "2_tomba/tomba.html"
+                },
+                {
+                    "titre": "neige",
+                    "page_html": "3_neige/neige.html"
+                }
+            ]
+        },
+        {
+            "titre": "Belgique (mai-juin 1918)",
+            "dossier": "8_belgique",
+            "image": "case8.png",
+            "x": 1025,
+            "y": 505,
+            "chapitres": [
+                {
+                    "titre": "L'offensive",
+                    "page_html": "1_offensive/index.html"
+                },
+                {
+                    "titre": "Le mouvement",
+                    "page_html": "2_mouvement/index.html"
+                },
+                {
+                    "titre": "Le mont Kemmel",
+                    "page_html": "3_kemmel/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "Champagne (juillet-août 1918)",
+            "dossier": "9_champagne2",
+            "image": "case9.png",
+            "x": 1080,
+            "y": 570,
+            "chapitres": [
+                {
+                    "titre": "La Marne",
+                    "page_html": "1_marne2/index.html"
+                },
+                {
+                    "titre": "Défense",
+                    "page_html": "2_defense/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "Montdidier (août-sept. 1918)",
+            "dossier": "10_montdidier",
+            "image": "case10.png",
+            "x": 1145,
+            "y": 635,
+            "chapitres": [
+                {
+                    "titre": "L'offensive",
+                    "page_html": "1_offensive/index.html"
+                },
+                {
+                    "titre": "Un mois",
+                    "page_html": "2_unmois/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "St-Quentin (oct.-nov 1918)",
+            "dossier": "11_quentin",
+            "image": "case11.png",
+            "x": 1200,
+            "y": 700,
+            "chapitres": [
+                {
+                    "titre": "La victoire",
+                    "page_html": "1_offensive/index.html"
+                },
+                {
+                    "titre": "St-Quentin",
+                    "page_html": "2_stquentin/index.html"
+                }
+            ]
+        },
+        {
+            "titre": "Sambre (oct.-nov. 1918)",
+            "dossier": "12_sambre",
+            "image": "case12.png",
+            "x": 1260,
+            "y": 765
+        },
+        {
+            "titre": "Aix-la-Chapelle (nov. 1918-février 1919)",
+            "dossier": "13_aix",
+            "image": "case13.png",
+            "x": 1295,
+            "y": 830
+        },
+        {
+            "titre": "1914 : L'entrée en guerre",
+            "dossier": "14_debuts",
+            "image": "affiche.jpg",
+            "style": "histo",
+            "x": 11,
+            "y": 80
+        },
+        {
+            "titre": "1915 : la mort de son frère Auguste",
+            "dossier": "15_auguste",
+            "image": "auguste.jpg",
+            "style": "histo",
+            "x": 11,
+            "y": 240
+        },
+        {
+            "titre": "1916 : la disparition de son frère Émile",
+            "dossier": "16_emile",
+            "image": "emile.jpg",
+            "style": "histo",
+            "x": 11,
+            "y": 390
+        },
+        {
+            "titre": "1916 : la mort de son père",
+            "dossier": "17_pere",
+            "image": "pere.jpg",
+            "style": "histo",
+            "x": 11,
+            "y": 550
+        },
+        {
+            "titre": "1919 : la mort de son frère Jean-Baptiste",
+            "dossier": "18_jb",
+            "image": "jb.jpg",
+            "style": "histo",
+            "x": 11,
+            "y": 720
+        },
+        {
+            "titre": "Le canon de 90",
+            "dossier": "19_canon90",
+            "image": "canon90.jpg",
+            "x": 480,
+            "y": 100
+        },
+        {
+            "titre": "Le canon de 75",
+            "dossier": "20_canon75",
+            "image": "canon75.jpg",
+            "x": 630,
+            "y": 100
+        },
+        {
+            "titre": "L'organisation des unités",
+            "dossier": "21_unites",
+            "image": "unites.jpg",
+            "x": 830,
+            "y": 100
+        },
+        {
+            "titre": "Une vision d'ensemble",
+            "dossier": "22_vision",
+            "image": "vision.jpg",
+            "x": 800,
+            "y": 650
+        }
+    ]
+}

@@ -1,0 +1,185 @@
+body {
+  font-family: Segoe Print;
+  font-size: 14pt;
+  line-height: 2em;
+}
+
+h1 {
+  font-size: 26pt;
+  font-weight: bold;
+  padding-left: 40px;
+}
+
+
+
+
+h2 {
+  font-size: 22pt;
+  font-weight: bold;
+  padding-left: 40px;
+  
+}
+
+
+h3 {
+  font-size: 18pt;
+  font-weight: bold;
+  padding-left: 40px;
+  background-color:#DFF9F9;
+  border-bottom:3px solid aqua;
+}
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+   border: solid 5px silver;
+}
+
+
+
+
+
+
+td {
+  vertical-align: middle;
+  padding:20px;
+}
+
+p {
+  text-align: justify;
+  text-indent: 40px;
+  padding: 20px ;
+   background-color:#DFF3F7;
+}
+
+td p {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+table,tr,td,th {
+  border-style:solid;
+  border:1px; 
+}
+
+p#bleu {
+  color: blue;
+}
+
+ .decor {
+
+    background: silver;
+}
+
+
+
+.cadregris {
+ border:5px solid gray;
+
+ }
+
+.cadrebleu {
+ border:2px solid blue;
+ padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+ }
+
+ .cadreorange {
+ border-width:10px;
+ padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+ border-style: outset;
+ border-color : orange;
+ }
+ 
+  .cadreorange1 {
+ border-width:5px;
+ padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+ border-style: outset;
+ border-color : orange;
+ }
+ 
+ 
+.centrer {
+ text-align:center;
+ }
+ 
+ .reduc60 {
+ width:60%;
+ }
+ 
+
+
+.troiscolonnes {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+
+    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 40px; /* Firefox */
+    column-gap: 40px;
+    display:table-row-grow;
+   
+}
+
+.deuxcolonnes {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+
+    
+    -webkit-column-gap: 50px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 50px; /* Firefox */
+    column-gap: 50px;
+    
+   display:table-row-grow;
+   height:100%;
+ 
+   }
+   
+   .gras {
+   font-style: italic;
+   font-weight: bold;
+  
+   }
+   
+   
+
+   
+   
+   .bordure {
+    border :5px solid silver;
+    padding-right:10px;
+    padding-bottom: 10px
+   }
+
+    }
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
