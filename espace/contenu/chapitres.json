@@ -634,7 +634,13 @@
           "chapitres": [
             {
               "titre": "Apollo",
-              "dossier": "apollo"
+              "dossier": "apollo",
+              "chapitres": [
+                {
+                  "titre": "Apollo 11",
+                  "dossier": "apollo11"
+                }
+              ]
             },
             {
               "titre": "LEM",

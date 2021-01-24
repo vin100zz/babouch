@@ -221,19 +221,19 @@
           "dossier": "0_vieux"
         },
         {
-          "titre": "De la place d'Aix aux Carmes",
+          "titre": "De la place d'Aix aux Carmes : de son temps...",
           "dossier": "1_aix_1_hier"
         },
         {
-          "titre": "De nos jours",
+          "titre": "...et de nos jours",
           "dossier": "1_aix_2_auj"
         },
         {
-          "titre": "Rue Sainte-Françoise",
+          "titre": "Rue Sainte-Françoise : de son temps...",
           "dossier": "2_sainte_1_hier"
         },
         {
-          "titre": "De nos jours",
+          "titre": "...et de nos jours",
           "dossier": "2_sainte_2_auj"
         },
         {
@@ -241,7 +241,7 @@
           "dossier": "3_hotel_1_hier"
         },
         {
-          "titre": "De nos jours",
+          "titre": "...et de nos jours",
           "dossier": "3_hotel_2_auj"
         }
       ]
@@ -291,7 +291,7 @@
           "dossier": "3_1855"
         },
         {
-          "titre": "Mort de Rosine",
+          "titre": "Mort de Rosine et conclusion",
           "dossier": "4_morts"
         }
       ]
