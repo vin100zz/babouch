@@ -137,6 +137,22 @@ padding:auto;
     
 }
   
-  
+.conteneur1{ 
+ display: flex; 
+ flex-direction: row;
+ justify-content:space-around; 
+ } 
+ 
+  .box {
+	 align-items: center;
+ }
+
+
+.gallery1 {
+   display: flex;
+   flex-wrap: wrap;
+   padding:5px;
+   justify-content: space-evenly;
+} 
   
   

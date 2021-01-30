@@ -137,6 +137,13 @@ padding:auto;
     
 }
   
-  
+  .conteneur1  { 
+ display: flex; 
+justify-content:center; 
+ }
+ 
+ .box {
+	 align-items: center;
+ }
   
   
