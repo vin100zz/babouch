@@ -49,6 +49,6 @@ app.controller('ChapitreCtrl', ['$scope', '$http', '$routeParams', '$sce', '$tim
         $scope.htmlContent = $sce.trustAsHtml(data.htmlContent);
       });
     }
-  });
+  }, 1000);
 
 }]);
