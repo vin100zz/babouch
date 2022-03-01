@@ -5,14 +5,31 @@
       "titre": "Système Solaire",
       "dossier": "13_systeme",
       "x": 410,
-      "y": 100,
+      "y": 150,
       "image": "vert.png"
+    },
+    {
+      "titre": "Chronologie",
+      "dossier": "00_chronologie",
+      "x": -100,
+      "y": 150,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "2020",
+          "dossier": "2020"
+        },
+        {
+          "titre": "2021",
+          "dossier": "2021"
+        }
+      ]
     },
     {
       "titre": "Lanceurs",
       "dossier": "2_lanceurs",
       "x": -100,
-      "y": 150,
+      "y": 250,
       "image": "bleu.png",
       "chapitres": [
         {
@@ -40,6 +57,10 @@
               "dossier": "vanguard"
             },
             {
+              "titre": "Little Joe",
+              "dossier": "little_joe"
+            },
+            {
               "titre": "Agena",
               "dossier": "agena"
             },
@@ -60,12 +81,38 @@
               "dossier": "thor"
             },
             {
+              "titre": "Delta",
+              "dossier": "delta"
+            },
+            {
               "titre": "Titan",
               "dossier": "titan"
             },
             {
               "titre": "Saturn",
-              "dossier": "saturn"
+              "dossier": "saturn",
+              "chapitres": [
+                {
+                  "titre": "La famille",
+                  "dossier": "famille"
+                },
+                {
+                  "titre": "Saturn I",
+                  "dossier": "saturn1"
+                },
+                {
+                  "titre": "Saturn IB",
+                  "dossier": "saturn1b"
+                },
+                {
+                  "titre": "Saturn V",
+                  "dossier": "saturn5"
+                }
+              ]
+            },
+            {
+              "titre": "Ares",
+              "dossier": "ares"
             },
             {
               "titre": "SLS",
@@ -90,12 +137,12 @@
               "dossier": "heavy"
             },
             {
-              "titre": "Antarès",
-              "dossier": "antares"
-            },
-            {
               "titre": "Vulcan",
               "dossier": "vulcan"
+            },
+            {
+              "titre": "Antarès",
+              "dossier": "antares"
             },
             {
               "titre": "New Shepard",
@@ -104,6 +151,18 @@
             {
               "titre": "New Glenn",
               "dossier": "glenn"
+            },
+            {
+              "titre": "Starship",
+              "dossier": "starship"
+            },
+            {
+              "titre": "Stratolaunch",
+              "dossier": "strato"
+            },
+            {
+              "titre": "Virgin Orbit (LauncherOne)",
+              "dossier": "virgin_orbit"
             }
           ]
         },
@@ -116,7 +175,7 @@
               "dossier": "1_ensemble"
             },
             {
-              "titre": "R7 et dérivés",
+              "titre": "R7 et lanceur Spoutnik",
               "dossier": "2_semiorka",
               "chapitres": [
                 {
@@ -137,6 +196,14 @@
                   "dossier": "spoutnik3"
                 }
               ]
+            },
+            {
+              "titre": "Lanceur Vostok et Voshkhod",
+              "dossier": "vostok"
+            },
+            {
+              "titre": "Lanceur  Soyouz",
+              "dossier": "soyouz"
             },
             {
               "titre": "Cosmos",
@@ -170,7 +237,17 @@
         },
         {
           "titre": "France",
-          "dossier": "france"
+          "dossier": "france",
+          "chapitres": [
+            {
+              "titre": "Diamant",
+              "dossier": "diamant"
+            },
+            {
+              "titre": "Vesta",
+              "dossier": "vesta"
+            }
+          ]
         },
         {
           "titre": "Europe",
@@ -182,7 +259,25 @@
             },
             {
               "titre": "Ariane",
-              "dossier": "ariane"
+              "dossier": "ariane",
+              "chapitres": [
+                {
+                  "titre": "Ariane 1",
+                  "dossier": "ariane1"
+                },
+                {
+                  "titre": "Ariane 5",
+                  "dossier": "ariane5"
+                },
+                {
+                  "titre": "Ariane 6",
+                  "dossier": "ariane6"
+                }
+              ]
+            },
+            {
+              "titre": "Vega",
+              "dossier": "vega"
             }
           ]
         },
@@ -193,6 +288,10 @@
             {
               "titre": "Ensemble",
               "dossier": "ensemble"
+            },
+            {
+              "titre": "I-Space",
+              "dossier": "i-space"
             }
           ]
         },
@@ -221,8 +320,16 @@
           "dossier": "gb"
         },
         {
-          "titre": "Autres",
-          "dossier": "autres"
+          "titre": "Nle-Zélande (Electron/Neutron)",
+          "dossier": "nz"
+        },
+        {
+          "titre": "Iran (Safir/Simorgh)",
+          "dossier": "iran"
+        },
+        {
+          "titre": "Corée du Sud",
+          "dossier": "coree_sud"
         }
       ]
     },
@@ -230,7 +337,7 @@
       "titre": "Cabines habitées",
       "dossier": "1_cabines",
       "x": -100,
-      "y": 250,
+      "y": 350,
       "image": "bleu.png",
       "chapitres": [
         {
@@ -246,32 +353,110 @@
               "dossier": "korabl"
             },
             {
-              "titre": "Le programme Vostok",
-              "dossier": "programme"
-            },
-            {
-              "titre": "Vostok 1",
-              "dossier": "vostok1"
-            },
-            {
-              "titre": "Vostok 2",
-              "dossier": "vostok2"
-            },
-            {
-              "titre": "Vostok 3 & 4",
-              "dossier": "vostok3"
-            },
-            {
-              "titre": "Vostok 5 & 6",
-              "dossier": "vostok5"
+              "titre": "Vostok",
+              "dossier": "vostok",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "programme"
+                },
+                {
+                  "titre": "Vostok 1",
+                  "dossier": "vostok1"
+                },
+                {
+                  "titre": "Vostok 2",
+                  "dossier": "vostok2"
+                },
+                {
+                  "titre": "Vostok 3 & 4",
+                  "dossier": "vostok3"
+                },
+                {
+                  "titre": "Vostok  5 & 6",
+                  "dossier": "vostok5"
+                }
+              ]
             },
             {
               "titre": "Voskhod",
-              "dossier": "voskhod"
+              "dossier": "voskhod",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "programme"
+                },
+                {
+                  "titre": "Voshkhod 1",
+                  "dossier": "voshkhod1"
+                },
+                {
+                  "titre": "Voshkhod 2",
+                  "dossier": "voshkhod2"
+                },
+                {
+                  "titre": "Cosmos 110",
+                  "dossier": "voskhod3"
+                }
+              ]
             },
             {
               "titre": "Soyouz",
-              "dossier": "soyouz"
+              "dossier": "soyouz",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "soyouz"
+                },
+                {
+                  "titre": "Soyouz 1 (1967)",
+                  "dossier": "soyouz1"
+                },
+                {
+                  "titre": "Cosmos 186 & 188 (1967)",
+                  "dossier": "cosmos186"
+                },
+                {
+                  "titre": "Cosmos 212 & 213 (1968)",
+                  "dossier": "cosmos212"
+                },
+                {
+                  "titre": "Soyouz 2 & 3",
+                  "dossier": "soyouz2"
+                },
+                {
+                  "titre": "Soyouz 4 & 5",
+                  "dossier": "soyouz4"
+                },
+                {
+                  "titre": "Soyouz 6, 7 et 8",
+                  "dossier": "soyouz6"
+                },
+                {
+                  "titre": "Soyouz 9 (1970)",
+                  "dossier": "soyouz9"
+                },
+                {
+                  "titre": "Soyouz 10 et 11 (1971)",
+                  "dossier": "soyouz11"
+                },
+                {
+                  "titre": "Soyouz 12 (1973)",
+                  "dossier": "soyouz12"
+                },
+                {
+                  "titre": "Soyouz 13 (1973)",
+                  "dossier": "soyouz13"
+                },
+                {
+                  "titre": "Soyouz 14 & 15 (1974)",
+                  "dossier": "saliout3"
+                },
+                {
+                  "titre": "Soyouz 16 (1974)",
+                  "dossier": "soyouz16"
+                }
+              ]
             }
           ]
         },
@@ -279,6 +464,14 @@
           "titre": "États-Unis (NASA)",
           "dossier": "nasa",
           "chapitres": [
+            {
+              "titre": "Panorama",
+              "dossier": "panorama"
+            },
+            {
+              "titre": "Biosatellites (1966-1969)",
+              "dossier": "bio"
+            },
             {
               "titre": "Mercury",
               "dossier": "mercury",
@@ -316,17 +509,102 @@
             },
             {
               "titre": "Gemini",
-              "dossier": "gemini"
+              "dossier": "gemini",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "programme"
+                },
+                {
+                  "titre": "Gemini 1",
+                  "dossier": "gemini1"
+                },
+                {
+                  "titre": "Gemini 2",
+                  "dossier": "gemini2"
+                },
+                {
+                  "titre": "Gemini 3",
+                  "dossier": "gemini3"
+                },
+                {
+                  "titre": "Gemini 4",
+                  "dossier": "gemini4"
+                },
+                {
+                  "titre": "Gemini 5",
+                  "dossier": "gemini5"
+                },
+                {
+                  "titre": "Gemini 6 et 7",
+                  "dossier": "gemini6"
+                },
+                {
+                  "titre": "Gemini 8",
+                  "dossier": "gemini8"
+                },
+                {
+                  "titre": "Gemini 9",
+                  "dossier": "gemini9"
+                },
+                {
+                  "titre": "Gemini 10",
+                  "dossier": "gemini10"
+                },
+                {
+                  "titre": "Gemini 11",
+                  "dossier": "gemini11"
+                },
+                {
+                  "titre": "Gemini 12",
+                  "dossier": "gemini12"
+                }
+              ]
             },
             {
               "titre": "Apollo",
-              "dossier": "apollo"
+              "dossier": "apollo",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "programme",
+                  "chapitres": []
+                },
+                {
+                  "titre": "Apollo «1» (1967)",
+                  "dossier": "apollo1"
+                },
+                {
+                  "titre": "Apollo 4 (1967)",
+                  "dossier": "apollo4"
+                },
+                {
+                  "titre": "Apollo 5 (1968)",
+                  "dossier": "apollo5"
+                },
+                {
+                  "titre": "Apollo 6 (1968)",
+                  "dossier": "apollo6"
+                },
+                {
+                  "titre": "Apollo 7 (1968)",
+                  "dossier": "apollo7"
+                },
+                {
+                  "titre": "Apollo-Soyouz",
+                  "dossier": "apollo_soyouz"
+                }
+              ]
             },
             {
               "titre": "Orion",
               "dossier": "orion"
             }
           ]
+        },
+        {
+          "titre": "Apollo-Soyouz (1975)",
+          "dossier": "apollo-soyouz"
         },
         {
           "titre": "États-Unis (privé)",
@@ -357,6 +635,10 @@
             {
               "titre": "Shenzhou",
               "dossier": "shenzhou"
+            },
+            {
+              "titre": "VNG",
+              "dossier": "vng"
             }
           ]
         }
@@ -366,7 +648,7 @@
       "titre": "Vaisseaux cargo",
       "dossier": "8_cargo",
       "x": -100,
-      "y": 350,
+      "y": 450,
       "image": "bleu.png",
       "chapitres": [
         {
@@ -378,11 +660,11 @@
           "dossier": "progress"
         },
         {
-          "titre": "États-Unis (NASA)",
+          "titre": "États-Unis",
           "dossier": "eu",
           "chapitres": [
             {
-              "titre": "Cygnus",
+              "titre": "Cygnus NG-15",
               "dossier": "cygnus"
             },
             {
@@ -398,31 +680,40 @@
         {
           "titre": "Europe",
           "dossier": "atv"
+        },
+        {
+          "titre": "Chine",
+          "dossier": "tianzhou"
         }
       ]
     },
     {
-      "titre": "Navettes",
+      "titre": "Avions orbitaux et navettes",
       "dossier": "3_navettes",
       "x": -100,
-      "y": 450,
+      "y": 550,
       "image": "bleu.png",
       "chapitres": [
         {
-          "titre": "États-Unis",
+          "titre": "Etats-Unis",
           "dossier": "eu",
           "chapitres": [
+            {
+              "titre": "X-1",
+              "dossier": "x1"
+            },
+            {
+              "titre": "X-15",
+              "dossier": "x15"
+            },
             {
               "titre": "Dyna Soar",
               "dossier": "dyna"
             },
             {
-              "titre": "Avion Orbital",
-              "dossier": "avion"
-            },
-            {
-              "titre": "Shuttle",
-              "dossier": "shuttle"
+              "titre": "Avions orbitaux",
+              "dossier": "avion",
+              "chapitres": []
             },
             {
               "titre": "Spaceship",
@@ -431,6 +722,48 @@
             {
               "titre": "X-37B",
               "dossier": "x37b"
+            },
+            {
+              "titre": "X-38",
+              "dossier": "x38"
+            }
+          ]
+        },
+        {
+          "titre": "Etats-Unis : Space Transportation System (STS)",
+          "dossier": "shuttle",
+          "chapitres": [
+            {
+              "titre": "Les caractéristiques",
+              "dossier": "1_caracteristiques"
+            },
+            {
+              "titre": "Le Spacelab",
+              "dossier": "2_spacelab"
+            },
+            {
+              "titre": "Les origines",
+              "dossier": "3_origines"
+            },
+            {
+              "titre": "Avril 1981 : le 1er vol",
+              "dossier": "4_1er_vol"
+            },
+            {
+              "titre": "Novembre 1981 : le 2e vol",
+              "dossier": "5_2e_vol"
+            },
+            {
+              "titre": "Janvier 1986 : l'accident de Challenger",
+              "dossier": "1986"
+            },
+            {
+              "titre": "Janvier 2003 : l'accident de Columbia",
+              "dossier": "2003"
+            },
+            {
+              "titre": "2011 :  derniers vols",
+              "dossier": "2011"
             }
           ]
         },
@@ -450,7 +783,25 @@
         },
         {
           "titre": "Europe",
-          "dossier": "hermes"
+          "dossier": "europe",
+          "chapitres": [
+            {
+              "titre": "Hermès (1975-1992)",
+              "dossier": "hermes"
+            },
+            {
+              "titre": "Hotol (1984-1989)",
+              "dossier": "hotol"
+            },
+            {
+              "titre": "Sänger (1989-1995)",
+              "dossier": "sanger"
+            },
+            {
+              "titre": "IXV (2015)",
+              "dossier": "ixv"
+            }
+          ]
         },
         {
           "titre": "Chine",
@@ -465,6 +816,10 @@
               "dossier": "shenlong"
             }
           ]
+        },
+        {
+          "titre": "Corée du Nord",
+          "dossier": "coree"
         }
       ]
     },
@@ -472,9 +827,13 @@
       "titre": "Stations spatiales",
       "dossier": "4_stations",
       "x": -100,
-      "y": 550,
+      "y": 650,
       "image": "bleu.png",
       "chapitres": [
+        {
+          "titre": "Vue d'ensemble",
+          "dossier": "ensemble"
+        },
         {
           "titre": "MOL",
           "dossier": "mol"
@@ -484,12 +843,90 @@
           "dossier": "skylab"
         },
         {
-          "titre": "Saliout",
-          "dossier": "saliout"
+          "titre": "Columbus",
+          "dossier": "columbus"
         },
         {
-          "titre": "MIR",
-          "dossier": "mir"
+          "titre": "Saliout",
+          "dossier": "saliout",
+          "chapitres": [
+            {
+              "titre": "Vue d'ensemble",
+              "dossier": "ensemble"
+            },
+            {
+              "titre": "Saliout 1 et Soyouz 10 (1971)",
+              "dossier": "saliout1"
+            },
+            {
+              "titre": "Saliout 1 & Soyouz 11 (1971)",
+              "dossier": "soyouz11"
+            },
+            {
+              "titre": "Saliout 2 (1973)",
+              "dossier": "saliout2"
+            },
+            {
+              "titre": "Saliout 3 & Soyouz 14 & 15 (1974)",
+              "dossier": "saliout3"
+            },
+            {
+              "titre": "Saliout 4 (1974)",
+              "dossier": "saliout4"
+            },
+            {
+              "titre": "Saliout 5 (1976-1977)",
+              "dossier": "saliout5"
+            },
+            {
+              "titre": "Saliout 6 (1977-1982)",
+              "dossier": "saliout6"
+            },
+            {
+              "titre": "Saliout 7 (1982-1991)",
+              "dossier": "saliout7",
+              "chapitres": [
+                {
+                  "titre": "1982",
+                  "dossier": "saliout7_1"
+                },
+                {
+                  "titre": "1983-1991",
+                  "dossier": "saliout7_2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Mir",
+          "dossier": "mir",
+          "chapitres": [
+            {
+              "titre": "La station",
+              "dossier": "caracteristiques"
+            },
+            {
+              "titre": "1986-87",
+              "dossier": "1986-87"
+            },
+            {
+              "titre": "1988-89",
+              "dossier": "1988-89"
+            },
+            {
+              "titre": "1990-94",
+              "dossier": "1990-94"
+            },
+            {
+              "titre": "1995-97",
+              "dossier": "1995-97"
+            },
+            {
+              "titre": "1998-2001",
+              "dossier": "fin"
+            }
+          ]
         },
         {
           "titre": "Chine",
@@ -503,12 +940,65 @@
             {
               "titre": "Tiangong 2",
               "dossier": "tian_2"
+            },
+            {
+              "titre": "CSS",
+              "dossier": "css"
             }
           ]
         },
         {
           "titre": "ISS",
-          "dossier": "iss"
+          "dossier": "iss",
+          "chapitres": [
+            {
+              "titre": "Les origines",
+              "dossier": "1_origines"
+            },
+            {
+              "titre": "La station",
+              "dossier": "2_station"
+            },
+            {
+              "titre": "Chronologie",
+              "dossier": "3_chrono",
+              "chapitres": [
+                {
+                  "titre": "2000-2008",
+                  "dossier": "2000-2008"
+                },
+                {
+                  "titre": "2020",
+                  "dossier": "2020"
+                },
+                {
+                  "titre": "2021",
+                  "dossier": "2021"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "Ross",
+          "dossier": "ross"
+        }
+      ]
+    },
+    {
+      "titre": "Tourisme spatial",
+      "dossier": "20_tourisme",
+      "x": -100,
+      "y": 850,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "Spaceship/Virgin Galactic",
+          "dossier": "virgin"
+        },
+        {
+          "titre": "Blue Origin/New Shepard",
+          "dossier": "shepard"
         }
       ]
     },
@@ -536,20 +1026,117 @@
               "dossier": "ensemble"
             },
             {
-              "titre": "Luna (1)",
-              "dossier": "luna_1"
+              "titre": "Luna  1, 2  & 3",
+              "dossier": "luna_1e"
             },
             {
-              "titre": "Luna (2)",
-              "dossier": "luna_2"
+              "titre": "Luna (2e génération)",
+              "dossier": "luna_2e",
+              "chapitres": [
+                {
+                  "titre": "2e génération",
+                  "dossier": "2egeneration"
+                },
+                {
+                  "titre": "Luna 4",
+                  "dossier": "luna4"
+                },
+                {
+                  "titre": "Luna 5",
+                  "dossier": "luna5"
+                },
+                {
+                  "titre": "Luna 6",
+                  "dossier": "luna6"
+                },
+                {
+                  "titre": "Luna 7",
+                  "dossier": "luna7"
+                },
+                {
+                  "titre": "Luna 8",
+                  "dossier": "luna8"
+                },
+                {
+                  "titre": "Luna 9",
+                  "dossier": "luna9",
+                  "chapitres": []
+                },
+                {
+                  "titre": "Luna 10",
+                  "dossier": "luna10"
+                },
+                {
+                  "titre": "Luna 11 (1966)",
+                  "dossier": "luna11"
+                },
+                {
+                  "titre": "Luna 12 (1966)",
+                  "dossier": "luna12"
+                },
+                {
+                  "titre": "Luna 13 (1966)",
+                  "dossier": "luna13"
+                },
+                {
+                  "titre": "Luna 14 (1968)",
+                  "dossier": "luna14"
+                }
+              ]
             },
             {
-              "titre": "Luna (3) et Lunokhod",
-              "dossier": "luna_3"
+              "titre": "Luna (3e génération)",
+              "dossier": "luna_3e",
+              "chapitres": [
+                {
+                  "titre": "3e génération",
+                  "dossier": "3egeneration"
+                },
+                {
+                  "titre": "Luna 15 (1969)",
+                  "dossier": "luna15"
+                },
+                {
+                  "titre": "Luna 16 (1970)",
+                  "dossier": "luna16"
+                },
+                {
+                  "titre": "Luna 17 (1970)",
+                  "dossier": "luna17"
+                },
+                {
+                  "titre": "Luna 18 (1971)",
+                  "dossier": "luna18"
+                },
+                {
+                  "titre": "Luna 19 (1971)",
+                  "dossier": "luna19"
+                },
+                {
+                  "titre": "Luna 20 (1972)",
+                  "dossier": "luna20"
+                },
+                {
+                  "titre": "Luna 21 (1973)",
+                  "dossier": "luna21"
+                },
+                {
+                  "titre": "Luna 22 (1974)",
+                  "dossier": "luna22"
+                },
+                {
+                  "titre": "Luna 23 (1974)",
+                  "dossier": "luna23"
+                },
+                {
+                  "titre": "Luna 24 (1976)",
+                  "dossier": "luna24"
+                }
+              ]
             },
             {
-              "titre": "Zond",
-              "dossier": "zond"
+              "titre": "Zond 3 (1965)",
+              "dossier": "zond3"
             }
           ]
         },
@@ -566,12 +1153,76 @@
               "dossier": "ranger"
             },
             {
-              "titre": "Lunar Orbiter",
-              "dossier": "Orbiter"
+              "titre": "Explorer 33 (1966) et 35 (1967)",
+              "dossier": "explorer33"
             },
             {
               "titre": "Surveyor",
-              "dossier": "surveyor"
+              "dossier": "surveyor",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "surveyor"
+                },
+                {
+                  "titre": "Surveyor 1",
+                  "dossier": "surveyor1"
+                },
+                {
+                  "titre": "Surveyor 2",
+                  "dossier": "surveyor2"
+                },
+                {
+                  "titre": "Surveyor 3 (1967)",
+                  "dossier": "surveyor3"
+                },
+                {
+                  "titre": "Surveyor 4 (1967)",
+                  "dossier": "surveyor4"
+                },
+                {
+                  "titre": "Surveyor 5 (1967)",
+                  "dossier": "surveyor5"
+                },
+                {
+                  "titre": "Surveyor 6 (1967)",
+                  "dossier": "surveyor6"
+                },
+                {
+                  "titre": "Surveyor 7 (1968)",
+                  "dossier": "surveyor7"
+                }
+              ]
+            },
+            {
+              "titre": "Lunar Orbiter",
+              "dossier": "orbiter",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "orbiter"
+                },
+                {
+                  "titre": "Lunar Orbiter 1 (1966)",
+                  "dossier": "orbiter1"
+                },
+                {
+                  "titre": "Lunar Orbiter 2 (1966)",
+                  "dossier": "orbiter2"
+                },
+                {
+                  "titre": "Lunar Orbiter 3 (1967)",
+                  "dossier": "orbiter3"
+                },
+                {
+                  "titre": "Lunar Orbiter 4 (1967)",
+                  "dossier": "orbiter4"
+                },
+                {
+                  "titre": "Lunar Orbiter 5 (1967)",
+                  "dossier": "orbiter5"
+                }
+              ]
             }
           ]
         },
@@ -583,6 +1234,10 @@
           "titre": "Chine",
           "dossier": "7_chine",
           "chapitres": [
+            {
+              "titre": "Panorama",
+              "dossier": "panorama"
+            },
             {
               "titre": "Chang'e 1 et 2",
               "dossier": "chang_1"
@@ -610,7 +1265,11 @@
           "dossier": "8_inde",
           "chapitres": [
             {
-              "titre": "Chandra_2",
+              "titre": "Chandrayaan 1",
+              "dossier": "chandra_1"
+            },
+            {
+              "titre": "Chandrayaan 2",
               "dossier": "chandra_2"
             }
           ]
@@ -622,7 +1281,7 @@
       ]
     },
     {
-      "titre": "Lune: missions habitées",
+      "titre": "Lune : missions habitées",
       "dossier": "5a_lune_hab",
       "x": 900,
       "y": 250,
@@ -637,8 +1296,90 @@
               "dossier": "apollo",
               "chapitres": [
                 {
+                  "titre": "Le projet",
+                  "dossier": "projet"
+                },
+                {
+                  "titre": "Apollo 1 (1967)",
+                  "dossier": "apollo1"
+                },
+                {
+                  "titre": "Apollo 4 (1967",
+                  "dossier": "apollo4"
+                },
+                {
+                  "titre": "Apollo 5",
+                  "dossier": "apollo5"
+                },
+                {
+                  "titre": "Apollo 6",
+                  "dossier": "apollo6"
+                },
+                {
+                  "titre": "Apollo 7",
+                  "dossier": "apollo7"
+                },
+                {
+                  "titre": "Apollo 8",
+                  "dossier": "apollo8"
+                },
+                {
+                  "titre": "Apollo 9",
+                  "dossier": "apollo9"
+                },
+                {
+                  "titre": "Apollo 10",
+                  "dossier": "apollo10"
+                },
+                {
                   "titre": "Apollo 11",
-                  "dossier": "apollo11"
+                  "dossier": "apollo11",
+                  "chapitres": [
+                    {
+                      "titre": "Avant",
+                      "dossier": "1_avant"
+                    },
+                    {
+                      "titre": "En route",
+                      "dossier": "2_depart"
+                    },
+                    {
+                      "titre": "Sur la Lune !",
+                      "dossier": "3_lune"
+                    },
+                    {
+                      "titre": "Le retour",
+                      "dossier": "4_retour"
+                    },
+                    {
+                      "titre": "Après la mission",
+                      "dossier": "5_apres"
+                    }
+                  ]
+                },
+                {
+                  "titre": "Apollo 12",
+                  "dossier": "apollo12"
+                },
+                {
+                  "titre": "Apollo13",
+                  "dossier": "apollo13"
+                },
+                {
+                  "titre": "Apollo 14",
+                  "dossier": "apollo14"
+                },
+                {
+                  "titre": "Apollo 15",
+                  "dossier": "apollo15"
+                },
+                {
+                  "titre": "Apollo 16",
+                  "dossier": "apollo16"
+                },
+                {
+                  "titre": "Apollo 17",
+                  "dossier": "apollo17"
                 }
               ]
             },
@@ -657,16 +1398,41 @@
           "dossier": "urss",
           "chapitres": [
             {
+              "titre": "Vue d'ensemble",
+              "dossier": "panorama"
+            },
+            {
+              "titre": "Soyouz, Zond,  Cosmos",
+              "dossier": "soyouz",
+              "chapitres": []
+            },
+            {
+              "titre": "N1-L3",
+              "dossier": "l3"
+            },
+            {
               "titre": "ur700",
               "dossier": "ur700"
             },
             {
-              "titre": "Proton-Zond",
-              "dossier": "lok"
+              "titre": "Zond 4 (1968)",
+              "dossier": "zond4"
             },
             {
-              "titre": "N1-L3",
-              "dossier": "lk"
+              "titre": "Zond 5 (1968)",
+              "dossier": "zond5"
+            },
+            {
+              "titre": "Zond 6 (1968)",
+              "dossier": "zond6"
+            },
+            {
+              "titre": "Zond 7 (1969)",
+              "dossier": "zond7"
+            },
+            {
+              "titre": "Zond 8 (1970)",
+              "dossier": "zond8"
             }
           ]
         }
@@ -676,7 +1442,7 @@
       "titre": "Mars",
       "dossier": "6_mars",
       "x": 900,
-      "y": 325,
+      "y": 430,
       "image": "orange.png",
       "chapitres": [
         {
@@ -696,8 +1462,8 @@
               "dossier": "mars62"
             },
             {
-              "titre": "Zond 2",
-              "dossier": "zond"
+              "titre": "Zond 2 (1964)",
+              "dossier": "zond2"
             },
             {
               "titre": "Mars 1969",
@@ -728,6 +1494,10 @@
             {
               "titre": "Mars 1996",
               "dossier": "mars96"
+            },
+            {
+              "titre": "Phobos-Grunt (2011)",
+              "dossier": "grunt"
             }
           ]
         },
@@ -751,7 +1521,7 @@
           "chapitres": [
             {
               "titre": "Mariner 3 & 4",
-              "dossier": "mariner_4"
+              "dossier": "mariner_3"
             },
             {
               "titre": "Mariner 6 & 7",
@@ -802,7 +1572,7 @@
               "dossier": "1_odyssey"
             },
             {
-              "titre": "Mars Exploration Rover",
+              "titre": "Mars Exploration Rover avec Spirit & Opportunity (2003)",
               "dossier": "2_rover"
             },
             {
@@ -833,7 +1603,7 @@
             },
             {
               "titre": "Perseverance",
-              "dossier": "4_mars2020"
+              "dossier": "4_perseverance"
             }
           ]
         },
@@ -887,7 +1657,7 @@
       "titre": "Vénus",
       "dossier": "7_venus",
       "x": 900,
-      "y": 400,
+      "y": 380,
       "image": "orange.png",
       "chapitres": [
         {
@@ -899,8 +1669,40 @@
           "dossier": "urss",
           "chapitres": [
             {
-              "titre": "Venera",
+              "titre": "Venusik",
               "dossier": "venera"
+            },
+            {
+              "titre": "Programme Zond",
+              "dossier": "zond"
+            },
+            {
+              "titre": "Zond 1 (1964)",
+              "dossier": "zond1"
+            },
+            {
+              "titre": "Vénus 2 & 3 (1965)",
+              "dossier": "venus2"
+            },
+            {
+              "titre": "Vénus 4 (1967)",
+              "dossier": "venus4"
+            },
+            {
+              "titre": "Vénus 5 & 6 (1969)",
+              "dossier": "venus5"
+            },
+            {
+              "titre": "Vénus 7 (1970)",
+              "dossier": "venus7"
+            },
+            {
+              "titre": "Vénus 8 (1972)",
+              "dossier": "venus8"
+            },
+            {
+              "titre": "Vénus 9 & 10 (1975)",
+              "dossier": "venus9"
             }
           ]
         },
@@ -910,7 +1712,25 @@
           "chapitres": [
             {
               "titre": "Mariner",
-              "dossier": "mariner"
+              "dossier": "mariner",
+              "chapitres": [
+                {
+                  "titre": "Le programme",
+                  "dossier": "mariner"
+                },
+                {
+                  "titre": "Mariner 1 & 2 (1962)",
+                  "dossier": "mariner1"
+                },
+                {
+                  "titre": "Mariner 5 (1967)",
+                  "dossier": "mariner5"
+                },
+                {
+                  "titre": "Mariner 10 (1973)",
+                  "dossier": "mariner10"
+                }
+              ]
             },
             {
               "titre": "Galileo",
@@ -921,10 +1741,31 @@
       ]
     },
     {
+      "titre": "Sondes interplanétaires",
+      "dossier": "16_plusieurs",
+      "x": -100,
+      "y": 750,
+      "image": "bleu.png",
+      "chapitres": [
+        {
+          "titre": "Pioneer 10 (1972)",
+          "dossier": "pioneer10"
+        },
+        {
+          "titre": "Pioneer 11 (1973)",
+          "dossier": "pioneer11"
+        },
+        {
+          "titre": "Mariner 10 (1973)",
+          "dossier": "mariner10"
+        }
+      ]
+    },
+    {
       "titre": "Mercure",
       "dossier": "9_mercure",
       "x": 900,
-      "y": 475,
+      "y": 330,
       "image": "orange.png",
       "chapitres": [
         {
@@ -932,14 +1773,16 @@
           "dossier": "panorama"
         },
         {
-          "titre": "États-Unis",
-          "dossier": "eu",
-          "chapitres": [
-            {
-              "titre": "Messenger",
-              "dossier": "messenger"
-            }
-          ]
+          "titre": "Mariner 10 (1973)",
+          "dossier": "mariner10"
+        },
+        {
+          "titre": "Messenger (2004)",
+          "dossier": "messenger"
+        },
+        {
+          "titre": "BepiColombo (2018)",
+          "dossier": "bepi"
         }
       ]
     },
@@ -947,7 +1790,7 @@
       "titre": "Saturne",
       "dossier": "12_saturne",
       "x": 900,
-      "y": 550,
+      "y": 580,
       "image": "orange.png",
       "chapitres": [
         {
@@ -960,6 +1803,10 @@
           "dossier": "eu",
           "chapitres": [
             {
+              "titre": "Pioneer 11 (1973)",
+              "dossier": "pioneer11"
+            },
+            {
               "titre": "Voyager",
               "dossier": "voyager"
             }
@@ -971,7 +1818,7 @@
       "titre": "Jupiter",
       "dossier": "10_jupiter",
       "x": 900,
-      "y": 625,
+      "y": 530,
       "image": "orange.png",
       "chapitres": [
         {
@@ -983,12 +1830,24 @@
           "dossier": "eu",
           "chapitres": [
             {
-              "titre": "Voyager",
-              "dossier": "voyager"
+              "titre": "Pioneer 10 (1972)",
+              "dossier": "pioneer10"
             },
             {
-              "titre": "Juno",
+              "titre": "Pioneer 11 (1973)",
+              "dossier": "pioneer11"
+            },
+            {
+              "titre": "Galileo (1989)",
+              "dossier": "galileo"
+            },
+            {
+              "titre": "Juno (2011)",
               "dossier": "juno"
+            },
+            {
+              "titre": "Voyager",
+              "dossier": "voyager"
             }
           ]
         }
@@ -998,7 +1857,7 @@
       "titre": "Astéroïdes & Comètes",
       "dossier": "14_aster",
       "x": 900,
-      "y": 700,
+      "y": 480,
       "image": "orange.png",
       "chapitres": [
         {
@@ -1012,41 +1871,6 @@
             {
               "titre": "Chang",
               "dossier": "chang"
-            }
-          ]
-        },
-        {
-          "titre": "Etats-Unis",
-          "dossier": "eu",
-          "chapitres": [
-            {
-              "titre": "Contour",
-              "dossier": "contour"
-            },
-            {
-              "titre": "Deep Impact",
-              "dossier": "deep",
-              "chapitres": []
-            },
-            {
-              "titre": "Galileo",
-              "dossier": "galileo"
-            },
-            {
-              "titre": "ICE",
-              "dossier": "ice"
-            },
-            {
-              "titre": "New Horizons",
-              "dossier": "new"
-            },
-            {
-              "titre": "Osiris-Rex",
-              "dossier": "osiris"
-            },
-            {
-              "titre": "Stardust",
-              "dossier": "stardust"
             }
           ]
         },
@@ -1065,6 +1889,57 @@
           ]
         },
         {
+          "titre": "Etats-Unis",
+          "dossier": "eu",
+          "chapitres": [
+            {
+              "titre": "ICE (1978)",
+              "dossier": "ice"
+            },
+            {
+              "titre": "Galileo (1989)",
+              "dossier": "galileo"
+            },
+            {
+              "titre": "NEAR (1996)",
+              "dossier": "near"
+            },
+            {
+              "titre": "Stardust (1999)",
+              "dossier": "stardust"
+            },
+            {
+              "titre": "Contour (2002)",
+              "dossier": "contour"
+            },
+            {
+              "titre": "Deep Impact (2005)",
+              "dossier": "deep",
+              "chapitres": []
+            },
+            {
+              "titre": "New Horizons (2006)",
+              "dossier": "new"
+            },
+            {
+              "titre": "Dawn (2007)",
+              "dossier": "dawn"
+            },
+            {
+              "titre": "Osiris-Rex (2016)",
+              "dossier": "osiris"
+            },
+            {
+              "titre": "Dart",
+              "dossier": "dart"
+            },
+            {
+              "titre": "Lucy (2021)",
+              "dossier": "lucy"
+            }
+          ]
+        },
+        {
           "titre": "Japon",
           "dossier": "japon",
           "chapitres": [
@@ -1077,12 +1952,12 @@
               "dossier": "suise"
             },
             {
-              "titre": "Hasabuya",
-              "dossier": "hasabuya"
+              "titre": "Hayabusa",
+              "dossier": "hayabusa"
             },
             {
-              "titre": "Hasabuya 2",
-              "dossier": "hasa_2"
+              "titre": "Hayabusa 2",
+              "dossier": "haya_2"
             }
           ]
         },
@@ -1099,10 +1974,45 @@
       ]
     },
     {
+      "titre": "Uranus",
+      "dossier": "17_uranus",
+      "x": 900,
+      "y": 630,
+      "image": "orange.png"
+    },
+    {
+      "titre": "Neptune",
+      "dossier": "18_neptune",
+      "x": 900,
+      "y": 680,
+      "image": "orange.png"
+    },
+    {
+      "titre": "Pluton",
+      "dossier": "19_pluton",
+      "x": 900,
+      "y": 730,
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
+        {
+          "titre": "Pioneer 10 (1972)",
+          "dossier": "pioneer10"
+        },
+        {
+          "titre": "New Horizons (2006)",
+          "dossier": "newhorizons"
+        }
+      ]
+    },
+    {
       "titre": "Soleil",
       "dossier": "11_soleil",
       "x": 900,
-      "y": 775,
+      "y": 780,
       "image": "orange.png",
       "chapitres": [
         {
@@ -1113,6 +2023,14 @@
           "titre": "Etats-Unis",
           "dossier": "eu",
           "chapitres": [
+            {
+              "titre": "OSO (1962-1975)",
+              "dossier": "oso"
+            },
+            {
+              "titre": "Pioneer 6, 7, 8, 9 et E (1965-68)",
+              "dossier": "pioneer6"
+            },
             {
               "titre": "ISEE 3 (1978)",
               "dossier": "isee"
@@ -1134,18 +2052,44 @@
               "dossier": "cluster"
             },
             {
+              "titre": "Genesis (2001)",
+              "dossier": "genesis"
+            },
+            {
               "titre": "Stereo (2006)",
               "dossier": "stereo"
             },
             {
-              "titre": "Genesis (2001)",
-              "dossier": "genesis"
+              "titre": "Parker (2018)",
+              "dossier": "parker"
             }
           ]
         },
         {
           "titre": "CNES",
           "dossier": "cnes"
+        },
+        {
+          "titre": "Europe",
+          "dossier": "europe",
+          "chapitres": [
+            {
+              "titre": "Héos A-2 (1972)",
+              "dossier": "heos_a_2"
+            },
+            {
+              "titre": "Helios (1974)",
+              "dossier": "helios"
+            },
+            {
+              "titre": "Solar Orbiter (2020)",
+              "dossier": "solar_orbiter"
+            }
+          ]
+        },
+        {
+          "titre": "URSS",
+          "dossier": "urss"
         }
       ]
     },
@@ -1153,7 +2097,7 @@
       "titre": "Au-delà du Système Solaire",
       "dossier": "15_au_dela",
       "x": 900,
-      "y": 850,
+      "y": 830,
       "image": "orange.png",
       "chapitres": [
         {
@@ -1161,15 +2105,15 @@
           "dossier": "panorama"
         },
         {
-          "titre": "Pioneer 10",
+          "titre": "Pioneer 10 (1972)",
           "dossier": "pioneer_10"
         },
         {
-          "titre": "Pioneer 11",
+          "titre": "Pioneer 11 (1973)",
           "dossier": "pioneer_11"
         },
         {
-          "titre": "Voyager",
+          "titre": "Voyager 1 & 2 (1977)",
           "dossier": "voyager"
         }
       ]

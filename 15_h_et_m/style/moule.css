@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "TitleFont";
+  src: url('transformers.ttf');
+}
+
+/* Background */
+.home-background {
+  background: url(background.jpg);
+}
+
+/* Titre */
+header,
+.home-title {
+  font-family: TitleFont;
+  font-size: 90px;
+  color: #eee;
+  text-shadow: 2px 2px 4px #8BC9E3;
+  letter-spacing: 5px;
+}
+header {
+  background: url(header.png);
+}
+
+/* Thumbnails */
+.home .home-content {
+  width: 1100px;
+}
+.home .thumbnail span {
+  top: 5px;
+}

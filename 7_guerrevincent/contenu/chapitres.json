@@ -1,13 +1,9 @@
 {
   "titre_site": "La guerre de Vincent",
   "chapitres": [
+  
     {
-      "x": 160,
-      "y": 455,
-      "image": "carte.png"
-    },
-    {
-      "x": 1220,
+      "x": 1350,
       "y": 230,
       "image": "vp.jpg"
     },
@@ -16,13 +12,7 @@
       "y": 71,
       "image": "frise.png"
     },
-    {
-      "titre": "Les sources",
-      "dossier": "0_sources",
-      "x": 1030,
-      "y": 100,
-      "image": "jmo.jpg"
-    },
+
     {
       "titre": "Champagne (sept.-oct. 1915)",
       "dossier": "1_champagne1",
@@ -282,29 +272,37 @@
     {
       "titre": "Le canon de 90",
       "dossier": "19_canon90",
-      "x": 480,
+      "x": 530,
       "y": 100,
       "image": "canon90.jpg"
     },
     {
       "titre": "Le canon de 75",
       "dossier": "20_canon75",
-      "x": 630,
+      "x": 680,
       "y": 100,
       "image": "canon75.jpg"
     },
     {
       "titre": "L'organisation des unités",
       "dossier": "21_unites",
-      "x": 830,
+      "x": 880,
       "y": 100,
       "image": "unites.jpg"
+    },
+	
+    {
+      "titre": "Les sources",
+      "dossier": "0_sources",
+      "x": 1080,
+      "y": 100,
+      "image": "jmo.jpg"
     },
     {
       "titre": "Une vision d'ensemble",
       "dossier": "22_vision",
-      "x": 400,
-      "y": 650,
+      "x": 160,
+      "y": 500,
       "image": "vision.png"
     }
   ]

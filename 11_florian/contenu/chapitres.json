@@ -1,154 +1,154 @@
 {
-    "titre_site": "Florian Carlé (1820-1883) : un marin alsacien",
-    "chapitres": [
-    	 {
-            "image": "florian.png",
-            "x": 300,
-            "y": 200
+  "titre_site": "Florian Carlé (1820-1883) : un marin alsacien",
+  "chapitres": [
+    {
+      "x": 300,
+      "y": 200,
+      "image": "florian.png"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x": 170,
+      "y": 450,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "Sa naissance",
+      "dossier": "1_naissance",
+      "x": 150,
+      "y": 600,
+      "image": "naissance.jpg"
+    },
+    {
+      "titre": "Son mariage",
+      "dossier": "2_mariage",
+      "x": 400,
+      "y": 450,
+      "image": "mariage.jpg"
+    },
+    {
+      "titre": " 32 ans de services",
+      "dossier": "3_carriere",
+      "x": 550,
+      "y": 650,
+      "image": "carriere.jpg"
+    },
+    {
+      "titre": " Ses enfants",
+      "dossier": "4_enfants",
+      "x": 850,
+      "y": 450,
+      "image": "enfants.jpg",
+      "chapitres": [
+        {
+          "titre": "Vue d'ensemble",
+          "dossier": "0_ensemble"
         },
         {
-            "titre": "Dans notre arbre",
-            "image": "arbre.png",
-            "dossier": "arbre",
-            "x": 170,
-            "y": 450
+          "titre": "Nicolas Marius (le premier)",
+          "dossier": "1_nicolas1"
         },
         {
-            "titre": "Sa naissance",
-            "dossier": "1_naissance",
-            "image": "naissance.jpg",
-            "x": 150,
-            "y": 600
+          "titre": "Magdeleine",
+          "dossier": "2_magdeleine"
         },
         {
-            "titre": "Son mariage",
-            "dossier": "2_mariage",
-            "image": "mariage.jpg",
-            "x": 400,
-            "y": 450
+          "titre": "François",
+          "dossier": "3_francois"
         },
         {
-            "titre": " 32 ans de services",
-            "dossier": "3_carriere",
-            "image": "carriere.jpg",
-            "x": 550,
-            "y": 650
+          "titre": "Léonie",
+          "dossier": "4_leonie"
         },
         {
-            "titre": " Ses enfants",
-            "dossier": "4_enfants",
-            "image": "enfants.jpg",
-            "x": 850,
-            "y": 450,
-            "chapitres": [
-                {
-                    "titre": "Vue d'ensemble",
-                    "dossier": "0_ensemble"
-                },
-                {
-                    "titre": "Nicolas Marius (le premier)",
-                    "dossier": "1_nicolas1"
-                },
-                {
-                    "titre": "Magdeleine",
-                    "dossier": "2_magdeleine"
-                },
-                {
-                    "titre": "François",
-                    "dossier": "3_francois"
-                },
-                {
-                    "titre": "Léonie",
-                    "dossier": "4_leonie"
-                },
-                {
-                    "titre": "Aima",
-                    "dossier": "5_aima"
-                },
-                {
-                    "titre": "Nicolas Marius",
-                    "dossier": "6_nicolas"
-                }
-            ]
+          "titre": "Aima",
+          "dossier": "5_aima"
         },
         {
-            "titre": " Sa mort",
-            "dossier": "5_mort",
-            "image": "mort.jpg",
-            "x": 1170,
-            "y": 450
-        },
-        {
-            "titre": "Ses bateaux",
-            "dossier": "6_voyages",
-            "image": "charlemagne.jpg",
-            "x": 820,
-            "y": 650,
-            "chapitres": [
-                {
-                    "titre": "L'«Andromède»",
-                    "dossier": "1_andromede"
-                },
-                {
-                    "titre": "L'«Oise»",
-                    "dossier": "2_oise"
-                },
-                {
-                    "titre": "La «Psyché»",
-                    "dossier": "3_psyche"
-                },
-                {
-                    "titre": "Le «Charlemagne»",
-                    "dossier": "4_charlemagne"
-                },
-                {
-                    "titre": "La «Perdrix»",
-                    "dossier": "5_perdrix"
-                },
-                {
-                    "titre": "Le «Sané»",
-                    "dossier": "6_sane"
-                },
-                {
-                    "titre": "Le «Newton»",
-                    "dossier": "7_newton"
-                },
-                {
-                    "titre": "La «Sérieuse»",
-                    "dossier": "8_serieuse"
-                },
-                {
-                    "titre": "L'«Ardent»",
-                    "dossier": "9_ardent"
-                },
-                {
-                    "titre": "Le «Tonnerre»",
-                    "dossier": "10_tonnerre"
-                },
-                {
-                    "titre": "L'«Ajaccio»",
-                    "dossier": "11_ajaccio"
-                },
-                {
-                    "titre": "Le «Fleurus»",
-                    "dossier": "12_fleurus"
-                },
-                {
-                    "titre": "La «Thémis»",
-                    "dossier": "13_themis"
-                },
-                {
-                    "titre": "La «Revanche»",
-                    "dossier": "14_revanche"
-                }
-            ]
-        },
-        {
-            "titre": "L'ouvrage",
-            "dossier": "13_livre",
-            "image": "livre.jpg",
-            "x": 1170,
-            "y": 650
+          "titre": "Nicolas Marius",
+          "dossier": "6_nicolas"
         }
-    ]
+      ]
+    },
+    {
+      "titre": " Sa mort",
+      "dossier": "5_mort",
+      "x": 1170,
+      "y": 450,
+      "image": "mort.jpg"
+    },
+    {
+      "titre": "Ses bateaux",
+      "dossier": "6_voyages",
+      "x": 820,
+      "y": 650,
+      "image": "charlemagne.jpg",
+      "chapitres": [
+        {
+          "titre": "L'«Andromède»",
+          "dossier": "1_andromede"
+        },
+        {
+          "titre": "L'«Oise»",
+          "dossier": "2_oise"
+        },
+        {
+          "titre": "La «Psyché»",
+          "dossier": "3_psyche"
+        },
+        {
+          "titre": "Le «Charlemagne»",
+          "dossier": "4_charlemagne"
+        },
+        {
+          "titre": "La «Perdrix»",
+          "dossier": "5_perdrix"
+        },
+        {
+          "titre": "Le «Sané»",
+          "dossier": "6_sane"
+        },
+        {
+          "titre": "Le «Newton»",
+          "dossier": "7_newton"
+        },
+        {
+          "titre": "La «Sérieuse»",
+          "dossier": "8_serieuse"
+        },
+        {
+          "titre": "L'«Ardent»",
+          "dossier": "9_ardent"
+        },
+        {
+          "titre": "Le «Tonnerre»",
+          "dossier": "10_tonnerre"
+        },
+        {
+          "titre": "L'«Ajaccio»",
+          "dossier": "11_ajaccio"
+        },
+        {
+          "titre": "Le «Fleurus»",
+          "dossier": "12_fleurus"
+        },
+        {
+          "titre": "La «Thémis»",
+          "dossier": "13_themis"
+        },
+        {
+          "titre": "La «Revanche»",
+          "dossier": "14_revanche"
+        }
+      ]
+    },
+    {
+      "titre": "L'ouvrage",
+      "dossier": "7_livre",
+      "x": 1170,
+      "y": 650,
+      "image": "livre.jpg"
+    }
+  ]
 }

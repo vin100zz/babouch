@@ -1,0 +1,32 @@
+<div id="map">
+
+  <button ng-click="save()" class="map-save">Sauvegarder !</button>
+
+  <ul>
+    <li ng-repeat="line in flat" class="map-indent-{{line.indent}}">
+      <button ng-show="!!line.node.chapitres" ng-click="toggleCollapse(line.node)" class="map-collapse">{{line.node.collapsed ? '+' : '-'}}</button>
+      <div ng-show="!line.node.chapitres" class="map-no-child"></div>
+
+      <input type="text" name="titre" ng-model="line.titre" ng-blur="refreshFields(line)" required class="map-titre">
+      
+      <span>dossier:</span>
+      <input type="text" name="dossier" ng-model="line.dossier" ng-blur="refreshFields(line)" required class="map-dossier">
+
+      <span ng-show="line.indent == 0">x:</span>
+      <input ng-show="line.indent == 0" type="number" name="x" ng-model="line.x" ng-blur="refreshFields(line)" required class="map-coord">
+
+      <span ng-show="line.indent == 0">y:</span>
+      <input ng-show="line.indent == 0" type="number" name="y" ng-model="line.y" ng-blur="refreshFields(line)" required class="map-coord">
+
+      <span ng-show="line.indent == 0">image:</span>
+      <input ng-show="line.indent == 0" type="text" name="image" ng-model="line.image" ng-blur="refreshFields(line)" required class="map-image">
+
+      <button ng-show="!line.firstNode && line.indent > 0" ng-click="moveUp(line.node)" title="Déplacer vers le haut" class="map-action">&#x25B2;</button>
+      <button ng-show="!line.lastNode && line.indent > 0" ng-click="moveDown(line.node)" title="Déplacer vers le bas" class="map-action">&#x25BC;</button>
+      <button ng-click="addSibling(line.node)" title="Ajouter un chapitre après" class="map-action">+</button>
+      <button ng-show="!line.node.chapitres" ng-click="addChild(line.node)" title="Ajouter un sous-chapitre" class="map-action">++</button>
+      <button ng-click="delete(line.node)" title="Supprimer" class="map-action">&#215;</button>
+    </li>
+  </ul>
+   
+</div>

@@ -1,253 +1,257 @@
 {
-    "titre_site": "Vincent PAYAN (1885-1944) : homme de coeur, homme de peines...",
-    "chapitres": [
-    	{
-            "image": "toto.jpg",
-            "x": 10,
-            "y": 10
+  "titre_site": "Vincent PAYAN (1885-1944) : homme de coeur, homme de peines...",
+  "chapitres": [
+    {
+      "x": 10,
+      "y": 10,
+      "image": "toto.jpg"
+    },
+    {
+      "x": 550,
+      "y": 360,
+      "image": "vp.jpg"
+    },
+    {
+      "x": 200,
+      "y": 100,
+      "image": "vincent.png"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x": 210,
+      "y": 300,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "Avant 1914",
+      "dossier": "1_jeunesse",
+      "x": 210,
+      "y": 450,
+      "image": "jeunesse.jpg",
+      "chapitres": [
+        {
+          "titre": "Sa naissance",
+          "dossier": "1_naissance"
         },
         {
-            "image": "vp.jpg",
-            "x": 1200,
-            "y": 100
-        },
-        {
-            "image": "vincent.png",
-            "x": 200,
-            "y": 100
-        },
-        {
-            "titre": "Dans notre arbre",
-            "dossier": "arbre",
-            "image": "arbre.png",
-            "x": 210,
-            "y": 300
-        },
-        {
-            "titre": "Avant 1914",
-            "dossier": "1_jeunesse",
-            "image": "jeunesse.jpg",
-            "x": 210,
-            "y": 450,
-            "chapitres": [
-                {
-                    "titre": "Sa naissance",
-                    "dossier": "1_naissance"
-                },
-                {
-                    "titre": "Transporteur de viande",
-                    "dossier": "2_transporteur"
-                }
-            ]
-        },
-        {
-            "titre": "1906 : Céline, première enfant",
-            "dossier": "2_celine",
-            "image": "celine.jpg",
-            "x": 400,
-            "y": 550,
-            "chapitres": [
-                {
-                    "titre": "Née avant le mariage",
-                    "dossier": "1_naissance"
-                },
-                {
-                    "titre": "Deux ans",
-                    "dossier": "2_mort"
-                }
-            ]
-        },
-        {
-            "titre": "Louise",
-            "dossier": "3_louise",
-            "image": "louise.jpg",
-            "x": 420,
-            "y": 300,
-            "chapitres": [
-                {
-                    "titre": "Née Castelin",
-                    "dossier": "1_castelin"
-                },
-                {
-                    "titre": "Épisodes de jeunesse",
-                    "dossier": "2_jeunesse"
-                }
-            ]
-        },
-        {
-            "titre": "1907-1909 : Le service militaire",
-            "dossier": "4_service",
-            "image": "service.png",
-            "x": 210,
-            "y": 600,
-            "chapitres": [
-                {
-                    "titre": "Sa fiche matricule",
-                    "dossier": "1_fiche"
-                },
-                {
-                    "titre": "La caserne St-Charles",
-                    "dossier": "2_caserne"
-                }
-            ]
-        },
-        {
-            "titre": "Marie et Jeanne",
-            "dossier": "5_mariejeanne",
-            "image": "marie.jpg",
-            "x": 900,
-            "y": 295
-        },
-        {
-            "titre": "L'après-guerre",
-            "dossier": "6_apguerre",
-            "image": "apres.jpg",
-            "x": 710,
-            "y": 520,
-            "chapitres": [
-                {
-                    "titre": "La reprise des activités de son père",
-                    "dossier": "1_reprise"
-                },
-                {
-                    "titre": "La fin du commerce",
-                    "dossier": "2_fin"
-                },
-                {
-                    "titre": "«Homme de peine»",
-                    "dossier": "3_pol"
-                }
-            ]
-        },
-        {
-            "titre": "1944 : La mort de Louise",
-            "dossier": "7_mortlouise",
-            "image": "mortlouise.jpg",
-            "x": 900,
-            "y": 750
-        },
-        {
-            "titre": "1944 : le 27 mai",
-            "dossier": "8_27mai",
-            "image": "decombres.jpg",
-            "x": 1100,
-            "y": 630,
-            "chapitres": [
-                {
-                    "titre": "Des références",
-                    "dossier": "0_sources"
-                },
-                {
-                    "titre": "Le départ des bombardiers",
-                    "dossier": "1_avions"
-                },
-                {
-                    "titre": "Jean est conduit à l'école",
-                    "dossier": "2_ecole"
-                },
-                {
-                    "titre": "Henri part au jardin sans Vincent",
-                    "dossier": "3_jardin"
-                },
-                {
-                    "titre": "Marie et Jean arrivent dans l'abri",
-                    "dossier": "4_abri"
-                },
-                {
-                    "titre": "Les bombardements",
-                    "dossier": "5_bomb"
-                },
-                {
-                    "titre": "Des impacts multiples dans la ville",
-                    "dossier": "5a_degats"
-                },
-                {
-                    "titre": "Au 67 rue Guérin",
-                    "dossier": "6_67"
-                },
-                {
-                    "titre": "Henri retourne rue Guérin",
-                    "dossier": "7_retour"
-                },
-                {
-                    "titre": "«Il n'y a plus de maison»",
-                    "dossier": "8_maison"
-                },
-                {
-                    "titre": "Après",
-                    "dossier": "9_apres"
-                }
-            ]
-        },
-        {
-            "titre": "La guerre de Vincent ",
-            "dossier": "9_guerre",
-            "image": "14.jpg",
-            "x": 690,
-            "y": 320
-        },
-        {
-            "titre": "Ancien combattant ",
-            "dossier": "12_ancien",
-            "image": "ancien.jpg",
-            "x": 600,
-            "y": 720,
-            "chapitres": [
-                {
-                    "titre": "La demande de certificat",
-                    "dossier": "1_certificat"
-                },
-                {
-                    "titre": "Une photo à envoyer",
-                    "dossier": "2_photo"
-                },
-                {
-                    "titre": "Une confirmation nécessaire",
-                    "dossier": "3_confirmation"
-                },
-                {
-                    "titre": "Enfin la carte",
-                    "dossier": "4_carte"
-                },
-                {
-                    "titre": "La retraite du combattant",
-                    "dossier": "5_retraite"
-                }
-            ]
-        },
-        {
-            "titre": "1932 : la mort de Nanou",
-            "dossier": "10_nanou",
-            "image": "nanou.jpg",
-            "x": 900,
-            "y": 525,
-            "chapitres": [
-                {
-                    "titre": "Les débuts de la maladie",
-                    "dossier": "1_debuts"
-                },
-                {
-                    "titre": "18 ans",
-                    "dossier": "2_18"
-                }
-            ]
-        },
-        {
-            "titre": "1937 : Jean, son petit-fils ",
-            "dossier": "11_jean",
-            "image": "jean.jpg",
-            "x": 1100,
-            "y": 410,
-            "chapitres": [
-                {
-                    "titre": "Des temps plus heureux",
-                    "dossier": "1_heureux"
-                },
-                {
-                    "titre": "Les histoires de Vincent",
-                    "dossier": "2_histoires"
-                }
-            ]
+          "titre": "Transporteur de viande",
+          "dossier": "2_transporteur"
         }
-    ]
+      ]
+    },
+    {
+      "titre": "Céline (1906) et le mariage (1907)",
+      "dossier": "2_celine",
+      "x": 380,
+      "y": 570,
+      "image": "celine.jpg",
+      "chapitres": [
+        {
+          "titre": "Née avant le mariage",
+          "dossier": "1_naissance"
+        },
+        {
+          "titre": "Le mariage",
+          "dossier": "2_mariage"
+        },
+        {
+          "titre": "Deux ans",
+          "dossier": "3_mort"
+        }
+      ]
+    },
+    {
+      "titre": "Louise",
+      "dossier": "3_louise",
+      "x": 390,
+      "y": 300,
+      "image": "louise.jpg",
+      "chapitres": [
+        {
+          "titre": "Née Castelin",
+          "dossier": "1_castelin"
+        },
+        {
+          "titre": "Épisodes de jeunesse",
+          "dossier": "2_jeunesse"
+        }
+      ]
+    },
+    {
+      "titre": "1907-1909 : Le service militaire",
+      "dossier": "4_service",
+      "x": 190,
+      "y": 600,
+      "image": "service.png",
+      "chapitres": [
+        {
+          "titre": "Sa fiche matricule",
+          "dossier": "1_fiche"
+        },
+        {
+          "titre": "La caserne St-Charles",
+          "dossier": "2_caserne"
+        }
+      ]
+    },
+    {
+      "titre": "Marie et Jeanne",
+      "dossier": "5_mariejeanne",
+      "x": 950,
+      "y": 295,
+      "image": "marie.jpg"
+    },
+    {
+      "titre": "L'après-guerre",
+      "dossier": "6_apguerre",
+      "x": 800,
+      "y": 520,
+      "image": "apres.jpg",
+      "chapitres": [
+        {
+          "titre": "La reprise des activités de son père",
+          "dossier": "1_reprise"
+        },
+        {
+          "titre": "La fin du commerce",
+          "dossier": "2_fin"
+        },
+        {
+          "titre": "«Homme de peine»",
+          "dossier": "3_pol"
+        }
+      ]
+    },
+    {
+      "titre": "1944 : La mort de Louise",
+      "dossier": "7_mortlouise",
+      "x": 920,
+      "y": 750,
+      "image": "mortlouise.jpg"
+    },
+    {
+      "titre": "1944 : le 27 mai",
+      "dossier": "8_27mai",
+      "x": 1100,
+      "y": 600,
+      "image": "decombres.jpg",
+      "chapitres": [
+        {
+          "titre": "Des références",
+          "dossier": "0_sources"
+        },
+        {
+          "titre": "Le départ des bombardiers",
+          "dossier": "1_avions"
+        },
+        {
+          "titre": "Jean est conduit à l'école",
+          "dossier": "2_ecole"
+        },
+        {
+          "titre": "Henri part au jardin sans Vincent",
+          "dossier": "3_jardin"
+        },
+        {
+          "titre": "Marie et Jean arrivent dans l'abri",
+          "dossier": "4_abri"
+        },
+        {
+          "titre": "Les bombardements",
+          "dossier": "5_bomb"
+        },
+        {
+          "titre": "Des impacts multiples dans la ville",
+          "dossier": "5a_degats"
+        },
+        {
+          "titre": "Au 67 rue Guérin",
+          "dossier": "6_67"
+        },
+        {
+          "titre": "Henri retourne rue Guérin",
+          "dossier": "7_retour"
+        },
+        {
+          "titre": "«Il n'y a plus de maison»",
+          "dossier": "8_maison"
+        },
+        {
+          "titre": "Après",
+          "dossier": "9_apres"
+        }
+      ]
+    },
+    {
+      "titre": "La guerre de Vincent ",
+      "dossier": "9_guerre",
+      "x": 800,
+      "y": 320,
+      "image": "14.jpg"
+    },
+    {
+      "titre": "Ancien combattant ",
+      "dossier": "12_ancien",
+      "x": 560,
+      "y": 720,
+      "image": "ancien.jpg",
+      "chapitres": [
+        {
+          "titre": "La demande de certificat",
+          "dossier": "1_certificat"
+        },
+        {
+          "titre": "Une photo à envoyer",
+          "dossier": "2_photo"
+        },
+        {
+          "titre": "Une confirmation nécessaire",
+          "dossier": "3_confirmation"
+        },
+        {
+          "titre": "Enfin la carte",
+          "dossier": "4_carte"
+        },
+        {
+          "titre": "La retraite du combattant",
+          "dossier": "5_retraite"
+        }
+      ]
+    },
+    {
+      "titre": "1931 : la mort de Nanou",
+      "dossier": "10_nanou",
+      "x": 900,
+      "y": 525,
+      "image": "nanou.jpg",
+      "chapitres": [
+        {
+          "titre": "La maladie",
+          "dossier": "1_debuts"
+        },
+        {
+          "titre": "18 ans",
+          "dossier": "2_18"
+        }
+      ]
+    },
+    {
+      "titre": "1937 : Jean, son petit-fils ",
+      "dossier": "11_jean",
+      "x": 1150,
+      "y": 360,
+      "image": "jean.jpg",
+      "chapitres": [
+        {
+          "titre": "Sa naissance",
+          "dossier": "1_heureux"
+        },
+        {
+          "titre": "Jean se souvient",
+          "dossier": "2_histoires"
+        }
+      ]
+    }
+  ]
 }

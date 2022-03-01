@@ -1,341 +1,357 @@
 {
-    "titre_site": " Marius PAYAN (1849-1918) : le patron du «46»",
-    "chapitres": [
-    	{
-            "image": "toto.jpg",
-            "x": 1000,
-            "y": 400
+  "titre_site": " Marius PAYAN (1849-1918) : le patron du «46»",
+  "chapitres": [
+    {
+      "x": 830,
+      "y": 270,
+      "image": "toto.jpg"
+    },
+    {
+      "x": 590,
+      "y": 600,
+      "image": "descendants.png"
+    },
+    {
+      "x": 50,
+      "y": 120,
+      "image": "marius.png"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x": 10,
+      "y": 360,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "La jeunesse",
+      "dossier": "01_enfance",
+      "x": 200,
+      "y": 610,
+      "image": "naissance.jpg",
+      "chapitres": [
+        {
+          "titre": "1849 : La naissance",
+          "dossier": "0_naissance"
         },
         {
-            "image": "descendants.png",
-            "x": 440,
-            "y": 850
+          "titre": "Les Payan en 1851",
+          "dossier": "1_payan1851"
         },
         {
-            "image": "marius.png",
-            "x": 50,
-            "y": 150
+          "titre": "Orphelin à six ans",
+          "dossier": "2_orphelin"
         },
         {
-            "titre": "Dans notre arbre",
-            "dossier": "arbre",
-            "image": "arbre.png",
-            "x": 10,
-            "y": 440
-        },
-        {
-            "titre": "La jeunesse",
-            "dossier": "01_enfance",
-            "image": "naissance.jpg",
-            "x": 90,
-            "y": 800,
-            "chapitres": [
-                {
-                    "titre": "1849 : La naissance",
-                    "dossier": "0_naissance"
-                },
-                {
-                    "titre": "Les Payan en 1851",
-                    "dossier": "1_payan1851"
-                },
-                {
-                    "titre": "Orphelin à six ans",
-                    "dossier": "2_orphelin"
-                },
-                {
-                    "titre": "Ses obligations militaires (1869)",
-                    "dossier": "3_militaire"
-                }
-            ]
-        },
-        {
-            "titre": "Les Cravaschino",
-            "dossier": "02_crava",
-            "image": "louise.jpg",
-            "x": 10,
-            "y": 586,
-            "chapitres": [
-                {
-                    "titre": "La famille Cravaschino",
-                    "dossier": "0_jean"
-                },
-                {
-                    "titre": "Cravaschino et Payan",
-                    "dossier": "1_p&c"
-                },
-                {
-                    "titre": "Rose Payan, cigarière",
-                    "dossier": "2_cigare"
-                },
-                {
-                    "titre": "Un drame au 46",
-                    "dossier": "4_drame"
-                },
-                {
-                    "titre": "«Tante Louise», morte à 82 ans",
-                    "dossier": "5_82ans"
-                }
-            ]
-        },
-        {
-            "titre": "Marie-Baptistine Martin, son épouse ",
-            "dossier": "03_epouse",
-            "image": "marie.png",
-            "x": 260,
-            "y": 560,
-            "chapitres": [
-                {
-                    "titre": "La famille Massabo",
-                    "dossier": "1_massabo"
-                },
-                {
-                    "titre": "Le mariage",
-                    "dossier": "2_mariage"
-                },
-                {
-                    "titre": "Morte en 1932",
-                    "dossier": "3_veuve"
-                }
-            ]
-        },
-        {
-            "titre": "Une grande famille avant la Guerre",
-            "dossier": "04_enfants",
-            "image": "jb.jpg",
-            "x": 800,
-            "y": 420,
-            "chapitres": [
-                {
-                    "titre": "Dix enfants ",
-                    "dossier": "0_dix"
-                },
-                {
-                    "titre": "Jean-Baptiste",
-                    "dossier": "1_jb"
-                },
-                {
-                    "titre": "Auguste avant 1914",
-                    "dossier": "2_auguste1"
-                },
-                {
-                    "titre": "Léon",
-                    "dossier": "3_leon"
-                },
-                {
-                    "titre": "Vincent",
-                    "dossier": "4_vincent"
-                },
-                {
-                    "titre": "Émile avant 1914",
-                    "dossier": "5_emile"
-                },
-                {
-                    "titre": "Francois",
-                    "dossier": "6_francois"
-                },
-                {
-                    "titre": "Louis",
-                    "dossier": "7_louis"
-                },
-                {
-                    "titre": "Augustine ",
-                    "dossier": "8_augustine"
-                },
-                {
-                    "titre": "Anna",
-                    "dossier": "9_anna"
-                },
-                {
-                    "titre": "Marie",
-                    "dossier": "10_marie"
-                }
-            ]
-        },
-        {
-            "titre": "Boucher",
-            "dossier": "05_profession",
-            "image": "abattoirs.jpg",
-            "x": 170,
-            "y": 430,
-            "chapitres": [
-                {
-                    "titre": "Les métiers de la boucherie",
-                    "dossier": "1_boucher"
-                },
-                {
-                    "titre": "Les abattoirs de Marseile",
-                    "dossier": "2_abattoirs"
-                },
-                {
-                    "titre": "L'abandon",
-                    "dossier": "3_desaffecte"
-                }
-            ]
-        },
-        {
-            "titre": "Propriétaire du 46",
-            "dossier": "06_proprietaire",
-            "image": "46.jpg",
-            "x": 620,
-            "y": 410,
-            "chapitres": [
-                {
-                    "titre": "L'achat",
-                    "dossier": "1_achat"
-                },
-                {
-                    "titre": "La renumérotation de la maison",
-                    "dossier": "1a_numero"
-                },
-                {
-                    "titre": "La maison",
-                    "dossier": "2_maison"
-                }
-            ]
-        },
-        {
-            "titre": "« Comme un château de cartes...» ",
-            "dossier": "07_chateau",
-            "image": "mobilisation2.jpg",
-            "x": 1250,
-            "y": 420,
-            "chapitres": [
-                {
-                    "titre": "Une sombre prédiction",
-                    "dossier": "0_prediction"
-                },
-                {
-                    "titre": "La mort de son fils Auguste",
-                    "dossier": "1_auguste"
-                },
-                {
-                    "titre": "La mort de son fils Émile",
-                    "dossier": "2_emile"
-                },
-                {
-                    "titre": "«Défense du 141e»",
-                    "dossier": "2a_141"
-                },
-                {
-                    "titre": "La mort de son fils François",
-                    "dossier": "3_francois"
-                },
-                {
-                    "titre": "Sa mort",
-                    "dossier": "4_marius"
-                },
-                {
-                    "titre": "La mort de son fils Jean-Baptiste",
-                    "dossier": "5_jb"
-                }
-            ]
-        },
-        {
-            "titre": "Son héritage",
-            "dossier": "08_heritage",
-            "image": "donation.jpg",
-            "x": 1050,
-            "y": 730,
-            "chapitres": [
-                {
-                    "titre": "Marius prépare sa succession",
-                    "dossier": "1_donation"
-                },
-                {
-                    "titre": "Le détail de ses biens",
-                    "dossier": "2_biens"
-                },
-                {
-                    "titre": "Partager les biens malgré Éloïse",
-                    "dossier": "4_jugement"
-                },
-                {
-                    "titre": "Des héritiers mineurs",
-                    "dossier": "3_conseils"
-                },
-                {
-                    "titre": "Vente et rachat du 46",
-                    "dossier": "5_rachat"
-                },
-                {
-                    "titre": "Partage, brouille, réconciliation",
-                    "dossier": "6_partage"
-                }
-            ]
-        },
-        {
-            "titre": "Les Payan de St-Jérôme",
-            "dossier": "09a_auguste",
-            "image": "auguste.jpg",
-            "x": 450,
-            "y": 650,
-            "chapitres": [
-                {
-                    "titre": "L'après-guerre de Louise",
-                    "dossier": "1_apresguerre"
-                },
-                {
-                    "titre": "Marius et Paulette",
-                    "dossier": "2_marius"
-                }
-            ]
-        },
-        {
-            "titre": "Vincent et sa famille",
-            "dossier": "09b_vincent",
-            "image": "vincent.jpg",
-            "x": 650,
-            "y": 650
-        },
-        {
-            "titre": "Les Khatchadourian",
-            "dossier": "09c_marie",
-            "image": "marie.jpg",
-            "x": 850,
-            "y": 650,
-            "chapitres": [
-                {
-                    "titre": "Aux origines des Katchadourian",
-                    "dossier": "1_charles"
-                },
-                {
-                    "titre": "Les enfants de Marie et Charles Khatchadourian",
-                    "dossier": "2_marie"
-                },
-                {
-                    "titre": "La menuiserie ",
-                    "dossier": "3_menuiserie"
-                },
-                {
-                    "titre": "La mort d'André Katchadourian",
-                    "dossier": "4_andre"
-                }
-            ]
-        },
-        {
-            "titre": "Des réunions",
-            "dossier": "09d_reunions",
-            "image": "reunion.jpg",
-            "x": 1200,
-            "y": 660,
-            "chapitres": [
-                {
-                    "titre": "Mallemoisson (1996)",
-                    "dossier": "1_1996"
-                },
-                {
-                    "titre": "Barles (1997)",
-                    "dossier": "2_barles"
-                },
-                {
-                    "titre": "Seyne (2000)",
-                    "dossier": "3_seyne"
-                },
-                {
-                    "titre": "Banon (2006)",
-                    "dossier": "4_banon"
-                }
-            ]
+          "titre": "Ses obligations militaires (1869)",
+          "dossier": "3_militaire"
         }
-    ]
+      ]
+    },
+    {
+      "titre": "Les Cravaschino",
+      "dossier": "02_crava",
+      "x": 10,
+      "y": 530,
+      "image": "louise.jpg",
+      "chapitres": [
+        {
+          "titre": "La famille Cravaschino",
+          "dossier": "0_jean"
+        },
+        {
+          "titre": "Cravaschino et Payan",
+          "dossier": "1_p&c"
+        },
+        {
+          "titre": "Rose Payan, cigarière",
+          "dossier": "2_cigare"
+        },
+        {
+          "titre": "Un drame au 46",
+          "dossier": "4_drame"
+        },
+        {
+          "titre": "«Tante Louise», morte à 82 ans",
+          "dossier": "5_82ans"
+        }
+      ]
+    },
+    {
+      "titre": "1881 : le mariage",
+      "dossier": "03_epouse",
+      "x": 10,
+      "y": 760,
+      "image": "marie.png",
+      "chapitres": [
+        {
+          "titre": "La famille Massabo",
+          "dossier": "1_massabo"
+        },
+        {
+          "titre": "Le mariage avec Marie-Baptistine Martin",
+          "dossier": "2_mariage"
+        }
+      ]
+    },
+    {
+      "titre": "Du Vieux-Port à la Belle de Mai",
+      "dossier": "04a_adresses",
+      "x": 300,
+      "y": 480,
+      "image": "carte.jpg"
+    },
+    {
+      "titre": "Une grande famille avant 1914",
+      "dossier": "04_enfants",
+      "x": 1050,
+      "y": 360,
+      "image": "jb.jpg",
+      "chapitres": [
+        {
+          "titre": "Dix enfants ",
+          "dossier": "0_dix"
+        },
+        {
+          "titre": "Jean-Baptiste",
+          "dossier": "1_jb"
+        },
+        {
+          "titre": "Auguste avant 1914",
+          "dossier": "2_auguste1",
+          "chapitres": []
+        },
+        {
+          "titre": "Léon",
+          "dossier": "3_leon"
+        },
+        {
+          "titre": "Vincent",
+          "dossier": "4_vincent"
+        },
+        {
+          "titre": "Émile avant 1914",
+          "dossier": "5_emile"
+        },
+        {
+          "titre": "Francois",
+          "dossier": "6_francois"
+        },
+        {
+          "titre": "Louis",
+          "dossier": "7_louis"
+        },
+        {
+          "titre": "Augustine ",
+          "dossier": "8_augustine"
+        },
+        {
+          "titre": "Anna",
+          "dossier": "9_anna"
+        },
+        {
+          "titre": "Marie",
+          "dossier": "10_marie"
+        }
+      ]
+    },
+    {
+      "titre": "Boucher",
+      "dossier": "05_profession",
+      "x": 170,
+      "y": 330,
+      "image": "abattoirs.jpg",
+      "chapitres": [
+        {
+          "titre": "Les métiers de la boucherie",
+          "dossier": "1_boucher"
+        },
+        {
+          "titre": "Ravitailler Marseille en viande",
+          "dossier": "2_viande"
+        },
+        {
+          "titre": "Les abattoirs de Marseille au temps de Marius",
+          "dossier": "3_abattoirs"
+        },
+        {
+          "titre": "L'évolution des lieux",
+          "dossier": "4_evolution"
+        }
+      ]
+    },
+    {
+      "titre": "Propriétaire du 46",
+      "dossier": "06_proprietaire",
+      "x": 620,
+      "y": 360,
+      "image": "46.jpg",
+      "chapitres": [
+        {
+          "titre": "L'achat",
+          "dossier": "1_achat"
+        },
+        {
+          "titre": "La renumérotation de la maison",
+          "dossier": "1a_numero"
+        },
+        {
+          "titre": "La maison",
+          "dossier": "2_maison"
+        }
+      ]
+    },
+    {
+      "titre": "14-18 : « Comme un château de cartes...»",
+      "dossier": "07_chateau",
+      "x": 1250,
+      "y": 420,
+      "image": "mobilisation2.jpg",
+      "chapitres": [
+        {
+          "titre": "Une sombre prédiction",
+          "dossier": "0_prediction"
+        },
+        {
+          "titre": "Auguste dans la guerre de 14",
+          "dossier": "1_auguste"
+        },
+        {
+          "titre": "Émile dans la guerre de 14",
+          "dossier": "2_emile"
+        },
+        {
+          "titre": "En mémoire d'Émile",
+          "dossier": "2a_memoire"
+        },
+        {
+          "titre": "«Défense du 141e»",
+          "dossier": "2b_141"
+        },
+        {
+          "titre": "La mort de son fils François",
+          "dossier": "3_francois"
+        },
+        {
+          "titre": "Sa mort",
+          "dossier": "4_marius"
+        },
+        {
+          "titre": "La mort de son fils Jean-Baptiste",
+          "dossier": "5_jb"
+        },
+        {
+          "titre": "La mort de Marie Baptistine",
+          "dossier": "6_marie"
+        }
+      ]
+    },
+    {
+      "titre": "Son héritage",
+      "dossier": "08_heritage",
+      "x": 250,
+      "y": 760,
+      "image": "donation.jpg",
+      "chapitres": [
+        {
+          "titre": "Marius prépare sa succession",
+          "dossier": "1_donation"
+        },
+        {
+          "titre": "Le détail de ses biens",
+          "dossier": "2_biens"
+        },
+        {
+          "titre": "Partager les biens malgré Éloïse",
+          "dossier": "4_jugement"
+        },
+        {
+          "titre": "Des héritiers mineurs",
+          "dossier": "3_conseils"
+        },
+        {
+          "titre": "Vente et rachat du 46",
+          "dossier": "5_rachat"
+        },
+        {
+          "titre": "Partage, brouille, réconciliation",
+          "dossier": "6_partage"
+        }
+      ]
+    },
+    {
+      "titre": "Les Payan de St-Jérôme",
+      "dossier": "09a_auguste",
+      "x": 550,
+      "y": 650,
+      "image": "auguste.jpg",
+      "chapitres": [
+        {
+          "titre": "L'après-guerre de Louise",
+          "dossier": "1_apresguerre"
+        },
+        {
+          "titre": "Marius et Paulette",
+          "dossier": "2_marius"
+        }
+      ]
+    },
+    {
+      "titre": "Vincent et sa famille",
+      "dossier": "09b_vincent",
+      "x": 750,
+      "y": 650,
+      "image": "vincent.jpg"
+    },
+    {
+      "titre": "Les Khatchadourian",
+      "dossier": "09c_marie",
+      "x": 950,
+      "y": 650,
+      "image": "marie.jpg",
+      "chapitres": [
+        {
+          "titre": "Aux origines des Katchadourian",
+          "dossier": "1_charles"
+        },
+        {
+          "titre": "Les enfants de Marie et Charles Khatchadourian",
+          "dossier": "2_marie"
+        },
+        {
+          "titre": "La menuiserie ",
+          "dossier": "3_menuiserie"
+        },
+        {
+          "titre": "La mort d'André Katchadourian",
+          "dossier": "4_andre"
+        }
+      ]
+    },
+    {
+      "titre": "Des réunions",
+      "dossier": "09d_reunions",
+      "x": 1200,
+      "y": 720,
+      "image": "reunion.jpg",
+      "chapitres": [
+        {
+          "titre": "Mallemoisson (1996)",
+          "dossier": "1_1996"
+        },
+        {
+          "titre": "Barles (1997)",
+          "dossier": "2_barles"
+        },
+        {
+          "titre": "Seyne (2000)",
+          "dossier": "3_seyne"
+        },
+        {
+          "titre": "Banon (2006)",
+          "dossier": "4_banon"
+        }
+      ]
+    }
+  ]
 }

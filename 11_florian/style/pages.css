@@ -93,6 +93,10 @@ p#bleu {
  text-align:center
  }
  
+ .center {
+ text-align:center
+ }
+ 
   .fond {
 background-color:#8FFFFF;
 border:1px dotted #CCCCCC;
@@ -137,6 +141,47 @@ padding:auto;
     
 }
   
+ .conteneur1  { 
+ display: flex; 
+justify-content:space-around; 
+ } 
+ 
+ 
+ .box {
+	 align-items: center;
+ }
+  
+  .box1 {
+	 width:50%;
+ }
   
   
   
+   .border { border-width: 3px; border-color: blue; border-style: solid;
+margin: 0px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto 
+ }
+
+
+ .colonnes  {
+	 border: 1px solid #000000;
+     column-count:3; 
+	 column-gap:40px;  
+ }
+ 
+ .gallery1 {
+   display: flex;
+   flex-wrap: wrap;
+   padding:5px;
+   justify-content: space-evenly;
+} 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,104 +1,108 @@
 {
-    "titre_site": "François Payan (1794-1852) : un gavot à Marseille",
-    "chapitres": [
-    	{
-            "image": "napo.png",
-            "x": 565,
-            "y": 110
+  "titre_site": "François Payan (1794-1852) : un gavot à Marseille",
+  "chapitres": [
+    {
+      "x": 565,
+      "y": 110,
+      "image": "napo.png"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x": 210,
+      "y": 600,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "François PAYAN",
+      "dossier": "1_francois",
+      "x": 250,
+      "y": 250,
+      "image": "francois.png",
+      "chapitres": [
+        {
+          "titre": "François",
+          "dossier": "1_francois"
         },
         {
-            "titre": "Dans notre arbre",
-            "dossier": "arbre",
-            "image": "arbre.png",
-            "x": 210,
-            "y": 600
+          "titre": "Magdeleine Mouren, son épouse",
+          "dossier": "2_magdeleine"
         },
         {
-            "titre": "François PAYAN",
-            "dossier": "1_francois",
-            "image": "francois.png",
-            "x": 250,
-            "y": 250,
-            "chapitres": [
-                {
-                    "titre": "François",
-                    "dossier": "1_francois"
-                },
-                {
-                    "titre": "Magdeleine, son épouse",
-                    "dossier": "2_magdeleine"
-                },
-                {
-                    "titre": "Le mariage",
-                    "dossier": "3_mariage"
-                }
-            ]
+          "titre": "Le mariage",
+          "dossier": "3_mariage"
         },
         {
-            "titre": "Les métiers de François",
-            "dossier": "2_ouvrier",
-            "image": "atelier.jpg",
-            "x": 600,
-            "y": 600,
-            "chapitres": [
-                {
-                    "titre": "Un ouvrier",
-                    "dossier": "1_conditions"
-                },
-                {
-                    "titre": "Amidonnier",
-                    "dossier": "2_amidon"
-                },
-                {
-                    "titre": "Tanneur",
-                    "dossier": "3_tanneur"
-                },
-                {
-                    "titre": "Savonnier",
-                    "dossier": "4_savon"
-                }
-            ]
-        },
-        {
-            "titre": "Sept enfants",
-            "dossier": "3_enfants",
-            "image": "freres.jpg",
-            "x": 900,
-            "y": 600,
-            "chapitres": [
-                {
-                    "titre": "Vue d'ensemble",
-                    "dossier": "1_ensemble"
-                },
-                {
-                    "titre": "Rose Charlotte",
-                    "dossier": "1a_rose_ch"
-                },
-                {
-                    "titre": "Félicité Thérèse",
-                    "dossier": "2_feli"
-                },
-                {
-                    "titre": "Jean",
-                    "dossier": "3_jean"
-                },
-                {
-                    "titre": "Marius",
-                    "dossier": "4_marius"
-                },
-                {
-                    "titre": "Aimable",
-                    "dossier": "5_aimable"
-                },
-                {
-                    "titre": "Rose",
-                    "dossier": "6_rose"
-                },
-                {
-                    "titre": "Lazare",
-                    "dossier": "7_lazare"
-                }
-            ]
+          "titre": "Leur décès",
+          "dossier": "4_mort"
         }
-    ]
+      ]
+    },
+    {
+      "titre": "Les métiers de François",
+      "dossier": "2_ouvrier",
+      "x": 600,
+      "y": 600,
+      "image": "atelier.jpg",
+      "chapitres": [
+        {
+          "titre": "Un ouvrier",
+          "dossier": "1_conditions"
+        },
+        {
+          "titre": "Amidonnier",
+          "dossier": "2_amidon"
+        },
+        {
+          "titre": "Tanneur",
+          "dossier": "3_tanneur"
+        },
+        {
+          "titre": "Savonnier",
+          "dossier": "4_savon"
+        }
+      ]
+    },
+    {
+      "titre": "Sept enfants",
+      "dossier": "3_enfants",
+      "x": 900,
+      "y": 600,
+      "image": "freres.jpg",
+      "chapitres": [
+        {
+          "titre": "Vue d'ensemble",
+          "dossier": "1_ensemble"
+        },
+        {
+          "titre": "Rose Charlotte",
+          "dossier": "1a_rose_ch"
+        },
+        {
+          "titre": "Félicité Thérèse",
+          "dossier": "2_feli"
+        },
+        {
+          "titre": "Jean",
+          "dossier": "3_jean"
+        },
+        {
+          "titre": "Marius",
+          "dossier": "4_marius"
+        },
+        {
+          "titre": "Aimable",
+          "dossier": "5_aimable"
+        },
+        {
+          "titre": "Rose",
+          "dossier": "6_rose"
+        },
+        {
+          "titre": "Lazare",
+          "dossier": "7_lazare"
+        }
+      ]
+    }
+  ]
 }

@@ -14,20 +14,24 @@
       "image": "andre.png",
       "chapitres": [
         {
-          "titre": "Un premier mariage à Barles",
+          "titre": "Un premier mariage avec Marie Davin à Barles",
           "dossier": "1_naissance"
         },
         {
-          "titre": "Un second mariage à Seyne",
+          "titre": "Un second mariage avec Charlotte Silve à Seyne",
           "dossier": "2_mariage2"
         },
         {
-          "titre": "Louise Charlotte Silve, son épouse",
-          "dossier": "2a_silve"
+          "titre": "Les enfants de ce second mariage",
+          "dossier": "3_enfants2"
         },
         {
           "titre": "L'exil et la mort à Marseille",
-          "dossier": "3_mort"
+          "dossier": "4_mort"
+        },
+        {
+          "titre": "Le mariage de leurs enfants et la mort de Charlotte",
+          "dossier": "5_mort_silve"
         }
       ]
     },

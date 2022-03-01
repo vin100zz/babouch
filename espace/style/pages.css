@@ -33,7 +33,7 @@ font-size: 6t;
 font-weight: normal; 
 border:2px solid gray; 
 padding-left: 40px;  
-padding-right: 40px; 
+_padding-right: 40px; 
 background-color:white; 
 }
 
@@ -41,7 +41,7 @@ p {
     text-indent:50px;
 	font-style: normal;
 	font-size: 18px;
-	text-align:center;
+
 	background-color:white;
 	border:2px solid gray; 
 	padding-left: 40px;  
@@ -67,7 +67,12 @@ q {
 	text-align:center;	
 	font-style: italic;	
 	background-color:silver;}
-
+	
+	
+.left {	
+   text-align:center;
+      }
+   
 .titre {  
 text-align: justify;  
 text-indent: 40px;   

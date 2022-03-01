@@ -17,9 +17,11 @@
       "image": "saitpas.jpg"
     },
     {
-      "x": 250,
-      "y": 100,
-      "image": "rosine.png"
+      "titre": "Chronique",
+      "dossier": "00_chronique",
+      "x": 20,
+      "y": 800,
+      "image": ".png"
     },
     {
       "titre": "Dans notre arbre",
@@ -281,6 +283,10 @@
         {
           "titre": "Le choléra",
           "dossier": "1_cholera"
+        },
+        {
+          "titre": "Les égouts",
+          "dossier": "1a_egouts"
         },
         {
           "titre": "L'épidémie de 1834-35",
