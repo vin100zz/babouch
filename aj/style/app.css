@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "TitleFont";
+  src: url('impact.ttf');
+}
+
+_body {
+  background: #eee;
+ 
+}
+body, a, a:visited {
+  _color: #222;
+  background-color : ABFFFF;
+
+}
+
+/* Title */
+header {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  height: 130px;
+  line-height: 60px;
+  box-sizing: border-box;
+  margin: 0;
+  background: url(header.png);
+  _color: #fff;
+  color:black;
+  text-shadow: 4px 4px 8px #009543;
+  padding: 20px 0 15px 0;
+  font-family: TitleFont;
+  font-size: 60px;
+  font-weight: normal;
+
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Menu */
+#chapitre #menu {
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  top: 110px;
+  height: 20px;
+  box-sizing: border-box;
+  color: black;
+  font-size: 30px;
+  line-height: 12px;
+}
+#chapitre #menu,
+#chapitre #menu a {
+  color: #bbb;
+  text-decoration: none;
+}
+#chapitre #menu a:hover {
+  color: #f5ba3c;
+}
+#chapitre #menu li {
+  margin-left: 15px;
+}
+#chapitre #menu li:not(:last-child):after {
+  content: '\25a0';
+  display: inline-block;
+  _color: #002868;
+  color:black;
+  margin-left: 15px;
+  transform : rotate(45deg);
+}
+#chapitre #menu li a.selected {
+  _color: #eee;
+  color:black;
+}
+
+
+/* Content */
+#chapitre #content {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 150px;
+  bottom: 0;
+  padding-top: 10px;
+}

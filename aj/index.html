@@ -1,0 +1,26 @@
+<html ng-app="App">
+
+  <head>
+    <meta charset="utf-8">
+    <title>2022</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/app.css">
+    <link rel="stylesheet" href="style/pages.css">
+    <link rel="stylesheet" href="style/home.css">
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/chapitresSvc.js"></script>
+    <script src="js/mainCtrl.js"></script>
+    <script src="js/pages/welcomeCtrl.js"></script>
+    <script src="js/pages/chapitreCtrl.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    
+    <div ng-view></div>
+
+  </body>
+
+</html>

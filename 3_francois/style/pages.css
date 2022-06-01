@@ -46,10 +46,14 @@ padding:20px;
 border:solid 1px black;
 }
 
+.td1{  
+width:30%;
+}
 
 table {
-border:1px	
-	
+border:1px;	
+text-align:left;
+background-color:white;		
 }
 
 _table {
@@ -121,6 +125,12 @@ justify-content:space-around;
  .box20 {
 	 align-items: center;
 	 width:20%;
+ }
+ 
+ .box30 {
+	
+	 size:30%;
+	 align-items: space-around;
  }
  
 .box50 {

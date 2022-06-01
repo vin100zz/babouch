@@ -2,9 +2,9 @@
   "titre_site": "Rose Charlotte PAYAN (1819-1855) : les secrets de Rosine",
   "chapitres": [
     {
-      "x": 630,
-      "y": 300,
-      "image": "toto.jpg"
+      "x": 620,
+      "y": 200,
+      "image": "rosine.jpg"
     },
     {
       "x": 230,
@@ -116,8 +116,16 @@
           "dossier": "1_jules"
         },
         {
-          "titre": "Ses autres enfants",
-          "dossier": "2_autres"
+          "titre": "Anne",
+          "dossier": "2_anne"
+        },
+        {
+          "titre": "Marie Louise",
+          "dossier": "3_marielouise"
+        },
+        {
+          "titre": "Anne (2)",
+          "dossier": "4_anne2"
         }
       ]
     },
@@ -212,8 +220,8 @@
       ]
     },
     {
-      "titre": "Ses domiciles",
-      "dossier": "5_domiciles",
+      "titre": "Parcours",
+      "dossier": "5_parcours",
       "x": 330,
       "y": 620,
       "image": "rue.jpg",
@@ -223,28 +231,16 @@
           "dossier": "0_vieux"
         },
         {
-          "titre": "De la place d'Aix aux Carmes : de son temps...",
-          "dossier": "1_aix_1_hier"
+          "titre": "1819-1838 : de la place d'Aix aux Carmes",
+          "dossier": "1_1819-1838"
         },
         {
-          "titre": "...et de nos jours",
-          "dossier": "1_aix_2_auj"
+          "titre": "1838-1846 : rue Sainte-Françoise",
+          "dossier": "2_1838-1846"
         },
         {
-          "titre": "Rue Sainte-Françoise : de son temps...",
-          "dossier": "2_sainte_1_hier"
-        },
-        {
-          "titre": "...et de nos jours",
-          "dossier": "2_sainte_2_auj"
-        },
-        {
-          "titre": "Entre Hôtel Dieu et Vieux Port",
-          "dossier": "3_hotel_1_hier"
-        },
-        {
-          "titre": "...et de nos jours",
-          "dossier": "3_hotel_2_auj"
+          "titre": "1848-1855 : entre Hôtel Dieu et Vieux Port",
+          "dossier": "3_1848-1855"
         }
       ]
     },

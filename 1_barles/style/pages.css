@@ -136,13 +136,22 @@ padding:auto;
     padding-bottom :30px;
     
 }
+
+.border {
+	 border:2px solid blue;
+}
   
-  .conteneur1  { 
+ .conteneur1  { 
  display: flex; 
-justify-content:center; 
+justify-content: space-around;
  }
  
- .box {
+  .conteneur  { 
+ display: flex; 
+ 
+ }
+ 
+.box {
 	 align-items: center;
  }
   

@@ -14,15 +14,19 @@
       "image": "arbre.png"
     },
     {
-      "titre": "François PAYAN",
+      "titre": "François PAYAN et son épouse",
       "dossier": "1_francois",
       "x": 250,
       "y": 250,
       "image": "francois.png",
       "chapitres": [
         {
-          "titre": "François",
-          "dossier": "1_francois"
+          "titre": "La naissance de François",
+          "dossier": "1_naissance"
+        },
+        {
+          "titre": "La jeunesse de François",
+          "dossier": "1a_jeunesse"
         },
         {
           "titre": "Magdeleine Mouren, son épouse",
@@ -33,8 +37,12 @@
           "dossier": "3_mariage"
         },
         {
-          "titre": "Leur décès",
-          "dossier": "4_mort"
+          "titre": "Le décès de François",
+          "dossier": "4_mort_francois"
+        },
+        {
+          "titre": "Le décès de Madeleine",
+          "dossier": "5_mort_madeleine"
         }
       ]
     },

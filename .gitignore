@@ -10,6 +10,7 @@ chefs/*
 itineraires/*
 mesautos/*
 tdf/*
+tdfng/*
 
 2014/*
 2015/*
@@ -19,6 +20,9 @@ tdf/*
 2019/*
 2020/*
 2021/*
+2022/*
+2023/*
+
 domiciles_site/*
 domiciles_site_new/*
 domiciles_site_new_contenu/*
@@ -35,3 +39,4 @@ ve/*
 **/.project
 **/angular/i18n/*
 
+5_fmp/Francois Marius Payan doc sonore/*

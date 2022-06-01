@@ -1,0 +1,67 @@
+.home {
+  background: url(background.jpg);
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 50px;
+}
+
+.home a,
+.home a span {
+  text-decoration: none;
+}
+
+.home .home-content {
+  position: relative;
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+
+.home .title .main {
+  position: absolute;
+  top: 800px;
+  left: 800px;
+  display: block;
+  font-family: TitleFont;
+  font-size: 40pt;
+}
+.home .title .date {
+  position: absolute;
+  top: 390px;
+  left: 705px;
+  font-family: TitleFont;
+  font-size: 10pt;
+}
+.home .title a {
+  position: absolute;
+  top: 450px;
+  left: 680px;
+  font-size: 10pt;
+}
+
+.home .thumbnail {
+  position: absolute;
+  /*width: 200px;*/
+  text-align: center;
+}
+
+.home .thumbnail img {
+  margin-bottom: 5px;
+}
+
+.home .thumbnail span {
+  font-size: 16pt;
+  line-height: 16pt;
+  color: #fff;
+  text-shadow: 1px 1px 2px red;
+  padding: 3px 10px;
+  font-family: TitleFont;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}

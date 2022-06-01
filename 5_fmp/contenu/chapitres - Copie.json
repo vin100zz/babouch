@@ -2,8 +2,8 @@
   "titre_site": " Marius PAYAN (1849-1918) : le patron du «46»",
   "chapitres": [
     {
-      "x": 830,
-      "y": 270,
+      "x": 1000,
+      "y": 300,
       "image": "toto.jpg"
     },
     {
@@ -96,34 +96,15 @@
     },
     {
       "titre": "Du Vieux-Port à la Belle de Mai",
-      "dossier": "04a_parcours",
-      "x": 300,
+      "dossier": "04a_adresses",
+      "x": 250,
       "y": 480,
-      "image": "carte.jpg",
-      "chapitres": [
-        {
-          "titre": "1849-1860",
-          "dossier": "1_1849-1860"
-        },
-        {
-          "titre": "1863-1865",
-          "dossier": "2_1863-1865",
-          "chapitres": []
-        },
-        {
-          "titre": "1868-1885",
-          "dossier": "3_1868-1885"
-        },
-        {
-          "titre": "1885-1918",
-          "dossier": "4_1885-1918"
-        }
-      ]
+      "image": "carte.jpg"
     },
     {
       "titre": "Une grande famille avant 1914",
       "dossier": "04_enfants",
-      "x": 1050,
+      "x": 800,
       "y": 360,
       "image": "jb.jpg",
       "chapitres": [
