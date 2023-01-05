@@ -1,6 +1,15 @@
-<div class="home">
+<div class="home" ng-click="onClick()">
 
-  <a id="to-map" href="#/map">&#9997;</a>
+  <a id="to-map" href="#/map">&#128393;</a>
+
+  <div id="recherche">
+    <input id="searchInput" type="text" placeholder="&#128269; Rechercher" ng-model="searchInput" ng-change="onSearchChange($event)" />
+    <ul id="suggestions" ng-show="suggestions.length > 0">
+      <li ng-repeat="suggestion in suggestions">
+        <a ng-href="#/chapitre/{{suggestion.link}}">{{suggestion.label}}</a>
+      </li>
+    </ul>
+  </div>
 
   <div class="home-title">{{titre_site}}</div>
 
