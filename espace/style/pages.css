@@ -144,6 +144,18 @@ font-weight: bold;
 background: #A9E2F3;
  }  
  
+  .cadreblanc { 
+ border:2px solid blue; 
+ padding-right: 20px; 
+ padding-left: 20px; 
+ padding-top:20px; 
+ padding-bottom :20px;
+ margin-right: 200px; 
+ margin-left: 200px;
+ background-color:white;
+ text-align:left; 
+ }
+ 
 .border { border-width: 3px; border-color: blue; border-style: solid;
 margin: 2px;
  }

@@ -69,6 +69,10 @@
               "dossier": "atlas"
             },
             {
+              "titre": "Rover/Nerva",
+              "dossier": "nerva"
+            },
+            {
               "titre": "Centaur",
               "dossier": "centaur"
             },
@@ -124,6 +128,10 @@
           "titre": "États-Unis (privé)",
           "dossier": "prive",
           "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "ensemble"
+            },
             {
               "titre": "Falcon 1",
               "dossier": "falcon"
@@ -292,6 +300,10 @@
             {
               "titre": "I-Space",
               "dossier": "i-space"
+            },
+            {
+              "titre": "Longue Marche 9",
+              "dossier": "lm9"
             }
           ]
         },
@@ -597,7 +609,7 @@
               ]
             },
             {
-              "titre": "Orion",
+              "titre": "Orion et Artemis",
               "dossier": "orion"
             }
           ]
@@ -635,10 +647,6 @@
             {
               "titre": "Shenzhou",
               "dossier": "shenzhou"
-            },
-            {
-              "titre": "VNG",
-              "dossier": "vng"
             }
           ]
         }
@@ -942,7 +950,7 @@
               "dossier": "tian_2"
             },
             {
-              "titre": "CSS",
+              "titre": "CSS ou Tiangong 3",
               "dossier": "css"
             }
           ]
@@ -1232,7 +1240,13 @@
         },
         {
           "titre": "Japon",
-          "dossier": "6_japon"
+          "dossier": "6_japon",
+          "chapitres": [
+            {
+              "titre": "Hakuto",
+              "dossier": "hakuto"
+            }
+          ]
         },
         {
           "titre": "Chine",
@@ -1281,6 +1295,10 @@
         {
           "titre": "Israël",
           "dossier": "9_israel"
+        },
+        {
+          "titre": "Corée du Sud",
+          "dossier": "10_coree_sud"
         }
       ]
     },
@@ -1394,6 +1412,10 @@
             {
               "titre": "Rover lunaire",
               "dossier": "rover"
+            },
+            {
+              "titre": "HLS (Human Landing System)",
+              "dossier": "hls"
             }
           ]
         },
@@ -1437,6 +1459,16 @@
             {
               "titre": "Zond 8 (1970)",
               "dossier": "zond8"
+            }
+          ]
+        },
+        {
+          "titre": "Chine",
+          "dossier": "chine",
+          "chapitres": [
+            {
+              "titre": "Module lunaire",
+              "dossier": "module"
             }
           ]
         }
@@ -1606,7 +1638,7 @@
               "dossier": "3_insight"
             },
             {
-              "titre": "Perseverance",
+              "titre": "Perseverance et Ingenuity",
               "dossier": "4_perseverance"
             }
           ]
@@ -1852,6 +1884,16 @@
             {
               "titre": "Voyager",
               "dossier": "voyager"
+            }
+          ]
+        },
+        {
+          "titre": "ESA",
+          "dossier": "esa",
+          "chapitres": [
+            {
+              "titre": "Juice (2023)",
+              "dossier": "juice"
             }
           ]
         }

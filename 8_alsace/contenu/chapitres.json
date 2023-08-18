@@ -1,0 +1,278 @@
+{
+  "titre_site": "St-Hippolyte et les Carlé d'Alsace",
+  "chapitres": [
+    {
+      "x": 200,
+      "y": 20,
+      "image": "background.png"
+    },
+    {
+      "titre": "St-Hippolyte",
+      "dossier": "1_hippo",
+      "x": 100,
+      "y": 350,
+      "image": "1.jpg",
+      "chapitres": [
+        {
+          "titre": "Les lieux",
+          "dossier": "lieux"
+        },
+        {
+          "titre": "Les dates",
+          "dossier": "dates"
+        },
+        {
+          "titre": "Nos visites",
+          "dossier": "visites"
+        }
+      ]
+    },
+    {
+      "titre": "L'ouvrage",
+      "dossier": "7_livre",
+      "x": 1300,
+      "y": 350,
+      "image": "livre.jpg",
+      "chapitres": []
+    },
+    {
+      "titre": "Les CARLÉ en bref",
+      "dossier": "2_bref",
+      "x": 300,
+      "y": 350,
+      "image": "1.jpg",
+      "chapitres": []
+    },
+    {
+      "titre": "Nicolas CARL (I)",
+      "dossier": "3_nicolas1",
+      "x": 500,
+      "y": 350,
+      "image": "1.jpg",
+      "chapitres": []
+    },
+    {
+      "titre": "Nicolas CARL (II)",
+      "dossier": "4_nicolas2",
+      "x": 700,
+      "y": 350,
+      "image": "1.jpg",
+      "chapitres": [
+        {
+          "titre": "Nicolas (II) et Anne-Marie STUTZ",
+          "dossier": "1_mariage"
+        },
+        {
+          "titre": "La famille",
+          "dossier": "2_famille",
+          "chapitres": [
+            {
+              "titre": "Vue d'ensemble",
+              "dossier": "0_ensemble"
+            },
+            {
+              "titre": "Joseph",
+              "dossier": "1_joseph"
+            },
+            {
+              "titre": "Marie Anne",
+              "dossier": "2_marie_anne"
+            },
+            {
+              "titre": "Ignace",
+              "dossier": "3_ignace"
+            },
+            {
+              "titre": "Laurent",
+              "dossier": "4_laurent"
+            },
+            {
+              "titre": "Joseph",
+              "dossier": "5_joseph"
+            },
+            {
+              "titre": "Joseph",
+              "dossier": "6_joseph"
+            },
+            {
+              "titre": "Anne Barbara",
+              "dossier": "7_anne_barbe"
+            },
+            {
+              "titre": "François",
+              "dossier": "8_francois"
+            },
+            {
+              "titre": "Ursule",
+              "dossier": "9_ursule"
+            },
+            {
+              "titre": "Hélène",
+              "dossier": "10_helene"
+            },
+            {
+              "titre": "Catherine",
+              "dossier": "11_catherine"
+            },
+            {
+              "titre": "Félix Ignace",
+              "dossier": "12_felix"
+            }
+          ]
+        },
+        {
+          "titre": "Leur décès",
+          "dossier": "3_mort"
+        }
+      ]
+    },
+    {
+      "titre": "Ignace CARL (I)",
+      "dossier": "5_ignace1",
+      "x": 900,
+      "y": 350,
+      "image": "1.jpg",
+      "chapitres": [
+        {
+          "titre": "Ignace (I) et Madeleine FELLMANN",
+          "dossier": "1_naissances"
+        },
+        {
+          "titre": "La famille",
+          "dossier": "2_famille",
+          "chapitres": [
+            {
+              "titre": "Leur mariage",
+              "dossier": "0_mariage"
+            },
+            {
+              "titre": "Vue d'ensemble des enfants",
+              "dossier": "0a_ensemble"
+            },
+            {
+              "titre": "Marie Anne",
+              "dossier": "1_anne",
+              "chapitres": []
+            },
+            {
+              "titre": "Joseph",
+              "dossier": "2_joseph"
+            },
+            {
+              "titre": "François",
+              "dossier": "3_francois"
+            },
+            {
+              "titre": "Thérèse",
+              "dossier": "4_therese"
+            },
+            {
+              "titre": "François Ignace",
+              "dossier": "5_ignace"
+            },
+            {
+              "titre": "Hippolyte",
+              "dossier": "6_hippo"
+            },
+            {
+              "titre": "Madeleine",
+              "dossier": "7_madeleine"
+            },
+            {
+              "titre": "Florentin",
+              "dossier": "8_florentin"
+            },
+            {
+              "titre": "Anastase",
+              "dossier": "9_anastase"
+            },
+            {
+              "titre": "Marie",
+              "dossier": "10_marie"
+            }
+          ]
+        },
+        {
+          "titre": "Leur décès",
+          "dossier": "3_deces"
+        }
+      ]
+    },
+    {
+      "titre": "Ignace CARLÉ (II)",
+      "dossier": "6_ignace2",
+      "x": 1100,
+      "y": 350,
+      "image": "1.jpg",
+      "chapitres": [
+        {
+          "titre": "Ignace (II) et Annastase DORIAT",
+          "dossier": "1_naissances"
+        },
+        {
+          "titre": "La famille CARL-DORIAT",
+          "dossier": "2_famille",
+          "chapitres": [
+            {
+              "titre": "Leur mariage",
+              "dossier": "0_mariage"
+            },
+            {
+              "titre": "Vue d'ensemble",
+              "dossier": "0a_ensemble"
+            },
+            {
+              "titre": "Hélène",
+              "dossier": "1_helene",
+              "chapitres": []
+            },
+            {
+              "titre": "Florian",
+              "dossier": "2_florian"
+            },
+            {
+              "titre": "François Ignace",
+              "dossier": "3_francois"
+            },
+            {
+              "titre": "Hippolyte",
+              "dossier": "4_hippo"
+            },
+            {
+              "titre": "Thérèse",
+              "dossier": "5_therese"
+            },
+            {
+              "titre": "Jean-Baptiste",
+              "dossier": "6_jean"
+            },
+            {
+              "titre": "Marie Anne",
+              "dossier": "7_anne"
+            },
+            {
+              "titre": "Catherine",
+              "dossier": "8_catherine"
+            },
+            {
+              "titre": "Florian",
+              "dossier": "9_florian"
+            },
+            {
+              "titre": "Laurent",
+              "dossier": "10_laurent"
+            },
+            {
+              "titre": "Joseph",
+              "dossier": "11_joseph"
+            }
+          ]
+        },
+        {
+          "titre": "Leur décès",
+          "dossier": "3_deces"
+        }
+      ]
+    }
+  ]
+}

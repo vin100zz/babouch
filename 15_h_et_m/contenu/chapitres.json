@@ -1,5 +1,5 @@
 {
-  "titre_site": "H&M",
+  "titre_site": "Henri & Marie",
   "chapitres": [
     {
       "x": 200,
@@ -10,7 +10,7 @@
       "titre": "Marie avant Henri",
       "dossier": "1_marie",
       "x": 0,
-      "y": 300,
+      "y": 400,
       "image": "bleu3.jpg",
       "chapitres": [
         {
@@ -24,10 +24,31 @@
       ]
     },
     {
+      "titre": "Une chronologie familiale",
+      "dossier": "0_chronologie",
+      "x": -200,
+      "y": 470,
+      "image": "bleu2.jpg",
+      "chapitres": [
+        {
+          "titre": "Jusqu'en 1908",
+          "dossier": "1_1908"
+        },
+        {
+          "titre": "De 1908 à 1944",
+          "dossier": "2_1908-1944"
+        },
+        {
+          "titre": "De 1944  à 1989",
+          "dossier": "3_1944-1989"
+        }
+      ]
+    },
+    {
       "titre": "Henri avant Marie",
       "dossier": "2_henri28",
       "x": 0,
-      "y": 500,
+      "y": 550,
       "image": "bleu3.jpg",
       "chapitres": [
         {
@@ -36,34 +57,28 @@
           "chapitres": []
         },
         {
-          "titre": "Présentation",
-          "dossier": "1_presentation",
-          "chapitres": [
-            {
-              "titre": "Repères",
-              "dossier": "1_reperes"
-            },
-            {
-              "titre": "Récit",
-              "dossier": "2_recit"
-            }
-          ]
-        },
-        {
           "titre": "L'enfance",
           "dossier": "2_enfance",
           "chapitres": [
             {
-              "titre": "Le père",
-              "dossier": "1_pere"
+              "titre": "Une chronologie",
+              "dossier": "0_chronologie"
+            },
+            {
+              "titre": "Henri et sa famille avant 1912",
+              "dossier": "1_avant_1912"
+            },
+            {
+              "titre": "Orphelin de père a quatre ans",
+              "dossier": "2_orphelin"
             },
             {
               "titre": "Toulon",
-              "dossier": "2_toulon"
+              "dossier": "3_toulon"
             },
             {
-              "titre": "Hyères",
-              "dossier": "3_hyeres"
+              "titre": "De Toulon à Marseille",
+              "dossier": "4_vers_marseille"
             }
           ]
         },
@@ -94,7 +109,7 @@
           "image": "bleu2.png",
           "chapitres": [
             {
-              "titre": "Des cartes",
+              "titre": "Des cartes postales",
               "dossier": "1_cartes"
             },
             {
@@ -110,61 +125,40 @@
               "dossier": "4_recit"
             }
           ]
-        },
-        {
-          "titre": "Préparateur en pharmacie",
-          "dossier": "6_preparateur",
-          "x": 50,
-          "y": 700,
-          "image": "bleu2.png",
-          "chapitres": []
         }
       ]
     },
     {
-      "titre": "La rencontre",
+      "titre": "De l'idylle au mariage",
       "dossier": "4_rencontre",
       "x": 250,
       "y": 100,
-      "image": "bleu2.png",
+      "image": "bleu4.png",
       "chapitres": [
         {
           "titre": "Premières cartes",
           "dossier": "1_premieres"
         },
         {
-          "titre": "La déclaration",
+          "titre": "Les déclarations",
           "dossier": "2_declaration"
+        },
+        {
+          "titre": "Le mariage",
+          "dossier": "3_mariage"
         }
       ]
     },
     {
-      "titre": "Le mariage",
-      "dossier": "6_mariage",
+      "titre": "Préparateur en pharmacie",
+      "dossier": "6_preparateur",
       "x": 250,
       "y": 200,
-      "image": "bleu2.png",
-      "chapitres": [
-        {
-          "titre": "Repères",
-          "dossier": "1_reperes"
-        },
-        {
-          "titre": "Un gant de crin...",
-          "dossier": "2_crin"
-        },
-        {
-          "titre": "Des photos",
-          "dossier": "3_photos"
-        },
-        {
-          "titre": "Un voyage à Paris",
-          "dossier": "4_voyage"
-        }
-      ]
+      "image": "bleu4.png",
+      "chapitres": []
     },
     {
-      "titre": "Années heureuses",
+      "titre": "Moments heureux",
       "dossier": "7_heureuses",
       "x": 250,
       "y": 700,
@@ -179,51 +173,47 @@
           "dossier": "1_azur"
         },
         {
+          "titre": "Paris",
+          "dossier": "2a_paris"
+        },
+        {
           "titre": "La Redonne",
           "dossier": "2_redonne"
+        },
+        {
+          "titre": "Au 67, rue Guérin",
+          "dossier": "4_67"
         },
         {
           "titre": "Le vélo, une passion",
           "dossier": "3_velo"
         },
         {
-          "titre": "Au 46, rue Guérin",
-          "dossier": "4_46"
+          "titre": "D'autres loisirs",
+          "dossier": "5_loisirs"
         }
       ]
     },
     {
       "titre": "La naissance de Jean",
-      "dossier": "7_heureuses",
+      "dossier": "8_jean",
       "x": 250,
       "y": 800,
       "image": "bleu2.png",
       "chapitres": [
         {
-          "titre": "Repères",
-          "dossier": "0_reperes"
+          "titre": "Sa naissance",
+          "dossier": "1_naissance"
         },
         {
-          "titre": "Sur la Côte",
-          "dossier": "1_azur"
-        },
-        {
-          "titre": "La Redonne",
-          "dossier": "2_redonne"
-        },
-        {
-          "titre": "Le vélo, une passion",
-          "dossier": "3_velo"
-        },
-        {
-          "titre": "Au 46, rue Guérin",
-          "dossier": "4_46"
+          "titre": "Ses premières années",
+          "dossier": "2_1eres_annees"
         }
       ]
     },
     {
       "titre": "La guerre",
-      "dossier": "8_guerre",
+      "dossier": "9_guerre",
       "x": 550,
       "y": 150,
       "image": "bleu2.png",
@@ -235,12 +225,20 @@
         {
           "titre": "Grenoble",
           "dossier": "2_grenoble"
+        },
+        {
+          "titre": "1940-42",
+          "dossier": "3_40-42"
+        },
+        {
+          "titre": "L'Occupation",
+          "dossier": "4_occupation"
         }
       ]
     },
     {
       "titre": "Le 27 mai",
-      "dossier": "5_preparateur",
+      "dossier": "10_27mai",
       "x": 550,
       "y": 750,
       "image": "bleu2.png",
@@ -248,60 +246,66 @@
     },
     {
       "titre": "A travers Marseille",
-      "dossier": "8_guerre",
+      "dossier": "11_travers_marseille",
       "x": 850,
-      "y": 100,
+      "y": 350,
       "image": "bleu2.png",
       "chapitres": [
         {
-          "titre": "Les débuts",
-          "dossier": "1_debuts"
+          "titre": "Les Caillols et la Libération",
+          "dossier": "1_caillols"
         },
         {
-          "titre": "Grenoble",
-          "dossier": "2_grenoble"
+          "titre": "Notre-Dame Limite",
+          "dossier": "2_limite"
+        },
+        {
+          "titre": "Retour à la Belle de Mai",
+          "dossier": "3_retour"
+        },
+        {
+          "titre": "Le Merlan",
+          "dossier": "4_merlan"
+        },
+        {
+          "titre": "Le Canet",
+          "dossier": "5_canet"
+        },
+        {
+          "titre": "St-André",
+          "dossier": "6_standre"
+        },
+        {
+          "titre": "La Rose",
+          "dossier": "7_rose"
+        },
+        {
+          "titre": "Les Chartreux et Le Castellas",
+          "dossier": "8_chartreux"
         }
       ]
     },
     {
       "titre": "St-Zacharie",
-      "dossier": "8_guerre",
+      "dossier": "12_stzacharie",
       "x": 850,
-      "y": 400,
+      "y": 450,
       "image": "bleu2.png",
-      "chapitres": [
-        {
-          "titre": "Les débuts",
-          "dossier": "1_debuts"
-        },
-        {
-          "titre": "Grenoble",
-          "dossier": "2_grenoble"
-        }
-      ]
+      "chapitres": []
     },
     {
-      "titre": "le Castellas",
-      "dossier": "8_guerre",
+      "titre": "Le Castellas",
+      "dossier": "13_castellas",
       "x": 850,
-      "y": 700,
+      "y": 550,
       "image": "bleu2.png",
-      "chapitres": [
-        {
-          "titre": "Les débuts",
-          "dossier": "1_debuts"
-        },
-        {
-          "titre": "Grenoble",
-          "dossier": "2_grenoble"
-        }
-      ]
+      "chapitres": []
     },
     {
       "titre": "St-Pierre",
-      "dossier": "5_preparateur",
+      "dossier": "14_stpierre",
       "x": 1100,
-      "y": 400,
+      "y": 450,
       "image": "bleu2.png",
       "chapitres": []
     }

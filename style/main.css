@@ -184,6 +184,9 @@ h1 {
 #z2022 {
   background-image: url(2022.png);
 }
+#z2023 {
+  background-image: url(2023.png);
+}
 #ve {
   background-image: url(ve.png);
 }
@@ -248,8 +251,12 @@ h1 {
 #florian {
   background-image: url(florian.png);
 }
-
-
+#aj {
+  background-image: url(aj.png);
+}
+#pays {
+  background-image: url(pays.png);
+}
 
 
 

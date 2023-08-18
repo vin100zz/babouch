@@ -2,6 +2,11 @@ body {
   font-family: Segoe Print;
   font-size: 14pt;
   line-height: 2em;
+   border:2px solid gray;
+    padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
 }
 
 
@@ -12,24 +17,32 @@ h1 {
   padding-left: 40px;
    background-color:#B7EDF7;
    height:70px;
-   line-height:70px;
 }
+
+td{  
+vertical-align:middle;
+padding:20px;
+
+}
+
+table {
+width:100%;
+left:auto;
+}
+
 
 h2 {
-  font-size: 22pt;
+  font-size: 20pt;
   font-weight: bold;
-  padding-left: 40px;
+  padding-left: 10px;
   background-color:#B7EDF7;
-  text-align:left;
 }
 
-
 h3 {
-  font-size: 18pt;
+  font-size: 15pt;
   font-weight: bold;
-  padding-left: 40px;
+  padding-left: 10px;
   background-color:#B7EDF7;
-  text-align:left;
 }
 
 img {
@@ -57,13 +70,23 @@ p {
    padding-left: 20px;
 }
 
+.gras {
+font-weight: bold;
+text-decoration:underline;
+}
+
+.grassimple {
+font-weight: bold;
+}
 
  
 p#bleu {
   color: blue;
 }
 
-
+.pbleu {
+  color: blue;
+}
 
 .cadregris {
  border:2px solid gray;
@@ -81,7 +104,7 @@ p#bleu {
  padding-bottom :30px;
  }
 
-.center {
+.centrer {
  text-align:center
  }
  
@@ -94,7 +117,23 @@ width:400px;
 padding:50px;
 }
 
+  .fond1 {  
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:150px;
+width:500px;
+padding:auto;
+}
 
+  .fond2 {  
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:100px;
+width:1500px;
+padding:auto;
+}
 
  .decor {
 
@@ -112,49 +151,28 @@ padding:50px;
     padding-bottom :30px;
     
 }
-  
- td{  
-vertical-align:middle;
-padding:20px;
-border:solid 1px black;
-text-align:center;
+
+.border {
+	 border:2px solid blue;
 }
-
-
-
-table {
-width:100%;
-left:auto;
-border-color:black;
-border-style:solid;
-border-width:1px;
-background-color:#DFF3F7;
-} 
   
-  
+ .conteneur1  { 
+ display: flex; 
+justify-content: space-around;
+ }
+ 
   .conteneur  { 
  display: flex; 
-justify-content:space-around; 
-
- }
  
-   .conteneur1  { 
- display: flex; 
-justify-content:space-around; 
-
  }
- 
  
 .box {
 	 align-items: center;
  }
- 
- .box50 {
-	 align-items: center;
-	 width:50%;
- }
- 
-  .border { border-width: 3px; border-color: blue; border-style: solid;
-
-}
   
+   .gallery1 {
+   display: flex;
+   flex-wrap: wrap;
+   padding:5px;
+   justify-content: space-evenly;
+} 

@@ -135,16 +135,16 @@
       "image": "case7.png",
       "chapitres": [
         {
-          "titre": "secours",
+          "titre": "Au secours de l'Italie",
           "dossier": "1_secours"
         },
         {
-          "titre": "tomba",
+          "titre": "Le Mont Tomba",
           "dossier": "2_tomba"
         },
         {
           "titre": "neige",
-          "dossier": "3_neige"
+          "dossier": "3_La neige"
         }
       ]
     },
@@ -304,6 +304,14 @@
       "x": 160,
       "y": 500,
       "image": "vision.png"
+    },
+	
+	  {
+      "titre": "Le musée de Meaux",
+      "dossier": "23_meaux",
+      "x": 1280,
+      "y": 100,
+      "image": "meaux.jpg"
     }
   ]
 }

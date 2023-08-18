@@ -1,142 +1,142 @@
 {
-    "titre_site": "René Lemesle (1834-1907) : le Garde républicain",
-    "chapitres": [
-    	{
-            "image": "toto.jpg",
-            "x": 730,
-            "y": 300
+  "titre_site": "René Lemesle (1834-1907) : le Garde républicain",
+  "chapitres": [
+    {
+      "x": 730,
+      "y": 300,
+      "image": "toto.jpg"
+    },
+    {
+      "x": 200,
+      "y": 120,
+      "image": "rene1.png"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x": 210,
+      "y": 300,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "Sa naissance",
+      "dossier": "1_naissance",
+      "x": 250,
+      "y": 450,
+      "image": "naissance.jpg"
+    },
+    {
+      "titre": "Les étapes de sa vie",
+      "dossier": "2_chrono",
+      "x": 150,
+      "y": 650,
+      "image": "chrono.jpg"
+    },
+    {
+      "titre": "Lemêle, Lemèle, Lemesle",
+      "dossier": "3_nom",
+      "x": 350,
+      "y": 650,
+      "image": "nom.jpg"
+    },
+    {
+      "titre": " Son mariage",
+      "dossier": "4_jarno",
+      "x": 500,
+      "y": 350,
+      "image": "jarno.jpg",
+      "chapitres": [
+        {
+          "titre": "La naissance de Françoise Jarno",
+          "dossier": "1_naissance"
         },
         {
-            "image": "rene1.png",
-            "x": 200,
-            "y": 120
-        },
-        {
-            "titre": "Dans notre arbre",
-            "dossier": "arbre",
-            "image": "arbre.png",
-            "x": 210,
-            "y": 300
-        },
-        {
-            "titre": "Sa naissance",
-            "dossier": "1_naissance",
-            "image": "naissance.jpg",
-            "x": 250,
-            "y": 450
-        },
-        {
-            "titre": "Les étapes de sa vie",
-            "dossier": "2_chrono",
-            "image": "chrono.jpg",
-            "x": 150,
-            "y": 650
-        },
-        {
-            "titre": "Lemêle, Lemèle, Lemesle",
-            "dossier": "3_nom",
-            "image": "nom.jpg",
-            "x": 350,
-            "y": 650
-        },
-        {
-            "titre": " Son mariage",
-            "dossier": "4_jarno",
-            "image": "jarno.jpg",
-            "x": 500,
-            "y": 350,
-            "chapitres": [
-                {
-                    "titre": "La naissance de Françoise Jarno",
-                    "dossier": "1_naissance"
-                },
-                {
-                    "titre": "Le mariage : Lyon 1869",
-                    "dossier": "2_mariage/"
-                }
-            ]
-        },
-        {
-            "titre": "États de services",
-            "dossier": "5_services",
-            "image": "services.jpg",
-            "x": 760,
-            "y": 650
-        },
-        {
-            "titre": "Ses unités",
-            "dossier": "6_unites",
-            "image": "unites.jpg",
-            "x": 550,
-            "y": 550,
-            "chapitres": [
-                {
-                    "titre": "Chasseurs",
-                    "dossier": "1_chasseurs"
-                },
-                {
-                    "titre": "Lanciers",
-                    "dossier": "2_lanciers"
-                },
-                {
-                    "titre": "Cuirassiers",
-                    "dossier": "3_cuirassiers"
-                },
-                {
-                    "titre": "Hussards",
-                    "dossier": "4_hussards"
-                },
-                {
-                    "titre": "Dragons",
-                    "dossier": "5_dragons"
-                },
-                {
-                    "titre": "Garde républicaine",
-                    "dossier": "6_garde"
-                }
-            ]
-        },
-        {
-            "titre": "Ses enfants",
-            "dossier": "7_enfants",
-            "image": "bussieres.jpg",
-            "x": 1150,
-            "y": 300,
-            "chapitres": [
-                {
-                    "titre": "Anne",
-                    "dossier": "1_anne"
-                },
-                {
-                    "titre": "Renée",
-                    "dossier": "2_renee"
-                },
-                {
-                    "titre": "Marguerite",
-                    "dossier": "3_marguerite"
-                }
-            ]
-        },
-        {
-            "titre": "La retraite à Hyères et Toulon",
-            "dossier": "8_hyeres",
-            "image": "hyeres.jpg",
-            "x": 1150,
-            "y": 500,
-            "chapitres": [
-                {
-                    "titre": "Ses dernières années",
-                    "dossier": "1_chrono"
-                },
-                {
-                    "titre": "Hyères",
-                    "dossier": "2_hyeres"
-                },
-                {
-                    "titre": "Une photo de famille",
-                    "dossier": "3_photo"
-                }
-            ]
+          "titre": "Le mariage : Lyon 1869",
+          "dossier": "2_mariage"
         }
-    ]
+      ]
+    },
+    {
+      "titre": "États de services",
+      "dossier": "5_services",
+      "x": 760,
+      "y": 650,
+      "image": "services.jpg"
+    },
+    {
+      "titre": "Ses unités",
+      "dossier": "6_unites",
+      "x": 550,
+      "y": 550,
+      "image": "unites.jpg",
+      "chapitres": [
+        {
+          "titre": "Chasseurs",
+          "dossier": "1_chasseurs"
+        },
+        {
+          "titre": "Lanciers",
+          "dossier": "2_lanciers"
+        },
+        {
+          "titre": "Cuirassiers",
+          "dossier": "3_cuirassiers"
+        },
+        {
+          "titre": "Hussards",
+          "dossier": "4_hussards"
+        },
+        {
+          "titre": "Dragons",
+          "dossier": "5_dragons"
+        },
+        {
+          "titre": "Garde républicaine",
+          "dossier": "6_garde"
+        }
+      ]
+    },
+    {
+      "titre": "Ses enfants",
+      "dossier": "7_enfants",
+      "x": 1150,
+      "y": 300,
+      "image": "bussieres.jpg",
+      "chapitres": [
+        {
+          "titre": "Anne",
+          "dossier": "1_anne"
+        },
+        {
+          "titre": "Renée",
+          "dossier": "2_renee"
+        },
+        {
+          "titre": "Marguerite",
+          "dossier": "3_marguerite"
+        }
+      ]
+    },
+    {
+      "titre": "La retraite à Hyères et Toulon",
+      "dossier": "8_hyeres",
+      "x": 1150,
+      "y": 500,
+      "image": "hyeres.jpg",
+      "chapitres": [
+        {
+          "titre": "Ses dernières années",
+          "dossier": "1_chrono"
+        },
+        {
+          "titre": "Hyères",
+          "dossier": "2_hyeres"
+        },
+        {
+          "titre": "Une photo de famille",
+          "dossier": "3_photo"
+        }
+      ]
+    }
+  ]
 }

@@ -161,7 +161,41 @@ p#bleu {
     padding-bottom: 10px
    }
 
-    }
+/*-------------------------*/
+ .conteneur  { 
+ display: flex; 
+justify-content:space-around; 
+ }
+
+.conteneur1  { 
+ display: flex; 
+justify-content:space-around; 
+ }
+ 
+.conteneur2 { 
+ display: flex; 
+justify-content:space-between; 
+ }
+ 
+_.box {
+	 align-items: center;
+	 width:40%;
+ }
+ 
+ .box20 {
+	 align-items: center;
+	 width:20%;
+ }
+ 
+.box50 {
+	 align-items: center;
+	 width:50%;
+ }
+
+.box1 {
+	flex-grow:0;
+	flex-basis:1;
+}
 
 
    
