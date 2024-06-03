@@ -21,8 +21,8 @@
       <span ng-show="line.indent == 0">image:</span>
       <input ng-show="line.indent == 0" type="text" name="image" ng-model="line.image" ng-blur="refreshFields(line)" required class="map-image">
 
-      <button ng-show="!line.firstNode && line.indent > 0" ng-click="moveUp(line.node)" title="Déplacer vers le haut" class="map-action">&#x25B2;</button>
-      <button ng-show="!line.lastNode && line.indent > 0" ng-click="moveDown(line.node)" title="Déplacer vers le bas" class="map-action">&#x25BC;</button>
+      <button ng-show="!line.firstNode" ng-click="moveUp(line.node)" title="Déplacer vers le haut" class="map-action">&#x25B2;</button>
+      <button ng-show="!line.lastNode" ng-click="moveDown(line.node)" title="Déplacer vers le bas" class="map-action">&#x25BC;</button>
       <button ng-click="addSibling(line.node)" title="Ajouter un chapitre après" class="map-action">+</button>
       <button ng-show="!line.node.chapitres" ng-click="addChild(line.node)" title="Ajouter un sous-chapitre" class="map-action">++</button>
       <button ng-click="delete(line.node)" title="Supprimer" class="map-action">&#215;</button>

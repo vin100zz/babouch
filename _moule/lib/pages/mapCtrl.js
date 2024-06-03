@@ -43,14 +43,16 @@ app.controller('MapCtrl', ['$scope', '$timeout', '$http', 'ChapitresSvc', functi
   }
 
   $scope.moveUp = function (node) {
-    var extracted = node.parentNode.chapitres.splice(node.index, 1)[0];
-    node.parentNode.chapitres.splice(node.index-1, 0, extracted);
+	var rootNode = node.indent === 0;
+    var extracted = (rootNode ? node.parentNode : node.parentNode.chapitres).splice(node.index, 1)[0];
+    (rootNode ? node.parentNode : node.parentNode.chapitres).splice(node.index-1, 0, extracted);
     refresh();
   }
 
   $scope.moveDown = function (node) {
-    var extracted = node.parentNode.chapitres.splice(node.index, 1)[0];
-    node.parentNode.chapitres.splice(node.index+1, 0, extracted);
+	var rootNode = node.indent === 0;
+    var extracted = (rootNode ? node.parentNode : node.parentNode.chapitres).splice(node.index, 1)[0];
+    (rootNode ? node.parentNode : node.parentNode.chapitres).splice(node.index+1, 0, extracted);
     refresh();
   }
 
@@ -71,7 +73,8 @@ app.controller('MapCtrl', ['$scope', '$timeout', '$http', 'ChapitresSvc', functi
   }
 
   $scope.delete = function (node) {
-    node.parentNode.chapitres.splice(node.index, 1);
+	var rootNode = node.indent === 0;
+    (rootNode ? node.parentNode : node.parentNode.chapitres).splice(node.index, 1);
     refresh();
   }
 
