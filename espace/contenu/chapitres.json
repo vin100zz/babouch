@@ -649,6 +649,21 @@
               "dossier": "shenzhou"
             }
           ]
+        },
+        {
+          "titre": "Inde",
+          "dossier": "inde",
+          "chapitres": [
+            {
+              "titre": "SRE",
+              "dossier": "sre"
+            },
+            {
+              "titre": "Gaganyaan",
+              "dossier": "gaga",
+              "chapitres": []
+            }
+          ]
         }
       ]
     },
@@ -1030,7 +1045,7 @@
       "image": "orange.png",
       "chapitres": [
         {
-          "titre": "URSS",
+          "titre": "URSS/Russie",
           "dossier": "4_urss",
           "chapitres": [
             {
@@ -1143,6 +1158,10 @@
                 {
                   "titre": "Luna 24 (1976)",
                   "dossier": "luna24"
+                },
+                {
+                  "titre": "Luna 25 (2023)",
+                  "dossier": "luna25"
                 }
               ]
             },
@@ -1153,7 +1172,7 @@
           ]
         },
         {
-          "titre": "États-Unis",
+          "titre": "États-Unis (NASA)",
           "dossier": "5_eu",
           "chapitres": [
             {
@@ -1243,8 +1262,12 @@
           "dossier": "6_japon",
           "chapitres": [
             {
-              "titre": "Hakuto",
+              "titre": "Hakuto (2023)",
               "dossier": "hakuto"
+            },
+            {
+              "titre": "SLIM (2024)",
+              "dossier": "slim"
             }
           ]
         },
@@ -1289,16 +1312,35 @@
             {
               "titre": "Chandrayaan 2",
               "dossier": "chandra_2"
+            },
+            {
+              "titre": "Chandrayaan 3",
+              "dossier": "chandra_3"
             }
           ]
         },
         {
-          "titre": "Israël",
-          "dossier": "9_israel"
-        },
-        {
           "titre": "Corée du Sud",
           "dossier": "10_coree_sud"
+        },
+        {
+          "titre": "Sociétés privées",
+          "dossier": "11_prive",
+          "chapitres": [
+            {
+              "titre": "Beresheet (Israël 2019)",
+              "dossier": "1_beresheet"
+            },
+            {
+              "titre": "Peregrine (E-U 2024)",
+              "dossier": "2_peregrine",
+              "chapitres": []
+            },
+            {
+              "titre": "Nova-C /Odysseus (E-U  2024)",
+              "dossier": "3_nova"
+            }
+          ]
         }
       ]
     },
@@ -1982,6 +2024,10 @@
             {
               "titre": "Lucy (2021)",
               "dossier": "lucy"
+            },
+            {
+              "titre": "Psyché (2023)",
+              "dossier": "psyche"
             }
           ]
         },

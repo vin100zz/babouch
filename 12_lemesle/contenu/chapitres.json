@@ -1,32 +1,34 @@
 {
-  "titre_site": "René Lemesle (1834-1907) : le Garde républicain",
+  "titre_site": "René Lemesle (1834-1907) & Françoise Marie Jarno (1838-1900): le Garde républicain",
   "chapitres": [
     {
-      "x": 730,
-      "y": 300,
+      "x": 450,
+      "y": 80,
       "image": "toto.jpg"
     },
     {
-      "x": 200,
-      "y": 120,
-      "image": "rene1.png"
+	  "titre": "Panorama",
+      "dossier": "0_panorama",	
+      "x": 250,
+      "y": 100,
+      "image": "1.png"
     },
     {
       "titre": "Dans notre arbre",
       "dossier": "arbre",
-      "x": 210,
-      "y": 300,
+      "x": 150,
+      "y": 100,
       "image": "arbre.png"
     },
     {
-      "titre": "Sa naissance",
+      "titre": "Naissance de René",
       "dossier": "1_naissance",
-      "x": 250,
-      "y": 450,
+      "x": 10,
+      "y": 250,
       "image": "naissance.jpg"
     },
     {
-      "titre": "Les étapes de sa vie",
+      "titre": "Lieux de vie",
       "dossier": "2_chrono",
       "x": 150,
       "y": 650,
@@ -40,10 +42,10 @@
       "image": "nom.jpg"
     },
     {
-      "titre": " Son mariage",
+      "titre": "Françoise Marie Jarno",
       "dossier": "4_jarno",
-      "x": 500,
-      "y": 350,
+      "x": 100,
+      "y": 450,
       "image": "jarno.jpg",
       "chapitres": [
         {
@@ -59,8 +61,8 @@
     {
       "titre": "États de services",
       "dossier": "5_services",
-      "x": 760,
-      "y": 650,
+      "x": 730,
+      "y": 670,
       "image": "services.jpg"
     },
     {
@@ -97,10 +99,10 @@
       ]
     },
     {
-      "titre": "Ses enfants",
+      "titre": "Leurs enfants",
       "dossier": "7_enfants",
-      "x": 1150,
-      "y": 300,
+      "x": 960,
+      "y": 110,
       "image": "bussieres.jpg",
       "chapitres": [
         {
@@ -121,7 +123,7 @@
       "titre": "La retraite à Hyères et Toulon",
       "dossier": "8_hyeres",
       "x": 1150,
-      "y": 500,
+      "y": 700,
       "image": "hyeres.jpg",
       "chapitres": [
         {

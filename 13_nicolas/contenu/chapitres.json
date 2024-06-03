@@ -1,50 +1,73 @@
 {
-    "titre_site": "Nicolas Carlé (1861-1912) : ouvrier à l'Arsenal de Toulon",
-    "chapitres": [
-    	{
-            "image": "toto.jpg",
-            "x": 700,
-            "y": 300
-        },
-        {
-            "image": "nicolas.png",
-            "x": 300,
-            "y": 120
-        },
-        {
-            "titre": "Dans notre arbre",
-            "dossier": "arbre",
-            "image": "arbre.png",
-            "x": 210,
-            "y": 300
-        },
-        {
-            "titre": "Sa naissance",
-            "dossier": "1_naissance",
-            "image": "naissance.jpg",
-            "x": 100,
-            "y": 450
-        },
-        {
-            "titre": "Ouvrier à l'arsenal",
-            "dossier": "2_arsenal",
-            "image": "arsenal.jpg",
-            "x": 1000,
-            "y": 350
-        },
-        {
-            "titre": "Son mariage",
-            "dossier": "3_renee",
-            "image": "renee.jpg",
-            "x": 420,
-            "y": 320
-        },
-        {
-            "titre": " Sa mort",
-            "dossier": "4_mort",
-            "image": "mort.jpg",
-            "x": 1000,
-            "y": 600
-        }
-    ]
+  "titre_site": "Nicolas Carlé (1861-1912) et Renée Lemesle (1872-1943)",
+  "chapitres": [
+    {
+      "x": 700,
+      "y": 380,
+      "image": "toto.jpg"
+    },
+    {
+      "x": 150,
+      "y": 80,
+      "image": "nic.jpg"
+    },
+    {
+      "titre": "Dans notre arbre",
+      "dossier": "arbre",
+      "x":100,
+      "y": 450,
+      "image": "arbre.png"
+    },
+    {
+      "titre": "La naissance de Nicolas Marius",
+      "dossier": "1_naissance",
+      "x": 50,
+      "y":650,
+      "image": "naissance.jpg"
+    },
+    {
+      "titre": "Ouvrier à l'arsenal de Toulon",
+      "dossier": "2_arsenal",
+      "x": 1100,
+      "y": 350,
+      "image": "arsenal.jpg"
+    },
+    {
+      "titre": "La naissance de Renée Lemesle",
+      "dossier": "3_renee",
+      "x": 380,
+      "y": 380,
+      "image": "renee.jpg"
+    },
+    {
+      "titre": " La mort de Nicolas Marius à Toulon",
+      "dossier": "4_mort",
+      "x": 1000,
+      "y": 550,
+      "image": "mort.jpg"
+    },
+    {
+      "titre": " La mort de Renée à Marseille",
+      "dossier": "5_mort_r",
+      "x": 1250,
+      "y": 750,
+      "image": "mort_r.jpg"
+    },
+    {
+      "titre": " Le mariage et les enfants",
+      "dossier": "6_mariage",
+      "x": 650,
+      "y": 650,
+      "image": "mariage.jpg"
+    },
+	
+	{
+      "titre": " Renée à la Pyrotechnie",
+      "dossier": "7_pyro",
+      "x": 1350,
+      "y": 450,
+      "image": "pyro.jpg"
+    }
+	
+  ]
 }

@@ -231,7 +231,7 @@
           "dossier": "3_40-42"
         },
         {
-          "titre": "L'Occupation",
+          "titre": "L'Occupation et les deuils",
           "dossier": "4_occupation"
         }
       ]
@@ -252,53 +252,222 @@
       "image": "bleu2.png",
       "chapitres": [
         {
+          "titre": "Panorama",
+          "dossier": "0_panorama"
+        },
+        {
           "titre": "Les Caillols et la Libération",
-          "dossier": "1_caillols"
+          "dossier": "2_caillols",
+          "chapitres": [
+            {
+              "titre": "Été 44",
+              "dossier": "1_ete44"
+            },
+            {
+              "titre": "La Libération : instantanés",
+              "dossier": "2_liberation"
+            },
+            {
+              "titre": "La Libération : récits",
+              "dossier": "3_récits"
+            },
+            {
+              "titre": "Après la Libération",
+              "dossier": "4_apres"
+            },
+            {
+              "titre": "La famille",
+              "dossier": "5_famille"
+            }
+          ]
         },
         {
           "titre": "Notre-Dame Limite",
-          "dossier": "2_limite"
+          "dossier": "3_dame",
+          "chapitres": [
+            {
+              "titre": "1944-48",
+              "dossier": "1_44_48"
+            },
+            {
+              "titre": "Boulevard de la Limite",
+              "dossier": "2_limite"
+            },
+            {
+              "titre": "La naissance de René",
+              "dossier": "3_famille"
+            }
+          ]
         },
         {
           "titre": "Retour à la Belle de Mai",
-          "dossier": "3_retour"
+          "dossier": "4_belle",
+          "chapitres": [
+            {
+              "titre": "1948",
+              "dossier": "1948"
+            },
+            {
+              "titre": "Rue Fortuné-Jourdan",
+              "dossier": "ou"
+            },
+            {
+              "titre": "La famille",
+              "dossier": "famille"
+            }
+          ]
         },
         {
           "titre": "Le Merlan",
-          "dossier": "4_merlan"
+          "dossier": "5_merlan",
+          "chapitres": [
+            {
+              "titre": "1949-51",
+              "dossier": "1_49_51"
+            },
+            {
+              "titre": "Boulevard Coste",
+              "dossier": "2_merlan"
+            },
+            {
+              "titre": "La famille",
+              "dossier": "3_famille"
+            }
+          ]
         },
         {
           "titre": "Le Canet",
-          "dossier": "5_canet"
+          "dossier": "6_canet",
+          "chapitres": [
+            {
+              "titre": "1951-53",
+              "dossier": "51_53"
+            },
+            {
+              "titre": "Boulevard Giraud",
+              "dossier": "giraud"
+            },
+            {
+              "titre": "La famile",
+              "dossier": "famille"
+            }
+          ]
         },
         {
           "titre": "St-André",
-          "dossier": "6_standre"
+          "dossier": "7_andre",
+          "chapitres": [
+            {
+              "titre": "1953-63",
+              "dossier": "1_53_63"
+            },
+            {
+              "titre": "Rue Condorcet",
+              "dossier": "2_andre"
+            },
+            {
+              "titre": "La famille",
+              "dossier": "3_famille1"
+            },
+            {
+              "titre": "Jean",
+              "dossier": "4_famille_j"
+            },
+            {
+              "titre": "René",
+              "dossier": "5_famille_r"
+            }
+          ]
         },
         {
           "titre": "La Rose",
-          "dossier": "7_rose"
+          "dossier": "8_rose",
+          "chapitres": [
+            {
+              "titre": "Route nationale de la Rose",
+              "dossier": "2_ou"
+            },
+            {
+              "titre": "Le bac",
+              "dossier": "3_bac"
+            },
+            {
+              "titre": "Propédeutique",
+              "dossier": "4_prope"
+            }
+          ]
         },
         {
           "titre": "Les Chartreux et Le Castellas",
-          "dossier": "8_chartreux"
+          "dossier": "9_chartreux",
+          "chapitres": [
+            {
+              "titre": "Chassé-croisé",
+              "dossier": "1_chasse_croise"
+            },
+            {
+              "titre": "Les études",
+              "dossier": "2_1966"
+            }
+          ]
         }
       ]
     },
     {
-      "titre": "St-Zacharie",
-      "dossier": "12_stzacharie",
-      "x": 850,
-      "y": 450,
-      "image": "bleu2.png",
       "chapitres": []
     },
     {
-      "titre": "Le Castellas",
+      "titre": "St-Zacharie",
+      "dossier": "12_stzach",
+      "x": 850,
+      "y": 450,
+      "image": "bleu2.png",
+      "chapitres": [
+        {
+          "titre": "Le village",
+          "dossier": "1_village"
+        },
+        {
+          "titre": "Rue Raspail",
+          "dossier": "2_raspail"
+        },
+        {
+          "titre": "Rue Jean-Jaurès",
+          "dossier": "3_jaures",
+          "chapitres": []
+        },
+        {
+          "titre": "La fin des études",
+          "dossier": "4_etudes"
+        }
+      ]
+    },
+    {
+      "titre": "Le Castellas, 2e époque",
       "dossier": "13_castellas",
       "x": 850,
       "y": 550,
       "image": "bleu2.png",
+      "chapitres": [
+        {
+          "titre": "Les débuts",
+          "dossier": "1_debuts"
+        },
+        {
+          "titre": "Des jours heureux",
+          "dossier": "2_heureux"
+        },
+        {
+          "titre": "Des jours difficiles",
+          "dossier": "3_difficiles"
+        },
+        {
+          "titre": "Un quartier à la dérive",
+          "dossier": "4_apres"
+        }
+      ]
+    },
+    {
       "chapitres": []
     },
     {
