@@ -9,7 +9,7 @@ app.controller('ChapitreCtrl', ['$scope', '$http', '$routeParams', '$sce', '$tim
     var cumulativePath = '#/chapitre';
     var configs = [];
     paths.forEach(path => {
-      var config = currentConfig.find(c => c.dossier === path);
+      var config = currentConfig.find(c => c.dossier === path) || {dossier: path};
       cumulativePath = cumulativePath += '/' + config.dossier;
       config.cumulativePath = cumulativePath;
       configs.push(config);
