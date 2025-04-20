@@ -79,66 +79,66 @@
       "image": "mort.jpg"
     },
     {
-      "titre": "Ses bateaux",
+      "titre": "Ses bateaux et ses voyages",
       "dossier": "6_voyages",
       "x": 820,
       "y": 650,
       "image": "charlemagne.jpg",
       "chapitres": [
         {
-          "titre": "L'«Andromède»",
+          "titre": "L'«Andromède» : le voyage à Bourbon",
           "dossier": "1_andromede"
         },
         {
-          "titre": "L'«Oise»",
+          "titre": "L'«Oise» : le retour de Bourbon",
           "dossier": "2_oise"
         },
         {
-          "titre": "La «Psyché»",
+          "titre": "La «Psyché» : de Tunis à Rio",
           "dossier": "3_psyche"
         },
         {
-          "titre": "Le «Charlemagne»",
+          "titre": "Le «Charlemagne» : la guerre de Crimée (1)",
           "dossier": "4_charlemagne"
         },
         {
-          "titre": "La «Perdrix»",
+          "titre": "La «Perdrix» : retour à Toulon",
           "dossier": "5_perdrix"
         },
         {
-          "titre": "Le «Sané»",
+          "titre": "Le «Sané» : la guerre de Crimée (2)",
           "dossier": "6_sane"
         },
         {
-          "titre": "Le «Newton»",
+          "titre": "Le «Newton» : Terre-Neuve",
           "dossier": "7_newton"
         },
         {
-          "titre": "La «Sérieuse»",
+          "titre": "La «Sérieuse» : Terre-Neuve",
           "dossier": "8_serieuse"
         },
         {
-          "titre": "L'«Ardent»",
+          "titre": "L'«Ardent» : Terre-Neuve",
           "dossier": "9_ardent"
         },
         {
-          "titre": "Le «Tonnerre»",
+          "titre": "Le «Tonnerre» : retour en France",
           "dossier": "10_tonnerre"
         },
         {
-          "titre": "L'«Ajaccio»",
+          "titre": "L'«Ajaccio» : Constantinople",
           "dossier": "11_ajaccio"
         },
         {
-          "titre": "Le «Fleurus»",
+          "titre": "Le «Fleurus» : le Mexique (1)",
           "dossier": "12_fleurus"
         },
         {
-          "titre": "La «Thémis»",
+          "titre": "La «Thémis» : le Mexique (2)",
           "dossier": "13_themis"
         },
         {
-          "titre": "La «Revanche»",
+          "titre": "La «Revanche» : Civita Vecchia",
           "dossier": "14_revanche"
         }
       ]

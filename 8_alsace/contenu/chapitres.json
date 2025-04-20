@@ -6,6 +6,8 @@
       "y": 20,
       "image": "background.png"
     },
+	
+
     {
       "titre": "St-Hippolyte",
       "dossier": "1_hippo",
@@ -44,7 +46,7 @@
       "chapitres": []
     },
     {
-      "titre": "Nicolas CARL (I)",
+      "titre": "[128] Nicolas (I) CARL  et ?",
       "dossier": "3_nicolas1",
       "x": 500,
       "y": 350,
@@ -52,14 +54,18 @@
       "chapitres": []
     },
     {
-      "titre": "Nicolas CARL (II)",
+      "titre": "[64/65] Nicolas (II) CARL  (#1690-1781) et A. M. STUTZ",
       "dossier": "4_nicolas2",
       "x": 700,
       "y": 350,
       "image": "1.jpg",
       "chapitres": [
         {
-          "titre": "Nicolas (II) et Anne-Marie STUTZ",
+          "titre": "Les parents d'Anne Marie STUTZ",
+          "dossier": "0_parents_stutz"
+        },
+        {
+          "titre": "Naissance et mariage",
           "dossier": "1_mariage"
         },
         {
@@ -127,12 +133,20 @@
       ]
     },
     {
-      "titre": "Ignace CARL (I)",
+      "titre": "[32/33] Ignace (I) CARL (1743-1830) et Madeleine FELLMANN",
       "dossier": "5_ignace1",
       "x": 900,
       "y": 350,
       "image": "1.jpg",
       "chapitres": [
+        {
+          "titre": "Les LÖFFLER",
+          "dossier": "0_loffler"
+        },
+        {
+          "titre": "Les FELLMANN de Bergheim",
+          "dossier": "0_bergheim"
+        },
         {
           "titre": "Ignace (I) et Madeleine FELLMANN",
           "dossier": "1_naissances"
@@ -199,18 +213,44 @@
       ]
     },
     {
-      "titre": "Ignace CARLÉ (II)",
+      "titre": "[16/17] Ignace (II) CARLÉ  (1781-1869) et Annastase DORIAT",
       "dossier": "6_ignace2",
       "x": 1100,
       "y": 350,
       "image": "1.jpg",
       "chapitres": [
         {
-          "titre": "Ignace (II) et Annastase DORIAT",
+          "titre": "Les ancêtres de  C. VOGEL",
+          "dossier": "0_vogel",
+          "chapitres": [
+            {
+              "titre": "Vue d'ensemble",
+              "dossier": "0_ensemble"
+            },
+            {
+              "titre": "Melchior VOGEL & Barbara RULHMANN",
+              "dossier": "1_vogel_rulhmann"
+            },
+            {
+              "titre": "Melchior VOGEL & Anne Marie MOOS",
+              "dossier": "2_vogel_moos"
+            },
+            {
+              "titre": "Melchior VOGEL & Anastase ITTEL",
+              "dossier": "3_vogel_ittel"
+            }
+          ]
+        },
+        {
+          "titre": "Les ITTEL",
+          "dossier": "0a_ittel"
+        },
+        {
+          "titre": "Naissances",
           "dossier": "1_naissances"
         },
         {
-          "titre": "La famille CARL-DORIAT",
+          "titre": "Mariage et enfants",
           "dossier": "2_famille",
           "chapitres": [
             {
