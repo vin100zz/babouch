@@ -252,11 +252,11 @@
       "image": "bleu2.png",
       "chapitres": [
         {
-          "titre": "Panorama",
-          "dossier": "0_panorama"
+          "titre": "Portail",
+          "dossier": "0_portail"
         },
         {
-          "titre": "Les Caillols et la Libération",
+          "titre": "Les Caillols (Septèmes) et la Libération",
           "dossier": "2_caillols",
           "chapitres": [
             {
@@ -269,7 +269,7 @@
             },
             {
               "titre": "La Libération : récits",
-              "dossier": "3_récits"
+              "dossier": "3_recits"
             },
             {
               "titre": "Après la Libération",
@@ -370,7 +370,7 @@
               "dossier": "3_famille1"
             },
             {
-              "titre": "Jean",
+              "titre": "Jean : vacances à Fuveau (Coque), études à St-André",
               "dossier": "4_famille_j"
             },
             {

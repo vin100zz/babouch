@@ -90,7 +90,7 @@
           "dossier": "1_fiche"
         },
         {
-          "titre": "La caserne St-Charles",
+          "titre": "La caserne St-Charles (ou du Muy)",
           "dossier": "2_caserne"
         }
       ]
@@ -158,7 +158,7 @@
           "dossier": "4_abri"
         },
         {
-          "titre": "Les bombardements",
+          "titre": "Sous les bombes",
           "dossier": "5_bomb"
         },
         {
@@ -180,6 +180,10 @@
         {
           "titre": "Après",
           "dossier": "9_apres"
+        },
+        {
+          "titre": "Archives",
+          "dossier": "10_archives"
         }
       ]
     },

@@ -16,6 +16,10 @@
       "image": "bleu.png",
       "chapitres": [
         {
+          "titre": "Bilan 1974",
+          "dossier": "bilan_1974"
+        },
+        {
           "titre": "2020",
           "dossier": "2020"
         },
@@ -304,6 +308,10 @@
             {
               "titre": "Longue Marche 9",
               "dossier": "lm9"
+            },
+            {
+              "titre": "Longue Marche 12",
+              "dossier": "cz12"
             }
           ]
         },
@@ -1001,6 +1009,10 @@
                 {
                   "titre": "2022",
                   "dossier": "2022"
+                },
+                {
+                  "titre": "2024",
+                  "dossier": "2024"
                 }
               ]
             }
@@ -1019,6 +1031,10 @@
       "y": 850,
       "image": "bleu.png",
       "chapitres": [
+        {
+          "titre": "Historique",
+          "dossier": "historique"
+        },
         {
           "titre": "Spaceship/Virgin Galactic",
           "dossier": "virgin"
@@ -1298,6 +1314,10 @@
             {
               "titre": "Chang'e 5",
               "dossier": "chang_5"
+            },
+            {
+              "titre": "Chang'e 6",
+              "dossier": "chang_6"
             }
           ]
         },
@@ -1339,6 +1359,10 @@
             {
               "titre": "Nova-C /Odysseus (E-U  2024)",
               "dossier": "3_nova"
+            },
+            {
+              "titre": "Blue Ghost (E-U 2025)",
+              "dossier": "4_blue"
             }
           ]
         }
@@ -1926,6 +1950,10 @@
             {
               "titre": "Voyager",
               "dossier": "voyager"
+            },
+            {
+              "titre": "Europa Clipper (2024)",
+              "dossier": "europa_clipper"
             }
           ]
         },
@@ -1973,6 +2001,10 @@
             {
               "titre": "Rosetta",
               "dossier": "rosetta"
+            },
+            {
+              "titre": "Hera (2024)",
+              "dossier": "hera"
             }
           ]
         },
