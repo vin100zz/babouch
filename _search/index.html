@@ -1,0 +1,29 @@
+<html >
+	<head>
+	<meta charset="utf-8">
+		<title>La Clauzure online !</title>
+		<link rel='stylesheet' type='text/css' href='search.css' />
+		<script src="search.js"></script>
+	</head>
+	<body>
+		<form id="searchbox" action="javascript:void(0);">
+			<input name="query" type="text" placeholder="Rechercher">
+
+			<div id="categoryRadio" class="switch-field">
+				<input type="radio" id="radio_famille" name="category" value="famille" checked="checked" />
+	    		<label for="radio_famille">Famille</label>
+
+	    		<input type="radio" id="radio_voyages" name="category" value="voyages" />
+	    		<label for="radio_voyages">Voyages</label>
+
+	    		<input type="radio" id="radio_annees" name="category" value="annees" />
+	    		<label for="radio_annees">Années</label>
+    		</div>
+
+			<div class="button" onclick="javascript:onSubmit();">&#x1F50E;&#xFE0E;</div>
+		</form>
+
+		<div id="searching" class="loader" style="display: none;"></div>
+		<div id="results"></div>
+	</body>
+</html>

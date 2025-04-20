@@ -49,6 +49,15 @@ h1 {
   height: 87px;
   opacity: 0.6;
 }
+#search {
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  background: url(search.png) no-repeat;
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+}
 
 /* Categories */
 .categories {
@@ -218,6 +227,9 @@ h1 {
 }
 #presidentielles {
   background-image: url(presidentielles.png);
+}
+#rue_guerin {
+  background-image: url(rue_guerin.png);
 }
 #domiciles {
  background-image: url(domiciles.png);
