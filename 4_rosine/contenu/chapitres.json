@@ -2,324 +2,316 @@
   "titre_site": "Rose Charlotte PAYAN (1819-1855) : les secrets de Rosine",
   "chapitres": [
     {
-      "x": 620,
-      "y": 200,
-      "image": "rosine.jpg"
+      "dossier": "0_sommaire",
+      "x": -100,
+      "y": 100,
+      "image": "garde_4b.jpg"
     },
     {
-      "x": 230,
-      "y": 500,
-      "image": "sait.jpg"
-    },
-    {
-      "x": 900,
-      "y": 500,
-      "image": "saitpas.jpg"
-    },
-    {
-      "titre": "Chronique",
-      "dossier": "00_chronique",
-      "x": 20,
-      "y": 800,
-      "image": ".png"
-    },
-    {
-      "titre": "Dans notre arbre",
-      "dossier": "arbre",
-      "x": 50,
-      "y": 490,
-      "image": "arbre.png"
-    },
-    {
-      "titre": "Les sources",
-      "dossier": "0_sources",
-      "x": 650,
-      "y": 590,
-      "image": "naissance.jpg",
+      "titre": "",
+      "dossier": "1_place",
+      "x": -60,
+      "y": 150,
+      "image": "place.png",
       "chapitres": [
         {
-          "titre": "Pour commencer",
-          "dossier": "1_intro"
+          "titre": "Chronologie",
+          "dossier": "1_chronologie"
         },
         {
-          "titre": "L'état civil",
-          "dossier": "2_etatcivil"
+          "titre": "Dans notre arbre",
+          "dossier": "2_arbre"
         },
         {
-          "titre": "Les recensements",
-          "dossier": "3_recensements"
-        },
-        {
-          "titre": "Les registres paroissiaux",
-          "dossier": "4_paroisses"
-        },
-        {
-          "titre": "Autres sources",
-          "dossier": "5_autres"
+          "titre": "En bref",
+          "dossier": "3_bref"
         }
       ]
     },
     {
-      "titre": "En détail",
-      "dossier": "0a_releve",
-      "x": 680,
-      "y": 700,
-      "image": "tableau.jpg"
+      "titre": "",
+      "dossier": "2_naissance_r",
+      "x": -60,
+      "y": 350,
+      "image": "naissance_r.png",
+      "chapitres": []
     },
     {
-      "titre": "Son époque",
-      "dossier": "1_temps",
-      "x": 90,
-      "y": 300,
-      "image": "ville.jpg",
+      "titre": "",
+      "dossier": "2a_naissance_f",
+      "x": -60,
+      "y": 550,
+      "image": "naissance_f.png"
+    },
+    {
+      "titre": "",
+      "dossier": "3_famille",
+      "x": -60,
+      "y": 750,
+      "image": "famille.png",
       "chapitres": [
         {
-          "titre": "En marge de l'Histoire",
-          "dossier": "1_marge"
+          "titre": "Parrains, marraines et grands-parents",
+          "dossier": "1_parrains"
         },
         {
-          "titre": "Sa ville",
-          "dossier": "2_ville"
+          "titre": "Les parents",
+          "dossier": "2_parents"
+        },
+        {
+          "titre": "Fratrie",
+          "dossier": "3_fratrie"
         }
       ]
     },
     {
-      "titre": "Quelle enfance ?",
-      "dossier": "2a_enfance",
-      "x": 930,
-      "y": 330,
-      "image": "enfance.jpg",
+      "titre": "",
+      "dossier": "4_1er_enfant",
+      "x": 1220,
+      "y": 120,
+      "image": "enfant_f.jpg",
       "chapitres": [
         {
-          "titre": "Des conditions précaires",
-          "dossier": "1_precaire"
-        },
-        {
-          "titre": "Sans instruction",
-          "dossier": "2_instruction"
-        }
-      ]
-    },
-    {
-      "titre": "Les enfants de Félicité",
-      "dossier": "3c_enfantsF",
-      "x": 460,
-      "y": 300,
-      "image": "cycles2.png",
-      "chapitres": [
-        {
-          "titre": "Ensemble",
-          "dossier": "0_ensemble"
+          "titre": "La famille en 1841",
+          "dossier": "0_1841",
+          "chapitres": []
         },
         {
           "titre": "Jules Félix",
           "dossier": "1_jules"
         },
         {
-          "titre": "Anne",
-          "dossier": "2_anne"
-        },
-        {
-          "titre": "Marie Louise",
-          "dossier": "3_marielouise"
-        },
-        {
-          "titre": "Anne (2)",
-          "dossier": "4_anne2"
+          "titre": "Le suborneur démasqué ?",
+          "dossier": "1a_suborneur"
         }
       ]
     },
     {
-      "titre": "Les enfants de Rosine",
-      "dossier": "3b_enfantsR",
-      "x": 320,
-      "y": 300,
-      "image": "enfant.jpg",
+      "titre": "",
+      "dossier": "dossier",
+      "x": 1220,
+      "y": 220,
+	  "image": "enfant_r.jpg",
       "chapitres": [
-        {
-          "titre": "Ensemble",
-          "dossier": "0_ensemble"
-        },
         {
           "titre": "Charles Louis",
           "dossier": "1_charles"
         },
         {
-          "titre": "Jacques",
-          "dossier": "2_jacques"
+          "titre": "Les nourrices",
+          "dossier": "3_nourrices"
         },
         {
-          "titre": "François Marius",
-          "dossier": "3_francois"
+          "titre": "Le déchirement de l'abandon",
+          "dossier": "4_abandon"
         },
         {
-          "titre": "Louis Henri",
+          "titre": "«Enfants trouvés»",
+          "dossier": "5_trouves"
+        },
+        {
+          "titre": "«Filles-mères»",
+          "dossier": "6_secours"
+        }
+      ]
+    },
+    {
+      "titre": "",
+      "dossier": "6_autres_enfants",
+      "x": 1220,
+      "y": 320,
+      "image": "autres_enfants.jpg",
+      "chapitres": [
+        {
+          "titre": "Panorama ",
+          "dossier": "0_panorama"
+        },
+        {
+          "titre": "1848 : Jacques (Félicité) ",
+          "dossier": "1_jacques"
+        },
+        {
+          "titre": "1849 : François Marius (Rosine)",
+          "dossier": "2_marius"
+        },
+        {
+          "titre": "1850 : Anne (Félicité)",
+          "dossier": "3_anne"
+        },
+        {
+          "titre": "1850 : Louis Henri (Rosine)",
           "dossier": "4_louis"
         },
         {
-          "titre": "Félix Louis",
-          "dossier": "5_felix"
+          "titre": "1852 : Marie Louise (Félicité) ",
+          "dossier": "5_marielouise"
         },
         {
-          "titre": "Marie Delphine",
-          "dossier": "6_marie"
+          "titre": "1852 : Félix Louis (Rosine)",
+          "dossier": "6_felix"
+        },
+        {
+          "titre": "1854 : Anne 2 (Félicité)",
+          "dossier": "7_anne2"
+        },
+        {
+          "titre": "1854 : Marie Delphine (Rosine)",
+          "dossier": "8_marie"
         }
       ]
     },
     {
-      "titre": "Rosine et Félicité : pourquoi ne se sont-elles pas mariées ?",
-      "dossier": "3a_rosefeli",
-      "x": 1090,
-      "y": 250,
-      "image": "les2.png",
+      "titre": "",
+      "dossier": "5_epreuves",
+      "x": 1220,
+      "y": 420,
+      "image": "difficiles.jpg",
       "chapitres": [
         {
-          "titre": "Des femmes seules",
+          "titre": "Seules",
           "dossier": "1_seules"
         },
         {
-          "titre": "De nombreux enfants",
-          "dossier": "2_enfants"
+          "titre": "Sans instruction",
+          "dossier": "1a_instruction"
         },
         {
-          "titre": "Des vies courtes et difficiles",
-          "dossier": "3_courtes"
+          "titre": "Quelles ressources ?",
+          "dossier": "2_ressources"
+        },
+        {
+          "titre": "L'instabilité",
+          "dossier": "3_instables"
+        },
+        {
+          "titre": "Des vies fragiles",
+          "dossier": "4_fragiles"
         }
       ]
     },
     {
-      "titre": "De quoi vivaient-elles ?",
-      "dossier": "3a1_metiers",
-      "x": 890,
-      "y": 650,
-      "image": "chiffon.jpg"
-    },
-    {
-      "titre": "Filles mères et enfants abandonnés",
-      "dossier": "7_filles",
-      "x": 100,
-      "y": 650,
-      "image": "fille.jpg",
-      "chapitres": [
-        {
-          "titre": "L'abandon d'enfants",
-          "dossier": "1_abandon"
-        },
-        {
-          "titre": "Des milliers d'enfants assistés",
-          "dossier": "2_statistiques"
-        },
-        {
-          "titre": "Le secours aux filles mères",
-          "dossier": "3_secours"
-        },
-        {
-          "titre": "Nourrices et médecins",
-          "dossier": "4_personnel"
-        }
-      ]
-    },
-    {
-      "titre": "Parcours",
-      "dossier": "5_parcours",
-      "x": 330,
-      "y": 620,
-      "image": "rue.jpg",
-      "chapitres": [
-        {
-          "titre": "Les Vieux Quartiers",
-          "dossier": "0_vieux"
-        },
-        {
-          "titre": "1819-1838 : de la place d'Aix aux Carmes",
-          "dossier": "1_1819-1838"
-        },
-        {
-          "titre": "1838-1846 : rue Sainte-Françoise",
-          "dossier": "2_1838-1846"
-        },
-        {
-          "titre": "1848-1855 : entre Hôtel Dieu et Vieux Port",
-          "dossier": "3_1848-1855"
-        }
-      ]
-    },
-    {
-      "titre": "Dans un quartier mal famé",
-      "dossier": "5a_quartier",
-      "x": 250,
-      "y": 800,
-      "image": "quartier.jpg",
-      "chapitres": [
-        {
-          "titre": "Réglementer la prostitution",
-          "dossier": "1_prostitution"
-        },
-        {
-          "titre": "Protestations des propriétaires",
-          "dossier": "1a_protestations"
-        },
-        {
-          "titre": "Regards sur le «quartier réservé»",
-          "dossier": "2_plan"
-        },
-        {
-          "titre": "Sa destruction",
-          "dossier": "3_destruction"
-        }
-      ]
-    },
-    {
-      "titre": "Rosine morte du choléra ?",
-      "dossier": "6_mort",
-      "x": 1090,
-      "y": 650,
-      "image": "cholera.png",
+      "titre": "",
+      "dossier": "7_mort",
+      "x": 1220,
+      "y": 520,
+      "image": "mort.jpg",
       "chapitres": [
         {
           "titre": "Le choléra",
           "dossier": "1_cholera"
         },
         {
-          "titre": "Les égouts",
-          "dossier": "1a_egouts"
-        },
-        {
-          "titre": "L'épidémie de 1834-35",
-          "dossier": "2_1834"
-        },
-        {
           "titre": "L'épidémie de 1853-55",
-          "dossier": "3_1855"
-        },
-        {
-          "titre": "Mort de Rosine et conclusion",
-          "dossier": "4_morts"
+          "dossier": "2_1855"
         }
       ]
     },
     {
-      "titre": "Les tombeaux",
-      "dossier": "6a_tombeau",
-      "x": 480,
-      "y": 650,
-      "image": "tombeau.png",
+      "titre": "",
+      "dossier": "7a_tombeaux",
+      "x": 1220,
+      "y": 620,
+      "image": "tombeaux.jpg",
       "chapitres": [
         {
-          "titre": "Cimetières de Marseille",
+          "titre": "Les cimetières",
           "dossier": "0_cimetieres"
         },
         {
-          "titre": "Les Payan de St-Charles...",
+          "titre": "St-Charles",
           "dossier": "1_charles"
         },
         {
-          "titre": "...à St-Pierre",
+          "titre": "St-Pierre",
           "dossier": "2_pierre"
         },
         {
-          "titre": "D'autres tombes familiales",
+          "titre": "Autres tombeaux de famille",
           "dossier": "3_famille"
+        }
+      ]
+    },
+    {
+      "titre": "",
+      "dossier": "9_histoire",
+      "x": 10,
+      "y": 900,
+      "image": "histoire.jpg"
+    },
+    {
+      "titre": "",
+      "dossier": "10_marseille",
+      "x": 1200,
+      "y": 900,
+      "image": "marseille.jpg"
+    },
+    {
+      "titre": "",
+      "dossier": "11_rues",
+      "x": 650,
+      "y": 900,
+      "image": "rues.jpg",
+      "chapitres": [
+        {
+          "titre": "1819-1838 : de la place d'Aix aux Carmes",
+          "dossier": "1819"
+        },
+        {
+          "titre": "1838-1846 : rue Sainte-Françoise",
+          "dossier": "1838"
+        },
+        {
+          "titre": "1848-1850 : rue des Ingariennes",
+          "dossier": "1848"
+        },
+        {
+          "titre": "1851-1855 : les rives du Vieux-Port",
+          "dossier": "1854"
+        }
+      ]
+    },
+    {
+      "titre": "",
+      "dossier": "8_epilogue",
+      "x": 1220,
+      "y": 720,
+      "image": "epilogue.jpg",
+      "chapitres": [
+        {
+          "titre": "Ensemble",
+          "dossier": "1_ensemble"
+        },
+        {
+          "titre": "Marie Magdeleine Mouren",
+          "dossier": "2_mouren"
+        },
+        {
+          "titre": "Marie Payan",
+          "dossier": "3_marie"
+        },
+        {
+          "titre": "Félicité Payan",
+          "dossier": "4_feli"
+        },
+        {
+          "titre": "Jules Félix Payan",
+          "dossier": "5_jules"
+        },
+        {
+          "titre": "Aimable Payan",
+          "dossier": "6_aimable"
+        },
+        {
+          "titre": "Louise Gibon",
+          "dossier": "6a_gibon"
+        },
+        {
+          "titre": "François Marius Payan",
+          "dossier": "7_marius"
+        },
+        {
+          "titre": "Rose (Louise) Payan ",
+          "dossier": "8_louise"
         }
       ]
     }

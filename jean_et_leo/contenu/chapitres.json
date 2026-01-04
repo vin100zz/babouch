@@ -1,0 +1,381 @@
+{
+  "chapitres": [
+  
+      	{
+      "titre": "",
+      "image": "1.jpg",
+      "x": -200,
+      "y": -20,
+      "sous_chapitres": [
+       
+		{
+          "titre_sous_chapitre": "",
+          "page_html": ""
+        }
+       	
+		
+      ]
+    },
+  
+  
+ {
+      "titre": "1937-1957 (1)",
+      "image": "100.png",
+      "x": 400,
+      "y": 0,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "1_1937-1957/1_1937-57.html"
+        }
+
+      ]
+   }, 
+
+    {
+      "titre": "1937-1957 (2)",
+      "image": "100.png",
+      "x": 600,
+      "y": 0,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "1a_1937-1957/1a_1937-57_2.html"
+        }
+
+      ]
+   }, 
+   
+   {
+      "titre": "1937-1957 (3)",
+      "image": "100.png",
+      "x": 800,
+      "y": 0,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "1b_1937-1957/1b_1937-57_3.html"
+        }
+
+      ]
+   }, 
+
+	 
+	{
+     "titre": "1958-1967",
+      "image": "100.png",
+      "x": 1000,
+      "y": 0,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "2_1958-1967/2_1958-1967.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1968-1971",
+      "image": "100.png",
+      "x": 1200,
+      "y": 0,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "3_1968-1971/3_1968-1971.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1972-1976 (1)",
+      "image": "100.png",
+      "x": 400,
+      "y": 200,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "4_1972-1976/4_1972-1976.html"
+        }
+
+      ]
+     },
+	 
+	  {
+     "titre": "1972-1976 (2)",
+      "image": "100.png",
+      "x": 600,
+      "y": 200,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "4a_1972-1976/4a_1972-1976.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1977-1979 (1)",
+      "image": "100.png",
+      "x": 800,
+      "y":200,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "5_1977-1979/5_1977-1979.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1977-1979 (2)",
+      "image": "100.png",
+      "x": 1000,
+      "y":200,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "5a_1977-1979/5a_1977-1979.html"
+        }
+
+      ]
+     },
+	 
+	  {
+     "titre": "1980-1982 (1)",
+      "image": "100.png",
+      "x": 1200,
+      "y":200,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "6_1980-1982/6_1980-1982.html"
+        }
+
+      ]
+     },
+	 
+	   {
+     "titre": "1980-1982 (2)",
+      "image": "100.png",
+      "x": 400,
+      "y": 400,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "6a_1980-1982/6a_1980-1982.html"
+        }
+
+      ]
+     },
+	 
+	 
+	   {
+     "titre": "1983-1985 (1)",
+      "image": "100.png",
+      "x": 600,
+      "y": 400,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "7_1983-1985/7_1983-1985.html"
+        }
+
+      ]
+     },
+	 
+	 
+	    {
+     "titre": "1983-1985 (2)",
+      "image": "100.png",
+      "x": 800,
+      "y": 400,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "7a_1983-1985/7a_1983-1985.html"
+        }
+
+      ]
+     },
+	 
+	 
+	 {
+     "titre": "1986-1989" ,
+      "image": "100.png",
+      "x": 1000,
+      "y": 400,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "8_1986-1989/8_1986-1989.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1989-1990" ,
+      "image": "100.png",
+      "x": 1200,
+      "y": 400,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "9_1989-1990/9_1989-1990.html"
+        }
+
+      ]
+     },
+	 
+	  {
+     "titre": "1990-1991" ,
+      "image": "100.png",
+      "x": 400,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "9a_1990-1991/9a_1990-1991.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1991-1992 (1)" ,
+      "image": "100.png",
+      "x": 600,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "10_1991-1992/10_1991-1992.html"
+        }
+
+      ]
+     },
+	 
+	{
+     "titre": "1991-1992 (2)" ,
+      "image": "100.png",
+      "x": 800,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "10a_1991-1992/10a_1991-1992.html"
+        }
+
+      ]
+     },
+	 
+	{
+     "titre": "1993-1994 (1)" ,
+      "image": "100.png",
+      "x": 1000,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "11_1993-1994/11_1993-1994.html"
+        }
+
+      ]
+     },
+	 
+	{
+     "titre": "1993-1994 (2)" ,
+      "image": "100.png",
+      "x": 1200,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "11a_1993-1994/11a_1993-1994.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1994-1995" ,
+      "image": "100.png",
+      "x": 400,
+      "y": 800,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "12_1994-1995/12_1994-1995.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1995-1997" ,
+      "image": "100.png",
+      "x": 600,
+      "y": 800,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "13_1995-1997/13_1995-1997.html"
+        }
+
+      ]
+     },
+	 
+	 {
+     "titre": "1997 (Chine)" ,
+      "image": "100.png",
+      "x": 800,
+      "y": 800,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "14_1997/14_1997.html"
+        }
+
+      ]
+     }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+

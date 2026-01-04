@@ -1,0 +1,382 @@
+{
+  "chapitres": [
+  
+    	{
+      "titre": "",
+       "image": "background.jpg",
+      "x": -100,
+      "y": 100,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": ""
+        }
+
+      ]
+    },
+
+	{
+      "titre": "",
+       "image": "titre.png",
+      "x": 500,
+      "y": 10,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": ""
+        }
+
+      ]
+    },
+
+	 
+	{
+      "titre": "Marseille",
+       "image": "100.png",
+      "x": 1000,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "14-16 février",
+          "page_html": "1_marseille/marseille.html"
+        }
+
+      ]
+    },
+	 
+    {
+      "titre": "Marathon",
+       "image": "100.png",
+      "x": 800,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "28-30 mars",
+          "page_html": "2_marathon/marathon.html"
+        }
+
+      ]
+    },
+
+	{
+      "titre": "Gorges",
+       "image": "100.png",
+      "x": 600,
+      "y": 130,
+      "sous_chapitres": [
+	  
+	    {
+          "titre_sous_chapitre": "Le trajet",
+          "page_html": "3_gorges/0_trajet/trajet.html"
+        },
+        
+         {
+          "titre_sous_chapitre": "Notre hôtel",
+          "page_html": "3_gorges/1_hotel/hotel.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Les gorges de la Jonte",
+          "page_html": "3_gorges/2_jonte/jonte.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Les gorges du Tarn",
+          "page_html": "3_gorges/3_tarn/tarn.html"
+        },
+        
+		{
+          "titre_sous_chapitre": "Rodez, sur le retour",
+          "page_html": "3_gorges/4_rodez/rodez.html"
+        }
+      ]
+    },
+	
+	    {
+      "titre": "Jocelyne",
+       "image": "100.png",
+      "x": 400,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "7 avril",
+          "page_html": "4_jocelyne/jocelyne.html"
+        }
+
+      ]
+    },
+
+   	{
+      "titre": "Valbonne",
+       "image": "100.png",
+      "x": 200,
+      "y": 130,
+      "sous_chapitres": [
+	  
+	    {
+          "titre_sous_chapitre": "Côte d'Azur",
+          "page_html": "5_valbonne/0_trajet/trajet.html"
+        },
+        
+         {
+          "titre_sous_chapitre": "Valbonne",
+          "page_html": "5_valbonne/1_valbonne/valbonne.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Antibes",
+          "page_html": "5_valbonne/2_antibes/antibes.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Monaco",
+          "page_html": "5_valbonne/3_monaco/monaco.html"
+        },
+        
+		{
+          "titre_sous_chapitre": "Nice",
+          "page_html": "5_valbonne/4_nice/nice.html"		  
+        },
+		
+		{
+          "titre_sous_chapitre": "Et au retour, Saint-Zacharie",
+          "page_html": "5_valbonne/5_st-z/st-z.html"		  
+        }
+      ]
+    },  
+      
+	{
+      "titre": "Pacsés !",
+       "image": "100.png",
+      "x": 200,
+      "y": 280,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "24 juillet",
+          "page_html": "6_pacs/pacs.html"
+        }
+
+      ]
+    },
+	
+
+	
+	 	{
+      "titre": "Été",
+       "image": "100.png",
+      "x": 400,
+      "y": 280,
+      "sous_chapitres": [
+	  
+	    {
+          "titre_sous_chapitre": "Pique-nique",
+          "page_html": "7_ete/1_picnic/picnic.html"
+        },
+        {
+          "titre_sous_chapitre": "St-Sardos",
+          "page_html": "7_ete/1a_sardos/sardos.html"
+        },
+        {
+          "titre_sous_chapitre": "Les Jacobins",
+          "page_html": "7_ete/1b_jacobins/jacobins.html"
+        },
+		{
+          "titre_sous_chapitre": "Anniversaire",
+          "page_html": "7_ete/2_anniv/anniv.html"
+        },
+		{
+          "titre_sous_chapitre": "Andorre",
+          "page_html": "7_ete/3_andorre/andorre.html"
+        }
+      ]
+    },
+		{
+      "titre": "Carrelage",
+       "image": "100.png",
+      "x": 600,
+      "y": 280,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "25 août",
+          "page_html": "8_carrelage/carrelage.html"
+        }
+
+      ]
+    },
+	{
+      "titre": "Asperjoc en Ardèche",
+       "image": "100.png",
+      "x": 800,
+      "y": 280,
+      "sous_chapitres": [
+	  
+	    {
+          "titre_sous_chapitre": "Panorama",
+          "page_html": "9_ardeche/1_panorama/panorama.html"
+        },        
+        {
+          "titre_sous_chapitre": "Sous terre",
+          "page_html": "9_ardeche/2_terre/terre.html"
+        },
+		{
+          "titre_sous_chapitre": "Vieilles pierres",
+          "page_html": "9_ardeche/3_pierres/pierres.html"
+        },
+		{
+          "titre_sous_chapitre": "Musées",
+          "page_html": "9_ardeche/4_musee/musee.html"
+        },		
+		{
+          "titre_sous_chapitre": "Villes...",
+          "page_html": "9_ardeche/5_villes/villes.html"
+        },
+		{
+          "titre_sous_chapitre": "Le Ranc",
+          "page_html": "9_ardeche/6_leranc/leranc.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Gorges",
+          "page_html": "9_ardeche/7_gorges/gorges.html"
+        }
+	  ]
+    },
+	{
+      "titre": "Famille de May",
+       "image": "100.png",
+      "x": 800,
+      "y": 430,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "25 août",
+          "page_html": "10_may/may.html"
+        }
+
+      ]
+    },
+			{
+      "titre": "Larrazet",
+       "image": "100.png",
+      "x": 600,
+      "y": 430,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "21 septembre",
+          "page_html": "11_larrazet/larrazet.html"
+        }
+
+      ]
+    },
+    {
+      "titre": "Périgord",
+       "image": "100.png",
+      "x": 400,
+      "y": 430,
+      "sous_chapitres": [
+	  
+	    {
+          "titre_sous_chapitre": "Lieux",
+          "page_html": "12_perigord/0_carte/carte.html"
+        },        
+        {
+          "titre_sous_chapitre": "Lascaux IV",
+          "page_html": "12_perigord/1_lascaux/lascaux.html"
+        },
+		{
+          "titre_sous_chapitre": "Musée de Préhistoire",
+          "page_html": "12_perigord/2_musee/musee.html"
+        },
+		{
+          "titre_sous_chapitre": "Sarlat",
+          "page_html": "12_perigord/3_sarlat/sarlat.html"
+        },		
+	
+		{
+          "titre_sous_chapitre": "Château de Puymartin",
+          "page_html": "12_perigord/6_puymartin/puymartin.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Périgueux",
+          "page_html": "12_perigord/7_perigueux/perigueux.html"
+        },
+		{
+          "titre_sous_chapitre": "Vesunna",
+          "page_html": "12_perigord/8_vesunna/vesunna.html"
+        },
+		{
+          "titre_sous_chapitre": "Château de L'Herm",
+          "page_html": "12_perigord/9_herm/herm.html"
+        }
+	  ]
+    },
+	
+	{
+      "titre": "Marseille",
+       "image": "100.png",
+      "x": 200,
+      "y": 430,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "21-23 novembre",
+          "page_html": "13_marseille/marseille.html"
+        }
+
+      ]
+    },
+	
+	    {
+      "titre": "Fin d'année",
+       "image": "100.png",
+      "x": 200,
+      "y": 580,
+      "sous_chapitres": [
+	  
+	    {
+          "titre_sous_chapitre": "Andorre",
+          "page_html": "14_fin/0_andorre/andorre.html"
+        },        
+          {
+          "titre_sous_chapitre": "La crèche",
+          "page_html": "14_fin/1_creche/creche.html"
+        },
+		{
+          "titre_sous_chapitre": "Noël",
+          "page_html": "14_fin/2_noel/noel.html"
+        },
+		{
+          "titre_sous_chapitre": "Périgord",
+          "page_html": "14_fin/3_perigord/perigordhtml"
+        }	
+	
+		
+	  ]
+    }
+	
+	
+	
+	
+	
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+

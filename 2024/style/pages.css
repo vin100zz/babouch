@@ -1,0 +1,334 @@
+body {
+  font-family: Segoe Print;
+  font-size: 14pt;
+  line-height: 2em;
+}
+
+
+
+h1 {
+  font-size: 26pt;
+  font-weight: bold;
+  padding-left: 40px;
+   background-color:#B7EDF7;
+   height:70px;
+   line-height:70px;
+}
+
+h2 {
+  font-size: 22pt;
+  font-weight: bold;
+  padding-left: 40px;
+  background-color:#B7EDF7;
+  text-align:left;
+}
+
+
+h3 {
+  font-size: 18pt;
+  font-weight: bold;
+  padding-left: 40px;
+  background-color:#B7EDF7;
+  text-align:left;
+}
+
+h4 {
+  font-size: 16pt;
+  font-weight: bold;
+  padding-left: 200px;
+  background-color:  white
+ ;
+  text-align:left;
+}
+
+td{  
+vertical-align:middle;
+padding:20px;
+border:solid 1px black;
+}
+
+q {
+background-color:  #d7dbdd  ;	
+}
+
+
+table {
+border:1px	
+	
+}
+
+_table {
+width:100%;
+left:auto;
+border-color:blue;
+border-style:solid;
+border-width:1px;
+}
+
+
+
+
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+
+
+
+p {
+  text-align: justify;
+  text-indent: 40px;
+   background-color:#DFF3F7;
+   padding-right: 20px;
+   padding-left: 20px;
+ padding-top:10px;
+ padding-bottom :10px;
+}
+
+.legend {
+	_font-weight: bold;
+	text-indent:50px;
+	font-style: oblique;
+	font-size: 18px;
+	text-align:center;
+	background-color:white;
+	border:2px solid gray; 
+	padding-left: 40px;  
+    padding-right: 40px; 
+	text-align:left;
+	}
+	
+.left {	
+text-align:left;
+	}
+.marge {
+	padding-bottom :10px;
+	}
+
+.borderclair {
+border-style: outset;
+border-width:5px;
+ border-color:#AED6F1  
+}
+
+
+.blanc {
+   background-color:white;
+   padding-right: 20px;
+   padding-left: 20px;
+}
+
+.gras {
+font-weight: bold;
+text-decoration:underline;
+}
+
+.grassimple {
+font-weight: bold;
+}
+
+.blue
+
+{
+background-color: blue;
+}
+
+ 
+p#bleu {
+  color: blue;
+}
+/*-------------------------*/
+.conteneur1  { 
+ display: flex; 
+justify-content:space-around; 
+ }
+ 
+ .conteneur  { 
+ display: flex; 
+justify-content:space-around; 
+ }
+ 
+ .conteneur2  { 
+ display: flex; 
+justify-content:center; 
+ } 
+ 
+ 
+_.box {
+	 align-items: center;
+	 width:40%;
+ }
+ 
+ .box20 {
+	 align-items: center;
+	 width:20%;
+ }
+ 
+.box50 {
+	width:50%;
+	 inline-size:70%;
+	 align-items: space-around;
+ }
+
+.box1 {
+	flex-grow:0;
+	flex-basis:1;
+}
+
+
+ 
+/*-------------------------*/ 
+ .border { border-width: 3px; border-color: blue; border-style: solid;
+margin: 0px;
+}
+ }
+ 
+ .border1 { 
+ background-color:#B7EDF7;
+ margin: 0px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+ }
+
+.cadregris { 
+ border:2px solid grey; 
+ padding-right: 0px; 
+ padding-left: 10px; 
+ padding-top:20px; 
+ padding-bottom :0px;
+ background-color:f1eeed;
+ text-align:center; 
+ }
+
+.cadrebleu1 {
+ border:2px solid white;
+ padding-right: 20px;
+ padding-left: 20px;
+ padding-top:30px;
+ padding-bottom :30px;
+ }
+
+.cadrebleu { 
+ border:2px solid blue; 
+ padding-right: 0px; 
+ padding-left: 10px; 
+ padding-top:20px; 
+ padding-bottom :0px;
+  background-color:#B7EDF7;
+  text-align:left;  
+ }
+ 
+ .cadreblanc { 
+ border:2px solid blue; 
+ padding-right: 20px; 
+ padding-left: 20px; 
+ padding-top:20px; 
+ padding-bottom :20px;
+ margin-right: 200px; 
+ margin-left: 200px;
+ background-color:white;
+ text-align:left; 
+ }
+ 
+ .cadreblanc1 { 
+ border:2px solid blue; 
+ padding-right: 20px; 
+ padding-left: 20px; 
+ padding-top:20px; 
+ padding-bottom :20px;
+ background-color:white;
+ }
+ 
+ 
+.center {
+ text-align:center;
+ margin: auto;
+ }
+ .center * {
+ text-align:center;
+ margin: auto;
+ }
+ 
+
+ .fond0 {
+ background-color:#8FFFFF;
+ }
+ 
+  .fond {
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:40px;
+width:400px;
+padding:50px;
+}
+
+  .fond1 {  
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:150px;
+width:500px;
+padding:auto;
+}
+
+  .fond2 {  
+background-color:#8FFFFF;
+border:1px dotted #CCCCCC;
+margin:auto;
+height:100px;
+width:1500px;
+padding:auto;
+}
+
+ .decor {
+
+    background: silver;
+}
+
+  .retrait{
+  
+    margin-left:150px;
+    background: silver;
+    border:2px solid gray;
+    padding-right: 20px;
+    padding-left: 200px;
+    padding-top:30px;
+    padding-bottom :30px;
+    
+}
+  
+ .gallery1 {
+   display: flex;
+   flex-wrap: wrap;
+   padding:5px;
+   justify-content: space-evenly;
+}  
+
+.item {
+ margin: 5px  
+}
+
+ #conteneur  { 
+ display: flex; 
+justify-content:space-between; 
+ } 
+ 
+ #conteneur1{ 
+ display: flex; 
+ flex-direction: row;
+ justify-content:space-around; 
+ } 
+ 
+
+
+
+
+
+
+
+
+

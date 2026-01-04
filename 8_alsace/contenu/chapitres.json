@@ -6,8 +6,6 @@
       "y": 20,
       "image": "background.png"
     },
-	
-
     {
       "titre": "St-Hippolyte",
       "dossier": "1_hippo",
@@ -61,15 +59,11 @@
       "image": "1.jpg",
       "chapitres": [
         {
-          "titre": "Les parents d'Anne Marie STUTZ",
-          "dossier": "0_parents_stutz"
-        },
-        {
-          "titre": "Naissance et mariage",
+          "titre": "Nicolas CARL &  A M STUTZ : naissances et mariage",
           "dossier": "1_mariage"
         },
         {
-          "titre": "La famille",
+          "titre": "Nicolas CARL &  A M STUTZ : La famille",
           "dossier": "2_famille",
           "chapitres": [
             {
@@ -127,8 +121,22 @@
           ]
         },
         {
-          "titre": "Leur décès",
+          "titre": "Nicolas CARL &  A M STUTZ : Leur décès",
           "dossier": "3_mort"
+        },
+        {
+          "titre": "Les ancêtres d'Anne Marie STUTZ",
+          "dossier": "0_parents_stutz",
+          "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "1_ensemble"
+            },
+            {
+              "titre": "8e génération : Joannes STUTZ & Anne HEYSEL",
+              "dossier": "8e_carle"
+            }
+          ]
         }
       ]
     },
@@ -140,19 +148,11 @@
       "image": "1.jpg",
       "chapitres": [
         {
-          "titre": "Les LÖFFLER",
-          "dossier": "0_loffler"
-        },
-        {
-          "titre": "Les FELLMANN de Bergheim",
-          "dossier": "0_bergheim"
-        },
-        {
-          "titre": "Ignace (I) et Madeleine FELLMANN",
+          "titre": "Ignace (I) et Madeleine FELLMANN : naissances",
           "dossier": "1_naissances"
         },
         {
-          "titre": "La famille",
+          "titre": "Ignace (I) et Madeleine FELLMANN : La famille",
           "dossier": "2_famille",
           "chapitres": [
             {
@@ -203,54 +203,55 @@
             {
               "titre": "Marie",
               "dossier": "10_marie"
+            },
+            {
+              "titre": "100",
+              "dossier": "100"
             }
           ]
         },
         {
-          "titre": "Leur décès",
-          "dossier": "3_deces"
+          "titre": "Ignace (I) et Madeleine FELLMANN : Leur décès",
+          "dossier": "3_deces",
+          "chapitres": []
+        },
+        {
+          "titre": "Les ancêtres de Madeleine FELLMANN",
+          "dossier": "4_fellmann",
+          "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "1_ensemble"
+            },
+            {
+              "titre": "7e génération : FELLMANN & LÖFFLER",
+              "dossier": "7e_fellmann_loffler"
+            },
+            {
+              "titre": "8e génération",
+              "dossier": "8e_fellmann"
+            },
+            {
+              "titre": "9e génération",
+              "dossier": "9e_fellmann"
+            }
+          ]
         }
       ]
     },
     {
-      "titre": "[16/17] Ignace (II) CARLÉ  (1781-1869) et Annastase DORIAT",
+      "titre": "[16/17] Ignace le Jeune CARLÉ & Annastase DORIAT",
       "dossier": "6_ignace2",
       "x": 1100,
       "y": 350,
       "image": "1.jpg",
       "chapitres": [
         {
-          "titre": "Les ancêtres de  C. VOGEL",
-          "dossier": "0_vogel",
-          "chapitres": [
-            {
-              "titre": "Vue d'ensemble",
-              "dossier": "0_ensemble"
-            },
-            {
-              "titre": "Melchior VOGEL & Barbara RULHMANN",
-              "dossier": "1_vogel_rulhmann"
-            },
-            {
-              "titre": "Melchior VOGEL & Anne Marie MOOS",
-              "dossier": "2_vogel_moos"
-            },
-            {
-              "titre": "Melchior VOGEL & Anastase ITTEL",
-              "dossier": "3_vogel_ittel"
-            }
-          ]
-        },
-        {
-          "titre": "Les ITTEL",
-          "dossier": "0a_ittel"
-        },
-        {
-          "titre": "Naissances",
+          "titre": "Ignace le Jeune CARLÉ & Annastase DORIAT : Naissances",
           "dossier": "1_naissances"
         },
         {
-          "titre": "Mariage et enfants",
+          "titre": "Ignace le Jeune CARLÉ & Annastase DORIAT :  Mariage et enfants",
           "dossier": "2_famille",
           "chapitres": [
             {
@@ -309,8 +310,44 @@
           ]
         },
         {
-          "titre": "Leur décès",
+          "titre": "Ignace le Jeune CARLÉ & Annastase DORIAT : Leur décès",
           "dossier": "3_deces"
+        },
+        {
+          "titre": "Les ancêtres de Lambert DORIAT",
+          "dossier": "4_doriat",
+          "chapitres": [
+            {
+              "titre": "Ensemble",
+              "dossier": "1_ensemble"
+            },
+            {
+              "titre": "7e génération : DORIAT & HOCH",
+              "dossier": "7e_doriat_hoch"
+            }
+          ]
+        },
+        {
+          "titre": "Les ancêtres de  C. VOGEL",
+          "dossier": "5_vogel",
+          "chapitres": [
+            {
+              "titre": "Vue d'ensemble",
+              "dossier": "0_ensemble"
+            },
+            {
+              "titre": "7e génération : Melchior VOGEL & Anastase ITTEL",
+              "dossier": "7e_vogel_ittel"
+            },
+            {
+              "titre": "8e génération",
+              "dossier": "8e_vogel"
+            },
+            {
+              "titre": "9e génération",
+              "dossier": "9e_vogel"
+            }
+          ]
         }
       ]
     }

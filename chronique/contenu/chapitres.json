@@ -1,0 +1,1906 @@
+{
+  "titre_site": "Une chronique marseillaise",
+  "chapitres": [
+    {
+      "x": 1,
+      "y": 0,
+      "image": "01.jpg"
+    },
+    {
+      "x": 563,
+      "y": 66,
+      "image": "demeurant.png"
+    },
+    {
+      "titre": "Aux origines",
+      "dossier": "1_origines",
+      "x": 563,
+      "y": 200,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "1_sommaire",
+          "chapitres": []
+        },
+        {
+          "titre": "Le site naturel",
+          "dossier": "2_naturel"
+        },
+        {
+          "titre": "La Grotte Cosquer",
+          "dossier": "3_cosquer"
+        },
+        {
+          "titre": "Des sites archéologiques",
+          "dossier": "4_archeo"
+        }
+      ]
+    },
+    {
+      "titre": "L'Antiquité",
+      "dossier": "3_antiquite",
+      "x": 563,
+      "y": 250,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "600 av. J-C : la fondation",
+          "dossier": "0_fondation"
+        },
+        {
+          "titre": "Ve-Ier s. av. J-C : Une colonie grecque",
+          "dossier": "1_colonie"
+        },
+        {
+          "titre": "VIe- s. av. J-C : Les voyages d'Euthymènes",
+          "dossier": "1a_euthymenes"
+        },
+        {
+          "titre": "IVe- s. av. J-C : Les voyages de Pythéas",
+          "dossier": "1b_pytheas"
+        },
+        {
+          "titre": "Les vestiges grecs de la Bourse",
+          "dossier": "2_bourse_1",
+          "chapitres": [
+            {
+              "titre": "La découverte en 1913",
+              "dossier": "1_1913"
+            },
+            {
+              "titre": "La redécouverte en 1967",
+              "dossier": "2_1967"
+            },
+            {
+              "titre": "Des polémiques",
+              "dossier": "3_polemiques"
+            },
+            {
+              "titre": "A la recherche de Massalia",
+              "dossier": "4_massalia"
+            }
+          ]
+        },
+        {
+          "titre": "Ier s. av. J-C-Ve s. : Marseille romaine",
+          "dossier": "4_marseille_romaine"
+        },
+        {
+          "titre": "Les docks romains",
+          "dossier": "5_docks_romains"
+        }
+      ]
+    },
+    {
+      "titre": "Le Moyen-Age",
+      "dossier": "4_moyen_age",
+      "x": 563,
+      "y": 300,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "1_sommaire"
+        },
+        {
+          "titre": "Ve s. : la \"memoria\" de la rue Malaval",
+          "dossier": "7_malaval"
+        },
+        {
+          "titre": "A partir du Ve s. :  St-Victor",
+          "dossier": "4_stvictor"
+        },
+        {
+          "titre": "Marseille au VIe s.",
+          "dossier": "2_6e_s"
+        },
+        {
+          "titre": "Marseille au VIIIe s.",
+          "dossier": "3_8e_s"
+        },
+        {
+          "titre": "972 : Les Sarrasins chassés de Provence",
+          "dossier": "4a_972"
+        },
+        {
+          "titre": "A partir du Xe s. : La Vieille Major",
+          "dossier": "5_major"
+        },
+        {
+          "titre": "A partir du XIe s. : St-Martin",
+          "dossier": "6_stmartin"
+        },
+        {
+          "titre": "A partir du XIe s. : Les Accoules",
+          "dossier": "9_accoules"
+        },
+        {
+          "titre": "A partir du XIIe s. : St-Laurent",
+          "dossier": "8_stlaurent"
+        },
+        {
+          "titre": "Marseille au XIIe s.",
+          "dossier": "10_12e_s"
+        },
+        {
+          "titre": "1229 : La prise du Palais du Toronée",
+          "dossier": "10a_1229"
+        },
+        {
+          "titre": "1257 : La fin de la commune de Marseille",
+          "dossier": "10b_1257"
+        },
+        {
+          "titre": "Marseille au XIVe s.",
+          "dossier": "11_14e_s"
+        },
+        {
+          "titre": "1423 : Le sac de la ville par les Aragonais",
+          "dossier": "11a_1423"
+        },
+        {
+          "titre": "1481 : Le Comté de Provence rattaché au royaume de France",
+          "dossier": "11b_1481"
+        }
+      ]
+    },
+    {
+      "titre": "XVIe - XVIIIe s.",
+      "dossier": "5_ancien_regime",
+      "x": 563,
+      "y": 350,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "Marseille aux XVIe - XVIIIe s.",
+          "dossier": "1_16e_s"
+        },
+        {
+          "titre": "1524 : le siège par les troupes de Charles Quint",
+          "dossier": "1a_1524"
+        },
+        {
+          "titre": "1596 : la dictature de Charles Casaulx",
+          "dossier": "1b_1596"
+        },
+        {
+          "titre": "1622 : l'entrée de Louis XIII",
+          "dossier": "1c_1622"
+        },
+        {
+          "titre": "Les transformations de la ville avant Louis XIV",
+          "dossier": "2_avant",
+          "chapitres": [
+            {
+              "titre": "1524 : Début de la fortification de l'ïlot d'If",
+              "dossier": "if"
+            },
+            {
+              "titre": "1526 : L'église St-Cannat",
+              "dossier": "stcannat"
+            },
+            {
+              "titre": "1535 : l'Hôtel de Cabre",
+              "dossier": "cabre"
+            },
+            {
+              "titre": "1542 : L'église St-Ferréol",
+              "dossier": "stfe"
+            },
+            {
+              "titre": "1570 : La Maison Diamantée",
+              "dossier": "diamant"
+            },
+            {
+              "titre": "1641 : La vieille Charité",
+              "dossier": "charite"
+            }
+          ]
+        },
+        {
+          "titre": "1660 : L'entrée de Louis XIV",
+          "dossier": "2b_1660"
+        },
+        {
+          "titre": "Les transformations de la ville sous Louis XIV",
+          "dossier": "3_louis14",
+          "chapitres": [
+            {
+              "titre": "Vue d'ensemble",
+              "dossier": "1_transformations"
+            },
+            {
+              "titre": "A partir de 1646 : L'Arsenal des Galères et le canal de la Douane",
+              "dossier": "3_galeres"
+            },
+            {
+              "titre": "A partir de 1653 : L'Hôtel de Ville",
+              "dossier": "4_hotel_ville"
+            },
+            {
+              "titre": "A partir de 1660 : Les Forts St-Jean et St-Nicolas",
+              "dossier": "2_forts"
+            },
+            {
+              "titre": "A partir de 1666 : Halle et maison Puget",
+              "dossier": "6_halle_puget"
+            },
+            {
+              "titre": "A partir de 1670 : Du Grand Cours au Cours Belsunce",
+              "dossier": "5_belsunce"
+            }
+          ]
+        },
+        {
+          "titre": "1720 : La Grande Peste",
+          "dossier": "3a_1720"
+        },
+        {
+          "titre": "Les transformations après Louis XIV",
+          "dossier": "4_apres_louis14",
+          "chapitres": [
+            {
+              "titre": "A partir de 1766 : Le Château Borély",
+              "dossier": "borely",
+              "chapitres": []
+            },
+            {
+              "titre": "A partir de 1770 : L'Hôtel-Dieu",
+              "dossier": "hotel_dieu"
+            },
+            {
+              "titre": "1787 : Le Grand Théatre (L'Opéra)",
+              "dossier": "theatre"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Révolution et Empire",
+      "dossier": "6_revol",
+      "x": 563,
+      "y": 400,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "Les sections révolutionnaires",
+          "dossier": "sections"
+        },
+        {
+          "titre": "Les débuts de la Révolution",
+          "dossier": "1_debuts",
+          "chapitres": [
+            {
+              "titre": "1789",
+              "dossier": "1789"
+            },
+            {
+              "titre": "1790",
+              "dossier": "1790"
+            },
+            {
+              "titre": "1791",
+              "dossier": "1791"
+            }
+          ]
+        },
+        {
+          "titre": "Au coeur de la Révolution",
+          "dossier": "dossier",
+          "chapitres": [
+            {
+              "titre": "1792",
+              "dossier": "1792"
+            },
+            {
+              "titre": "1793",
+              "dossier": "1793"
+            },
+            {
+              "titre": "1794",
+              "dossier": "1794"
+            },
+            {
+              "titre": "1795",
+              "dossier": "1795"
+            }
+          ]
+        },
+        {
+          "titre": "Sous le Directoire",
+          "dossier": "3_directoire"
+        },
+        {
+          "titre": "Sous le Consulat : la Bibliothèque, le Lycée, le Gymnase",
+          "dossier": "4_consulat"
+        },
+        {
+          "titre": "Sous l'Empire",
+          "dossier": "5_empire"
+        },
+        {
+          "titre": "1803 : Première Foire aux Santons",
+          "dossier": "6_santons"
+        }
+      ]
+    },
+    {
+      "titre": "XIXe s. : Avant le Second Empire",
+      "dossier": "7_19e_debuts",
+      "x": 563,
+      "y": 450,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "A partir de 1839 : L'aménagement du Prado",
+          "dossier": "1_prado",
+          "chapitres": [
+            {
+              "titre": "L'avenue",
+              "dossier": "1_avenue"
+            },
+            {
+              "titre": "La gare",
+              "dossier": "2_gare"
+            },
+            {
+              "titre": "Les plages",
+              "dossier": "3_plages"
+            }
+          ]
+        },
+        {
+          "titre": "1848",
+          "dossier": "2_1848"
+        }
+      ]
+    },
+    {
+      "titre": "XIXe s. :  Le Second Empire",
+      "dossier": "8_19e_2d_empire",
+      "x": 563,
+      "y": 500,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "A partir de 1852 : La gare St-Charles",
+          "dossier": "3_stcharles",
+          "chapitres": [
+            {
+              "titre": "Les débuts",
+              "dossier": "1_debuts"
+            },
+            {
+              "titre": "Les années 1970",
+              "dossier": "2_70"
+            },
+            {
+              "titre": "Les années 1980",
+              "dossier": "3_80"
+            },
+            {
+              "titre": "Les années 1990",
+              "dossier": "4_90"
+            },
+            {
+              "titre": "Les années 2000",
+              "dossier": "5_2000"
+            },
+            {
+              "titre": "Les années 2010",
+              "dossier": "6_2010"
+            },
+            {
+              "titre": "Le quartier St-Charles et la bibliothèque",
+              "dossier": "7_quartier"
+            }
+          ]
+        },
+        {
+          "titre": "A partir de 1856 : Le cimetière St-Charles",
+          "dossier": "4_stpierre"
+        },
+        {
+          "titre": "Les cafés célèbres",
+          "dossier": "5_cafes"
+        },
+        {
+          "titre": "A partir de 1852 : construction de la Nouvelle Major",
+          "dossier": "1_nvlemajor",
+          "chapitres": [
+            {
+              "titre": "La construction",
+              "dossier": "1_construction"
+            },
+            {
+              "titre": "Les évolutions",
+              "dossier": "2_evolutions"
+            }
+          ]
+        },
+        {
+          "titre": "1854 : Le port de La Joliette",
+          "dossier": "2_joliette",
+          "chapitres": [
+            {
+              "titre": "Avant les transformations",
+              "dossier": "0_avant"
+            },
+            {
+              "titre": "Le nouveau port",
+              "dossier": "1_nouveau"
+            },
+            {
+              "titre": "Le canal",
+              "dossier": "2_canal"
+            },
+            {
+              "titre": "Les docks",
+              "dossier": "3_docks"
+            },
+            {
+              "titre": "Les gares",
+              "dossier": "4_gares"
+            },
+            {
+              "titre": "Place de La Joliette",
+              "dossier": "5_place"
+            },
+            {
+              "titre": "Les Compagnies Maritimes",
+              "dossier": "6_cies"
+            },
+            {
+              "titre": "Arenc",
+              "dossier": "7_arenc"
+            },
+            {
+              "titre": "Les transformations",
+              "dossier": "8_transf"
+            }
+          ]
+        },
+        {
+          "titre": "1857 : Inauguration de l'Alcazar",
+          "dossier": "3_alcazar",
+          "chapitres": [
+            {
+              "titre": "La salle de spectacles",
+              "dossier": "1_spectacles"
+            },
+            {
+              "titre": "La bibliothèque de l'Alcazar",
+              "dossier": "2_bib"
+            }
+          ]
+        },
+        {
+          "titre": "1858 : Débuts de la construction du Palais du Pharo",
+          "dossier": "4_pharo"
+        },
+        {
+          "titre": "1860 : Pose dela première pierre de La Bourse",
+          "dossier": "5_bourse"
+        },
+        {
+          "titre": "1862 : Le Palais de Justice (Place Monthyon)",
+          "dossier": "5a_justice"
+        },
+        {
+          "titre": "1864 : Inauguration de la Rue Impériale",
+          "dossier": "6_imperiale"
+        },
+        {
+          "titre": "1864 : Notre Dame de La Garde",
+          "dossier": "7_nd_garde",
+          "chapitres": [
+            {
+              "titre": "Avant la basilique",
+              "dossier": "1_avant"
+            },
+            {
+              "titre": "La construction",
+              "dossier": "2_construction"
+            },
+            {
+              "titre": "Les ascenseurs",
+              "dossier": "3_ascenseurs"
+            },
+            {
+              "titre": "Les évolutions",
+              "dossier": "4_depuis"
+            }
+          ]
+        },
+        {
+          "titre": "1866 : La Préfecture",
+          "dossier": "8_prefecture"
+        },
+        {
+          "titre": "1867 : Les Réformés",
+          "dossier": "9_reformes"
+        },
+        {
+          "titre": "1867 : La construction du Château de La Buzine",
+          "dossier": "10_buzine"
+        },
+        {
+          "titre": "1869 : Inauguration du Palais Longchamp",
+          "dossier": "11_longchamp",
+          "chapitres": [
+            {
+              "titre": "L'eau de la Durance",
+              "dossier": "1_durance"
+            },
+            {
+              "titre": "Le palais",
+              "dossier": "2_palais"
+            },
+            {
+              "titre": "Le zoo",
+              "dossier": "3_zoo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Fin XIXe-débuts XXe siècles",
+      "dossier": "9_19e_fin",
+      "x": 563,
+      "y": 550,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "1871 : La Commune",
+          "dossier": "1_commune"
+        },
+        {
+          "titre": "Le tram : 1ère époque (1876-1956)",
+          "dossier": "2_tram1",
+          "chapitres": [
+            {
+              "titre": "Des évocations",
+              "dossier": "0_evocations"
+            },
+            {
+              "titre": "Le temps des chevaux",
+              "dossier": "1_cheval"
+            },
+            {
+              "titre": "Des trams ouverts",
+              "dossier": "2_ouverts"
+            },
+            {
+              "titre": "Des années 1930 à 1950",
+              "dossier": "3_50"
+            },
+            {
+              "titre": "le \"68\"",
+              "dossier": "4_68"
+            },
+            {
+              "titre": "CGFT, RATVM, RTM",
+              "dossier": "5_ratvm"
+            },
+            {
+              "titre": "Les bus",
+              "dossier": "6_bus"
+            },
+            {
+              "titre": "Les trolleys",
+              "dossier": "7_trolley"
+            },
+            {
+              "titre": "La ligne Aix-Marseille",
+              "dossier": "8_aix"
+            },
+            {
+              "titre": "Au musée...",
+              "dossier": "9_musee"
+            }
+          ]
+        },
+        {
+          "titre": "1881 : \"Les Vêpres marseillaises\"",
+          "dossier": "3_vepres"
+        },
+        {
+          "titre": "1891 : La Poste Colbert  (et la poste centrale)",
+          "dossier": "4_colbert"
+        },
+        {
+          "titre": "1891 : Dans \"L'Illustration\"",
+          "dossier": "10_illustration"
+        },
+        {
+          "titre": "Marseille en 1900",
+          "dossier": "5_1900"
+        },
+        {
+          "titre": "A partir de 1904 : Le stade de l'Huveaune",
+          "dossier": "6_huveaune"
+        },
+        {
+          "titre": "1905 : Inauguration du Pont Transbordeur",
+          "dossier": "7_transbordeur",
+          "chapitres": [
+            {
+              "titre": "Un symbole",
+              "dossier": "1_symbole"
+            },
+            {
+              "titre": "La destruction",
+              "dossier": "2_destruction"
+            }
+          ]
+        },
+        {
+          "titre": "1909 : La Criée aux poissons (puis Saumaty)",
+          "dossier": "8_criee"
+        },
+        {
+          "titre": "1910 : L'American Park",
+          "dossier": "9_american"
+        }
+      ]
+    },
+    {
+      "titre": "D'une guerre à l'autre",
+      "dossier": "10_guerres",
+      "x": 563,
+      "y": 600,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "14-18 : Quelques dates",
+          "dossier": "1914"
+        },
+        {
+          "titre": "L'affaire du XIVe Corps",
+          "dossier": "1914_affaire"
+        },
+        {
+          "titre": "1922 : L'exposition coloniale au Parc Chanot",
+          "dossier": "1922_expo"
+        },
+        {
+          "titre": "1922 : L'aéroport de Marignane (et avant, les montgolfières...)",
+          "dossier": "1922_marignane"
+        },
+        {
+          "titre": "1925 : La première Foire de Marseille",
+          "dossier": "1925"
+        },
+        {
+          "titre": "1928 : Dans \"L'Illustration\"",
+          "dossier": "1928"
+        },
+        {
+          "titre": "1934 : L'assassinat d'Alexandre de Yougoslavie",
+          "dossier": "1934"
+        },
+        {
+          "titre": "1937 : Le Stade Vélodrome",
+          "dossier": "1937_stade",
+          "chapitres": [
+            {
+              "titre": "Les débuts",
+              "dossier": "1_debuts"
+            },
+            {
+              "titre": "Les années 1970",
+              "dossier": "2_70"
+            },
+            {
+              "titre": "Les années 1980",
+              "dossier": "3_80"
+            },
+            {
+              "titre": "Les années 1990-2000",
+              "dossier": "4_90"
+            },
+            {
+              "titre": "Les années 2010",
+              "dossier": "5_2010"
+            }
+          ]
+        },
+        {
+          "titre": "1938 : L'incendie des Nouvelles Galeries",
+          "dossier": "1938_galeries"
+        },
+        {
+          "titre": "1939 : La guerre à nouveau",
+          "dossier": "1939"
+        },
+        {
+          "titre": "1942 : Les débuts de l'occupation",
+          "dossier": "1942"
+        },
+        {
+          "titre": "1943 : Persécutions (l'opération Sultan) et  Résistance",
+          "dossier": "1943",
+          "chapitres": [
+            {
+              "titre": "La rafle de l'Opéra",
+              "dossier": "1_opera"
+            },
+            {
+              "titre": "L'évacuation forcée du quartier du Vieux-Port",
+              "dossier": "2_evacuation"
+            },
+            {
+              "titre": "La destruction du quartier du Vieux-Port",
+              "dossier": "3_destruction"
+            },
+            {
+              "titre": "Mémoires",
+              "dossier": "4_memoires"
+            },
+            {
+              "titre": "La Résistance",
+              "dossier": "5_resistance"
+            }
+          ]
+        },
+        {
+          "titre": "1944 : les bombardements et la Libération",
+          "dossier": "1944"
+        },
+        {
+          "titre": "Vestiges de guerre",
+          "dossier": "1945_vestiges",
+          "chapitres": [
+            {
+              "titre": "A Marseille",
+              "dossier": "marseille"
+            },
+            {
+              "titre": "Les Milles et autres lieux",
+              "dossier": "milles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Des années 1950 aux années 2000",
+      "dossier": "11_apres_44",
+      "x": 563,
+      "y": 650,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "Les années 1950 et 60",
+          "dossier": "1_50",
+          "chapitres": [
+            {
+              "titre": "La Cité du Corbusier",
+              "dossier": "0_corbusier"
+            },
+            {
+              "titre": "\"L'Autoroute Nord\"",
+              "dossier": "1_autoroute",
+              "chapitres": [
+                {
+                  "titre": "Les débuts",
+                  "dossier": "1_debuts"
+                },
+                {
+                  "titre": "La pénétrante",
+                  "dossier": "2_penetrante"
+                },
+                {
+                  "titre": "Le recul",
+                  "dossier": "3_recul"
+                }
+              ]
+            },
+            {
+              "titre": "La rocade du Jarret",
+              "dossier": "2_jarret",
+              "chapitres": [
+                {
+                  "titre": "Les débuts",
+                  "dossier": "1_premiers"
+                },
+                {
+                  "titre": "Les années 1960",
+                  "dossier": "2_60"
+                },
+                {
+                  "titre": "Les évolutions",
+                  "dossier": "3_evolution"
+                }
+              ]
+            },
+            {
+              "titre": "La Corniche et la rade sud",
+              "dossier": "4_corniche",
+              "chapitres": [
+                {
+                  "titre": "Avant les travaux",
+                  "dossier": "1_avant"
+                },
+                {
+                  "titre": "Les travaux",
+                  "dossier": "2_travaux"
+                },
+                {
+                  "titre": "Les évolutions",
+                  "dossier": "3_apres"
+                },
+                {
+                  "titre": "La rade sud : des épaves,  Callelongue, l'îlot Degaby, la villa Gaby",
+                  "dossier": "4_sud"
+                },
+                {
+                  "titre": "Vallon des Auffes, Malmousque, Maldormé",
+                  "dossier": "5_malmousque"
+                }
+              ]
+            },
+            {
+              "titre": "\"L'Autoroute Est\"",
+              "dossier": "5_est"
+            },
+            {
+              "titre": "Le tunnel sous le Vieux Port",
+              "dossier": "6_tunnel"
+            }
+          ]
+        },
+        {
+          "titre": "Les années 1970",
+          "dossier": "2_70",
+          "chapitres": [
+            {
+              "titre": "1970 : le viaduc de Plombières et autres auto-ponts",
+              "dossier": "1_plombieres"
+            },
+            {
+              "titre": "1973 : une vague raciste meurtrière",
+              "dossier": "1a_1973"
+            },
+            {
+              "titre": "1977 : Le métro",
+              "dossier": "2_metro",
+              "chapitres": [
+                {
+                  "titre": "Historique",
+                  "dossier": "1_historique"
+                },
+                {
+                  "titre": "Les projets",
+                  "dossier": "2_projets"
+                },
+                {
+                  "titre": "Les travaux",
+                  "dossier": "3_travaux"
+                },
+                {
+                  "titre": "Les voitures",
+                  "dossier": "4_voitures"
+                },
+                {
+                  "titre": "L'inauguration",
+                  "dossier": "5_inauguration"
+                },
+                {
+                  "titre": "Les premiers prolongements",
+                  "dossier": "6_prolongements"
+                },
+                {
+                  "titre": "La deuxième ligne",
+                  "dossier": "7_2eligne"
+                },
+                {
+                  "titre": "Les évolutions",
+                  "dossier": "8_nouveaux"
+                }
+              ]
+            },
+            {
+              "titre": "Les plages",
+              "dossier": "3_plages"
+            },
+            {
+              "titre": "Le Frioul",
+              "dossier": "4_frioul"
+            },
+            {
+              "titre": "Les voies du littoral",
+              "dossier": "5_littoral",
+              "chapitres": [
+                {
+                  "titre": "Vue d'ensemble",
+                  "dossier": "1_ensemble"
+                },
+                {
+                  "titre": "Les évolutions",
+                  "dossier": "2_travaux"
+                }
+              ]
+            },
+            {
+              "titre": "la voie St-Just - La Rose",
+              "dossier": "6_stjust_larose"
+            }
+          ]
+        },
+        {
+          "titre": "Les années 1980 -2000",
+          "dossier": "3_80",
+          "chapitres": [
+            {
+              "titre": "A partir de 1973 : la L2",
+              "dossier": "3_l2"
+            },
+            {
+              "titre": "1981 : l'assassinat du juge Michel",
+              "dossier": "4_michel"
+            },
+            {
+              "titre": "1993 : le tunnel Prado-Carénage",
+              "dossier": "1_carenage"
+            },
+            {
+              "titre": "2007 : le retour du tram",
+              "dossier": "2_tram2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Depuis 1995 : Euromed",
+      "dossier": "12_euromed",
+      "x": 563,
+      "y": 700,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "La mise en place d'Euromed",
+          "dossier": "1_euromed"
+        },
+        {
+          "titre": "La gare maritime",
+          "dossier": "2_gare_maritime"
+        },
+        {
+          "titre": "Le MUCEM",
+          "dossier": "3_mucem"
+        },
+        {
+          "titre": "Les Docks",
+          "dossier": "4_docks"
+        },
+        {
+          "titre": "Le Silo",
+          "dossier": "5_silo"
+        },
+        {
+          "titre": "Les tours",
+          "dossier": "6_tours"
+        },
+        {
+          "titre": "Les Archives municipales",
+          "dossier": "7_archives"
+        },
+        {
+          "titre": "Les Terrasses du Port",
+          "dossier": "8_terrasses"
+        },
+        {
+          "titre": "Les môles : J1, J2, J3, J4 et la digue du large",
+          "dossier": "9_moles"
+        },
+        {
+          "titre": "La passerelle du Capitaine Gèze",
+          "dossier": "10_geze"
+        },
+        {
+          "titre": "Le Marché aux Puces",
+          "dossier": "11_puces"
+        },
+        {
+          "titre": "Euromed 2",
+          "dossier": "12_euromed2"
+        }
+      ]
+    },
+    {
+      "titre": "Les maires de Marseille",
+      "dossier": "12_maires",
+      "x": 563,
+      "y": 750,
+      "image": "icone.png",
+      "chapitres": [
+        {
+          "titre": "Avant la Libération",
+          "dossier": "1_avant"
+        },
+        {
+          "titre": "M. Carlini",
+          "dossier": "1a_carlini"
+        },
+        {
+          "titre": "G. Defferre",
+          "dossier": "2_defferre"
+        },
+        {
+          "titre": "R. Vigouroux",
+          "dossier": "3_vigouroux"
+        },
+        {
+          "titre": "J-C. Gaudin",
+          "dossier": "4_gaudin"
+        },
+        {
+          "titre": "M. Rubirola",
+          "dossier": "5_rubirola"
+        },
+        {
+          "titre": "B. Payan",
+          "dossier": "6_payan"
+        }
+      ]
+    },
+    {
+      "titre": "Traditions",
+      "dossier": "13_traditions",
+      "x": 563,
+      "y": 800
+    },
+    {
+      "titre": "Les quartiers de nos ancêtres",
+      "dossier": "20_quartiers",
+      "x": 563,
+      "y": 850,
+      "chapitres": [
+        {
+          "titre": "Le découpage des quartiers",
+          "dossier": "1_decoupage",
+          "chapitres": [
+            {
+              "titre": "L'évolution",
+              "dossier": "1_evolution"
+            },
+            {
+              "titre": "Les quartiers dans 'L'Indicateur Marseillais\" 1890",
+              "dossier": "2_indicateur"
+            },
+            {
+              "titre": "Les quartiers modernes du centre",
+              "dossier": "3_modernes"
+            }
+          ]
+        },
+        {
+          "titre": "Les quartiers du centre habités par nos ancêtres",
+          "dossier": "2_centre",
+          "chapitres": [
+            {
+              "titre": "Une carte",
+              "dossier": "1_carte"
+            },
+            {
+              "titre": "Le Vieux-Port",
+              "dossier": "vieux_port",
+              "chapitres": [
+                {
+                  "titre": "Quelques points remarquables autour du Vieux-Port",
+                  "dossier": "0_sommaire"
+                },
+                {
+                  "titre": "Le port",
+                  "dossier": "1_port",
+                  "chapitres": [
+                    {
+                      "titre": "L'entrée",
+                      "dossier": "1_entree"
+                    },
+                    {
+                      "titre": "Quai des Belges",
+                      "dossier": "2_belges"
+                    },
+                    {
+                      "titre": "Quai du Port",
+                      "dossier": "3_quai_port"
+                    },
+                    {
+                      "titre": "Quai Rive Neuve",
+                      "dossier": "4_rive_neuve"
+                    },
+                    {
+                      "titre": "La Consigne",
+                      "dossier": "5_consigne"
+                    },
+                    {
+                      "titre": "La colline Bonaparte",
+                      "dossier": "6_bonaparte"
+                    }
+                  ]
+                },
+                {
+                  "titre": "Le quartier ancien",
+                  "dossier": "2_quartier_ancien",
+                  "chapitres": [
+                    {
+                      "titre": "Des récits",
+                      "dossier": "1_recits"
+                    },
+                    {
+                      "titre": "Des rues",
+                      "dossier": "2_rues"
+                    },
+                    {
+                      "titre": "Les Halles Vivaux",
+                      "dossier": "4_vivaux"
+                    },
+                    {
+                      "titre": "Le pavillon Daviel",
+                      "dossier": "3_daviel"
+                    }
+                  ]
+                },
+                {
+                  "titre": "Le ferry-boat",
+                  "dossier": "3_ferry"
+                },
+                {
+                  "titre": "Le Pont Transbordeur",
+                  "dossier": "4_transbordeur",
+                  "chapitres": []
+                },
+                {
+                  "titre": "La reconstruction",
+                  "dossier": "5_pouillon"
+                },
+                {
+                  "titre": "Les transformations du décor",
+                  "dossier": "6_evolution"
+                }
+              ]
+            },
+            {
+              "titre": "Les Grands Carmes",
+              "dossier": "carmes",
+              "chapitres": [
+                {
+                  "titre": "L'étendue",
+                  "dossier": "0_etendue"
+                },
+                {
+                  "titre": "Aspects du quartier ancien",
+                  "dossier": "1_ancien"
+                },
+                {
+                  "titre": "L'église des Carmes",
+                  "dossier": "1a_eglise"
+                },
+                {
+                  "titre": "L'ouverture de la Rue Impériale",
+                  "dossier": "2_ouverture"
+                },
+                {
+                  "titre": "\"L'îlot Sainte-Barbe\"",
+                  "dossier": "3_ste_barbe",
+                  "chapitres": [
+                    {
+                      "titre": "Entre Rue Ste-Barbe et rue d'Aix",
+                      "dossier": "1_rues"
+                    },
+                    {
+                      "titre": "Projets, démolition, rénovation",
+                      "dossier": "3_renovation"
+                    },
+                    {
+                      "titre": "Les Présentines",
+                      "dossier": "2_presentines"
+                    },
+                    {
+                      "titre": "L'Hospice des Incurables",
+                      "dossier": "6_incurables"
+                    },
+                    {
+                      "titre": "L'Hôtel de Région",
+                      "dossier": "5_hotel"
+                    }
+                  ]
+                },
+                {
+                  "titre": "Des découvertes archéologiques",
+                  "dossier": "4_fouilles"
+                },
+                {
+                  "titre": "La rénovation",
+                  "dossier": "5_renovation"
+                }
+              ]
+            },
+            {
+              "titre": "Le Panier",
+              "dossier": "panier",
+              "chapitres": [
+                {
+                  "titre": "Le Panier d'avant",
+                  "dossier": "1_avant"
+                },
+                {
+                  "titre": "Le Panier d'aujourd'hui",
+                  "dossier": "2_hui"
+                },
+                {
+                  "titre": "La Vieille Charité",
+                  "dossier": "charite"
+                },
+                {
+                  "titre": "L'Hôtel-Dieu",
+                  "dossier": "hotel_dieu"
+                },
+                {
+                  "titre": "Des découvertes archéologiques",
+                  "dossier": "fouilles"
+                }
+              ]
+            },
+            {
+              "titre": "\"Le quartier derrière la Bourse\"",
+              "dossier": "bourse_2",
+              "chapitres": [
+                {
+                  "titre": "Le Palais de la Bourse",
+                  "dossier": "1_palais"
+                },
+                {
+                  "titre": "La Place de la Bourse",
+                  "dossier": "2_place",
+                  "chapitres": []
+                },
+                {
+                  "titre": "Le quartier ancien",
+                  "dossier": "3_quartier"
+                },
+                {
+                  "titre": "Sa démolition et la découverte de vestiges grecs",
+                  "dossier": "4_demolition"
+                },
+                {
+                  "titre": "Jardin, terrain vague, parking...",
+                  "dossier": "4a_jardin"
+                },
+                {
+                  "titre": "Les Tours Labourdette",
+                  "dossier": "5_labourdette"
+                },
+                {
+                  "titre": "Le remodelage du quartier : le Centre-Bourse",
+                  "dossier": "6_remodelage"
+                },
+                {
+                  "titre": "Le Musée d'Histoire de Marseille",
+                  "dossier": "7_musee"
+                },
+                {
+                  "titre": "De nouvelles découvertes et le Jardin des Vestiges",
+                  "dossier": "8_jardin"
+                },
+                {
+                  "titre": "Les rénovations",
+                  "dossier": "9_renovations"
+                }
+              ]
+            },
+            {
+              "titre": "Noailles",
+              "dossier": "noailles",
+              "chapitres": [
+                {
+                  "titre": "Les Halles Delacroix",
+                  "dossier": "halles"
+                },
+                {
+                  "titre": "La rue d'Aubagne",
+                  "dossier": "aubagne"
+                },
+                {
+                  "titre": "La vie du quartier",
+                  "dossier": "quartier"
+                }
+              ]
+            },
+            {
+              "titre": "Notre Dame du Mont",
+              "dossier": "ndmont"
+            }
+          ]
+        },
+        {
+          "titre": "Les quartiers de la périphérie habités par nos ancêtres",
+          "dossier": "3_peripherie",
+          "chapitres": [
+            {
+              "titre": "Une carte",
+              "dossier": "1_carte"
+            },
+            {
+              "titre": "Arenc",
+              "dossier": "arenc"
+            },
+            {
+              "titre": "Les Aygalades",
+              "dossier": "aygalades"
+            },
+            {
+              "titre": "La Belle de Mai",
+              "dossier": "belle_de_mai",
+              "chapitres": [
+                {
+                  "titre": "De la campagne à la ville",
+                  "dossier": "1_campagne"
+                },
+                {
+                  "titre": "La vie du quartier",
+                  "dossier": "7_evolution"
+                },
+                {
+                  "titre": "La Manufacture des Tabacs puis la Friche",
+                  "dossier": "3_tabacs"
+                },
+                {
+                  "titre": "La caserne du Muy",
+                  "dossier": "4_muy"
+                },
+                {
+                  "titre": "La maternité",
+                  "dossier": "5_maternite"
+                },
+                {
+                  "titre": "Les monuments religieux",
+                  "dossier": "6_eglise"
+                }
+              ]
+            },
+            {
+              "titre": "Bonneveine",
+              "dossier": "bonneveine"
+            },
+            {
+              "titre": "Le Canet",
+              "dossier": "canet"
+            },
+            {
+              "titre": "Les Chartreux",
+              "dossier": "chartreux"
+            },
+            {
+              "titre": "Les Crottes",
+              "dossier": "crottes"
+            },
+            {
+              "titre": "La Joliette",
+              "dossier": "joliette"
+            },
+            {
+              "titre": "La Rose",
+              "dossier": "larose"
+            },
+            {
+              "titre": "Montredon",
+              "dossier": "montredon"
+            },
+            {
+              "titre": "Les Olives",
+              "dossier": "olives"
+            },
+            {
+              "titre": "Saint-André",
+              "dossier": "standre"
+            },
+            {
+              "titre": "Saint-Jérôme",
+              "dossier": "stjerome"
+            },
+            {
+              "titre": "Saint-Julien",
+              "dossier": "stjulien"
+            },
+            {
+              "titre": "Saint-Just",
+              "dossier": "stjust"
+            },
+            {
+              "titre": "Saint-Lazare",
+              "dossier": "stlazare"
+            },
+            {
+              "titre": "Saint-Louis",
+              "dossier": "stlouis"
+            },
+            {
+              "titre": "Saint-Marcel",
+              "dossier": "stmarcel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Les rues de nos ancêtres (et quelques voies célèbres)",
+      "dossier": "21_rues",
+      "x": 563,
+      "y": 900,
+      "chapitres": [
+        {
+          "titre": "Une carte de ces rues",
+          "dossier": "1_cartes"
+        },
+        {
+          "titre": "A-B",
+          "dossier": "2_a_b",
+          "chapitres": [
+            {
+              "titre": "Chemin d'Aix",
+              "dossier": "aix_chemin"
+            },
+            {
+              "titre": "Porte d'Aix",
+              "dossier": "aix_porte",
+              "chapitres": [
+                {
+                  "titre": "L'évolution du quartier",
+                  "dossier": "1_quartier"
+                },
+                {
+                  "titre": "L'Arc de Triomphe",
+                  "dossier": "2_arc"
+                },
+                {
+                  "titre": "L'aqueduc",
+                  "dossier": "3_aqueduc"
+                },
+                {
+                  "titre": "L'Hôtel de Région",
+                  "dossier": "4_region"
+                }
+              ]
+            },
+            {
+              "titre": "Rue d'Aix",
+              "dossier": "aix_rue"
+            },
+            {
+              "titre": "Rue d'Anthoine",
+              "dossier": "anthoine"
+            },
+            {
+              "titre": "Rue de l'Aumône",
+              "dossier": "aumone"
+            },
+            {
+              "titre": "Boulevard Baille",
+              "dossier": "baille"
+            },
+            {
+              "titre": "Rue Beauregard",
+              "dossier": "beauregard"
+            },
+            {
+              "titre": "Rue Belle de Mai",
+              "dossier": "belle"
+            },
+            {
+              "titre": "Cours Belsunce",
+              "dossier": "belsunce"
+            },
+            {
+              "titre": "Cours Bourbon (Pierre-Puget)",
+              "dossier": "bourbon"
+            },
+            {
+              "titre": "Rue du Bon Pasteur",
+              "dossier": "pasteur"
+            }
+          ]
+        },
+        {
+          "titre": "C-D",
+          "dossier": "3_c_d",
+          "chapitres": [
+            {
+              "titre": "Rue Caisserie",
+              "dossier": "caisserie"
+            },
+            {
+              "titre": "Rue Chanterac",
+              "dossier": "chanterac"
+            },
+            {
+              "titre": "Rue des Chapeliers (Incurables ; Fac Colbert)",
+              "dossier": "chapeliers"
+            },
+            {
+              "titre": "Rue des Chartreux",
+              "dossier": "chartreux"
+            },
+            {
+              "titre": "Rue Château-Joli",
+              "dossier": "chateau"
+            },
+            {
+              "titre": "Rue de la Clovisse",
+              "dossier": "clovisse"
+            },
+            {
+              "titre": "Rue Coutellerie",
+              "dossier": "coutellerie"
+            },
+            {
+              "titre": "Rue Désirée",
+              "dossier": "desiree"
+            }
+          ]
+        },
+        {
+          "titre": "La Canebière",
+          "dossier": "4_canebiere",
+          "chapitres": [
+            {
+              "titre": "Les débuts",
+              "dossier": "1_recits"
+            },
+            {
+              "titre": "Des chevaux et des hommes",
+              "dossier": "1a_chevaux"
+            },
+            {
+              "titre": "Au temps du tram",
+              "dossier": "2_trams"
+            },
+            {
+              "titre": "L'époque des autos",
+              "dossier": "3_autos"
+            },
+            {
+              "titre": "Les Allées de Meilhan et la rue de Noailles",
+              "dossier": "4_meilhan"
+            },
+            {
+              "titre": "Une gloire perdue",
+              "dossier": "5_gloire"
+            },
+            {
+              "titre": "Le Cours St-Louis",
+              "dossier": "6_stlouis"
+            }
+          ]
+        },
+        {
+          "titre": "E-G",
+          "dossier": "5_e_g",
+          "chapitres": [
+            {
+              "titre": "Rue d'Endoume",
+              "dossier": "endoume"
+            },
+            {
+              "titre": "Rue des Vieux Enfants Abandonnés",
+              "dossier": "enfants"
+            },
+            {
+              "titre": "Rue Farinette",
+              "dossier": "farinette"
+            },
+            {
+              "titre": "Rue Fontaine Neuve",
+              "dossier": "fontaine"
+            },
+            {
+              "titre": "Boulevard Giraud",
+              "dossier": "giraud"
+            },
+            {
+              "titre": "Rue des Graffins",
+              "dossier": "graffins"
+            },
+            {
+              "titre": "Rue Guintrand",
+              "dossier": "guintrand"
+            }
+          ]
+        },
+        {
+          "titre": "Rue Guérin",
+          "dossier": "6_guerin",
+          "chapitres": [
+            {
+              "titre": "La famille",
+              "dossier": "0_famille"
+            },
+            {
+              "titre": "La rue",
+              "dossier": "0a_rue"
+            },
+            {
+              "titre": "Le \"10\"",
+              "dossier": "1_10"
+            },
+            {
+              "titre": "Le \"46\"",
+              "dossier": "2_46"
+            },
+            {
+              "titre": "Le \"44\"",
+              "dossier": "3_44"
+            },
+            {
+              "titre": "Le \"60\"",
+              "dossier": "4_60",
+              "chapitres": [
+                {
+                  "titre": "Les lieux et la famille",
+                  "dossier": "1_famille"
+                },
+                {
+                  "titre": "1931 : Payan, Carlé, Lantéri, Marbec, Coque",
+                  "dossier": "2_1931"
+                }
+              ]
+            },
+            {
+              "titre": "Le \"67\"",
+              "dossier": "5_67",
+              "chapitres": [
+                {
+                  "titre": "La maison",
+                  "dossier": "1_lieux"
+                },
+                {
+                  "titre": "Le recensement de 1931",
+                  "dossier": "1a_1931"
+                },
+                {
+                  "titre": "La famille",
+                  "dossier": "2_famille"
+                },
+                {
+                  "titre": "Après les bombardements",
+                  "dossier": "3_bombardements"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "titre": "H-M",
+          "dossier": "7_h_m",
+          "chapitres": [
+            {
+              "titre": "Rue des Hugolins",
+              "dossier": "hugolins"
+            },
+            {
+              "titre": "Rue des Ingariennes",
+              "dossier": "ingariennes"
+            },
+            {
+              "titre": "Rue Lautard",
+              "dossier": "lautard"
+            },
+            {
+              "titre": "Rue des Marquises",
+              "dossier": "marquises"
+            },
+            {
+              "titre": "Boulevard de Maupas",
+              "dossier": "maupas"
+            },
+            {
+              "titre": "Rue Mazagran",
+              "dossier": "mazagran"
+            }
+          ]
+        },
+        {
+          "titre": "N-R",
+          "dossier": "8_n_r",
+          "chapitres": [
+            {
+              "titre": "Boulevard National",
+              "dossier": "national"
+            },
+            {
+              "titre": "Rue Négrel",
+              "dossier": "negrel"
+            },
+            {
+              "titre": "Rue de la Palud",
+              "dossier": "palud"
+            },
+            {
+              "titre": "Rue Pati de Chaîne",
+              "dossier": "pati"
+            },
+            {
+              "titre": "Rue des Pistoles",
+              "dossier": "pistoles"
+            },
+            {
+              "titre": "Place de la Plateforme",
+              "dossier": "plateforme"
+            },
+            {
+              "titre": "Rue du Puits Saint-Antoine",
+              "dossier": "puits"
+            },
+            {
+              "titre": "Rue du Puits Denier",
+              "dossier": "denier"
+            },
+            {
+              "titre": "Rue de la Petite Roquebarbe",
+              "dossier": "roque"
+            },
+            {
+              "titre": "Rue de la Roquette",
+              "dossier": "roquette"
+            }
+          ]
+        },
+        {
+          "titre": "Rue Impériale puis de la République",
+          "dossier": "9_republique",
+          "chapitres": [
+            {
+              "titre": "Sur plans",
+              "dossier": "1_plans"
+            },
+            {
+              "titre": "Des récits",
+              "dossier": "2_recits"
+            },
+            {
+              "titre": "La destruction d'un quartier",
+              "dossier": "3_destruction"
+            },
+            {
+              "titre": "La construction d'une avenue : la Rue Impériale",
+              "dossier": "4_construction"
+            },
+            {
+              "titre": "Les évolutions",
+              "dossier": "5_depuis"
+            }
+          ]
+        },
+        {
+          "titre": "S-Z",
+          "dossier": "10_s_z",
+          "chapitres": [
+            {
+              "titre": "Rue des Soleillets",
+              "dossier": "soleillets"
+            },
+            {
+              "titre": "Boulevard de Strasbourg",
+              "dossier": "strasbourg"
+            },
+            {
+              "titre": "Place du Terras",
+              "dossier": "terras"
+            },
+            {
+              "titre": "Rue Ventomagy",
+              "dossier": "vento"
+            },
+            {
+              "titre": "Rue du Vieux-Palais",
+              "dossier": "palais"
+            },
+            {
+              "titre": "Titre",
+              "dossier": "dossier"
+            }
+          ]
+        },
+        {
+          "titre": "Saint/Sainte",
+          "dossier": "11_st",
+          "chapitres": [
+            {
+              "titre": "Rue Saint-Antoine",
+              "dossier": "stantoine"
+            },
+            {
+              "titre": "Rue Sainte-Cécile",
+              "dossier": "stececile"
+            },
+            {
+              "titre": "Rue Sainte-Françoise",
+              "dossier": "stefran"
+            },
+            {
+              "titre": "Chemin de Saint-Joseph",
+              "dossier": "stjoseph"
+            },
+            {
+              "titre": "Rue et Place Saint-Victor",
+              "dossier": "stvictor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Données",
+      "dossier": "5_donnees",
+      "chapitres": [
+        {
+          "titre": "Tous nos ancêtres marseillais",
+          "dossier": "1_tous"
+        },
+        {
+          "titre": "Des actes",
+          "dossier": "3_actes"
+        },
+        {
+          "titre": "Des plans et des cartes",
+          "dossier": "5_cartes",
+          "chapitres": [
+            {
+              "titre": "Pour se situer",
+              "dossier": "1922"
+            },
+            {
+              "titre": "Plan Jarry (1836)",
+              "dossier": "1836_jarry"
+            }
+          ]
+        },
+        {
+          "titre": "Relevé des lieux de vie",
+          "dossier": "4_lieux"
+        }
+      ]
+    },
+    {
+      "titre": "Index",
+      "dossier": "6_index",
+      "chapitres": [
+        {
+          "titre": "Index des lieux",
+          "dossier": "1_index_lieux",
+          "chapitres": []
+        },
+        {
+          "titre": "Index des personnes",
+          "dossier": "3_index_personnes"
+        }
+      ]
+    }
+  ]
+}

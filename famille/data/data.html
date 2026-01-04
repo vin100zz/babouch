@@ -1,0 +1,1443 @@
+
+<!------------------naissances------------>
+naissances
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyseur de Lieux de Naissance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: translateY(-2px);
+        }
+        
+        .upload-area.dragover {
+            border-color: #764ba2;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            transform: scale(1.02);
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .upload-text {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .upload-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .frequency-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .frequency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+        
+        .frequency-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .frequency-item:last-child {
+            border-bottom: none;
+        }
+        
+        .place-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .frequency-count {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .frequency-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .frequency-bar-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+        
+        .export-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📍 Analyseur de Lieux de Naissance</h1>
+        
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Cliquez ici ou glissez-déposez votre fichier Excel</div>
+            <div style="color: #999; font-size: 0.9em;">Formats supportés: .xlsx, .xls</div>
+        </div>
+        
+        <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFile(event)">
+        
+        <div id="results" class="results">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div class="stat-label">Total d'entrées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="uniquePlaces">0</div>
+                    <div class="stat-label">Lieux uniques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="mostCommon">-</div>
+                    <div class="stat-label">Lieu le plus fréquent</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>🏆 Fréquence des Lieux de Naissance</h3>
+                <div id="frequencyList" class="frequency-list"></div>
+            </div>
+            
+            <button class="export-btn" onclick="exportResults()">📊 Exporter les résultats (CSV)</button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            <div>⏳ Analyse en cours...</div>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        let currentData = [];
+        let birthPlaceFrequency = {};
+        
+        // Gestion du drag & drop
+        const uploadArea = document.querySelector('.upload-area');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight(e) {
+            uploadArea.classList.add('dragover');
+        }
+        
+        function unhighlight(e) {
+            uploadArea.classList.remove('dragover');
+        }
+        
+        uploadArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+        
+        function handleFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                processFile(file);
+            }
+        }
+        
+        function processFile(file) {
+            if (!file.name.match(/\.(xlsx|xls)$/)) {
+                showError('Veuillez sélectionner un fichier Excel (.xlsx ou .xls)');
+                return;
+            }
+            
+            showLoading();
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Prendre la première feuille
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    
+                    // Convertir en JSON
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    
+                    if (jsonData.length < 2) {
+                        showError('Le fichier ne contient pas suffisamment de données');
+                        return;
+                    }
+                    
+                    analyzeData(jsonData);
+                    
+                } catch (error) {
+                    showError('Erreur lors de la lecture du fichier: ' + error.message);
+                }
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function analyzeData(data) {
+            // Rechercher spécifiquement la colonne "lieux naissance"
+            const headers = data[0];
+            let birthPlaceColumnIndex = -1;
+            
+            // Chercher exactement "lieux naissance" (insensible à la casse)
+            headers.forEach((header, index) => {
+                if (header && typeof header === 'string') {
+                    const headerLower = header.toLowerCase().trim();
+                    if (headerLower === 'lieux naissance' || headerLower === 'lieu naissance' || 
+                        headerLower === 'lieu de naissance' || headerLower === 'lieux de naissance') {
+                        birthPlaceColumnIndex = index;
+                    }
+                }
+            });
+            
+            if (birthPlaceColumnIndex === -1) {
+                showError('Colonne "lieux naissance" non trouvée. Vérifiez que votre fichier contient une colonne nommée "lieux naissance", "lieu naissance", "lieu de naissance" ou "lieux de naissance".');
+                return;
+            }
+            
+            // Analyser les données uniquement de cette colonne
+            birthPlaceFrequency = {};
+            let totalCount = 0;
+            
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                const place = row[birthPlaceColumnIndex];
+                
+                if (place && place.toString().trim() !== '') {
+                    const cleanPlace = place.toString().trim();
+                    birthPlaceFrequency[cleanPlace] = (birthPlaceFrequency[cleanPlace] || 0) + 1;
+                    totalCount++;
+                }
+            }
+            
+            displayResults(totalCount);
+        }
+        
+        function displayResults(totalCount) {
+            hideLoading();
+            
+            const uniquePlaces = Object.keys(birthPlaceFrequency).length;
+            const sortedPlaces = Object.entries(birthPlaceFrequency)
+                .sort(([,a], [,b]) => b - a);
+            
+            const mostCommon = sortedPlaces.length > 0 ? sortedPlaces[0][0] : '-';
+            
+            // Mettre à jour les statistiques
+            document.getElementById('totalCount').textContent = totalCount;
+            document.getElementById('uniquePlaces').textContent = uniquePlaces;
+            document.getElementById('mostCommon').textContent = mostCommon;
+            
+            // Afficher la liste des fréquences
+            const frequencyList = document.getElementById('frequencyList');
+            frequencyList.innerHTML = '';
+            
+            const maxFrequency = sortedPlaces.length > 0 ? sortedPlaces[0][1] : 1;
+            
+            sortedPlaces.forEach(([place, count]) => {
+                const item = document.createElement('div');
+                item.className = 'frequency-item';
+                
+                const percentage = (count / maxFrequency) * 100;
+                
+                item.innerHTML = `
+                    <div>
+                        <div class="place-name">${place}</div>
+                        <div class="frequency-bar">
+                            <div class="frequency-bar-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                    <div class="frequency-count">${count}</div>
+                `;
+                
+                frequencyList.appendChild(item);
+            });
+            
+            // Afficher les résultats avec animation
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').classList.add('fade-in');
+            
+            currentData = sortedPlaces;
+        }
+        
+        function exportResults() {
+            if (currentData.length === 0) return;
+            
+            let csv = 'Lieu de Naissance,Fréquence\n';
+            currentData.forEach(([place, count]) => {
+                csv += `"${place}",${count}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'lieux_naissance_frequence.csv');
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showError(message) {
+            hideLoading();
+            document.getElementById('error').textContent = message;
+            document.getElementById('error').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+<!------------------------mariages-->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyseur de Lieux de Mariage</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .upload-area {
+            border: 3px dashed #ff6b6b;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.05), rgba(255, 165, 0, 0.05));
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #ffa500;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 165, 0, 0.1));
+            transform: translateY(-2px);
+        }
+        
+        .upload-area.dragover {
+            border-color: #ffa500;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.15), rgba(255, 165, 0, 0.15));
+            transform: scale(1.02);
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .upload-text {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .upload-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .frequency-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .frequency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+        
+        .frequency-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .frequency-item:last-child {
+            border-bottom: none;
+        }
+        
+        .place-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .frequency-count {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .frequency-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .frequency-bar-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+        
+        .export-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💒 Analyseur de Lieux de Mariage</h1>
+        
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Cliquez ici ou glissez-déposez votre fichier Excel</div>
+            <div style="color: #999; font-size: 0.9em;">Formats supportés: .xlsx, .xls</div>
+        </div>
+        
+        <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFile(event)">
+        
+        <div id="results" class="results">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div class="stat-label">Total d'entrées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="uniquePlaces">0</div>
+                    <div class="stat-label">Lieux uniques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="mostCommon">-</div>
+                    <div class="stat-label">Lieu le plus fréquent</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>🏆 Fréquence des Lieux de Mariage</h3>
+                <div id="frequencyList" class="frequency-list"></div>
+            </div>
+            
+            <button class="export-btn" onclick="exportResults()">📊 Exporter les résultats (CSV)</button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            <div>⏳ Analyse en cours...</div>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        let currentData = [];
+        let marriagePlaceFrequency = {};
+        
+        // Gestion du drag & drop
+        const uploadArea = document.querySelector('.upload-area');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight(e) {
+            uploadArea.classList.add('dragover');
+        }
+        
+        function unhighlight(e) {
+            uploadArea.classList.remove('dragover');
+        }
+        
+        uploadArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+        
+        function handleFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                processFile(file);
+            }
+        }
+        
+        function processFile(file) {
+            if (!file.name.match(/\.(xlsx|xls)$/)) {
+                showError('Veuillez sélectionner un fichier Excel (.xlsx ou .xls)');
+                return;
+            }
+            
+            showLoading();
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Prendre la première feuille
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    
+                    // Convertir en JSON
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    
+                    if (jsonData.length < 2) {
+                        showError('Le fichier ne contient pas suffisamment de données');
+                        return;
+                    }
+                    
+                    analyzeData(jsonData);
+                    
+                } catch (error) {
+                    showError('Erreur lors de la lecture du fichier: ' + error.message);
+                }
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function analyzeData(data) {
+            // Rechercher spécifiquement la colonne "lieux mariages"
+            const headers = data[0];
+            let marriagePlaceColumnIndex = -1;
+            
+            // Chercher exactement "lieux mariages" (insensible à la casse)
+            headers.forEach((header, index) => {
+                if (header && typeof header === 'string') {
+                    const headerLower = header.toLowerCase().trim();
+                    if (headerLower === 'lieux mariages' || headerLower === 'lieu mariages' || 
+                        headerLower === 'lieu de mariage' || headerLower === 'lieux de mariage' ||
+                        headerLower === 'lieu mariage' || headerLower === 'lieux mariage') {
+                        marriagePlaceColumnIndex = index;
+                    }
+                }
+            });
+            
+            if (marriagePlaceColumnIndex === -1) {
+                showError('Colonne "lieux mariages" non trouvée. Vérifiez que votre fichier contient une colonne nommée "lieux mariages", "lieu mariages", "lieu de mariage", "lieux de mariage", "lieu mariage" ou "lieux mariage".');
+                return;
+            }
+            
+            // Analyser les données uniquement de cette colonne
+            marriagePlaceFrequency = {};
+            let totalCount = 0;
+            
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                const place = row[marriagePlaceColumnIndex];
+                
+                if (place && place.toString().trim() !== '') {
+                    const cleanPlace = place.toString().trim();
+                    marriagePlaceFrequency[cleanPlace] = (marriagePlaceFrequency[cleanPlace] || 0) + 1;
+                    totalCount++;
+                }
+            }
+            
+            displayResults(totalCount);
+        }
+        
+        function displayResults(totalCount) {
+            hideLoading();
+            
+            const uniquePlaces = Object.keys(marriagePlaceFrequency).length;
+            const sortedPlaces = Object.entries(marriagePlaceFrequency)
+                .sort(([,a], [,b]) => b - a);
+            
+            const mostCommon = sortedPlaces.length > 0 ? sortedPlaces[0][0] : '-';
+            
+            // Mettre à jour les statistiques
+            document.getElementById('totalCount').textContent = totalCount;
+            document.getElementById('uniquePlaces').textContent = uniquePlaces;
+            document.getElementById('mostCommon').textContent = mostCommon;
+            
+            // Afficher la liste des fréquences
+            const frequencyList = document.getElementById('frequencyList');
+            frequencyList.innerHTML = '';
+            
+            const maxFrequency = sortedPlaces.length > 0 ? sortedPlaces[0][1] : 1;
+            
+            sortedPlaces.forEach(([place, count]) => {
+                const item = document.createElement('div');
+                item.className = 'frequency-item';
+                
+                const percentage = (count / maxFrequency) * 100;
+                
+                item.innerHTML = `
+                    <div>
+                        <div class="place-name">${place}</div>
+                        <div class="frequency-bar">
+                            <div class="frequency-bar-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                    <div class="frequency-count">${count}</div>
+                `;
+                
+                frequencyList.appendChild(item);
+            });
+            
+            // Afficher les résultats avec animation
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').classList.add('fade-in');
+            
+            currentData = sortedPlaces;
+        }
+        
+        function exportResults() {
+            if (currentData.length === 0) return;
+            
+            let csv = 'Lieu de Mariage,Fréquence\n';
+            currentData.forEach(([place, count]) => {
+                csv += `"${place}",${count}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'lieux_mariage_frequence.csv');
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showError(message) {
+            hideLoading();
+            document.getElementById('error').textContent = message;
+            document.getElementById('error').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+lien deces:
+https://claude.ai/public/artifacts/0b0aa41a-8561-4cdc-9e37-9c878aae90f5
+
+<!-------Lieux de Décès---------------------------------->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyseur de Lieux de Décès</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .upload-area {
+            border: 3px dashed #4a5568;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, rgba(74, 85, 104, 0.05), rgba(45, 55, 72, 0.05));
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #2d3748;
+            background: linear-gradient(45deg, rgba(74, 85, 104, 0.1), rgba(45, 55, 72, 0.1));
+            transform: translateY(-2px);
+        }
+        
+        .upload-area.dragover {
+            border-color: #2d3748;
+            background: linear-gradient(45deg, rgba(74, 85, 104, 0.15), rgba(45, 55, 72, 0.15));
+            transform: scale(1.02);
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .upload-text {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .upload-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .frequency-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .frequency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+        
+        .frequency-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .frequency-item:last-child {
+            border-bottom: none;
+        }
+        
+        .place-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .frequency-count {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .frequency-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .frequency-bar-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+        
+        .export-btn {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕊️ Analyseur de Lieux de Décès</h1>
+        
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Cliquez ici ou glissez-déposez votre fichier Excel</div>
+            <div style="color: #999; font-size: 0.9em;">Formats supportés: .xlsx, .xls</div>
+        </div>
+        
+        <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFile(event)">
+        
+        <div id="results" class="results">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div class="stat-label">Total d'entrées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="uniquePlaces">0</div>
+                    <div class="stat-label">Lieux uniques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="mostCommon">-</div>
+                    <div class="stat-label">Lieu le plus fréquent</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>🏆 Fréquence des Lieux de Décès</h3>
+                <div id="frequencyList" class="frequency-list"></div>
+            </div>
+            
+            <button class="export-btn" onclick="exportResults()">📊 Exporter les résultats (CSV)</button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            <div>⏳ Analyse en cours...</div>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        let currentData = [];
+        let deathPlaceFrequency = {};
+        
+        // Gestion du drag & drop
+        const uploadArea = document.querySelector('.upload-area');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight(e) {
+            uploadArea.classList.add('dragover');
+        }
+        
+        function unhighlight(e) {
+            uploadArea.classList.remove('dragover');
+        }
+        
+        uploadArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+        
+        function handleFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                processFile(file);
+            }
+        }
+        
+        function processFile(file) {
+            if (!file.name.match(/\.(xlsx|xls)$/)) {
+                showError('Veuillez sélectionner un fichier Excel (.xlsx ou .xls)');
+                return;
+            }
+            
+            showLoading();
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Prendre la première feuille
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    
+                    // Convertir en JSON
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    
+                    if (jsonData.length < 2) {
+                        showError('Le fichier ne contient pas suffisamment de données');
+                        return;
+                    }
+                    
+                    analyzeData(jsonData);
+                    
+                } catch (error) {
+                    showError('Erreur lors de la lecture du fichier: ' + error.message);
+                }
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function analyzeData(data) {
+            // Rechercher spécifiquement la colonne "lieux de mort"
+            const headers = data[0];
+            let deathPlaceColumnIndex = -1;
+            
+            // Chercher exactement "lieux de mort" (insensible à la casse)
+            headers.forEach((header, index) => {
+                if (header && typeof header === 'string') {
+                    const headerLower = header.toLowerCase().trim();
+                    if (headerLower === 'lieux de mort' || headerLower === 'lieu de mort' || 
+                        headerLower === 'lieu de décès' || headerLower === 'lieux de décès' ||
+                        headerLower === 'lieu mort' || headerLower === 'lieux mort' ||
+                        headerLower === 'lieu décès' || headerLower === 'lieux décès') {
+                        deathPlaceColumnIndex = index;
+                    }
+                }
+            });
+            
+            if (deathPlaceColumnIndex === -1) {
+                showError('Colonne "lieux de mort" non trouvée. Vérifiez que votre fichier contient une colonne nommée "lieux de mort", "lieu de mort", "lieu de décès", "lieux de décès", "lieu mort", "lieux mort", "lieu décès" ou "lieux décès".');
+                return;
+            }
+            
+            // Analyser les données uniquement de cette colonne
+            deathPlaceFrequency = {};
+            let totalCount = 0;
+            
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                const place = row[deathPlaceColumnIndex];
+                
+                if (place && place.toString().trim() !== '') {
+                    const cleanPlace = place.toString().trim();
+                    deathPlaceFrequency[cleanPlace] = (deathPlaceFrequency[cleanPlace] || 0) + 1;
+                    totalCount++;
+                }
+            }
+            
+            displayResults(totalCount);
+        }
+        
+        function displayResults(totalCount) {
+            hideLoading();
+            
+            const uniquePlaces = Object.keys(deathPlaceFrequency).length;
+            const sortedPlaces = Object.entries(deathPlaceFrequency)
+                .sort(([,a], [,b]) => b - a);
+            
+            const mostCommon = sortedPlaces.length > 0 ? sortedPlaces[0][0] : '-';
+            
+            // Mettre à jour les statistiques
+            document.getElementById('totalCount').textContent = totalCount;
+            document.getElementById('uniquePlaces').textContent = uniquePlaces;
+            document.getElementById('mostCommon').textContent = mostCommon;
+            
+            // Afficher la liste des fréquences
+            const frequencyList = document.getElementById('frequencyList');
+            frequencyList.innerHTML = '';
+            
+            const maxFrequency = sortedPlaces.length > 0 ? sortedPlaces[0][1] : 1;
+            
+            sortedPlaces.forEach(([place, count]) => {
+                const item = document.createElement('div');
+                item.className = 'frequency-item';
+                
+                const percentage = (count / maxFrequency) * 100;
+                
+                item.innerHTML = `
+                    <div>
+                        <div class="place-name">${place}</div>
+                        <div class="frequency-bar">
+                            <div class="frequency-bar-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                    <div class="frequency-count">${count}</div>
+                `;
+                
+                frequencyList.appendChild(item);
+            });
+            
+            // Afficher les résultats avec animation
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').classList.add('fade-in');
+            
+            currentData = sortedPlaces;
+        }
+        
+        function exportResults() {
+            if (currentData.length === 0) return;
+            
+            let csv = 'Lieu de Décès,Fréquence\n';
+            currentData.forEach(([place, count]) => {
+                csv += `"${place}",${count}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'lieux_deces_frequence.csv');
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showError(message) {
+            hideLoading();
+            document.getElementById('error').textContent = message;
+            document.getElementById('error').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+ <!-- fin -->
+   <hr> 
+  <div class="center">
+    <img src="armes.png">
+  </div><hr><hr><br>
+  <!-- fin -->
+   
+   
+   
+ 

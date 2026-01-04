@@ -1,3 +1,5 @@
+**/.idea/*
+
 _hetm/*
 archives_J/*
 espace/Espace Exploration/*
@@ -36,9 +38,14 @@ tdf-saisie/*
 ve/*
 
 **/contenu/pages/*
+**/contenu/bd/*
 
 **/.buildpath
 **/.project
 **/angular/i18n/*
 
 5_fmp/Francois Marius Payan doc sonore/*
+
+**/* - Copie.*
+**/* - Copie (2).*
+**/* - Copie (3).*

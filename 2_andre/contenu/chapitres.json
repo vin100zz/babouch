@@ -2,78 +2,72 @@
   "titre_site": "André PAYAN (1759-1813) et Charlotte SILVE : l'adieu à Barles",
   "chapitres": [
     {
-      "x": 700,
-      "y": 250,
-      "image": "revol.png"
+      "x": -200,
+      "y": 80,
+      "image": "entree_2.jpg"
     },
     {
-      "titre": "André PAYAN",
-      "x": 250,
-      "y": 150,
-      "image": "andre.png"
-    },
-    {
-      "titre": "La naissance à Barles",
+      "titre": "",
       "dossier": "1_naissance",
-      "x": 100,
-      "y": 450,
-      "image": "album.jpg",
+      "x": -190,
+      "y": 80,
+      "image": "naissance.jpg",
       "chapitres": []
     },
     {
-      "titre": "Un premier mariage avec Marie Davin à Barles",
+      "titre": "",
       "dossier": "2_mariage_1",
-      "x": 300,
-      "y": 450,
-      "image": "album.jpg"
+      "x": 50,
+      "y": 80,
+      "image": "m_davin.jpg"
     },
     {
-      "titre": "Un second mariage avec Charlotte Silve à Seyne",
+      "titre": "",
       "dossier": "3_mariage_2",
-      "x": 500,
-      "y": 450,
-      "image": "album.jpg"
+      "x": -190,
+      "y": 300,
+      "image": "m_silve.jpg"
     },
     {
-      "titre": "Les enfants de ce second mariage",
+      "titre": "",
       "dossier": "4_enfants",
-      "x": 700,
-      "y": 450,
-      "image": "album.jpg"
+      "x": 70,
+      "y": 300,
+      "image": "8_enfants.jpg"
     },
     {
-      "titre": "L'arrivée à Marseille",
+      "titre": "",
       "dossier": "4a_depart",
-      "x": 900,
-      "y": 450,
-      "image": "album.jpg"
+      "x": -160,
+      "y": 570,
+      "image": "arrivee.jpg"
     },
     {
-      "titre": "Les petits enfants",
+      "titre": "",
       "dossier": "5_pts_enfants",
-      "x": 1100,
-      "y": 450,
-      "image": "album.jpg"
+      "x": 1324,
+      "y": 282,
+      "image": "pts_enfants.jpg"
     },
     {
-      "titre": "La mort à Marseille",
+      "titre": "",
       "dossier": "6_mort",
-      "x": 1300,
-      "y": 450,
-      "image": "album.jpg"
+      "x": 90,
+      "y": 570,
+      "image": "mort.jpg"
     },
     {
-      "titre": "Soldat de Napoléon",
+      "titre": "",
       "dossier": "7_soldat",
-      "x": 400,
-      "y": 600,
-      "image": "album.jpg"
+      "x": -10,
+      "y": 800,
+      "image": "napo.jpg"
     },
     {
       "titre": "Seyne",
       "dossier": "seyne",
-      "x": 600,
-      "y": 800,
+      "x": 1500,
+      "y": 100,
       "image": "seyne.jpg",
       "chapitres": [
         {
@@ -87,18 +81,39 @@
       ]
     },
     {
-      "titre": "Des Payan en Algérie",
+      "titre": "",
       "dossier": "8_algerie",
-      "x": 800,
-      "y": 600,
-      "image": "album.jpg"
+      "x": 1460,
+      "y": 500,
+      "image": "algerie.jpg",
+      "chapitres": [
+        {
+          "titre": "Jean-Baptiste Julien Payan : Seyne, Marseille, Bône, La Calle",
+          "dossier": "1_jb_payan"
+        },
+        {
+          "titre": "Les descendants de Jean-Baptiste Julien Payan",
+          "dossier": "2_descendants"
+        },
+        {
+          "titre": "Les débuts de la conquête de l'Algérie",
+          "dossier": "3_algerie"
+        }
+      ]
     },
     {
       "titre": "Barles",
       "dossier": "barles",
-      "x": 200,
-      "y": 800,
+      "x": 1330,
+      "y": 100,
       "image": "barles.jpg"
+    },
+    {
+      "titre": "La Calle",
+      "dossier": "9_la_calle",
+      "x": 1400,
+      "y": 750,
+      "image": "lacalle1.jpg"
     }
   ]
 }

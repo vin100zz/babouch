@@ -1,0 +1,13 @@
+<header ng-click="goHome()">{{chapitre.titre}}</header>
+
+<div id="chapitre">
+
+  <ul id="menu">
+    <li ng-repeat="sous_chapitre in chapitre.sous_chapitres">
+      <a ng-href="#/chapitre/{{chapitreId}}/{{$index}}" ng-class="{selected: isSelected($index)}">{{sous_chapitre.titre_sous_chapitre}}</a>
+    </li>
+  </ul>
+
+  <div id="content" ng-bind-html="htmlContent"></div>
+  
+</div>

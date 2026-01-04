@@ -277,7 +277,11 @@
           "dossier": "1_donation"
         },
         {
-          "titre": "Le détail de ses biens",
+          "titre": "La démarche pour accéder au registre des hypohtèques",
+          "dossier": "1a_demarche"
+        },
+        {
+          "titre": "La succession : le détail de ses biens",
           "dossier": "2_biens"
         },
         {
