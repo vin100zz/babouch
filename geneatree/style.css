@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f3f3f3;
+  background-size: 100% 4px;
+  font-family: Arial, sans-serif;
+}
+
+.canvas-container {
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  margin: 5px;
+}
+
+.canvas-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#filters {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 80vh;
+  z-index: 1000;
+  min-width: 250px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+#filters-header {
+  background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+  padding: 8px 12px;
+  border-bottom: 1px solid #1a1a1a;
+  border-radius: 5px 5px 0 0;
+  cursor: move;
+  user-select: none;
+  font-weight: bold;
+  color: #f0f0f0;
+  flex-shrink: 0;
+}
+
+#filters-header:hover {
+  background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+}
+
+#size-control {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+.accordion {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+#size-control label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#size-value {
+  color: #666;
+  font-weight: normal;
+}
+
+#canvas-size-slider {
+  width: 100%;
+  cursor: pointer;
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordion-section {
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.accordion-header:hover {
+  background-color: #e0e0e0;
+}
+
+.accordion-header::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  transition: transform 0.3s;
+}
+
+.accordion-header.active::after {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: white;
+}
+
+.accordion-content.active {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#ancestors-count {
+    padding: 10px;
+    line-height: 1.5;
+}
+
+#filters ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#filters li {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#filters li:hover {
+  background-color: lightblue;
+}
+
+#labels {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#tooltip {
+  position: absolute;
+  text-align: center;
+  background-color: lightgrey;
+  padding: 10px;
+  color: black;
+  font: 12px Arial;
+  border: 1px solid black;
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 2000;
+}
+

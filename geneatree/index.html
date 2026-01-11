@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>GeneaTree</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="filters">
+        <div id="filters-header" class="drag-handle">
+            <span>Mes ancêtres</span>
+        </div>
+        <div id="size-control">
+            <label>Taille :</label>
+            <input type="range" id="canvas-size-slider" min="800" max="2400" step="200" value="1200">
+        </div>
+        <div class="accordion">
+            <div class="accordion-section">
+                <div class="accordion-header">Défaut</div>
+                <div class="accordion-content">
+                    <div id="ancestors-count"></div>
+                </div>
+            </div>
+            <div class="accordion-section">
+                <div class="accordion-header">Régions</div>
+                <div class="accordion-content">
+                    <ul id="regionFilters"></ul>
+                </div>
+            </div>
+            <div class="accordion-section">
+                <div class="accordion-header">Départements</div>
+                <div class="accordion-content">
+                    <ul id="deptFilters"></ul>
+                </div>
+            </div>
+            <div class="accordion-section">
+                <div class="accordion-header">Années de naissance</div>
+                <div class="accordion-content">
+                    <ul id="anneeFilters"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="canvas-container">
+    <canvas id="canvas-nodes" class="canvas-layer" width="1000" height="1000"></canvas>
+    <canvas id="canvas-highlight" class="canvas-layer" width="1000" height="1000"></canvas>
+      <div id="labels"></div>
+  </div>
+  <script src="renumeroteLoader.js"></script>
+  <script src="tree.js"></script>
+</body>
+</html>
