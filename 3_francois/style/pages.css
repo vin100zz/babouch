@@ -128,9 +128,10 @@ justify-content:space-around;
  }
  
  .box30 {
-	
-	 size:30%;
-	 align-items: space-around;
+	 text-align: center;
+	 width:30%;
+	 padding-top:10px;
+ }
  }
  
 .box50 {

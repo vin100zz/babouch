@@ -31,10 +31,7 @@ h3 {
   text-align:left;
 }
 
-h4 {
-  font-size: 10pt;
 
-}
 
 _h4 {
   font-size: 16pt;
@@ -77,17 +74,15 @@ img {
   max-width: 100%;
 }
 
-
-
-
 p {
   text-align: justify;
   text-indent: 40px;
    background-color:#DFF3F7;
    padding-right: 20px;
    padding-left: 20px;
- padding-top:30px;
- padding-bottom :30px;
+ padding-top:10px;
+ padding-bottom :10px;
+ vertical-align:middle;
 }
 
 .petit {
@@ -100,6 +95,10 @@ p {
    background-color:white;
    padding-right: 20px;
    padding-left: 20px;
+}
+
+.sources {
+   text-indent: 0;
 }
 
 .gras {
@@ -118,7 +117,8 @@ p#bleu {
 /*-------------------------*/
 .conteneur1  { 
  display: flex; 
-justify-content:space-around; 
+justify-content:space-around;
+align-items: center; /* alignement vertical */
  }
  
  .conteneur  { 
@@ -148,6 +148,7 @@ justify-content:space-around;
 }
 
 
+.ombre2 { box-shadow: 0 4px 12px rgba(10,0,0,0.30);}
  
 /*-------------------------*/ 
  .border { border-width: 3px; border-color: blue; border-style: solid;

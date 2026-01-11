@@ -655,6 +655,10 @@
             {
               "titre": "Shenzhou",
               "dossier": "shenzhou"
+            },
+            {
+              "titre": "Mengzhou (2025)",
+              "dossier": "mengzhou"
             }
           ]
         },
@@ -670,6 +674,10 @@
               "titre": "Gaganyaan",
               "dossier": "gaga",
               "chapitres": []
+            },
+            {
+              "titre": "Spadex",
+              "dossier": "spadex"
             }
           ]
         }
@@ -706,7 +714,17 @@
         },
         {
           "titre": "Japon",
-          "dossier": "htv"
+          "dossier": "japon",
+          "chapitres": [
+            {
+              "titre": "HTV",
+              "dossier": "htv"
+            },
+            {
+              "titre": "HTV-X",
+              "dossier": "htv_x"
+            }
+          ]
         },
         {
           "titre": "Europe",
@@ -725,6 +743,10 @@
       "y": 550,
       "image": "bleu.png",
       "chapitres": [
+        {
+          "titre": "Panorama",
+          "dossier": "panorama"
+        },
         {
           "titre": "Etats-Unis",
           "dossier": "eu",
@@ -777,16 +799,44 @@
               "dossier": "3_origines"
             },
             {
-              "titre": "Avril 1981 : le 1er vol",
+              "titre": "Avril 1981 : 1er vol",
               "dossier": "4_1er_vol"
             },
             {
-              "titre": "Novembre 1981 : le 2e vol",
+              "titre": "Novembre 1981 : 2e vol",
               "dossier": "5_2e_vol"
             },
             {
-              "titre": "Janvier 1986 : l'accident de Challenger",
+              "titre": "1982",
+              "dossier": "6_1982"
+            },
+            {
+              "titre": "1983",
+              "dossier": "1983"
+            },
+            {
+              "titre": "1983  :  Spacelab",
+              "dossier": "1983_spacelab"
+            },
+            {
+              "titre": "1984 : MMU",
+              "dossier": "1984_mmu"
+            },
+            {
+              "titre": "1984",
+              "dossier": "1984"
+            },
+            {
+              "titre": "1985",
+              "dossier": "1985"
+            },
+            {
+              "titre": "1986 : l'accident de Challenger",
               "dossier": "1986"
+            },
+            {
+              "titre": "Titre",
+              "dossier": "dossier"
             },
             {
               "titre": "Janvier 2003 : l'accident de Columbia",
@@ -999,6 +1049,10 @@
                   "dossier": "2000-2008"
                 },
                 {
+                  "titre": "2011",
+                  "dossier": "2011"
+                },
+                {
                   "titre": "2020",
                   "dossier": "2020"
                 },
@@ -1011,7 +1065,7 @@
                   "dossier": "2022"
                 },
                 {
-                  "titre": "2024",
+                  "titre": "2024-2025",
                   "dossier": "2024"
                 }
               ]
@@ -1357,7 +1411,7 @@
               "chapitres": []
             },
             {
-              "titre": "Nova-C /Odysseus (E-U  2024)",
+              "titre": "Nova-C  (E-U)/Odysseus (2024)/Athena (2025)",
               "dossier": "3_nova"
             },
             {
@@ -1533,8 +1587,12 @@
           "dossier": "chine",
           "chapitres": [
             {
-              "titre": "Module lunaire",
-              "dossier": "module"
+              "titre": "VNG",
+              "dossier": "vng"
+            },
+            {
+              "titre": "Lanyue",
+              "dossier": "lanyue"
             }
           ]
         }
@@ -1839,6 +1897,16 @@
               "dossier": "galileo"
             }
           ]
+        },
+        {
+          "titre": "Japon",
+          "dossier": "japon",
+          "chapitres": [
+            {
+              "titre": "Akatsuki",
+              "dossier": "akatsuki"
+            }
+          ]
         }
       ]
     },
@@ -1911,6 +1979,16 @@
             {
               "titre": "Voyager",
               "dossier": "voyager"
+            }
+          ]
+        },
+        {
+          "titre": "ESA",
+          "dossier": "esa",
+          "chapitres": [
+            {
+              "titre": "Huygens-Cassini",
+              "dossier": "huygens"
             }
           ]
         }

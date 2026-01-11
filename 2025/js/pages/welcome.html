@@ -1,0 +1,22 @@
+<div class="home">
+
+  <div class="home-content">
+
+    <div ng-repeat="chapitre in chapitres()" class="thumbnail {{chapitre.style}}" style="top: {{chapitre.y}}px; left: {{chapitre.x}}px;">
+      <a ng-href="#/chapitre/{{$index}}/0">
+        <img ng-src="contenu/pages/{{chapitre.image}}" />
+        <span>{{chapitre.titre}}</span>
+      </a>
+    </div>
+
+    <div class="title">
+      <span class="main"></span>
+      <span class="date"></span>
+      <a href="roadmap"></a>
+    </div>
+
+
+  
+  </div>
+
+</div>

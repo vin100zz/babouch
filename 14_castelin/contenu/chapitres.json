@@ -1,0 +1,104 @@
+{
+  "titre_site": "Ange Castelin (1848-1916) & Céline Nogier (1853-1908)",
+  "chapitres": [
+    {
+      "titre": "",
+      "dossier": "1_portail",
+      "x": 100,
+      "y": 50,
+      "image": "nogier.png",
+      "chapitres": []
+    },
+    {
+      "titre": "Naissance de Céline NOGIER...",
+      "dossier": "1_naissance_celine",
+      "x": 200,
+      "y": 150,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "... à Mayres",
+      "dossier": "1a_mayres",
+      "x": 200,
+      "y": 300,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "Naissance de Ange CASTELIN...",
+      "dossier": "2_naissance_ange",
+      "x": 150,
+      "y": 575,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "...Rue du Vieux-Palais",
+      "dossier": "2a_palais",
+      "x": 500,
+      "y": 700,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "Un premier mariage pour Céline",
+      "dossier": "3_mariage1",
+      "x": 640,
+      "y": 250,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "La naissance d'un enfant",
+      "dossier": "3a_enfant1",
+      "x": 900,
+      "y": 280,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "La mort de son mari et de son enfant",
+      "dossier": "3b_mort",
+      "x": 1060,
+      "y": 180,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "D'abord un enfant... ",
+      "dossier": "3c_enfant2",
+      "x": 820,
+      "y": 500,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "...puis le mariage...",
+      "dossier": "4_mariage",
+      "x": 800,
+      "y": 590,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "Quatre autres enfants",
+      "dossier": "5_enfants",
+      "x": 780,
+      "y": 670,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "Le décès de Céline",
+      "dossier": "6_deces",
+      "x": 1150,
+      "y": 400,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "Le décès de Ange",
+      "dossier": "6_deces",
+      "x": 1200,
+      "y": 500,
+      "image": "album.jpg"
+    },
+    {
+      "titre": "Dates, lieux, récits",
+      "dossier": "7_resume",
+      "x": 1300,
+      "y": 800,
+      "image": "album.jpg"
+    }
+  ]
+}

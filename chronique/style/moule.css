@@ -1,0 +1,73 @@
+.home-title:before,
+header:before {
+  background-image: url(../../style/domiciles.png);
+  background-position-y: bottom;
+}
+
+.home .thumbnail:not(.static-image) {
+    box-shadow: none;
+	width: 875px;
+	height: 50px;
+	margin-top: -5px;
+}
+.home a img {
+  display: none;
+}
+
+.home .thumbnail span {
+	top: 0;
+	padding: 10px;
+	text-align: left;
+	font-size: 12pt;
+	background: rgba(240,240,240,0.6);
+	color: #333;
+	border-left: 10px solid red;
+	z-index: 2;
+	line-height: 30px;
+	letter-spacing: 1px;
+}
+.home .thumbnail span:first-letter {
+	font-weight: bold;
+	font-size: 110%;
+}
+.static-image {
+	background: rgba(240,240,240,0.6);
+}
+.home .thumbnail.static-image img {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.home .thumbnail span:hover {
+	color: #fff;
+}
+.home .thumbnail:nth-child(4n) span {
+	border-color: #3498db;
+}
+.home .thumbnail:nth-child(4n+1) span {
+	border-color: #ffd071;
+}
+.home .thumbnail:nth-child(4n+2) span {
+	border-color: #f0776c;
+}
+.home .thumbnail:nth-child(4n+3) span {
+	border-color: #1abc9c;
+}
+
+.home .thumbnail span:after { 
+  content: "";
+  height: 100%; 
+  left: 0; 
+  top: 0; 
+  width: 0px;  
+  position: absolute; 
+  transition: all 0.5s ease 0s; 
+  -webkit-transition: all 0.5s ease 0s; 
+  z-index: -1;
+}
+
+.home .thumbnail span:hover:after{ width: 100%; }
+.home .thumbnail:nth-child(4n) span:after{ background: #3498db; }
+.home .thumbnail:nth-child(4n+1) span:after{ background: #ffd071; }
+.home .thumbnail:nth-child(4n+2) span:after{ background: #f0776c; }
+.home .thumbnail:nth-child(4n+3) span:after{ background: #1abc9c; }
+

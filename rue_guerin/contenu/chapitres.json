@@ -1,0 +1,265 @@
+{
+  "titre_site": "Rue Guérin",
+  "chapitres": [
+    {
+      "x": 1,
+      "y": 200,
+      "image": "01a.jpg"
+    },
+    {
+      "titre": "Préface",
+      "dossier": "0_preface",
+      "x": 563,
+      "y": 200
+    },
+    {
+      "titre": "1_ Avant 1914",
+      "dossier": "1_",
+      "x": 563,
+      "y": 250,
+      "chapitres": [
+        {
+          "titre": "«On vivait très bien même»",
+          "dossier": "1_0_texte"
+        },
+        {
+          "titre": "Céline  [Payan]",
+          "dossier": "1_1_celine"
+        },
+        {
+          "titre": "Céline Nogier",
+          "dossier": "1_2_nogier"
+        },
+        {
+          "titre": "Trois filles Castelin",
+          "dossier": "1_3_castelin"
+        },
+        {
+          "titre": "Les pointes toujours blanches",
+          "dossier": "1_4_pointes"
+        },
+        {
+          "titre": "Une chambre qui prenait le jour",
+          "dossier": "1_5_chambre"
+        },
+        {
+          "titre": "A la fin de la guerre",
+          "dossier": "1_6_fin"
+        },
+        {
+          "titre": "Et en bas il y avait l'écurie",
+          "dossier": "1_7_ecurie"
+        },
+        {
+          "titre": "L'oncle Payan, l'oncle François...",
+          "dossier": "1_8_oncle"
+        },
+        {
+          "titre": "Le trou des Masques",
+          "dossier": "1_9_masques"
+        },
+        {
+          "titre": "Le Cours Belsunce",
+          "dossier": "1_10_belsunce"
+        },
+        {
+          "titre": "Le champoreau",
+          "dossier": "1_11_champoreau"
+        },
+        {
+          "titre": "Le fada de Marseille",
+          "dossier": "1_12_fada"
+        },
+        {
+          "titre": "Les tautènes",
+          "dossier": "1_13_tautenes"
+        },
+        {
+          "titre": "Chaffoin, Gay...",
+          "dossier": "1_14_chaffoin"
+        }
+      ]
+    },
+    {
+      "titre": "2_ La guerre de 14",
+      "dossier": "2_",
+      "x": 563,
+      "y": 300,
+      "chapitres": [
+        {
+          "titre": "«L'oncle Auguste, ça été le premier à mourir»",
+          "dossier": "2_0_texte",
+          "chapitres": []
+        },
+        {
+          "titre": "L'oncle Auguste",
+          "dossier": "2_1_auguste"
+        },
+        {
+          "titre": "Eloïse Fonta",
+          "dossier": "2_2_fonta"
+        },
+        {
+          "titre": "Ce cabanon",
+          "dossier": "2_3_cabanon"
+        },
+        {
+          "titre": "Des nervis",
+          "dossier": "2_4_nervis"
+        },
+        {
+          "titre": "La grippe espagnole",
+          "dossier": "2_5_grippe"
+        },
+        {
+          "titre": "Schurrer",
+          "dossier": "2_6_schurrer"
+        },
+        {
+          "titre": "Nardini",
+          "dossier": "2_7_nardini"
+        },
+        {
+          "titre": "A la fin de la guerre",
+          "dossier": "2_8_fin"
+        }
+      ]
+    },
+    {
+      "titre": "3_Les années d'après-guerre de Mamie",
+      "dossier": "3_",
+      "x": 563,
+      "y": 350,
+      "chapitres": [
+        {
+          "titre": "«Ça a été terrible, terrible, terrible»",
+          "dossier": "3_0_texte"
+        },
+        {
+          "titre": "Il n'a eu que des dettes",
+          "dossier": "3_1_dettes"
+        },
+        {
+          "titre": "Tante Marie allait à l'abattoir",
+          "dossier": "3_2_marie"
+        },
+        {
+          "titre": "Roland habitant à côté",
+          "dossier": "3_3_roland"
+        },
+        {
+          "titre": "Coque",
+          "dossier": "3_4_coque"
+        },
+        {
+          "titre": "Un gant en crin",
+          "dossier": "3_5_gant"
+        },
+        {
+          "titre": "Elle est allée au cimetière",
+          "dossier": "3_6_cimetiere"
+        }
+      ]
+    },
+    {
+      "titre": "4_Papy des années Vingt et Trente",
+      "dossier": "4_",
+      "x": 563,
+      "y": 400,
+      "chapitres": [
+        {
+          "titre": "«Il avait quatorze ans»",
+          "dossier": "4_0_texte"
+        },
+        {
+          "titre": "Les Raffineries",
+          "dossier": "4_1_raffineries"
+        },
+        {
+          "titre": "J'ai pris des cours",
+          "dossier": "4_2_cours"
+        }
+      ]
+    },
+    {
+      "titre": "5_Pendant la guerre",
+      "dossier": "5_",
+      "x": 563,
+      "y": 450,
+      "chapitres": [
+        {
+          "titre": "«J'avais trouvé ma mère fatiguée, fatiguée...»",
+          "dossier": "5_0_texte"
+        },
+        {
+          "titre": "La petite Renée",
+          "dossier": "5_1_renee"
+        },
+        {
+          "titre": "La Midinette",
+          "dossier": "5_2_midinette"
+        },
+        {
+          "titre": "Rue Honnorat",
+          "dossier": "5_3_honnorat"
+        },
+        {
+          "titre": "Yvonne est partie",
+          "dossier": "5_4_yvonne"
+        }
+      ]
+    },
+    {
+      "titre": "6_Les bombardements : «Ça alors, je la verrai toujours...»",
+      "dossier": "6_",
+      "x": 563,
+      "y": 500
+    },
+    {
+      "titre": "7_ Été 1944 : La Libération",
+      "dossier": "7_",
+      "x": 563,
+      "y": 550
+    },
+    {
+      "titre": "Annexes",
+      "dossier": "8_annexes",
+      "x": 563,
+      "y": 600,
+      "chapitres": [
+        {
+          "titre": "Des Payan",
+          "dossier": "8_payan"
+        },
+        {
+          "titre": "Des Castelin et des Marbec",
+          "dossier": "8_2_castelin"
+        },
+        {
+          "titre": "Des Carlé et des Lemesle",
+          "dossier": "8_3_carle"
+        },
+        {
+          "titre": "Des personnes plus ou moins proches",
+          "dossier": "8_4_personnes"
+        },
+        {
+          "titre": "Des jours",
+          "dossier": "8_5_jours"
+        },
+        {
+          "titre": "Des morts",
+          "dossier": "8_6_morts"
+        },
+        {
+          "titre": "Des lieux",
+          "dossier": "8_7_lieux"
+        },
+        {
+          "titre": "Des mots",
+          "dossier": "8_8_mots"
+        }
+      ]
+    }
+  ]
+}

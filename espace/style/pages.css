@@ -37,18 +37,16 @@ _padding-right: 40px;
 background-color:white; 
 }
 
-p { 
-    text-indent:50px;
-	font-style: normal;
-	font-size: 18px;
 
-	background-color:white;
-	border:2px solid gray; 
-	padding-left: 40px;  
-    padding-right: 40px; 
-	text-align:left;
+p {
+  text-align: justify;
+  text-indent: 40px;
+   background-color:#DFF3F7;
+   padding-right: 20px;
+   padding-left: 20px;
+ padding-top:10px;
+ padding-bottom :10px;
 }
-
 
 td, th{  
 vertical-align:middle;
@@ -136,12 +134,12 @@ font-weight: bold;
  background-color:#8FFFFF;    }
  
  .cadrebleu { 
- border:2px solid blue; 
+ border: 10px solid green; 
  padding-right: 20px; 
  padding-left: 20px; 
  padding-top:30px; 
  padding-bottom :30px;
-background: #A9E2F3;
+
  }  
  
   .cadreblanc { 
@@ -168,7 +166,7 @@ text-align:center;
 	
 }
 
-border:3px navy groove;
+
  
  .centrer { 
  text-align:center; }   
@@ -420,74 +418,10 @@ img1 {
  
  
 
- 
- .clear {
-clear:both;	 }
- 
- 
- 
- 
- 
- /* diapo2 */
 
-.diaporama2 {
-	margin: 0 auto;
-	width: 600px;
-	height:450px;
-	border: 3px solid #333;
-	background-image:url("../contenu/pages/4_rois/4_galeries/100.jpg");
-	webkit-animation-name: diapo2;
-    webkit-animation-duration: 30s;
-    webkit-animation-timing-function: linear;
-    webkit-animation-iteration-count: infinite;
-    webkit-animation-direction: normal;
+ 
+ 
 
-    moz-animation-name: diapo2;
-    moz-animation-duration: 30s;
-    moz-animation-timing-function: linear;
-    moz-animation-iteration-count: infinite;
-    moz-animation-direction: normal;
-
-    animation-name: diapo2;
-    animation-duration: 30s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-}
-
-@-webkit-keyframes diapo2 {
-	0% {background-position:0px 0px;}
-	2% {background-position:0px 0px;}
-    31% {background-position:-960px 0px;}
-    35% {background-position:-960px 0px;}
-	64% {background-position:-1920px 0px;}
-    68% {background-position:-1920px 0px;}
-	98% {background-position:-2880px 0px;}
-	100% {background-position:-2880px 0px;}
-}	
-	
-@-moz-keyframes diapo2 {
-	0% {background-position:0px 0px;}
-	2% {background-position:0px 0px;}
-    31% {background-position:-960px 0px;}
-    35% {background-position:-960px 0px;}
-	64% {background-position:-1920px 0px;}
-    68% {background-position:-1920px 0px;}
-	98% {background-position:-2880px 0px;}
-	100% {background-position:-2880px 0px;}
-}
-
-@keyframes diapo2 {
-	0% {background-position:0px 0px;}
-	2% {background-position:0px 0px;}
-    31% {background-position:-960px 0px;}
-    35% {background-position:-960px 0px;}
-	64% {background-position:-1920px 0px;}
-    68% {background-position:-1920px 0px;}
-	98% {background-position:-2880px 0px;}
-	100% {background-position:-2880px 0px;}
-	
-}
 
 
 

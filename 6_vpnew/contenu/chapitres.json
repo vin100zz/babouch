@@ -4,13 +4,9 @@
     {
       "x": 10,
       "y": 10,
-      "image": "toto.jpg"
+      "image": "sommaire.png"
     },
-    {
-      "x": 550,
-      "y": 360,
-      "image": "vp.jpg"
-    },
+  
     {
       "x": 200,
       "y": 100,
@@ -19,16 +15,16 @@
     {
       "titre": "Dans notre arbre",
       "dossier": "arbre",
-      "x": 210,
-      "y": 300,
+      "x": 50,
+      "y": 80,
       "image": "arbre.png"
     },
     {
       "titre": "Avant 1914",
       "dossier": "1_jeunesse",
-      "x": 210,
-      "y": 450,
-      "image": "jeunesse.jpg",
+      "x": 120,
+      "y": 600,
+      "image": "ecurie.png",
       "chapitres": [
         {
           "titre": "Sa naissance",
@@ -43,9 +39,9 @@
     {
       "titre": "Céline (1906) et le mariage (1907)",
       "dossier": "2_celine",
-      "x": 380,
-      "y": 570,
-      "image": "celine.jpg",
+      "x": 610,
+      "y": 700,
+      "image": "celine.png",
       "chapitres": [
         {
           "titre": "Née avant le mariage",
@@ -62,11 +58,11 @@
       ]
     },
     {
-      "titre": "Louise",
+      "titre": "Louise Castelin",
       "dossier": "3_louise",
-      "x": 390,
-      "y": 300,
-      "image": "louise.jpg",
+      "x": 500,
+      "y": 450,
+      "image": "louise.png",
       "chapitres": [
         {
           "titre": "Née Castelin",
@@ -81,8 +77,8 @@
     {
       "titre": "1907-1909 : Le service militaire",
       "dossier": "4_service",
-      "x": 190,
-      "y": 600,
+      "x": 290,
+      "y": 850,
       "image": "service.png",
       "chapitres": [
         {
@@ -95,19 +91,13 @@
         }
       ]
     },
-    {
-      "titre": "Marie et Jeanne",
-      "dossier": "5_mariejeanne",
-      "x": 950,
-      "y": 295,
-      "image": "marie.jpg"
-    },
+
     {
       "titre": "L'après-guerre",
       "dossier": "6_apguerre",
-      "x": 800,
-      "y": 520,
-      "image": "apres.jpg",
+      "x": 1240,
+      "y": 215,
+      "image": "apres.png",
       "chapitres": [
         {
           "titre": "La reprise des activités de son père",
@@ -126,15 +116,15 @@
     {
       "titre": "1944 : La mort de Louise",
       "dossier": "7_mortlouise",
-      "x": 920,
+      "x": 1220,
       "y": 750,
-      "image": "mortlouise.jpg"
+      "image": "mortlouise.png"
     },
     {
       "titre": "1944 : le 27 mai",
       "dossier": "8_27mai",
-      "x": 1100,
-      "y": 600,
+      "x": 1460,
+      "y": 700,
       "image": "decombres.jpg",
       "chapitres": [
         {
@@ -190,15 +180,15 @@
     {
       "titre": "La guerre de Vincent ",
       "dossier": "9_guerre",
-      "x": 800,
-      "y": 320,
+      "x": 840,
+      "y": 245,
       "image": "14.jpg"
     },
     {
       "titre": "Ancien combattant ",
       "dossier": "12_ancien",
-      "x": 560,
-      "y": 720,
+      "x": 920,
+      "y":770,
       "image": "ancien.jpg",
       "chapitres": [
         {
@@ -223,12 +213,19 @@
         }
       ]
     },
+	{
+      "titre": "Marie et Jeanne",
+      "dossier": "5_mariejeanne",
+      "x": 1390,
+      "y": 195,
+      "image": "marie.png"
+    },
     {
       "titre": "1931 : la mort de Nanou",
       "dossier": "10_nanou",
-      "x": 900,
-      "y": 525,
-      "image": "nanou.jpg",
+      "x": 1600,
+      "y": 195,
+      "image": "nanou.png",
       "chapitres": [
         {
           "titre": "La maladie",
@@ -243,9 +240,9 @@
     {
       "titre": "1937 : Jean, son petit-fils ",
       "dossier": "11_jean",
-      "x": 1150,
-      "y": 360,
-      "image": "jean.jpg",
+      "x": 1300,
+      "y": 460,
+      "image": "jean.png",
       "chapitres": [
         {
           "titre": "Sa naissance",

@@ -1,0 +1,599 @@
+{
+  "chapitres": [
+  
+    	{
+      "titre": "",
+       "image": "background.jpg",
+      "x": -100,
+      "y": 100,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": ""
+        }
+
+      ]
+    },
+
+	{
+      "titre": "",
+       "image": "titre.png",
+      "x": 500,
+      "y": 10,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": ""
+        }
+
+      ]
+    },
+
+	 
+	{
+      "titre": "Marseille",
+       "image": "100.png",
+      "x": 1000,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "1er-3 mars",
+          "page_html": "1_marseille/marseille.html"
+        }
+
+      ]
+    },
+	 
+ {
+      "titre": "Valbonne",
+      "image": "100.png",
+      "x":700,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "D'abord...Festival de Pâques",
+          "page_html": "2_valbonne/1_paques/paques.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "La maison",
+          "page_html": "2_valbonne/4_maison/maison.html"
+        },
+		
+		
+		{
+          "titre_sous_chapitre": "L'église de Valbonne",
+          "page_html": "2_valbonne/2_eglise/eglise.html"
+        },
+
+        {
+          "titre_sous_chapitre": "Mougins",
+          "page_html": "2_valbonne/3_mougins/mougins.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Antibes",
+          "page_html": "2_valbonne/5_antibes/antibes.html"
+        }
+
+      ]
+    },
+	
+	{
+      "titre": "Dans le Comtat Venaissin",
+      "image": "100.png",
+      "x":400,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Cavaillon",
+          "page_html": "3_vallee/1_cavaillon/cavaillon.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "L'Isle sur la Sorgue",
+          "page_html": "3_vallee/2_isle/isle.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Carpentras",
+          "page_html": "3_vallee/3_carpentras/carpentras.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Étape à Aubenas",
+          "page_html": "3_vallee/4_aubenas/aubenas.html"
+        }
+
+      ]
+    },
+	
+	{
+      "titre": "Sur la terre des ancêtres",
+      "image": "100.png",
+      "x":  100,
+      "y": 130,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Le Brignon",
+          "page_html": "4_ancetres/1_brignon/brignon.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Le Bouchet-St-Nicolas",
+          "page_html": "4_ancetres/2_bouchet/bouchet.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Alleyras",
+          "page_html": "4_ancetres/3_alleyras/alleyras.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "...et retour",
+          "page_html": "4_ancetres/4_retour/retour.html"
+        }
+		
+		
+
+      ]
+    } ,
+	
+		{
+      "titre": "Andorre... et plus",
+      "image": "100.png",
+      "x":  100,
+      "y": 290,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "De la montagne à la mer",
+          "page_html": "5_andorre/1_andorre/andorre.html"
+        },
+		
+			
+		 {
+          "titre_sous_chapitre": "Perpignan",
+          "page_html": "5_andorre/3_perpignan/perpignan.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Le palais des rois de Majorque",
+          "page_html": "5_andorre/3a_palais/palais.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Elne",
+          "page_html": "5_andorre/4_elne/elne.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "St-Genis",
+          "page_html": "5_andorre/5_stgenis/stgenis.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Port et plages",
+          "page_html": "5_andorre/6_ports/ports.html"
+        },
+		
+		
+		{
+          "titre_sous_chapitre": "Salses le Château",
+          "page_html": "5_andorre/9_salses/salses.html"
+        }
+
+      ]
+    },
+	
+	{
+      "titre": "Bangalore",
+       "image": "100.png",
+      "x": 400,
+      "y": 290,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "19-29 avril",
+          "page_html": "6_bangalore/bangalore.html"
+        }
+
+      ]
+    },
+	
+	{
+      "titre": "V & M à Montauban",
+       "image": "100.png",
+      "x": 600,
+      "y": 290,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "25 mai-3 juin",
+          "page_html": "7_v_et_m/v_et_m.html"
+        }
+
+      ]
+    },
+	
+	
+		{
+      "titre": "Cardaillac",
+       "image": "100.png",
+      "x": 900,
+      "y": 290,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Figeac",
+          "page_html": "8_cardaillac/1_figeac/figeac.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Cardaillac",
+          "page_html": "8_cardaillac/2_cardaillac/cardaillac.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Et aussi...",
+          "page_html": "8_cardaillac/3_aussi/aussi.html"
+        }
+
+      ]
+    },	{
+      "titre": "Réunion de Carlé",
+       "image": "100.png",
+      "x": 900,
+      "y": 450,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Marseille",
+          "page_html": "9_marseille/1_marseille/marseille.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Six-Fours",
+          "page_html": "9_marseille/2_six/six.html"
+        }
+		
+		
+
+      ]
+    },
+	
+	
+	{
+      "titre": "Vivarais... ",
+       "image": "100.png",
+      "x": 500,
+      "y": 450,
+      "sous_chapitres": [
+        {
+          "titre_sous_chapitre": "Situation",
+          "page_html": "10_vivarais/1_situation/situation.html"
+        },
+    
+		
+		{
+          "titre_sous_chapitre": "Albon d'Ardèche",
+          "page_html": "10_vivarais/2_albon/albon.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "La Roussière",
+          "page_html": "10_vivarais/3_roussiere/roussiere.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Mayres",
+          "page_html": "10_vivarais/4_mayres/mayres.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Mazan",
+          "page_html": "10_vivarais/5_mazan/mazan.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "L'Auberge Rouge",
+          "page_html": "10_vivarais/6_auberge/auberge.html"
+        }
+		
+      ]
+    },
+	
+	{
+      "titre": "... et Gévaudan",
+       "image": "100.png",
+      "x": 650,
+      "y": 450,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Chastanier",
+          "page_html": "11_gevaudan/1_chastanier/chastanier.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Bessettes",
+          "page_html": "11_gevaudan/2_bessettes/bessettes.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Fabrèges",
+          "page_html": "11_gevaudan/3_fabreges/fabreges.html"
+        }
+		
+	
+		
+      ]
+    },
+	
+		{
+      "titre": "Chez Jean II d'Apcher",
+       "image": "100.png",
+      "x": 250,
+      "y": 450,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Le parcours",
+          "page_html": "12_apcher/0_parcours/parcours.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Le château d'Apcher",
+          "page_html": "12_apcher/1_apcher/apcher.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Le Thiolent",
+          "page_html": "12_apcher/2_thiolent/thiolent.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "La Croix de Vissaguet",
+          "page_html": "12_apcher/3_croix/croix.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Le Puy en Velay",
+          "page_html": "12_apcher/4_puy/puy.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Et aussi...",
+          "page_html": "12_apcher/5_aussi/aussi.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "«Un drame dans le Gévaudan»",
+          "page_html": "12_apcher/6_video/video.html"
+        }
+      ]
+    },
+	
+	
+	{
+      "titre": "Cardaillac le retour",
+       "image": "100.png",
+      "x": 50,
+      "y": 450,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Carennac",
+          "page_html": "13_cardaillac2/1_carennac/carennac.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Tosca au château de Bretenoux",
+          "page_html": "13_cardaillac2/2_tosca/tosca.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Le château Lacapelle Marival",
+          "page_html": "13_cardaillac2/3_lacapelle/lacapelle.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "Chez les Cardaillac",
+          "page_html": "13_cardaillac2/4_cardaillac/cardaillac.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "Et pour finir...",
+          "page_html": "13_cardaillac2/5_pic/pic.html"
+        }
+		
+      ]
+    },
+	
+	{
+      "titre": "René 2...",
+       "image": "100.png",
+      "x": 50,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "14-16 août",
+          "page_html": "14_r2/r2.html"
+        }
+		
+	
+		
+      ]
+    },
+	
+	
+	{
+      "titre": "Août",
+       "image": "100.png",
+      "x": 250,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "15_vh/vh.html"
+        }
+		
+	
+		
+      ]
+    },
+	
+	{
+      "titre": "Ukraine",
+       "image": "100.png",
+      "x": 450,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "16_ukraine/ukraine.html"
+        }
+		
+	
+		
+      ]
+    },
+	
+	{
+      "titre": "«St-Zacharie»",
+       "image": "100.png",
+      "x": 650,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "St-Savournin",
+          "page_html": "17_zach/1_villa/villa.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "St-Zacharie",
+          "page_html": "17_zach/3_stzach/stzach.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Mimet",
+          "page_html": "17_zach/4_mimet/mimet.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "Le boulodrome",
+          "page_html": "17_zach/5_boulodrome/boulodrome.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Marseille",
+          "page_html": "17_zach/6_marseille/marseille.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "Valbonne",
+          "page_html": "17_zach/8_valbonne/valbonne.html"
+        }
+		
+		
+      ]
+    },
+	
+	{
+      "titre": "V et M à Liverpool",
+       "image": "100.png",
+      "x": 850,
+      "y": 600,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "",
+          "page_html": "18_liverpool/liverpool.html"
+        }
+		
+	
+		
+      ]
+    },
+	
+	{
+      "titre": "Bioule",
+       "image": "100.png",
+      "x": 750,
+      "y": 750,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "22 septembre",
+          "page_html": "19_bioule/bioule.html"
+        }
+		
+	
+		
+      ]
+    },
+
+	
+    {
+      "titre": "Fin d'année",
+       "image": "100.png",
+      "x": 500,
+      "y": 750,
+      "sous_chapitres": [
+        
+        {
+          "titre_sous_chapitre": "Crèches",
+          "page_html": "20_noel/1_creches/creches.html"
+        },
+		
+		   {
+          "titre_sous_chapitre": "Figeac",
+          "page_html": "20_noel/1a_figeac/figeac.html"
+        },
+		
+	    {
+          "titre_sous_chapitre": "Noël",
+          "page_html": "20_noel/2_noel/noel.html"
+        },
+		
+		{
+          "titre_sous_chapitre": "Table de fête",
+          "page_html": "20_noel/3_table/table.html"
+        },
+		
+		 {
+          "titre_sous_chapitre": "Jour de l'an",
+          "page_html": "20_noel/4_an/an.html"
+        }
+		
+      ]
+    }
+	
+
+	
+
+	
+
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
