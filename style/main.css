@@ -145,12 +145,12 @@ h1 {
   margin-left: 386px;
 }
 #albums .title {
-  width: 555px;
-  margin-left: 209px;
+  width: 604px;
+  margin-left: 159px;
 }
 #deumeurant .title {
-  width: 196px;
-  margin-left: 568px;
+  width: 376px;
+  margin-left: 386px;
 }
 #carle .title {
   width: 570px;
@@ -225,8 +225,8 @@ h1 {
 #vpnew {
   background-image: url(vpnew.png);
 }
-#presidentielles {
-  background-image: url(presidentielles.png);
+#geneatree {
+  background-image: url(geneatree.png);
 }
 #rue_guerin {
   background-image: url(rue_guerin.png);
