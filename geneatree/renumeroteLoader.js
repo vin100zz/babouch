@@ -87,7 +87,7 @@ async function loadRenumeroteCsv(url = 'gen_individus_renumerote.csv') {
 
   const map = {};
   for (const row of rows) {
-    const rawId = (row['ID_INDIVIDU'] || '').trim();
+    const rawId = (row['Id'] || '').trim();
     if (!rawId) continue; // ignorer les lignes sans id
     const id = Number(rawId);
     if (Number.isNaN(id)) continue; // ignorer si non numérique
@@ -97,11 +97,18 @@ async function loadRenumeroteCsv(url = 'gen_individus_renumerote.csv') {
     const father = fatherRaw ? (Number(fatherRaw) || null) : null;
     const mother = motherRaw ? (Number(motherRaw) || null) : null;
 
-    row['Naissance_Ville'] = extractVille(row['Naissance_Lieu']);
-    row['Naissance_Dept'] = extractDpt(row['Naissance_Lieu']);
+    row['Naissance_Ville'] = (row['Naissance_Ville'] || '').trim();
+    row['Naissance_Dept'] = extractDpt(row['Naissance_Dept']);
+
+    // log warning if Naissance_Dept is empty and Naissance_Ville is not empty
+    if (!row['Naissance_Dept'] && row['Naissance_Ville']) {
+        console.warn('Département de naissance manquant pour une ville non vide:', row['Naissance_Ville'], ' (ID:', id, ')');
+    }
+
     row['Naissance_Region'] = getRegionFromDpt(row['Naissance_Dept']);
 
-    row['Décès_Ville'] = extractVille(row['Décès_Lieu']);
+    row['Décès_Ville'] = (row['Décès_Ville'] || '').trim();
+
     row['Naissance_Year'] = extractYear(row['Naissance_Date']);
     row['Décès_Year'] = extractYear(row['Décès_Date']);
 
@@ -111,29 +118,19 @@ async function loadRenumeroteCsv(url = 'gen_individus_renumerote.csv') {
   return map;
 }
 
-function extractVille(str) {
-    let lieu = (str || '').trim();
-    const lieuSplit = lieu.split(',');
-    if (lieuSplit.length > 0) {
-        lieu = lieuSplit[0].trim();
-    }
-    return lieu;
-}
-
 function extractDpt(str) {
-    let lieu = (str || '').trim();
-    const lieuSplit = lieu.split(',');
-    if (lieuSplit.length > 1) {
-        lieu = lieuSplit[1].trim();
-    }
-    lieu = lieu.replaceAll(/\?/g, '').trim();
+    let dept = (str || '').trim().replaceAll(/\?/g, '').trim();
 
-    // if lieu is not a number, log a warning
-    if (lieu && isNaN(Number(lieu))) {
-        console.warn('Lieu de naissance non numérique détecté', lieu, ' | ',str);
+    // if dept is a number with one digit, pad with leading zero
+    if (dept && /^\d$/.test(dept)) {
+        dept = '0' + dept;
     }
 
-    return lieu;
+    // if dept is not a number, log a warning
+    if (dept && isNaN(Number(dept))) {
+        console.warn('Département non numérique détecté', dept, ' | ',str);
+    }
+    return dept;
 }
 
 const REGIONS_LABELS = {

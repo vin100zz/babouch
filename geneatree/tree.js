@@ -618,7 +618,7 @@ function getParents(id) {
 
 function generateTooltipLabel(id) {
     const prenom = MAP[id]['Prénom'];
-    const nom = MAP[id]['PATRONYME'];
+    const nom = MAP[id]['Nom'];
     const birthDate = MAP[id]['Naissance_Date'];
     const deathDate = MAP[id]['Décès_Date'];
     const lieuNaissance = MAP[id]['Naissance_Ville'];
