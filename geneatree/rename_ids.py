@@ -26,10 +26,10 @@ import sys
 import os
 from collections import deque
 
-INPUT_DEFAULT = 'gen_individus.csv'
-OUTPUT_DEFAULT = 'gen_individus_renumerote.csv'
+INPUT_DEFAULT = 'gotrand_raw.csv'
+OUTPUT_DEFAULT = 'gotrand.csv'
 MAPPING_DEFAULT = 'mapping.csv'
-ROOT_DEFAULT = 'I1086'
+ROOT_DEFAULT = 'I1'
 
 
 def load_rows(path):

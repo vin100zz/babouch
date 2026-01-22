@@ -51,7 +51,7 @@ body {
   background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
 }
 
-#size-control {
+.filters-title {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   flex-shrink: 0;
@@ -63,7 +63,7 @@ body {
   min-height: 0;
 }
 
-#size-control label {
+.filters-title label {
   font-weight: bold;
   margin-bottom: 8px;
   display: block;
@@ -77,6 +77,44 @@ body {
 #canvas-size-slider {
   width: 100%;
   cursor: pointer;
+}
+
+.toggle-group {
+  display: flex;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.toggle-option {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #666;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.toggle-option:hover {
+  background-color: #d0d0d0;
+  color: #333;
+}
+
+.toggle-option.active {
+  background: linear-gradient(to bottom, #5a9ff2, #4a90e2);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-option.active:hover {
+  background: linear-gradient(to bottom, #6aaff7, #5a9ff2);
 }
 
 .accordion {

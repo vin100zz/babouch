@@ -51,6 +51,26 @@ window.addEventListener('load', () => {
         });
     }
 
+    // Initialiser le toggle à 3 états pour le CSV
+    const toggleOptions = document.querySelectorAll('.toggle-option');
+    if (toggleOptions.length > 0) {
+        toggleOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                const button = e.currentTarget;
+                const csvFile = button.getAttribute('data-file');
+
+                // Retirer la classe active de tous les boutons
+                toggleOptions.forEach(opt => opt.classList.remove('active'));
+
+                // Ajouter la classe active au bouton cliqué
+                button.classList.add('active');
+
+                // Charger le nouveau CSV
+                switchCsvFile(csvFile);
+            });
+        });
+    }
+
     // Initialiser le drag and drop du panneau filters
     initFiltersDrag();
 });
@@ -766,14 +786,15 @@ function generateTooltipLabel(id) {
 // sur window.loadRenumeroteCsv)
 
 let MAP = {};
+let CURRENT_CSV_FILE = 'carle.csv';
 
 if (typeof window.loadRenumeroteCsv === 'function') {
-  window.loadRenumeroteCsv().then(map => init(map)).catch(console.error);
+  window.loadRenumeroteCsv(CURRENT_CSV_FILE).then(map => init(map)).catch(console.error);
 } else {
   // Chargement asynchrone si renumeroteLoader.js est inclus après tree.js
   window.addEventListener('load', () => {
     if (typeof window.loadRenumeroteCsv === 'function') {
-      window.loadRenumeroteCsv().then(map => init(map)).catch(console.error);
+      window.loadRenumeroteCsv(CURRENT_CSV_FILE).then(map => init(map)).catch(console.error);
     } else {
       console.warn('loadRenumeroteCsv() non disponible — assurez-vous d\'inclure renumeroteLoader.js');
     }
@@ -789,6 +810,36 @@ const ANNEES_COLORS = {};
 
 let MIN_ANNEE = null;
 const MAX_ANNEE = 2026;
+
+function switchCsvFile(newCsvFile) {
+    CURRENT_CSV_FILE = newCsvFile;
+
+    // Nettoyer les canvas
+    ctxNodes.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    ctxHighlight.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+    // Nettoyer les labels
+    document.getElementById('labels').innerHTML = '';
+
+    // Nettoyer les filtres
+    document.getElementById('regionFilters').innerHTML = '';
+    document.getElementById('deptFilters').innerHTML = '';
+    document.getElementById('anneeFilters').innerHTML = '';
+
+    // Réinitialiser les structures de données
+    Object.keys(DEPTS).forEach(key => delete DEPTS[key]);
+    Object.keys(REGIONS).forEach(key => delete REGIONS[key]);
+    Object.keys(ANNEES).forEach(key => delete ANNEES[key]);
+    Object.keys(ANNEES_COLORS).forEach(key => delete ANNEES_COLORS[key]);
+    MIN_ANNEE = null;
+
+    // Recharger le CSV
+    if (typeof window.loadRenumeroteCsv === 'function') {
+        window.loadRenumeroteCsv(newCsvFile).then(map => init(map)).catch(console.error);
+    } else {
+        console.error('loadRenumeroteCsv() non disponible');
+    }
+}
 
 function init(map) {
     MAP = map;
