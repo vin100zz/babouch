@@ -30,7 +30,7 @@ function parseCsv(text) {
       } else {
         if (ch === '"') {
           inQuotes = true;
-        } else if (ch === ',') {
+        } else if (ch === ';') {
           fields.push(field);
           field = '';
         } else if (ch === '\r') {
@@ -77,7 +77,7 @@ function parseCsv(text) {
 }
 
 // Charge le CSV renuméroté et renvoie une Map<number, {id, father, mother, raw}>
-async function loadRenumeroteCsv(url = 'gen_individus_renumerote.csv') {
+async function loadRenumeroteCsv(url = 'carle.csv') {
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error(`Erreur de lecture du CSV (${res.status} ${res.statusText})`);

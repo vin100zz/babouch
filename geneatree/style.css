@@ -159,14 +159,21 @@ body {
 
 #tooltip {
   position: absolute;
-  text-align: center;
-  background-color: lightgrey;
+  text-align: left;
+  background-color: white;
   padding: 10px;
   color: black;
   font: 12px Arial;
   border: 1px solid black;
   border-radius: 5px;
   pointer-events: none;
+  line-height: 25px;
   z-index: 2000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.75);
+}
+#tooltip u {
+  color: #999;
+  text-decoration: none;
+  margin-right: 5px;
 }
 

@@ -459,15 +459,6 @@ function drawLabel(label, x, y, fontSize=8, rotate) {
 function drawTooltip() {
     const div = document.createElement("div");
     div.id = "tooltip";
-    div.style.position = "absolute";
-    div.style.textAlign = "center";
-    div.style.backgroundColor = "white";
-    div.style.padding = "10px";
-    div.style.color = "black";
-    div.style.font = "12px Arial";
-    div.style.border = "1px solid black";
-    div.style.display = "none";
-    div.style.lineHeight = "20px";
     document.body.appendChild(div);
 }
 
@@ -619,32 +610,46 @@ function getParents(id) {
 function generateTooltipLabel(id) {
     const prenom = MAP[id]['Prénom'];
     const nom = MAP[id]['Nom'];
-    const birthDate = MAP[id]['Naissance_Date'];
-    const deathDate = MAP[id]['Décès_Date'];
+    const dateNaissance = MAP[id]['Naissance_Date'];
     const lieuNaissance = MAP[id]['Naissance_Ville'];
+
+    const dateMariage = MAP[id]['Mariage_Date'];
+    const lieuMariage = MAP[id]['Mariage_Ville'];
+
+    const dateDeces = MAP[id]['Décès_Date'];
     const lieuDeces = MAP[id]['Décès_Ville'];
+
     const profession = MAP[id]['Profession'];
 
     let naissance = '';
-    if (birthDate) {
-        naissance += birthDate;
+    if (dateNaissance) {
+        naissance += dateNaissance;
     }
     if (lieuNaissance) {
         naissance += (naissance ? ' - ' : '') + lieuNaissance;
     }
 
-    let death = '';
-    if (deathDate) {
-        death += deathDate;
+    let mariage = '';
+    if (dateMariage) {
+        mariage += dateMariage;
+    }
+    if (lieuMariage) {
+        mariage += (mariage ? ' - ' : '') + lieuMariage;
+    }
+
+    let deces = '';
+    if (dateDeces) {
+        deces += dateDeces;
     }
     if (lieuDeces) {
-        death += (death ? ' - ' : '') + lieuDeces;
+        deces += (deces ? ' - ' : '') + lieuDeces;
     }
 
     return `
-        <span style='display: block; font-size: 110%; font-weight: bold; margin-bottom: 2px'>${prenom} ${nom}</span>
-        ${naissance ? ('Naissance : ' + naissance + '<br/>') : ''}
-        ${death ? ('Décès : ' + death + '<br/>') : ''}
+        <span style='display: block; font-size: 125%; font-weight: bold; margin-bottom: 5px'>${prenom} ${nom}</span>
+        ${naissance ? ('<u>Naissance</u> ' + naissance + '<br/>') : ''}
+        ${mariage ? ('<u>Mariage</u> ' + mariage + '<br/>') : ''}
+        ${deces ? ('<u>Décès</u> ' + deces + '<br/>') : ''}
         ${profession ? (profession.charAt(0).toUpperCase() + profession.slice(1)) : ''}`;
 }
 
