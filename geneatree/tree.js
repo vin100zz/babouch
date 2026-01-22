@@ -1,7 +1,7 @@
 let CANVAS_SIZE = 1000;
 let MIDDLE = CANVAS_SIZE/2;
 
-const LAYERS = 11;
+const LAYERS = 13;
 let RADIUS = Math.floor(CANVAS_SIZE / (2*(LAYERS+1)));
 
 let SIZE = LAYERS*RADIUS;
@@ -58,6 +58,7 @@ window.addEventListener('load', () => {
             option.addEventListener('click', (e) => {
                 const button = e.currentTarget;
                 const csvFile = button.getAttribute('data-file');
+                const dataValue = button.getAttribute('data-value');
 
                 // Retirer la classe active de tous les boutons
                 toggleOptions.forEach(opt => opt.classList.remove('active'));
@@ -65,8 +66,14 @@ window.addEventListener('load', () => {
                 // Ajouter la classe active au bouton cliqué
                 button.classList.add('active');
 
-                // Charger le nouveau CSV
-                switchCsvFile(csvFile);
+                // Charger le CSV approprié
+                if (dataValue === 'vincent') {
+                    // Pour Vincent, charger l'arbre fusionné
+                    switchToVincent();
+                } else {
+                    // Pour René ou Évelyne, charger leur CSV respectif
+                    switchCsvFile(csvFile);
+                }
             });
         });
     }
@@ -841,6 +848,36 @@ function switchCsvFile(newCsvFile) {
     }
 }
 
+function switchToVincent() {
+    CURRENT_CSV_FILE = 'vincent'; // Marqueur spécial pour Vincent
+
+    // Nettoyer les canvas
+    ctxNodes.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    ctxHighlight.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+    // Nettoyer les labels
+    document.getElementById('labels').innerHTML = '';
+
+    // Nettoyer les filtres
+    document.getElementById('regionFilters').innerHTML = '';
+    document.getElementById('deptFilters').innerHTML = '';
+    document.getElementById('anneeFilters').innerHTML = '';
+
+    // Réinitialiser les structures de données
+    Object.keys(DEPTS).forEach(key => delete DEPTS[key]);
+    Object.keys(REGIONS).forEach(key => delete REGIONS[key]);
+    Object.keys(ANNEES).forEach(key => delete ANNEES[key]);
+    Object.keys(ANNEES_COLORS).forEach(key => delete ANNEES_COLORS[key]);
+    MIN_ANNEE = null;
+
+    // Charger l'arbre fusionné de Vincent
+    if (typeof window.loadVincentCsv === 'function') {
+        window.loadVincentCsv().then(map => init(map)).catch(console.error);
+    } else {
+        console.error('loadVincentCsv() non disponible');
+    }
+}
+
 function init(map) {
     MAP = map;
     console.log('MAP', MAP);
@@ -904,8 +941,6 @@ function init(map) {
 
     document.getElementById('ancestors-count').innerHTML = `
         ${Object.keys(MAP).length-1} ancêtres
-        <br/>
-        ${LAYERS+1} générations
         <br/>
         depuis ${MIN_ANNEE} jusqu'à aujourd'hui`;
 

@@ -170,5 +170,121 @@ function extractYear(str) {
     return year ? Number(year) : null;
 }
 
+// Fonction pour créer l'arbre de Vincent en fusionnant René et Évelyne
+async function loadVincentCsv() {
+  // Charger les deux arbres
+  const carleMap = await loadRenumeroteCsv('carle.csv');
+  const gotrandMap = await loadRenumeroteCsv('gotrand.csv');
+
+  const vincentMap = {};
+
+  // Table de correspondance: carle.csv Id -> vincent.csv Id
+  const carleIdMapping = {};
+  // Table de correspondance: gotrand.csv Id -> vincent.csv Id
+  const gotrandIdMapping = {};
+
+  // 1. Créer Vincent (Id=1)
+  vincentMap[1] = {
+    'Id': '1',
+    'Nom': 'CARLÉ',
+    'Prénom': 'Vincent',
+    'Naissance_Date': '15/03/1975',
+    'Naissance_Ville': 'Bordeaux',
+    'Naissance_Dept': '33',
+    'Naissance_Region': 'Nouvelle-Aquitaine',
+    'Naissance_Year': 1975,
+    'Profession': 'Ingénieur',
+    'Mariage_Date': '',
+    'Mariage_Ville': '',
+    'Mariage_Dept': '',
+    'Décès_Date': '',
+    'Décès_Ville': '',
+    'Décès_Dept': '',
+    'Décès_Year': null
+  };
+
+  // 2. Créer le mapping pour l'arbre de René
+  // René (carle Id=1) devient Vincent Id=2
+  // Dans l'arbre binaire: le père de Id=N est à Id=2*N, la mère à Id=2*N+1
+
+  function mapCarleTree(carleId, vincentId) {
+    carleIdMapping[carleId] = vincentId;
+
+    // Dans carle.csv, si la personne existe, ses parents sont à 2*carleId et 2*carleId+1
+    const pereCarleId = carleId * 2;
+    const mereCarleId = carleId * 2 + 1;
+
+    if (carleMap[pereCarleId]) {
+      mapCarleTree(pereCarleId, vincentId * 2);
+    }
+    if (carleMap[mereCarleId]) {
+      mapCarleTree(mereCarleId, vincentId * 2 + 1);
+    }
+  }
+
+  // 3. Créer le mapping pour l'arbre d'Évelyne
+  // Évelyne (gotrand Id=1) devient Vincent Id=3
+
+  function mapGotrandTree(gotrandId, vincentId) {
+    gotrandIdMapping[gotrandId] = vincentId;
+
+    // Dans gotrand.csv, si la personne existe, ses parents sont à 2*gotrandId et 2*gotrandId+1
+    const pereGotrandId = gotrandId * 2;
+    const mereGotrandId = gotrandId * 2 + 1;
+
+    if (gotrandMap[pereGotrandId]) {
+      mapGotrandTree(pereGotrandId, vincentId * 2);
+    }
+    if (gotrandMap[mereGotrandId]) {
+      mapGotrandTree(mereGotrandId, vincentId * 2 + 1);
+    }
+  }
+
+  // Générer les mappings récursivement
+  mapCarleTree(1, 2);
+  mapGotrandTree(1, 3);
+
+  console.log('Mapping Carle:', carleIdMapping);
+  console.log('Mapping Gotrand:', gotrandIdMapping);
+
+  // 4. Ajouter René avec ses ancêtres
+  vincentMap[2] = { ...carleMap[1], 'Id': '2' };
+
+  Object.keys(carleMap).forEach(carleId => {
+    const numId = Number(carleId);
+    if (numId > 1) { // Skip René lui-même
+      const vincentId = carleIdMapping[numId];
+      if (vincentId) {
+        const newData = { ...carleMap[numId] };
+        newData['Id'] = String(vincentId);
+        vincentMap[vincentId] = newData;
+      }
+    }
+  });
+
+  // 5. Ajouter Évelyne avec ses ancêtres
+  vincentMap[3] = { ...gotrandMap[1], 'Id': '3' };
+
+  Object.keys(gotrandMap).forEach(gotrandId => {
+    const numId = Number(gotrandId);
+    if (numId > 1) { // Skip Évelyne elle-même
+      const vincentId = gotrandIdMapping[numId];
+      if (vincentId) {
+        const newData = { ...gotrandMap[numId] };
+        newData['Id'] = String(vincentId);
+
+        vincentMap[vincentId] = newData;
+      }
+    }
+  });
+
+  console.log('Arbre de Vincent créé:', Object.keys(vincentMap).length, 'personnes');
+  console.log('- René (Id=2) et ses', Object.keys(carleIdMapping).length - 1, 'ancêtres');
+  console.log('- Évelyne (Id=3) et ses', Object.keys(gotrandIdMapping).length - 1, 'ancêtres');
+
+  return vincentMap;
+}
+
 // Exposer globalement pour compatibilité avec scripts non-modulaires
 window.loadRenumeroteCsv = loadRenumeroteCsv;
+window.loadVincentCsv = loadVincentCsv;
