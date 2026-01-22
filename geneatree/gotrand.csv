@@ -1,0 +1,546 @@
+﻿Id;Nom;Prénom;Naissance_Date;Naissance_Ville;Naissance_Dept;Profession;Mariage_Date;Mariage_Ville;Mariage_Dept;Décès_Date;Décès_Ville;Décès_Dept
+1;GOTRAND;Evelyne;25/05/1947;Bègles;33;Professeur;30/10/1971;Talence;;;#VALEUR!;#VALEUR!
+2;GOTRAND;Marcel Clovis;27/10/1897;Bar-le-Duc;55;Blanchisseur;29/01/1920;Paris (8e);;28/02/1977;Talence;33
+3;DUPRÉ;Georgette Léonie;24/06/1905;Malay-le-Grand;89;Blanchisseuse;20/10/1928;Saint-Clément;89;19/05/1997;Talence;33
+4;GOTRAND;Léon Clovis;22/05/1870;Armentières;59;Voyageur de commerce;19/10/1895;Bar-le-Duc;;27/01/1945;Gennevilliers;
+5;GUÉLEUX;Marie;23/12/1873;Bar-le-Duc;55;Couturière;19/10/1895;Bar-le-Duc;;28/06/1917;Clichy;
+6;DUPRÉ;Georges Edouard;29/09/1868;Malay-le-Grand;89;Cultivateur;23/04/1904;Malay-le-Grand;89;7/12/1945;Bègles;33
+7;GODARD;Sophie Albertine Albanie;22/06/1872;Malay-le-Grand;89;;23/04/1904;Malay-le-Grand;89;11/5/1938;Malay-le-Grand;89
+8;GOTRAND;Clovis Amédée Désiré;20/05/1843;Aubers;59;Peigneur de lin   Journalier;15/07/1867;Armentières;59;12/4/1908;Armentières;59
+9;HAUW;Marie-Louise Adeline;16/12/1847;Mardick;59;Couturière  Ménagère;15/07/1867;Armentières;59;14/06/1893;Armentières;59
+11;GUÉLEUX;Maria;18/11/1858;Bar le Duc;55;;;#VALEUR!;#VALEUR!;31/05/1932;Bondy 93;
+12;DUPRE;Méderic Pierre Simon;31/08/1839;Malay-le-Grand;89;Cultivateur;26/04/1865;Rosoy;89;2/10/1911;Malay-le-Grand;89
+13;MOURRIERE;Mélina Joséphine;11/08/1843;Rosoy;89;Sans profession;26/04/1865;Rosoy;89;10/6/1929;#VALEUR!;#VALEUR!
+14;GODARD;Albert Simon;26/10/1840;Malay-le-Grand;89;Cultivateur;23/02/1870;Pont sur Vanne Yonne;;25/12/1933;Malay-le-Grand;89
+15;LAVOUÉ;Augustine Sophie;28/08/1842;Pont sur Vanne;89;Sans profession;23/02/1870;Pont sur Vanne Yonne;;23/11/1916;Malay-le-Grand;89
+16;GOTRAND;Charlemagne;29/04/1814;La Gorgue;59;Tisserand;19/09/1837;Vieille Chapelle;62;24/08/1879;La Chapelle d'Armentières (59);
+17;SENECHAL;Euphrosine Joseph;10/03/1803;Lestrem;62;Cultivatrice   Tisseuse de lin;19/09/1837;Vieille Chapelle;62;18/02/1846;Aubers;59
+18;HAUW;Jacques François;30/03/1800;Loon;59;Journalier;08/09/1823;Mardick;59;11/05/1873;Armentières;59
+19;GRAINCOURT;Marie Henriette Antoinette;27/11/1807;Mardick;59;Journaliere;08/09/1823;Mardick;59;11/01/1891;Armentieres (TDecennales);
+22;GUÉLEUX;Pierre;08/04/1818;Bar le Duc;55;Tisserand;15/01/1859;Bar le Duc;;16/01/1889;Bar le Duc;
+23;MARCHAL;Marie Catherine;09/11/1827;Domevre;54;Bobineuse;15/01/1859;Bar le Duc;;15/07/1881;Bar le Duc;
+24;DUPRÉ;Pierre;13/06/1810;Malay-le-Grand;89;Manouvrier;18/08/1838;Malay-le-Grand;89;30/06/1871;Malay-le-Grand;89
+25;LETENDRE;Suzanne;28/12/1810;Malay-le-Grand;89;Vigneronne;18/08/1838;Malay-le-Grand;89;23/01/1894;Malay-le-Grand;89
+26;MOURIERE;Xavier;29/09/1811;Rosoy;89;Vigneron;15/05/1839;Rosoy;89;19/10/1893;Rosoy;89
+27;MOREAU;Geneviève Joséphine;02/09/1821;Rosoy;89;Sans profession;15/05/1839;Rosoy;89;28/09/1898;Malay-le-Grand;89
+28;GODARD;Jean Simon;20/11/1808;Malay-le-Grand;89;;18/02/1836;Malay-le-Grand;89;05/08/1870;Malay-le-Grand;89
+29;AVELINE;Victoire Martine;04/07/1814;Malay-le-Grand;89;;18/02/1836;Malay-le-Grand;89;27/04/1897;Malay-le-Grand;89
+30;LAVOUÉ;Auguste Bon;31/10/1804;Pont sur Vanne;89;Laboureur;18/10/1832;Plantis Aube;;15/11/1870;Pont sur Vanne Yonne;
+31;MARTEAU;Angélique Bonne;14/09/1805;Courgenay;89;Sans profession;18/10/1832;Plantis Aube;;27/05/1877;Pont sur Vanne Yonne;
+32;GOTRAND;Jacques François;14/01/1766;Richebourg;78;Cultivateur;12/05/1824;Richebourg L'Avoué;62;08/12/1840;Richebourg L'Avoué;62
+33;LEROUX;Julie Jossine Joseph;18/10/1789;Richebourg L'Avoué;62;Cultivatrice;12/05/1824;Richebourg L'Avoué;62;20/12/1866;Richebourg L'Avoué;62
+34;SENECHAL;François Xavier Joseph;16/02/1758;Lestrem;62;Cultivateur;19/02/1800;La Couture 62;;17/11/1826;Vieille Chapelle;62
+35;ROUSSEL;Marceline Joseph Alexandrine;30/08/1781;Lestrem;62;Sans profession;19/02/1800;La Couture 62;;13/07/1861;La Couture 62;
+36;DEHAUW;Eustache Louis Michel;29/09/1767;Bergues St Pierre;59;Manouvrier;27/07/1790;Audruicq 62;;17/03/1855;Loon;59
+37;CAILLIEZ ou CARLIER;Marie Thérése;02/07/1766;Polincove;62;;27/07/1790;Audruicq 62;;26/12/1824;Loon;59
+38;GRAINCOURT;Antoine Joseph;06/05/1771;St Nicolas;62;Cultivateur;10/08/1796;Mardick;59;27/12/1840;Loon Plage;59
+39;LEGROS;Marie Madelaine;13/11/1776;Grande Synthe;59;;10/08/1796;Mardick;59;31/08/1827;Mardick;59
+44;GUÉLEUX;François;11/03/1777;Bar-le-Duc;55;Mendiant ?;20/02/1796;Bar-le-Duc;55;24/12/1829;Behonne 55;
+45;FLORENTIN;Antoinette;04/09/1779;Bar-le-Duc;55;Bobineuse;20/02/1796;Bar-le-Duc;55;04/02/1864;Bar-le-Duc;55
+46;INCONNU;;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+47;MARCHAL;Marie;19/10/1800;Domevre/Vezouze;54;;;#VALEUR!;#VALEUR!;;Pas à Bar le Duc pas à Domèvre;
+48;DUPRÉ;Nicolas;28/05/1783;Malay-le-Grand;89;Rentier;09/02/1807;Malay-le-Grand;89;14/02/1858;Malay-le-Grand;89
+49;PINSONNAT;Aimable;08/01/1785;Malay-le-Grand;89;;09/02/1807;Malay-le-Grand;89;27/04/1855;Malay-le-Grand;89
+50;LETENDRE;Jean Baptiste;24/06/1781;Malay-le-Grand;89;Propriétaire;26/05/1807;Malay-le-Grand;89;21/01/1859;Malay-le-Grand;89
+51;MAGNY;Catherine Suzanne;23/03/1783;Malay-le-Grand;89;;26/05/1807;Malay-le-Grand;89;27/11/1811;Malay-le-Grand;89
+52;MOURIERE;Gabriel;08/10/1777;Rosoy;89;Vigneron;21/11/1810;Rosoy;89;08/01/1871;Passy (89);
+53;RENEAUX RENAUD;Prudence;09/01/1781;Brion;89;;21/11/1810;Rosoy;89;28/04/1866;Rosoy;89
+54;MOREAU;Savinien;20/10/1784;Rosoy;89;Marchand de bestiaux;07/08/1811;Rosoy;89;27/05/1874;Rosoy;89
+55;ROUX;Geneviève;27/09/1789;Rosoy;89;;07/08/1811;Rosoy;89;23/02/1842;Rosoy;89
+56;GODARD;Simon;04/04/1783;Malay-le-Grand;89;;;#VALEUR!;#VALEUR!;29/12/1857;Malay-le-Grand;89
+57;TERRIER;Louise Alexandrine;26/07/1786;Rosoy;89;;;#VALEUR!;#VALEUR!;20/05/1865;Rosoy;89
+58;AVELINE;François;08/03/1775;Potangis;51;;22/07/1813;Rosoy;89;13/12/1821;Rosoy;89
+59;LAMY;Marie Madeleine;08/10/1773;Gizy;89;;22/07/1813;Rosoy;89;07/05/1832;Rosoy;89
+60;LAVOUÉ;Jean Baptiste Bon;15/04/1771;Villeneuve l'Archevêque;89;;13/01/1795;Villeneuve l'Archevêque Yonne;;24/06/1831;Pont sur Vanne Yonne;
+61;BENARD;Marie Anne;09/09/1773;Bagneaux;89;;13/01/1795;Villeneuve l'Archevêque Yonne;;12/01/1837;Pont sur Vanne Yonne;
+62;MARTEAU;François;1757;;;;21/06/1790;Courmononcle Aube;;01/04/1838;Planty Aube;
+63;COUARD;Sévère Etiennette;1768;;;;21/06/1790;Courmononcle Aube;;03/06/1844;Bagneaux 89;
+64;GOTRAND;Pierre Antoine;1729;;;;04/02/1758;Neuve Chapelle 62;;03/05/1792;Richebourg L'Avoué;62
+65;ROGEAU;Marie-Madeleine;1728;;;;04/02/1758;Neuve Chapelle 62;;21/04/1780;Richebourg L'Avoué;62
+66;LEROUX;Jean-Baptiste;20/02/1759;Richebourg;62;Ménager;25/11/1788;Richebourg 62;;31/03/1837;Richebourg;
+67;LEROUX;Marie-Magdeleine Rosalie;26/02/1749;Richebourg St Vaast;62;;25/11/1788;Richebourg 62;;25/12/1789;Richebourg L'Avoué;62
+68;SENECHAL;Ambroise;1719;;;;10/02/1751;Lestrem;62;28/08/1800;Lestrem;62
+69;DOMARLE;Marie Anne Joseph;1730;;;;10/02/1751;Lestrem;62;22/12/1802;Lestrem;62
+70;ROUSSEL;Jean Baptiste;23/11/1750;Lestrem;62;Cultivateur;09/11/1780;Lestrem;62;25/04/1814;Lestrem;62
+71;CHEVALIER;Marceline Joseph;21/01/1757;Lestrem;62;;09/11/1780;Lestrem;62;09/08/1803;Lestrem;62
+72;HAUW;Ignace;13/03/1729;Crochte;59;;29/06/1757;Bergues St Pierre (59);;16/07/1790;Bergues St Pierre (59);
+73;DECONNINCK;Anne Thérèse;1740;Killem;59;;29/06/1757;Bergues St Pierre (59);;30/07/1783;Bergues St Pierre (59);
+74;CAILLET ou CARLIER;Philippe François;;Bourbourg;59;;10/06/1761;Polincove Pas de Calais;;;#VALEUR!;#VALEUR!
+75;VASSEUR;Marie Marguerite Pétronille;18/05/1739;Polincove;62;;10/06/1761;Polincove Pas de Calais;;20/10/1801;Audruicq 62;
+76;GRAINCOURT;Antoine François;1721;Ligny sur Canche;62;;05/07/1762;St Nicolas Pas de Calais;;23/04/1793;St Nicolas Pas de Calais;
+77;SENTIMENT;Marie Jeanne;23/11/1738;St Nicolas;62;;05/07/1762;St Nicolas Pas de Calais;;09/10/1805;St Nicolas Pas de Calais;
+78;LEGROS;Joseph Louis Ignace;26/04/1755;Loon Plage;59;;27/10/1774;Mardick;59;;#VALEUR!;#VALEUR!
+79;CORDONNIER;Marie Louise;15/03/1746;Mardick;59;;27/10/1774;Mardick;59;;#VALEUR!;#VALEUR!
+88;GUÉLEUX;Philippe;;Paroy;54;;15/09/1761;Bar le Duc Notre Dame;;04/02/1787;Bar le Duc;
+89;ETIENNE;Barbe;21/05/1737;Bar le Duc Notre Dame;55;;15/09/1761;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+90;FLORENTIN;Mathieu;14/11/1738;Bar le Duc Notre Dame;55;;02/05/1764;Bar le Duc Notre Dame;;26/07/1788;Laimont Meuse;
+91;PERTUIZOT;Marie (Anne);20/04/1741;Bar le Duc Notre Dame;55;;02/05/1764;Bar le Duc Notre Dame;;17/04/1810;Bar le Duc Notre Dame;
+94;MARCHAL;Jean Baptiste;06/11/1766;Domevre/Vezouze;54;;14/12/1795;Verdenal Meurthe et Moselle;;16/07/1809;Domevre/Vezouze Meurthe et Moselle;
+95;MARCHAND;Marguerite;16/02/1774;Verdenal;54;;14/12/1795;Verdenal Meurthe et Moselle;;02/07/1828;Laxou Meurthe et Moselle;
+96;DUPRÉ;Jean;02/11/1748;Malay-le-Grand;89;;13/02/1776;Malay-le-Grand;89;01/01/1808;Malay-le-Grand;89
+97;LETENDRE;Marguerite;03/09/1753;Malay-le-Grand;89;;13/02/1776;Malay-le-Grand;89;22/07/1791;Malay-le-Grand;89
+98;PINSONNAT;Pierre;1755;;;;03/03/1783;Malay-le-Grand;89;28/07/1805;Malay-le-Grand;89
+99;CLOUZARD;Marie Anne;07/03/1763;Malay-le-Grand;89;;03/03/1783;Malay-le-Grand;89;13/10/1829;Malay-le-Grand;89
+100;LETENDRE;Jean;05/08/1749;Malay-le-Grand;89;;09/02/1779;Malay-le-Grand;89;06/12/1826;Malay-le-Grand;89
+101;MÉRAT;Marie Anne;24/05/1755;Malay-le-Grand;89;;09/02/1779;Malay-le-Grand;89;03/05/1832;Malay-le-Grand;89
+102;MAGNY;Etienne;07/11/1749;Malay-le-Grand;89;;25/10/1773;Malay-le-Grand;89;04/01/1827;Malay-le-Grand;89
+103;DUBOIS;Agathe Catherine;1751;;;;25/10/1773;Malay-le-Grand;89;11/10/1824;Malay-le-Grand;89
+104;MOURIERE;Charle ?;;;;;21/01/1777;Rosoy;89;05/12/1782;Rosoy;89
+105;ROUX;Elisabeth;;;;;21/01/1777;Rosoy;89;;#VALEUR!;#VALEUR!
+106;RENEAUX REGNAULT;Louis;21/12/1729;Brienon sur Armançon;89;;17/05/1768;Brion 89;;20/12/1799;Brion 89;
+107;SAFFROY;Anne;;;;;17/05/1768;Brion 89;;08/09/1816;Brion 89;
+108;MOREAU;Jean;22/08/1751;Rosoy;89;Marchand;09/02/1779;Rosoy;89;12/01/1837;Rosoy;89
+109;TERRIER;Marie Edmée;08/02/1755;Rosoy;89;;09/02/1779;Rosoy;89;04/08/1822;Rosoy;89
+110;ROUX;Jean;07/09/1758;Rosoy;89;Vigneron;06/08/1784;Rosoy;89;;#VALEUR!;#VALEUR!
+111;TERRIER;Anne;13/03/1759;Rosoy;89;;06/08/1784;Rosoy;89;19/02/1835;Rosoy;89
+112;GODARD;Edme;04/02/1746;Malay-le-Grand;89;;09/02/1773;Malay-le-Grand;89;22/08/1807;Malay-le-Grand;89
+113;DELECOLE;Jeanne Suzanne;11/05/1746;Malay-le-Grand;89;;09/02/1773;Malay-le-Grand;89;;Malay-le-Grand;89
+114;TERRIER;Hubert Bruno;08/10/1756;Rosoy;89;;08/07/1783;Sens St Nicolas 89;;01/01/1848;Rosoy;89
+115;THIENLOUP;Marie Anne;1762;;;;08/07/1783;Sens St Nicolas 89;;03/09/1792;Rosoy;89
+116;AVELINE;Simon;28/10/1737;Granges sur Aube;51;;07/11/1763;Potangis Marne;;02/11/1801;Potangis Marne;
+117;PINGUET;Marie Anne;1741;Trainel ?;10;;07/11/1763;Potangis Marne;;14/11/1802;Potangis Marne;
+118;LAMY;Vincent;06/10/1745;Gisy les Nobles;89;;11/05/1773;Gisy les Nobles;;22/06/1814;Gisy les Nobles;
+119;GOUERRE;Marianne;25/11/1751;Michery;89;;11/05/1773;Gisy les Nobles;;27/12/1822;Gizy;
+120;LAVOUÉ;Jacques Bon;21/12/1738;Villeneuve l'Archevêque;89;;26/02/1767;Villiers Louis 89;;16/07/1808;Pont sur Vanne Yonne;
+121;RIGOUREAU;Madeleine;17/07/1733;Villiers Louis;89;;26/02/1767;Villiers Louis 89;;27/05/1807;Pont sur Vanne Yonne;
+122;BENARD;Philippe Augustin;22/03/1751;Bouy;10;;09/09/1772;Troyes Ste Madeleine Aube (Table);;06/03/1813;Villeneuve l'Archevêque Yonne;
+123;GENERAT;Marie Anne;13/02/1752;Nogent sur Seine;10;;09/09/1772;Troyes Ste Madeleine Aube (Table);;24/09/1819;Villeneuve l'Archevêque Yonne;
+124;MARTEAU;Etienne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+125;FOUIN;Marianne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+126;COUARD;Edme;18/02/1731;La Postolle;89;;06/02/1759;Courmononcle Aube;;02/06/1801;Bagneaux Yonne;
+127;BRÉARD;Marianne;27/04/1735;Villeneuve l'Archevêque;89;;06/02/1759;Courmononcle Aube;;;.....?;
+128;GOTRAND;Jacques François;;;;;;#VALEUR!;#VALEUR!;;.....?;
+129;BAUVIN;Marie Jeanne;;;;;;#VALEUR!;#VALEUR!;;.....?;
+130;ROGEAU;Guillaume Antoine;;;;;;#VALEUR!;#VALEUR!;;.....?;
+131;FEVBRE;Marie Jeanne;;;;;;#VALEUR!;#VALEUR!;;.....?;
+132;LEROUX;Robert;;;;;11/10/1753;Vieille Chapelle;62;04/07/1760;Richebourg 62;
+133;FRUCHART;Marie Catherine;1732;Vieille Chapelle;62;;11/10/1753;Vieille Chapelle;62;?;?;
+134;LEROUX;Pierre François;02/02/1723;Richebourg;62;;17/05/1747;Richebourg 62;;24/09/1766;Richebourg;
+135;LECHESNE;Marie Anne Joseph;1719;;;;17/05/1747;Richebourg 62;;13/09/1786;Richebourg;
+136;SENECHAL;Jean-François;1691;;;;;#VALEUR!;#VALEUR!;16/08/1739;Estaires 59;
+137;WATTEZ;Marie Catherine;;;;;;#VALEUR!;#VALEUR!;;.... ?;
+138;DOMARLE;Louis;1700;Lestrem;62;;;#VALEUR!;#VALEUR!;1735;#VALEUR!;#VALEUR!
+139;LECOCQ;Marie Catherine Joseph;1704;Lestrem;62;;;#VALEUR!;#VALEUR!;05/12/1744;Lestrem;62
+140;ROUSSEL;Toussaint Joseph;1720;;;;10/02/1750;Lestrem;62;29/01/1800;Lestrem;62
+141;DESCHILDRE;Marie Jeanne;;;;;10/02/1750;Lestrem;62;;#VALEUR!;#VALEUR!
+142;CHEVALIER;Pierre Joseph;05/08/1723;La Gorgue;59;;07/02/1748;Lestrem;62;;#VALEUR!;#VALEUR!
+143;CALERSSE CALERS;Marie Magdelaine;02/10/1723;Robecq;62;;07/02/1748;Lestrem;62;05/06/1764;Lestrem;62
+144;HAUW;Jacques;24/02/1703;Crochte;59;;10/04/1725;Crochte (59);;23/03/1742;Bergues St Pierre (59) Hoymille;
+145;DE VOS;Jacqueline Thérèse;24/08/1699;Crochte;59;;10/04/1725;Crochte (59);;30/01/1761;Hoymille (59);
+146;DECONNINCK;Philippe Jacques;;;;;;#VALEUR!;#VALEUR!;26/08/1772;Hondshoote Nord;
+147;LECLEIRE;Marie;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+148;CAILLET ou CARLIER;Jean Pierre Martin;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+149;MASSÉE;Marie Elisabeth;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+150;INCONNU ? VASSEUR ?;;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+151;DERVAUX;Marie Marguerite;22/11/1717;Audruicq;62;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+152;GRAINCOURT;Antoine;1667;;;;;#VALEUR!;#VALEUR!;04/05/1747;Ligny sur Canche Pas de Calais;
+153;CRETEL;Marie Joseph;;;;;;#VALEUR!;#VALEUR!;04/07/1740;Ligny sur Canche Pas de Calais;
+154;SENTIMENT;Jacques Baptiste;1715;;;;21/11/1737;St Nicolas Pas de Calais;;;#VALEUR!;#VALEUR!
+155;ROSE;Marie Jeanne;1714;;;;21/11/1737;St Nicolas Pas de Calais;;;#VALEUR!;#VALEUR!
+156;LEGROS;Pierre François;25/01/1712;Loon Plage;59;;06/08/1739;Loon Plage;59;28/05/1770;Loon Plage;59
+157;JANSSOOME;Marie Thérèse;05/10/1720;Loon Plage;59;;06/08/1739;Loon Plage;59;27/12/1761;Loon Plage;59
+158;CORDONNIER;Louis François;23/11/1717;Mardick;59;;30/04/1743;Mardick;59;;#VALEUR!;#VALEUR!
+159;SNAUDE;Marie Anne Madeleine;17/07/1718;Mardick;59;;30/04/1743;Mardick;59;;#VALEUR!;#VALEUR!
+176;GUÉLEUX;Philippe;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+177;COLAS ?;Christiane;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+178;ETIENNE;Nicolas;07/12/1698;Bar le Duc Notre Dame;55;;27/04/1723;Bar le Duc St Pierre;;29/09/1750;Bar le Duc Notre Dame;
+179;TRUSSON;Marguerite;22/09/1701;Bar le Duc St Pierre;55;;27/04/1723;Bar le Duc St Pierre;;19/02/1778;Bar le Duc Notre Dame;
+180;FLEURENTIN;François;30/09/1704;Bar le Duc Notre Dame;55;;12/11/1737;Bar le Duc Notre Dame;;02/03/1786;Bar le Duc Notre Dame;
+181;MANDAVID;Madeleine;15/04/1709;Bar le Duc Notre Dame;55;;12/11/1737;Bar le Duc Notre Dame;;30/10/1768;Bar le Duc Notre Dame;
+182;PERTUIZOT;Pierre ? François;11/07/1716;Bar le Duc St Pierre;55;;07/01/1739;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+183;COYARD;Françoise;18/12/1718;Bar le Duc Notre Dame;55;;07/01/1739;Bar le Duc Notre Dame;;;.....?;
+188;MARCHAL;Antoine;;;;;15/01/1765;Foulcrey Moselle;;18/03/1791;Domevre/Vezouze Meurthe et Moselle;
+189;BAPTISTE;Françoise;07/01/1728;Foulcrey;27;;15/01/1765;Foulcrey Moselle;;;#VALEUR!;#VALEUR!
+190;MARCHAND;Antoine;1731;;;;;#VALEUR!;#VALEUR!;12/04/1776;Verdenal Meurthe et Moselle;
+191;MANGIN;Françoise;1729;;;;;#VALEUR!;#VALEUR!;06/07/1814;Verdenal Meurthe et Moselle;
+192;DUPRÉ;Nicolas;23/01/1717;Malay-le-Grand;89;;07/07/1744;Malay-le-Grand;89;23/11/1787;Malay-le-Grand;89
+193;THIENLOU;Anne;14/10/1715;Malay-le-Grand;89;;07/07/1744;Malay-le-Grand;89;17/03/1783;Malay-le-Grand;89
+194;LETENDRE;Jean;18/09/1712;Malay-le-Grand;89;;28/01/1738;Malay-le-Grand;89;03/09/1768;Malay-le-Grand;89
+195;VITRY;Marie Anne;18/04/1714;Malay-le-Grand;89;;28/01/1738;Malay-le-Grand;89;14/04/1789;Malay-le-Grand;89
+196;PINSONNAT;Pierre;09/01/1728;Malay-le-Grand;89;;19/02/1754;Malay-le-Grand;89;12/05/1759;Malay-le-Grand;89
+197;GUÉTARD;Marie Jeanne;13/08/1732;Malay-le-Grand;89;;19/02/1754;Malay-le-Grand;89;;Pas le Registre;
+198;CLOUZARD;Jean;15/04/1736;Malay-le-Grand;89;;09/06/1761;Malay-le-Grand;89;01/08/1812;Malay-le-Grand;89
+199;GODARD;Anne;13/12/1736;Malay-le-Grand;89;;09/06/1761;Malay-le-Grand;89;15/11/1777;Malay-le-Grand;89
+200;LETENDRE;Jean;18/09/1712;Malay-le-Grand;89;;28/01/1738;Malay-le-Grand;89;03/09/1768;Malay-le-Grand;89
+201;VITRY;Marie Anne;18/04/1714;Malay-le-Grand;89;;28/01/1738;Malay-le-Grand;89;14/04/1789;Malay-le-Grand;89
+202;MÉRAT;Jean;29/06/1715;Malay-le-Grand;89;;19/02/1754;Malay-le-Grand;89;17/08/1771;Malay-le-Grand;89
+203;DELECOLLE;Marie Anne;23/12/1732;Malay-le-Grand;89;;19/02/1754;Malay-le-Grand;89;;#VALEUR!;#VALEUR!
+204;MAGNY;Jacques;1708;;;;07/01/1749;Malay-le-Grand;89;28/11/1760;Malay-le-Grand;89
+205;MAILLET;Geneviève;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+208;MORIERE;Jean;;;;;12/01/1745;Etigny 89;;;#VALEUR!;#VALEUR!
+209;MOREAU;Marguerite;06/12/1721;Etigny;89;;12/01/1745;Etigny 89;;;#VALEUR!;#VALEUR!
+210;ROUX;Simon;10/12/1714;Rosoy;89;;03/07/1752;Rosoy;89;04/06/1761;Rosoy;89
+211;LEFORT;Marie;10/11/1730;Sens St Maurice;89;;03/07/1752;Rosoy;89;10/06/1797;Rosoy;89
+212;RENEAUX;Edme;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+213;QUENTIN;Jeanne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+214;SAFFROY;Louis;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+215;MOREAU;Anne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+216;MOREAU;Jean;06/06/1728;Rosoy;89;Vigneron;03/02/1750;Rosoy;89;13/06/1799;Rosoy;89
+217;ROCHAUX;Marie;24/06/1728;Rosoy;89;;03/02/1750;Rosoy;89;13/01/1811;Rosoy;89
+218;TERRIER;Laurent;1725;;;Vigneron;05/02/1754;Rosoy;89;06/10/1802;Rosoy;89
+219;FRAUDIN;Edmée;21/09/1728;Rosoy;89;Vigneronne;05/02/1754;Rosoy;89;04/08/1803;Rosoy 89;
+222;TERRIER;Barthelemi;;;;;01/10/1748;Rosoy;89;17/11/1788;Rosoy;89
+223;ALLAIS;Madeleine;16/05/1723;Veron;89;;01/10/1748;Rosoy;89;27/12/1787;Rosoy;89
+224;GODARD;Claude Edme;23/12/1713;Malay-le-Grand;89;;22/11/1735;Malay-le-Grand;89;23/09/1784;Malay-le-Grand;89
+225;DUPRÉ;Anne;17/05/1714;Malay-le-Grand;89;;22/11/1735;Malay-le-Grand;89;02/01/1793;Malay-le-Grand;89
+226;DELECOLE;Edme;14/11/1714;Malay-le-Grand;89;;24/04/1742;Malay-le-Grand;89;20/09/1764;Malay-le-Grand;89
+227;PINSONNAT;Jeanne;1720;Malay-le-Grand;89;;24/04/1742;Malay-le-Grand;89;27/03/1753;Malay-le-Grand;89
+228;TERRIER;Nicolas;15/03/1715;Collemiers;62;;23/01/1742;Collemiers 89;;28/04/1766;Rosoy;89
+229;ROUSSET;Marie Gabrielle;12/03/1723;Rosoy;89;;23/01/1742;Collemiers 89;;07/11/1788;Rosoy;89
+230;THIENLOUP;Pierre;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+231;DOZ;Marie Colombe;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+232;AVELINE;Jacques;09/11/1702;Granges-sur-Aube;51;;21/06/1734;Granges-sur-Aube Marne;;13/05/1778;Potangis Marne;
+233;SIRAULT (SIROT);Marie Jeanne;;;;;21/06/1734;Granges-sur-Aube Marne;;;#VALEUR!;#VALEUR!
+234;PINGUET;Antoine;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+235;AJOIRE;Anne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+236;LAMY;Jacques Dominique;1717;;;;13/06/1740;Gisy les Nobles Yonne;;17/03/1775;Gisy les Nobles;
+237;ROGET;Marie;31/07/1714;Gisy les Nobles;89;;13/06/1740;Gisy les Nobles Yonne;;24/04/1764;Gisy les Nobles Yonne;
+238;GOUERRE;Antoine;27/01/1715;Thorigny sur Oreuse;89;;16/09/1749;Michery Yonne;;05/10/1777;Gisy les Nobles Yonne;
+239;AUBERT;Marie Anne;03/02/1724;Gisy les Nobles;89;;16/09/1749;Michery Yonne;;24/06/1794;Gisy les Nobles Yonne;
+240;LAVOUé;Bond;1705;;;;;Acte ?;;07/12/1762;Villeneuve l'Archevêque Yonne;
+241;MONTILLOT;Jeanne;1707;;;;;Acte ?;;15/05/1758;Villeneuve l'Archevêque Yonne;
+242;RIGOUREAU;Jean;01/01/1707;Pont sur Vanne;89;;14/05/1726;Pont sur Vanne Yonne;;11/07/1752;Villiers Louis 89;
+243;FELIX;Madeleine;;;;;14/05/1726;Pont sur Vanne Yonne;;30/06/1764;Villiers Louis 89;
+244;BENARD;Augustin;;;;;11/02/1749;Sognes Yonne;;18/09/1776;Bouy-sur-Orvin Aube;
+245;LUQUIN;Marie Louise;16/11/1728;Sognes;89;;11/02/1749;Sognes Yonne;;20/01/1791;Bouy-sur-Orvin Aube;
+246;GENERAT;Michel;04/09/1712;Avant-lès-Marcilly;10;;27/06/1747;Fontaine-Mâcon Aube;;15/06/1764;Fontaine-Mâcon Aube;
+247;GUILLEMARD;Etiennette;27/11/1719;Fontaine-Mâcon;10;;27/06/1747;Fontaine-Mâcon Aube;;20/02/1764;Fontaine-Mâcon Aube;
+252;COUARD;Dominique;;;;;29/05/1714;Thorigny sur Oreuse 89;;17/06/1753;Molinons Yonne;
+253;SARAZIN;Marie;21/02/1693;Thorigny sur Oreuse;89;;29/05/1714;Thorigny sur Oreuse 89;;22/06/1759;Molinons Yonne;
+254;BRÉARD;Edme;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+255;BERTHELLIN;Marie;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+266;FRUCHART;Antoine François;1680;;;;;#VALEUR!;#VALEUR!;29/08/1763;Vieille Chapelle;62
+267;DELANSSAY;Marie Marguerite;16/05/1705;Beuvry les Béthune;62;;;#VALEUR!;#VALEUR!;26/03/1785;Beuvry 62;
+268;LEROUX;Jacques François;;;;;;#VALEUR!;#VALEUR!;;.....?;
+269;ROUSSEL;Marie Philippe;;;;;;#VALEUR!;#VALEUR!;;.....?;
+270;LECHESNE;Jacques Charles;1682;;;;;#VALEUR!;#VALEUR!;10/02/1750;Richebourg 62;
+271;BACLET;Marie Jeanne;1681;;;;;#VALEUR!;#VALEUR!;14/08/1766;Richebourg l'Avoué 62;
+280;ROUSSEL;Jean Baptiste;;;;;;#VALEUR!;#VALEUR!;14/12/1765;Lestrem;62
+281;BLARY;Marie Anne;;;;;;#VALEUR!;#VALEUR!;;.....?;
+282;SCHOELDER DESCHILDRE;Daniel;;;;;;#VALEUR!;#VALEUR!;11/08/1742;Lestrem;62
+283;CAPON;Jacquemie;;;;;;#VALEUR!;#VALEUR!;31/10/1772;Lestrem;62
+284;CHEVALIER;Pierre Antoine;;;;;;#VALEUR!;#VALEUR!;;.....?;
+285;LE COMTE;Marie Joseph;;;;;;#VALEUR!;#VALEUR!;;.....?;
+286;CALERS CALLERS;Jean Joseph;10/10/1692;Calonne sur la Lys;62;;07/02/1720;Saint Floris 62;;19/09/1744;Lestrem;62
+287;FEUVRIER;Suzanne;12/01/1697;Saint Floris;62;;07/02/1720;Saint Floris 62;;23/07/1730;Robecq 62;
+288;HAUW;Michel;17/02/1662;Esquelbecq;59;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+289;.....;Jacqueline;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+290;DE VOS;Jacques;30/10/1668;Bissezeele;59;;20/08/1690;Crochte (59);;;#VALEUR!;#VALEUR!
+291;BRUSSET ?;Catherine;23/12/1669;Crochte;59;;20/08/1690;Crochte (59);;29/01/1713;Crochte (59);
+292;DECONNINCK;Pierre;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+302;D'HERVAUX;Philippe;1682;;;;27/11/1706;Audruicq 62;;18/12/1746;Audruicq 62;
+303;LAHAYE;Marie Marguerite;??/05/1688;Zutkerque;62;;27/11/1706;Audruicq 62;;17/11/1748;Audruicq 62;
+308;SENTIMENT;Jean Baptiste;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+309;MICHEZ;Marie Madelaine;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+310;ROSE;Jean;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+311;LE FEBVRE;Marie Marguerite;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+312;LEGROS DEGROO;Antoine;1681;;;;07/02/1703;Loon Plage;59;;#VALEUR!;#VALEUR!
+313;BOULAIN;Antoinette;1685;;;;07/02/1703;Loon Plage;59;;#VALEUR!;#VALEUR!
+314;JANSSOOME;François;1682;;;;;#VALEUR!;#VALEUR!;20/04/1729;Loon Plage;59
+315;LENGAIGNE;Catherine;1681;;;;;#VALEUR!;#VALEUR!;27/01/1733;Loon Plage;59
+316;CORDONNIER;Michel;21/01/1687;Haubourdin;59;;08/04/1717;Mardick;59;30/10/1734;Mardick;59
+317;MALLET;Marie Françoise;??/08/1696;Mardick;59;;08/04/1717;Mardick;59;04/01/1743;Mardick;59
+318;SNAUDE;Pierre;26/05/1693;Mardick;59;;06/11/1716;Mardick;59;?;#VALEUR!;#VALEUR!
+319;COQUERÉ;Marie Perone;01/12/1694;Gravelines;59;;06/11/1716;Mardick;59;26/10/1740;Mardick;59
+356;ETIENNE;Nicolas;20/04/1670;Bar le Duc Notre Dame;55;;18/02/1697;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+357;ROUYER;Françoise;09/02/1672;Bar le Duc Notre Dame;55;;18/02/1697;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+358;TRUSSON;Joseph;26/03/1669;Bar le Duc;55;;12/02/1692;Bar le Duc St Pierre;;14/07/1735;Bar le Duc Notre Dame;
+359;QUINET;Nicole;;;;;12/02/1692;Bar le Duc St Pierre;;;#VALEUR!;#VALEUR!
+360;FLEURENTIN;Jean;1674;Bar le Duc;55;;12/11/1696;Bar le Duc Notre Dame;;30/12/1738;Bar le Duc;
+361;PICHANCOURT;Anne;03/05/1671;Bar le Duc;55;;12/11/1696;Bar le Duc Notre Dame;;15/01/1755;Bar le Duc;
+362;MANDAVIDES;Mathieu;1681;Conthil;27;;13/08/1707;Bar le Duc Notre Dame;;11/09/1741;Bar le Duc Notre Dame;
+363;OUDINOT;Marie;10/04/1684;Bar le Duc Notre Dame;55;;13/08/1707;Bar le Duc Notre Dame;;16/05/1723;Bar le Duc Notre Dame;
+364;PERTUIZOT;Jean Baptiste;22/10/1685;Bar le Duc St Pierre;55;;03/05/1711;Luneville St Jacques Meurthe et Moselle;;12/01/1771;Bar le Duc Notre Dame;
+365;HUGUER;Marie;15/07/1685;Nancy St Sébastien;54;;03/05/1711;Luneville St Jacques Meurthe et Moselle;;21/05/1755;Bar le Duc Notre Dame;
+366;COYARD;Marc Anthoine;26/04/1675;Bar le Duc Notre Dame;55;;22/01/1704;Bar le Duc Notre Dame;;17/08/1728;Bar le Duc Notre Dame;
+367;PETTANGUE;Françoise Anthoine;22/06/1681;Bar le Duc Notre Dame;55;;22/01/1704;Bar le Duc Notre Dame;;19/04/1743;Bar le Duc Notre Dame;
+376;MARCHAL;Ferreol ? Feriol ?;;;;;07/06/1712;Reherrey Meurthe et Moselle;;25/05/1770;Avricourt Moselle;
+377;MUNIER;Anne Marie;;;;;07/06/1712;Reherrey Meurthe et Moselle;;13/04/1751;Avricourt Moselle;
+378;BAPTISTE;François;03/12/1702;Foulcrey;27;;30/06/1722;Foulcrey Moselle;;23/09/1749;Foulcrey Moselle;
+379;HOURDIEAU;Anne;05/10/1700;Foulcrey;27;;30/06/1722;Foulcrey Moselle;;01/01/1775;Foulcrey Moselle;
+384;DUPRÉ;Claude;1670;;;;23/11/1711;Malay-le-Grand;89;14/11/1728;Malay-le-Grand;89
+385;HEURTON;Jeanne;1689;;;;23/11/1711;Malay-le-Grand;89;13/04/1754;Malay-le-Grand;89
+386;THIENLOU;Edme Pierre;08/08/1686;Malay-le-Grand;89;;;#VALEUR!;#VALEUR!;08/09/1753;Malay-le-Grand;89
+387;POURÉE;Louise;09/11/1685;Malay-le-Grand;89;;;#VALEUR!;#VALEUR!;07/09/1741;Malay-le-Grand;89
+388;LETENDRE;Savinien;;;;;09/11/1704;Malay-le-Grand;89;20/06/1716;Malay-le-Grand;89
+389;JAMET;Marie Edmée;15/04/1685;Malay-le-Grand;89;;09/11/1704;Malay-le-Grand;89;17/02/1715;Malay-le-Grand;89
+390;VITRY;Louis;1672;Malay-le-Grand;89;;;#VALEUR!;#VALEUR!;05/01/1732;Malay-le-Grand;89
+391;PINSONAT;Emée;04/04/1684;Malay-le-Grand;89;;;#VALEUR!;#VALEUR!;15/09/1746;Malay-le-Grand;89
+392;PINSONNAT;Edme;22/07/1688;Malay-le-Grand;89;;26/01/1712;Malay-le-Grand;89;04/06/1768;Malay-le-Grand;89
+393;BARBIER;Anne;1691;Malay-le-Grand;89;;26/01/1712;Malay-le-Grand;89;13/02/1735;Malay-le-Grand;89
+394;GUÉTARD;Jacques;1702;Cussy les Forges;89;;05/02/1731;Malay-le-Grand;89;02/04/1757;Malay-le-Grand;89
+395;HEURTON;Jeanne;1689;Malay-le-Grand;89;;05/02/1731;Malay-le-Grand;89;13/04/1754;Malay-le-Grand;89
+396;CLOUZARD;Robert;1691;Malay-le-Grand;89;;06/02/1725;Malay-le-Grand;89;10/02/1776;Malay-le-Grand;89
+397;BERLIN;Jeanne;1695;Malay-le-Grand;89;;06/02/1725;Malay-le-Grand;89;29/10/1752;Malay-le-Grand;89
+398;GODARD;Claude;23/12/1713;Malay-le-Grand;89;;22/11/1735;Malay-le-Grand;89;24/09/1784;Malay-le-Grand;89
+399;DUPRÉ;Anne;17/05/1714;Malay-le-Grand;89;;22/11/1735;Malay-le-Grand;89;02/01/1793;Malay-le-Grand;89
+400;LETENDRE;Savinien;;;;;;#VALEUR!;#VALEUR!;20/06/1716;Malay-le-Grand;89
+401;JAMET;Marie;;;;;;#VALEUR!;#VALEUR!;17/02/1715;Malay-le-Grand;89
+402;VITRY;Louis;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+403;PINSONNAT;Edmée;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+404;MÉRAT;Nicolas;14/07/1686;Malay-le-Grand;89;;01/02/1712;Malay-le-Grand;89;14/01/1751;Malay-le-Grand;89
+405;CHICOUARD;;;;;;01/02/1712;Malay-le-Grand;89;12/05/1766;Malay-le-Grand;89
+406;DELECOLLE;Jean;1703;;;;04/02/1727;Malay-le-Grand;89;29/04/1742;Malay-le-Grand;89
+407;DUPRÉ;Marie;1706;;;;04/02/1727;Malay-le-Grand;89;10/07/1753;Malay-le-Grand;89
+416;MOURIERE;Jean;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+417;MONCHETTE;Geneviève;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+418;MOREAU;Charles;05/12/1683;Véron;89;;24/11/1707;Etigny 89;;13/03/1737;Etigny 89;
+419;POISSON;Eugénie Geneviève;27/05/1690;Etigny;89;;24/11/1707;Etigny 89;;28/02/1741;Etigny 89;
+420;ROUX;Siméon;08/03/1679;Véron;89;;19/06/1703;Rosoy;89;;#VALEUR!;#VALEUR!
+421;MOREAU;Edmée;19/05/1676;Rosoy;89;;19/06/1703;Rosoy;89;21/07/1740;Rosoy;89
+422;LEFORT;Christophe Chrisotome;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+423;BESANCON BALANCON;Marie;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+432;MOREAU;Louis;22/09/1678;Plessis-St Jean;89;;16/12/1706;Rosoy;89;09/06/1739;Rosoy;89
+433;FRAUDIN;Louise;04/05/1689;Rosoy;89;;16/12/1706;Rosoy;89;02/02/1750;Rosoy 89;
+434;ROCHAUX;Claude;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+435;GAUDIN;Françoise;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+436;TERRIER;Jean;18/05/1684;Collemiers;89;;;#VALEUR!;#VALEUR!;30/12/1741;Collemiers 89;
+437;BELTIER;Marguerite;1689;;;;;#VALEUR!;#VALEUR!;09/10/1739;Collemiers 89;
+438;FRAUDIN;Siméon;;;;;20/06/1719;Maillot 89;;18/11/1729;Rosoy 89;
+439;RIOSSET;Marie;29/08/1695;Véron;89;;20/06/1719;Maillot 89;;07/06/1735;Rosoy 89;
+444;TERRIER;Jean;18/05/1684;Collemiers;89;;;#VALEUR!;#VALEUR!;31/12/1741;Collemiers 89;
+445;BELLETIER;Marguerite;;;;;;#VALEUR!;#VALEUR!;09/10/1739;Collemiers 89;
+446;ALAIX;François;28/12/1698;Véron;89;;06/02/1719;Veron 89;;24/01/1739;Veron 89;
+447;BORDELOT;Marie;16/09/1696;Véron;89;;06/02/1719;Veron 89;;26/03/1765;Veron 89;
+448;GODARD;Edme;1692;Malay-le-Grand;89;;08/02/1711;Malay-le-Grand;89;28/01/1722;Malay-le-Grand;89
+449;LOISON;Marguerite;12/04/1684;Malay-le-Grand;89;;08/02/1711;Malay-le-Grand;89;07/01/1731;Malay-le-Grand;89
+450;DUPRÉ;Claude;;;;;23/11/1711;Malay-le-Grand;89;15/11/1728;Malay-le-Grand;89
+451;HEURTON;Jeanne;;;;;23/11/1711;Malay-le-Grand;89;12/04/1754;Malay-le-Grand;89
+452;DELECOLE;Edme;1686;;;;30/01/1714;Malay-le-Grand;89;26/09/1751;Malay-le-Grand;89
+453;BEAU;Marie;;;;;30/01/1714;Malay-le-Grand;89;05/05/1747;Malay-le-Grand;89
+454;PINSONNAT;Edme;;Malay-le-Grand;89;;26/01/1712;Malay-le-Grand;89;04/06/1768;Malay-le-Grand;89
+455;BARBIER;Anne;1691;;;;26/01/1712;Malay-le-Grand;89;08/02/1735;Malay-le-Grand;89
+456;TERRIER;Jean;18/05/1684;Collemiers;89;;;#VALEUR!;#VALEUR!;30/12/1741;Collemiers 89;
+457;BELLETIER;Marguerite;1689;;;;;#VALEUR!;#VALEUR!;09/10/1739;Collemiers 89;
+458;ROUSSET;Nicolas;07/04/1697;Rosoy;89;;22/01/1722;Malay-le-Grand;89;14/06/1738;Rosoy;89
+459;PINSONAT;Gabrielle;;;;;22/01/1722;Malay-le-Grand;89;01/02/1740;Rosoy;89
+464;AVELINE;Jacques;30/01/1680;Granges sur Aube;51;;11/03/1701;Granges-sur-Aube Marne;;27/04/1702;Granges-sur-Aube Marne;
+465;LOMBARD;Marie;06/03/1681;Granges sur Aube;51;;11/03/1701;Granges-sur-Aube Marne;;04/06/1715;Granges sur Aube 51;
+466;SIROT;Claude;05/01/1681;Romilly sur Seine;10;;22/11/1706;Romilly sur Seine Aube;;;#VALEUR!;#VALEUR!
+467;GIROST;Jeanne;;;;;22/11/1706;Romilly sur Seine Aube;;04/08/1762;Romilly sur Seine Aube;
+472;LAMY;Pierre;03/11/1682;Villemanoche ;89;;??/11/1701;Gisy les Nobles;;15/10/1730;Gisy les Nobles;
+473;FOURNEAU;Marie;13/01/1688;Gisy les Nobles;89;;??/11/1701;Gisy les Nobles;;29/04/1740;Gisy les Nobles;
+474;ROGER;Claude;05/11/1686;Gisy les Nobles;89;;14/02/1708;Gisy les Nobles;;13/12/1743;Gisy les Nobles;
+475;RHÉTIF;Jeanne;14/02/1689;Gisy les Nobles;89;;14/02/1708;Gisy les Nobles;;29/11/1714;Gisy les Nobles;
+476;GOÜER;Pierre;19/05/1680;Thorigny sur Oreuse;89;;09/09/1704;Courgenay Yonne;;30/12/1715;Thorigny sur Oreuse Yonne;
+477;ROYÉE;Agathe;;;;;09/09/1704;Courgenay Yonne;;;#VALEUR!;#VALEUR!
+478;AUBERT;Nicolas;21/11/1697;Sergines;89;;28/06/1718;La Chapelle sur Oreuse Yonne;;25/06/1757;Gisy les Nobles Yonne;
+479;LASNIER;Marie;;;;;28/06/1718;La Chapelle sur Oreuse Yonne;;11/06/1736;Gisy les Nobles Yonne;
+480;LADVOUé;Antoine;08/01/1673;Thorigny sur Oreuse;89;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+481;BLANCHET;Barbe;27/02/1678;Molinons;89;;;#VALEUR!;#VALEUR!;04/08/1746;Villeneuve l'Archevêque Yonne;
+482;MONTILLOT;Jacques;01/03/1679;Sens (Ste Madeleine);89;;24/02/1699;Sens (St Savinien) Yonne;;;#VALEUR!;#VALEUR!
+483;BENOIT;Marie;;;;;24/02/1699;Sens (St Savinien) Yonne;;;#VALEUR!;#VALEUR!
+484;RIGOUREAU;Michel;02/06/1682;Pont sur Vanne;89;;09/02/1706;Villiers Louis 89;;04/05/1735;Pont sur Vanne Yonne;
+485;BLONDET;Marguerite;22/04/1685;Villiers Louis;89;;09/02/1706;Villiers Louis 89;;06/11/1710;Pont sur Vanne Yonne;
+486;FELIX;Claude;1671;;;;11/07/1693;Grange le Bocage 89;;;#VALEUR!;#VALEUR!
+487;PRESTAT;Marie;24/12/1668;Villiers Bonneux;89;;11/07/1693;Grange le Bocage 89;;28/09/1724;Grange le Bocage 89;
+488;BENARD;Etienne;;;;;;.....?;;19/05/1743;La Louptière-Thénard Aube;
+489;SAVOURAT;Jeanne;;;;;;.....?;;08/07/1747;La Louptière-Thénard Aube;
+490;LUQUIN;Edme;04/12/1686;La Louptière-Thénard;10;;??/11/1707;Sognes Yonne;;04/10/1746;Sognes Yonne;
+491;VIDOT;Anne;20/03/1687;Sognes;89;;??/11/1707;Sognes Yonne;;27/01/1774;Sognes Yonne;
+492;GENERAT;Edme;31/12/1685;Avant-lès-Marcilly;10;;27/11/1705;Avant-lès-Marcilly Aube;;;#VALEUR!;#VALEUR!
+493;BLAQUE;Jeanne;16/08/1689;Avant-lès-Marcilly;10;;27/11/1705;Avant-lès-Marcilly Aube;;09/04/1743;Avant-lès-Marcilly Aube;
+494;GUILLEMARD;Jean;04/11/1694;Saint Aubin;10;;22/06/1717;Fontaine-Mâcon Aube;;16/10/1770;Fontaine-Mâcon Aube;
+495;BOYARD;Marie;29/09/1695;Fontaine-Mâcon;10;;22/06/1717;Fontaine-Mâcon Aube;;13/10/1770;Fontaine-Mâcon Aube;
+504;COUARD;Hilaire ?;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+505;REBILLOT;Claude;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+506;SARAZIN;Nicolas;09/11/1650;Thorigny sur Oreuse;89;;06/02/1691;Fleurigny (Thorigny sur Oreuse) 89;;15/09/1701;Thorigny sur Oreuse 89;
+507;BUISSON;Marie;12/02/1668;Pont sur Yonne;89;;06/02/1691;Fleurigny (Thorigny sur Oreuse) 89;;;.....?;
+534;DELANSAY;Jacques (Jacobus);;;;;05/05/1703;Beuvry 62;;31/08/1709;Beuvry 62;
+535;BOULINGUEZ;Marie Madeleine;;;;;05/05/1703;Beuvry 62;;26/11/1721;Beuvry 62;
+572;CALERS CALLERS;Jacques;02/02/1645;Calonne sur la Lys;62;;26/11/1670;Calonne sur la Lys 62;;04/11/1707;Calonne sur la Lys 62;
+573;MACQUART;Jeanne;05/04/1647;Calonne sur la Lys;62;;26/11/1670;Calonne sur la Lys 62;;16/03/1731;Calonne sur la Lys 62;
+574;FEBVRIER;Adrien;;;;;;#VALEUR!;#VALEUR!;12/06/1710;Saint Floris 62;
+575;BOUREL;Petronne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+576;HAUW;Simon;27/06/1601;Esquelbecq;59;;;#VALEUR!;#VALEUR!;09/04/1688;Esquelbecq (59);
+577;Van WARRENGHEM;Marie;;;;;;#VALEUR!;#VALEUR!;28/12/1682;Esquelbecq (59);
+580;DE VOS;Jean;;;;;??/04/1665;Bissezeele (59);;;#VALEUR!;#VALEUR!
+581;BUL??;Isabelle;??/10/1637;Ledringhem;59;;??/04/1665;Bissezeele (59);;07/12/1720;Crochte (59);
+582;BRUSSET ?;Jean;10/06/1640;Bissezeele;59;;??/10/1665;Bissezeele (59);;;#VALEUR!;#VALEUR!
+583;BASEELS;Cornelie;;;;;??/10/1665;Bissezeele (59);;;#VALEUR!;#VALEUR!
+606;LAHAYE;Jacques;;;;;18/01/1684;Audruicq 62;;;#VALEUR!;#VALEUR!
+607;BAILLIART;Marie Marguerite;06/01/1665;Audruicq;62;;18/01/1684;Audruicq 62;;20/12/1711;Audruicq 62;
+624;LEGROS DEGROO;Antoine;;;;;;#VALEUR!;#VALEUR!;19/03/1693;Loon Plage;59
+632;CORDONNIER;Jean Philippe;20/11/1641;Haubourdin;59;;17/07/1684;Haubourdin 59;;;#VALEUR!;#VALEUR!
+633;......;Elisabeth? Isabelle;;;;;17/07/1684;Haubourdin 59;;;#VALEUR!;#VALEUR!
+634;MALLET;Pierre;1654;Zuydcoote;59;;;#VALEUR!;#VALEUR!;21/03/1731;Mardick;59
+635;BRISAN BEUSIN;Barbe Françoise;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+636;SNAUDE;Nicolas;;;;;;#VALEUR!;#VALEUR!;01/02/1716;Mardick;59
+637;CARRON;Jacquemine;;;;;;#VALEUR!;#VALEUR!;31/05/1705;Mardick;59
+638;COQUERÉ;Noël;1658;;;;09/05/1692;Gravelines 59;;01/12/1700;Gravelines 59;
+639;HAUQUIER;Marie Madeleine;1676;Petite Synthe;89;;09/05/1692;Gravelines 59;;05/01/1736;Mardick;59
+712;ETIENNE;Nicolas;;;;;03/03/1669;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+713;BELHOMME;Françoise;13/07/1642;? Bar le Duc Notre Dame;55;;03/03/1669;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+714;ROUYER;Nicolas;24/08/1647;? Bar le Duc Notre Dame;55;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+715;VARIN (VAVIN ?);Françoise;31/08/1643;? Bar le Duc Notre Dame;55;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+716;TRUSSON;Mathieu;;;;;??/05/1668;Bar le Duc Notre Dame;;;....?;
+717;CAMUS;Anne;;;;;??/05/1668;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+718;QUINET;Claude;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+719;NON INDIQUÉ;;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+720;FLORENTIN;Jean;;;;;19/05/1665;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+721;RENAULT;Anne;15/07/1649;Bar le Duc Notre Dame;55;;19/05/1665;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+722;PICHANCOURT;Jean;1620;;;;06/07/1655;Bar le Duc Notre Dame;;27/06/1700;Bar le Duc Notre Dame;
+723;AUGER ( OGIER );Catherine;12/01/1636;St Mihiel Meuse;55;;06/07/1655;Bar le Duc Notre Dame;;17/02/1718;Bar le Duc Notre Dame;
+724;MANDAVID;Barthélemy;1633;Conthil;27;;;#VALEUR!;#VALEUR!;05/10/1723;Conthil Moselle;
+725;DOUCET;Marie;;Conthil;27;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+726;OUDINOT;Jean;07/03/1655;Bar le Duc Notre Dame;55;;24/11/1674;Bar le Duc Notre Dame;;;#VALEUR!;#VALEUR!
+727;GAGNEUX;Marguerite;16/04/1647;Bar le Duc Notre Dame;55;;24/11/1674;Bar le Duc Notre Dame;;18/04/1707;Bar le Duc Notre Dame;
+728;PERTUIZOT;Jean;;;;;;#VALEUR!;#VALEUR!;1685;#VALEUR!;#VALEUR!
+729;CHANGET CHANGÉ;Marie;10/08/1658;Bar le Duc St Pierre;55;;;#VALEUR!;#VALEUR!;08/09/1727;Bar le Duc Notre Dame;
+730;HUGUET;Philippe;22/04/1658;Nancy St Sébastien;54;;10/01/1683;Nancy St Sébastien Meurthe et Moselle;;05/08/1695;Nancy St Sébastien Meurthe et Moselle;
+731;BASSET;Anne Marie;08/08/1663;Nancy St Sébastien;54;;10/01/1683;Nancy St Sébastien Meurthe et Moselle;;;#VALEUR!;#VALEUR!
+732;COYART;Sébastien;22/02/1634;Bar le Duc Notre Dame;55;;27/11/1657;Bar le Duc Notre Dame;;26/11/1694;Bar le Duc Notre Dame;
+733;VASLIER;Anne;04/11/1637;Bar le Duc Notre Dame;55;;27/11/1657;Bar le Duc Notre Dame;;08/01/1712;Bar le Duc Notre Dame;
+734;PETTANGUE;Marc Antoine;1639;;;;17/01/1669;Bar le Duc Notre Dame;;24/07/1719;Bar le Duc Notre Dame;
+735;MAGINOT;Marie;1648;;;;17/01/1669;Bar le Duc Notre Dame;;02/02/1718;Bar le Duc Notre Dame;
+752;MARCHAL;Jacques;;;;;;#VALEUR!;#VALEUR!;21/09/1714;Avricourt Moselle;
+753;SIMON;Catherine;;;;;;#VALEUR!;#VALEUR!;07/03/1699;Avricourt Moselle;
+754;MUNIER;Nicolas;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+755;TABOURIN;Marie;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+756;BAPTISTE;Dominique;;;;;12/01/1694;Igney Meurthe et Moselle;;08/06/1739;Foulcrey Moselle;
+757;PIERSON;Odile;;;;;12/01/1694;Igney Meurthe et Moselle;;11/10/1721;Foulcrey Moselle;
+758;HOURDEAU;Louÿs;;;;;15/01/1697;Foulcrey Moselle;;12/12/1746;Foulcrey Moselle;
+759;KERCHAND BONNETIER;Catherine;;;;;15/01/1697;Foulcrey Moselle;;08/08/1734;Foulcrey Moselle;
+768;DUPRÉ;Jean;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+769;VALLIER;Etiennette;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+770;HEURTON;Louis;1652;;;;;#VALEUR!;#VALEUR!;11/06/1727;Malay-le-Grand;89
+771;VIVAT;Etiennette;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+772;THIENLOU;Jean;;;;;30/01/1685;Malay-le-Grand;89;17/01/1716;Malay-le-Grand;89
+773;BARBIER;Edmée;;;;;30/01/1685;Malay-le-Grand;89;;.....?;
+774;POURÉE;Jean;1656;;;;18/01/1683;Malay-le-Grand;89;07/10/1711;Malay-le-Grand;89
+775;BARBIER;Marie;;;;;18/01/1683;Malay-le-Grand;89;;#VALEUR!;#VALEUR!
+776;LETENDRE;Pierre;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+777;HODRY;Anne;;;;;;#VALEUR!;#VALEUR!;15/04/1727;Malay-le-Grand;89
+778;JAMET;Thomas;;;;;;#VALEUR!;#VALEUR!;23/04/1713;Malay-le-Grand;89
+779;CHARPENTIER;Anne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+782;PINSONAT;Jean L'Ainé;1634;;;;;#VALEUR!;#VALEUR!;30/01/1699;Malay-le-Grand;89
+783;MATIGNON;Edmée;1650;;;;;#VALEUR!;#VALEUR!;26/02/1710;Malay-le-Grand;89
+784;PINSONNAT;Jean L'Ainé;1634;;;;;#VALEUR!;#VALEUR!;30/01/1699;Malay-le-Grand;89
+785;MATIGNON;Émée;1650;;;;;#VALEUR!;#VALEUR!;16/02/1710;Malay-le-Grand;89
+786;BARBIER;Nicolas;1660;Malay-le-Grand;89;;23/02/1688;Malay-le-Grand;89;01/06/1710;Malay-le-Grand;89
+787;MALMANDE;Marie;1664;Malay-le-Grand;89;;23/02/1688;Malay-le-Grand;89;03/06/1716;Malay-le-Grand;89
+788;GUÉTARD;Pierre;;;;;21/02/1696;Cussy les Forges Yonne;;20/12/1703;Cussy les Forges Yonne;
+789;GUIOT;Claudine;;;;;21/02/1696;Cussy les Forges Yonne;;;Pas le Registre;
+790;HEURTON;Louis;1652;;;;;#VALEUR!;#VALEUR!;11/06/1727;Malay-le-Grand;89
+791;VIVAT;Etiennette;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+792;CLOUZARD;Jean;1667;;;;31/01/1690;Vaumort 89;;22/09/1712;Malay-le-Grand;89
+793;TIENLOUE;Marie;1666;Malay-le-Grand;89;;31/01/1690;Vaumort 89;;01/04/1716;Malay-le-Grand;89
+794;BERLIN;Pierre;1654;;;;25/06/1680;Sergines 89;;18/02/1709;Voisines 89;
+795;ANCELLOT;Jeanne;;;;;25/06/1680;Sergines 89;;19/10/1731;Maillot 89;
+796;GODARD;Edme;;;;;08/02/1712;Malay-le-Grand;89;28/01/1722;Malay-le-Grand;89
+797;LOISON;Marguerite;12/04/1684;Malay-le-Grand;89;;08/02/1712;Malay-le-Grand;89;07/01/1731;Malay-le-Grand;89
+798;DUPRÉ;Claude;1670;Malay-le-Grand;89;;23/11/1711;Malay-le-Grand;89;14/11/1728;Malay-le-Grand;89
+799;HEURTON;Jeanne;1689;Malay-le-Grand;89;;23/11/1711;Malay-le-Grand;89;13/04/1754;Malay-le-Grand;89
+808;MÉRAT;Edme;1656;;;;15/07/1681;Malay-le-Grand;89;12/11/1719;Malay-le-Grand;89
+809;BOUQUET;Edmée;1646;;;;15/07/1681;Malay-le-Grand;89;29/06/1736;Malay-le-Grand;89
+810;CHICOUARD;Jacques;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+811;TIENLOUE;Marie;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+812;DELECOLLE;Edme;;;;;26/11/1686;Malay-le-Grand;89;03/05/1719;Malay-le-Grand;89
+813;THIENLOU;Françoise;;;;;26/11/1686;Malay-le-Grand;89;23/08/1728;Malay-le-Grand;89
+815;TONNELIER;Barbe;1681;;;;23/11/1699;Malay-le-Grand;89;24/05/1711;Malay-le-Grand;89
+836;MOREAU;Claude;01/02/1654;Véron;89;;16/02/1683;Veron 89;;28/07/1723;Veron 89;
+837;NAVEAU;Marie;25/07/1656;Véron;89;;16/02/1683;Veron 89;;09/02/1730;Veron 89;
+838;POISSON;Edme;08/09/1663;Etigny;89;;26/04/1689;Etigny 89;;;#VALEUR!;#VALEUR!
+839;VAUDOUX;Jeanne;26/02/1667;Etigny;89;;26/04/1689;Etigny 89;;29/02/1704;Etigny 89;
+840;ROUX;Michel;1641;;;;07/12/1673;Rosoy;89;08/10/1701;Rosoy;89
+841;DECHAMBRE;Colombe;29/01/1647;Véron;89;;07/12/1673;Rosoy;89;;#VALEUR!;#VALEUR!
+842;MOREAU;Barthelemy;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+843;COMAY COMET;Marie;1636;;;;;#VALEUR!;#VALEUR!;29/11/1686;Rosoy;89
+864;MOREAU;Claude;1643;;;;22/01/1664;Plessis St Jean 89;;29/10/1710;Rosoy 89;
+865;RAFFENON;Anne;1644;;;;22/01/1664;Plessis St Jean 89;;01/01/1692;Rosoy 89;
+866;FRAUDIN;Etienne;1642;;;;23/02/1672;Véron 89;;01/03/1692;Rosoy 89;
+867;GERMAIN ?;Sébastienne? Bastienne?;20/05/1653;Véron;89;;23/02/1672;Véron 89;;06/08/1722;Rosoy 89;
+868;RECHAULT;Jean;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+869;BONNEAU ?;Edmée;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+870;GAUDIN;Antoine;1674;;;;;#VALEUR!;#VALEUR!;01/01/1722;Rosoy;89
+871;GIGUET;Jeanne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+872;TERRIER;Jean;;;;;31/01/1680;Collemiers 89;;15/02/1704;Collemiers 89;
+873;BARDE;Marie;1664;;;;31/01/1680;Collemiers 89;;16/12/1734;Collemiers 89;
+876;FRAUDIN;Etienne;1647;;;;23/02/1672;Véron 89;;01/03/1692;Rosoy 89;
+877;GERMAIN ? JALLEMAIN;Sébastienne;20/05/1653;Véron;89;;23/02/1672;Véron 89;;06/08/1722;Rosoy 89;
+878;RIOSSET;Jean;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+879;HUEE;Anne;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+888;TERRIER;Jean;06/02/1651;Collemiers;89;;31/01/1680;Collemiers 89;;15/02/1704;Collemiers 89;
+889;BARDE;Marie;;;;;31/01/1680;Collemiers 89;;16/12/1734;Collemiers 89;
+892;ALAIX;Jean;08/08/1671;Rosoy;89;;12/02/1697;Veron 89;;04/05/1727;Veron 89;
+893;DENIS;Colombe;1661;;;;12/02/1697;Veron 89;;31/07/1731;Veron 89;
+894;BORDELOT;Jean;06/06/1665;Véron;89;;29/01/1692;Veron 89;;05/09/1698;Veron 89;
+895;DE LANOUE;Louise;;;;;29/01/1692;Veron 89;;;#VALEUR!;#VALEUR!
+896;GODARD;Edme;1656;Malay-le-Grand;89;;;#VALEUR!;#VALEUR!;25/10/1716;Malay-le-Grand;89
+897;NARLAY;Thienette;;;;;;#VALEUR!;#VALEUR!;;....?;
+898;LOISON;Pierre;;;;;;#VALEUR!;#VALEUR!;;....?;
+899;LUBIN;Marguerite;;;;;;#VALEUR!;#VALEUR!;;....?;
+900;DUPRÉ;Jean;;;;;;#VALEUR!;#VALEUR!;;....?;
+901;VALLIER;Etiennette;;;;;;#VALEUR!;#VALEUR!;;....?;
+902;HEURTON;Louis;1652;;;;;#VALEUR!;#VALEUR!;21/06/1727;Malay-le-Grand;89
+903;VIVAT;Etiennette;;;;;;#VALEUR!;#VALEUR!;;....?;
+904;DELECOLE;Edme;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+905;TIENLOUX;Françoise;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+906;BEAU;Sebastien;;;;;28/01/1687;Malay-le-Grand;89;;....?;
+907;POURÉE;Edmée;1666;;;;28/01/1687;Malay-le-Grand;89;20/03/1726;Malay-le-Grand;89
+908;PINSONNAT;Jean;1634;;;;;#VALEUR!;#VALEUR!;30/01/1699;Malay-le-Grand;89
+909;MATIGNON;Edmée;;;;;;#VALEUR!;#VALEUR!;16/02/1710;Malay-le-Grand;89
+910;BARBIER;Nicolas;1660;Malay-le-Grand;89;;22/02/1688;Malay-le-Grand;89;01/06/1710;Malay-le-Grand;89
+911;MALMANDE;Marie;1664;;;;22/02/1688;Malay-le-Grand;89;03/06/1716;Malay-le-Grand;89
+912;TERRIER;Jean;;;;;31/01/1680;Collemiers 89;;15/02/1704;Collemiers 89;
+913;BARDE;Marie;1664;;;;31/01/1680;Collemiers 89;;16/12/1734;Collemiers 89;
+916;ROUSSET;Nicolas;1657;;;;;#VALEUR!;#VALEUR!;08/01/1732;Rosoy;89
+917;BESNARD;Elisabeth;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+918;PINSONAT;Jean Le Jeune;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+919;FOUËT;Anthoinette;1674;;;;;#VALEUR!;#VALEUR!;25/01/1716;Malay-le-Grand;89
+928;AVELINE;Jean;1646;;;;25/06/1669;Granges sur Aube 51;;10/10/1706;Granges sur Aube 51;
+929;SIMON;Jeanne;06/10/1646;Granges sur Aube;51;;25/06/1669;Granges sur Aube 51;;16/09/1706;Granges sur Aube 51;
+930;LOMBARD;Jacques;;;;;01/08/1680;Bagneux 51;;;#VALEUR!;#VALEUR!
+931;SEURAT;Edmée;01/03/1660;Granges sur Aube;51;;01/08/1680;Bagneux 51;;15/03/1681;Granges sur Aube 51;
+932;SIROT;Julien;;;;;08/10/1668;Granges sur Aube 51;;;#VALEUR!;#VALEUR!
+933;SIERAT;Sulpice;21/03/1653;Granges sur Aube;51;;08/10/1668;Granges sur Aube 51;;04/09/1708;Romilly sur Seine Aube;
+934;GIROST;André;1662;;;;22/10/1685;Romilly sur Seine Aube;;18/06/1705;Romilly sur Seine Aube;
+935;BEAUDOUIN;Geneviève;26/01/1660;Romilly sur Seine;10;;22/10/1685;Romilly sur Seine Aube;;19/11/1732;Romilly sur Seine Aube;
+944;LAMY;Jean;1649;;;;29/01/1674;Villemanoche Yonne;;28/04/1715;Villemanoche Yonne;
+945;CHOLLET;Venisse;08/10/1649;Champigny;89;;29/01/1674;Villemanoche Yonne;;25/11/1689;Villemanoche Yonne;
+946;FOURNEAU;Jean;05/04/1666;Gisy les Nobles;89;;21/01/1687;Gisy les Nobles;;08/12/1694;Gisy les Nobles;
+947;LASNIER;Claudine;1664;Gisy;89;;21/01/1687;Gisy les Nobles;;20/07/1701;Gisy;
+948;ROGER;Simon;;;;;;#VALEUR!;#VALEUR!;27/05/1695;Gisy;
+949;PIERRE;Marie;;;;;;#VALEUR!;#VALEUR!;27/04/1695;Gisy;
+950;RHÉTIF;Edme;17/08/1653;Gisy les Nobles;89;;27/01/1682;Gisy les Nobles;;29/04/1706;Gisy les Nobles;
+951;FROMY;Marie;09/09/1657;Gisy les Nobles;89;;27/01/1682;Gisy les Nobles;;;#VALEUR!;#VALEUR!
+952;GOÜER;Jacques;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+953;ROUSSELOT;Barbe;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+954;ROYER;Nicolas;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+955;HUREAU;Edmée;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+956;AUBERT;Nicolas;09/01/1670;Sergines;89;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+957;FORTIN;Françoise;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+958;LASNIER;Pierre;05/12/1667;Gisy les Nobles;89;;17/02/1691;Gisy les Nobles Yonne;;;#VALEUR!;#VALEUR!
+959;ROCHER;Marie;26/03/1669;Gisy les Nobles;89;;17/02/1691;Gisy les Nobles Yonne;;;#VALEUR!;#VALEUR!
+960;LADVOUé;Etienne;19/06/1644;Villeneuve l'Archevêque;89;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+961;HENRY;Marie;1645;;;;;#VALEUR!;#VALEUR!;16/10/1681;Thorigny sur Oreuse 89;
+962;BLANCHET;Edme;18/07/1645;Villeneuve l'Archevêque;89;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+963;HENRY;Antoinette;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+964;MONTILLOT;Edme;21/04/1652;Sens (Ste Madeleine);89;;?;#VALEUR!;#VALEUR!;13/10/1687;Sens (Ste Madeleine) Yonne;
+965;SIMON;Marie;;;;;?;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+966;BENOIT;Anthoine;24/12/1658;Sens (St Savinien);89;;03/02/1682;Sens (St Hilaire) Yonne;;24/08/1712;Sens (St Savinien) Yonne;
+967;JOSSEY;Jeanne;29/09/1663;Sens (St Hilaire);89;;03/02/1682;Sens (St Hilaire) Yonne;;22/04/1736;Sens (St Savinien) Yonne;
+968;RIGOUREAU;Denis;1640;;;;;#VALEUR!;#VALEUR!;22/01/1692;Pont sur Vanne Yonne;
+969;BRUSLÉ;Françoise;;;;;;#VALEUR!;#VALEUR!;28/04/1711;Pont sur Vanne Yonne;
+970;BLONDET;Jean;1657;;;;13/11/1679;Villiers Louis 89;;19/07/1717;Villiers Louis 89;
+971;JUMIER;Edmée;1662;;;;13/11/1679;Villiers Louis 89;;30/07/1696;Villiers Louis 89;
+972;FELIX;Nicolas;1630;;;;;#VALEUR!;#VALEUR!;15/11/1688;Grange le Bocage 89;
+973;SAUCIER;Marie;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+974;PRESTAT;Jean;17/03/1643;Villiers Bonneux;89;;;#VALEUR!;#VALEUR!;12/01/1684;Grange le Bocage 89;
+975;LESOURD;Edmée;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+980;LUQUIN;Edme;;;;;26/02/1669;La Louptière-Thénard Aube;;;.....?;
+981;PAPILLON;Marie;;;;;26/02/1669;La Louptière-Thénard Aube;;;.....?;
+982;VIDOT;Charles;1652;;;;;.....?;;23/08/1727;Sognes Yonne;
+983;COLLARD;Anne;;;;;;.....?;;12/02/1691;Sognes Yonne;
+984;GENERAT;Jean;1642;;;;06/02/1685;Ferreux Aube;;15/04/1711;Avant-lès-Marcilly Aube;
+985;SAVART;Jeanne;1659;;;;06/02/1685;Ferreux Aube;;27/02/1716;Avant-lès-Marcilly Aube;
+986;BLAQUE;Michel;20/12/1654;Avant-lès-Marcilly;10;;01/07/1680;Avant-lès-Marcilly Aube;;07/12/1701;Avant-lès-Marcilly Aube;
+987;PONCE;Michelle;18/09/1658;Avant-lès-Marcilly;10;;01/07/1680;Avant-lès-Marcilly Aube;;26/03/1731;Fontaine-Mâcon Aube;
+988;GUILLEMARD;André;1654;;;;10/02/1676;Saint Aubin Aube;;23/10/1727;Saint Aubin Aube;
+989;GRILLAT;Anne;14/01/1657;Saint Martin de Bossenay;10;;10/02/1676;Saint Aubin Aube;;01/03/1713;Saint Aubin Aube;
+990;BOYARD;Pierre;15/06/1664;Fontaine-Mâcon;10;;13/02/1689;Fontaine-Mâcon Aube;;23/12/1741;Fontaine-Mâcon Aube;
+991;MOREAU;Marie;04/09/1666;Fontaine-Mâcon;10;;13/02/1689;Fontaine-Mâcon Aube;;25/01/1714;Fontaine-Mâcon Aube;
+1012;SARAZIN;Nicolas;;;;;;#VALEUR!;#VALEUR!;12/03/1662;Thorigny sur Oreuse 89;
+1013;BOUY;Marguerite;;;;;;#VALEUR!;#VALEUR!;;#VALEUR!;#VALEUR!
+1014;BUISSON;Jean;1627;;;;;#VALEUR!;#VALEUR!;09/10/1709;Thorigny sur Oreuse 89;
+1015;DADA;Marie;;;;;;#VALEUR!;#VALEUR!;09/04/1675;Pont sur Yonne Yonne;

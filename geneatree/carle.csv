@@ -1,4 +1,4 @@
-﻿Id;Nom;Prénom;Naissance_Date;Naissance_Ville;Naissance_Dept;Profession;Mariage_Date;Mariage_Ville;Mariage_Dept;Décès_Date;Décès_Lieu;Décès_Dept
+﻿Id;Nom;Prénom;Naissance_Date;Naissance_Ville;Naissance_Dept;Profession;Mariage_Date;Mariage_Ville;Mariage_Dept;Décès_Date;Décès_Ville;Décès_Dept
 1;CARLÉ;René Vincent Louis;09/09/1946;Marseille;13;enseignant;30/10/1971;Talence;33;;;
 2;CARLÉ;'Henri' François Augustin;26/05/1908;Toulon;83;préparateur en pharmacie;30/04/1932;Marseille;13;17/07/1989;Marseille;13
 3;PAYAN;'Marie' Angèle;26/05/1908;Marseille;13;chemisière;30/04/1932;Marseille;13;25/03/1988;Marseille;13

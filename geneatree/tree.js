@@ -134,32 +134,134 @@ const REGION_LABELS = {
 }
 
 const DEPT_LABELS = {
-    // PACA - nuances de rouge (#E63946)
-    '13': { label: 'Bouches-du-Rhône', color: '#E63946' },
-    '04': { label: 'Alpes-de-Haute-Provence', color: '#F15C68' },
-    '83': { label: 'Var', color: '#C72E3C' },
-    '84': { label: 'Vaucluse', color: '#FF6B77' },
+    // Auvergne-Rhône-Alpes - nuances de violet (#9D4EDD)
+    '01': { label: 'Ain', color: '#A554E1' },
+    '03': { label: 'Allier', color: '#B870ED' },
+    '07': { label: 'Ardèche', color: '#9D4EDD' },
+    '15': { label: 'Cantal', color: '#CB8CF9' },
+    '26': { label: 'Drôme', color: '#8E3DD4' },
+    '38': { label: 'Isère', color: '#7F2BBE' },
+    '42': { label: 'Loire', color: '#9946DA' },
+    '43': { label: 'Haute-Loire', color: '#B066F0' },
+    '63': { label: 'Puy-de-Dôme', color: '#A05BE4' },
+    '69': { label: 'Rhône', color: '#8437D1' },
+    '73': { label: 'Savoie', color: '#7C30C8' },
+    '74': { label: 'Haute-Savoie', color: '#8B40D6' },
+
+    // Bourgogne-Franche-Comté - nuances de marron (#8B4513)
+    '21': { label: 'Côte-d\'Or', color: '#8B4513' },
+    '25': { label: 'Doubs', color: '#A0571A' },
+    '39': { label: 'Jura', color: '#763A0F' },
+    '58': { label: 'Nièvre', color: '#955220' },
+    '70': { label: 'Haute-Saône', color: '#6B3310' },
+    '71': { label: 'Saône-et-Loire', color: '#AA6427' },
+    '89': { label: 'Yonne', color: '#80420E' },
+    '90': { label: 'Territoire de Belfort', color: '#B57130' },
 
     // Bretagne - nuances d'orange (#FF9F1C)
-    '56': { label: 'Morbihan', color: '#FF9F1C' },
+    '22': { label: 'Côtes-d\'Armor', color: '#FFB247' },
+    '29': { label: 'Finistère', color: '#FF9F1C' },
+    '35': { label: 'Ille-et-Vilaine', color: '#E68D0A' },
+    '56': { label: 'Morbihan', color: '#FFBB5C' },
 
-    // Pays de la Loire - nuances de vert (#2A9D8F)
-    '49': { label: 'Maine-et-Loire', color: '#2A9D8F' },
+    // Centre-Val de Loire - nuances de bleu clair (#87CEEB)
+    '18': { label: 'Cher', color: '#87CEEB' },
+    '28': { label: 'Eure-et-Loir', color: '#9DDCF5' },
+    '36': { label: 'Indre', color: '#6FB8DC' },
+    '37': { label: 'Indre-et-Loire', color: '#A8E4FF' },
+    '41': { label: 'Loir-et-Cher', color: '#7AC5E8' },
+    '45': { label: 'Loiret', color: '#B3EBFF' },
+
+    // Corse - nuances de mauve (#B5838D)
+    '2A': { label: 'Corse-du-Sud', color: '#B5838D' },
+    '2B': { label: 'Haute-Corse', color: '#C99BA5' },
 
     // Grand Est - nuances de jaune (#E9C46A)
-    '68': { label: 'Haut-Rhin', color: 'lightblue' },
-    '67': { label: 'Bas-Rhin', color: '#93C8D8' },
+    '08': { label: 'Ardennes', color: '#E9C46A' },
+    '10': { label: 'Aube', color: '#F0D079' },
+    '51': { label: 'Marne', color: '#E2B85B' },
+    '52': { label: 'Haute-Marne', color: '#F7DD88' },
+    '54': { label: 'Meurthe-et-Moselle', color: '#DDB14C' },
+    '55': { label: 'Meuse', color: '#EEC972' },
+    '57': { label: 'Moselle', color: '#D6A53D' },
+    '67': { label: 'Bas-Rhin', color: '#E5BD63' },
+    '68': { label: 'Haut-Rhin', color: '#CFA02E' },
+    '88': { label: 'Vosges', color: '#EDD180' },
 
-    // Auvergne-Rhône-Alpes - nuances de violet (#9D4EDD)
-    '07': { label: 'Ardèche', color: '#9D4EDD' },
-    '43': { label: 'Haute-Loire', color: '#B066F0' },
-    '69': { label: 'Rhône', color: '#8437D1' },
+    // Hauts-de-France - nuances de gris-bleu (#6C757D)
+    '02': { label: 'Aisne', color: '#6C757D' },
+    '59': { label: 'Nord', color: '#868E96' },
+    '60': { label: 'Oise', color: '#5A6268' },
+    '62': { label: 'Pas-de-Calais', color: '#7D8590' },
+    '80': { label: 'Somme', color: '#4E555B' },
 
     // Île-de-France - nuances de rose (#F72585)
     '75': { label: 'Paris', color: '#F72585' },
+    '77': { label: 'Seine-et-Marne', color: '#FA4A9F' },
+    '78': { label: 'Yvelines', color: '#ED0C6B' },
+    '91': { label: 'Essonne', color: '#FF6FB9' },
+    '92': { label: 'Hauts-de-Seine', color: '#E81876' },
+    '93': { label: 'Seine-Saint-Denis', color: '#F53494' },
+    '94': { label: 'Val-de-Marne', color: '#FC5AA9' },
+    '95': { label: 'Val-d\'Oise', color: '#E50060' },
 
-    // Corse - nuances de mauve (#B5838D)
-    '20A': { label: 'Corse du Sud', color: '#B5838D' },
+    // Normandie - nuances de vert pomme (#8FBC8F)
+    '14': { label: 'Calvados', color: '#8FBC8F' },
+    '27': { label: 'Eure', color: '#A3CFA3' },
+    '50': { label: 'Manche', color: '#7CAA7C' },
+    '61': { label: 'Orne', color: '#B0DCB0' },
+    '76': { label: 'Seine-Maritime', color: '#6F9A6F' },
+
+    // Nouvelle-Aquitaine - nuances de turquoise (#20B2AA)
+    '16': { label: 'Charente', color: '#20B2AA' },
+    '17': { label: 'Charente-Maritime', color: '#3DCDC5' },
+    '19': { label: 'Corrèze', color: '#189B93' },
+    '23': { label: 'Creuse', color: '#5ADDD5' },
+    '24': { label: 'Dordogne', color: '#15857D' },
+    '33': { label: 'Gironde', color: '#47D0C8' },
+    '40': { label: 'Landes', color: '#12766E' },
+    '47': { label: 'Lot-et-Garonne', color: '#67E8E0' },
+    '64': { label: 'Pyrénées-Atlantiques', color: '#10685F' },
+    '79': { label: 'Deux-Sèvres', color: '#73F0E8' },
+    '86': { label: 'Vienne', color: '#0E5A52' },
+    '87': { label: 'Haute-Vienne', color: '#7FF8F0' },
+
+    // Occitanie - nuances de rouge bordeaux (#8B0000)
+    '09': { label: 'Ariège', color: '#8B0000' },
+    '11': { label: 'Aude', color: '#A41A1A' },
+    '12': { label: 'Aveyron', color: '#760000' },
+    '30': { label: 'Gard', color: '#BD3333' },
+    '31': { label: 'Haute-Garonne', color: '#670000' },
+    '32': { label: 'Gers', color: '#D64D4D' },
+    '34': { label: 'Hérault', color: '#580000' },
+    '46': { label: 'Lot', color: '#EF6666' },
+    '48': { label: 'Lozère', color: '#490000' },
+    '65': { label: 'Hautes-Pyrénées', color: '#FF8080' },
+    '66': { label: 'Pyrénées-Orientales', color: '#3A0000' },
+    '81': { label: 'Tarn', color: '#FF9999' },
+    '82': { label: 'Tarn-et-Garonne', color: '#2B0000' },
+
+    // Pays de la Loire - nuances de vert (#2A9D8F)
+    '44': { label: 'Loire-Atlantique', color: '#2A9D8F' },
+    '49': { label: 'Maine-et-Loire', color: '#3FB3A4' },
+    '53': { label: 'Mayenne', color: '#1E8879' },
+    '72': { label: 'Sarthe', color: '#54C9BA' },
+    '85': { label: 'Vendée', color: '#197364' },
+
+    // Provence-Alpes-Côte d'Azur - nuances de rouge (#E63946)
+    '04': { label: 'Alpes-de-Haute-Provence', color: '#F15C68' },
+    '05': { label: 'Hautes-Alpes', color: '#EA4C5E' },
+    '06': { label: 'Alpes-Maritimes', color: '#DC2534' },
+    '13': { label: 'Bouches-du-Rhône', color: '#E63946' },
+    '83': { label: 'Var', color: '#C72E3C' },
+    '84': { label: 'Vaucluse', color: '#FF6B77' },
+
+    // Départements et territoires d'outre-mer
+    '971': { label: 'Guadeloupe', color: '#00CED1' },
+    '972': { label: 'Martinique', color: '#00BFC1' },
+    '973': { label: 'Guyane', color: '#00B0B1' },
+    '974': { label: 'La Réunion', color: '#00A1A1' },
+    '976': { label: 'Mayotte', color: '#009292' },
 
     // Étranger
     'Bavière': { label: 'Bavière', color: '#333' },
@@ -411,17 +513,17 @@ function drawNodes() {
 }
 
 function drawLabels() {
-    drawLabel("René CARLÉ", MIDDLE, MIDDLE, 10);
+    drawLabel(extractName(1, true), MIDDLE, MIDDLE-RADIUS/4, 10);
 
-    drawLabel("Henri CARLÉ", MIDDLE, MIDDLE-RADIUS*3/2 + 7, 10);
-    drawLabel("Marie PAYAN", MIDDLE, MIDDLE+RADIUS*3/2 - 5, 10);
+    drawLabel(extractName(2), MIDDLE, MIDDLE-RADIUS*3/2 + 7, 10);
+    drawLabel(extractName(3), MIDDLE, MIDDLE+RADIUS*3/2 - 5, 10);
 
     const chouiaX = 1/3*RADIUS;
     const chouiaY = RADIUS;
-    drawLabel("Nicolas CARLÉ", MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE-RADIUS*5/2 + chouiaY, 10, '45deg');
-    drawLabel("Marie LEMESLE", MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE-RADIUS*5/2 + chouiaY, 10, '-45deg');
-    drawLabel("Louise CASTELIN", MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '-45deg');
-    drawLabel("Vincent PAYAN", MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '45deg');
+    drawLabel(extractName(4), MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE-RADIUS*5/2 + chouiaY, 10, '45deg');
+    drawLabel(extractName(5), MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE-RADIUS*5/2 + chouiaY, 10, '-45deg');
+    drawLabel(extractName(6), MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '-45deg');
+    drawLabel(extractName(7), MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '45deg');
 
     for (let layer=3; layer<LAYERS; ++layer) {
         const nbIndexesInLayer = Math.pow(2, layer);
@@ -436,6 +538,12 @@ function drawLabels() {
             }
         }
     }
+}
+
+function extractName(id, withLineBreak=false) {
+  const prenom = ((MAP[id]['Prénom'] || '').split(' ')[0] || '').replaceAll('\'', '');
+  const nom = MAP[id]['Nom'] || '';
+  return `${prenom}${withLineBreak ? '<br/>' : ' '}${nom}`.trim();
 }
 
 function drawLabel(label, x, y, fontSize=8, rotate) {
