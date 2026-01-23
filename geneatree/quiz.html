@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlé ou Gotrand ?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 550px;
+            width: 100%;
+            padding: 15px;
+            max-height: 98vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .subtitle {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-card.answered {
+            border-color: #667eea;
+        }
+
+        .question-number {
+            display: none;
+        }
+
+        .question-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .ancestor-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+        }
+
+        .ancestor-info {
+            display: none;
+        }
+
+        .options {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .option-btn {
+            flex: 1;
+            padding: 6px 10px;
+            border: 2px solid #dee2e6;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            color: #495057;
+        }
+
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .option-btn.selected {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .option-btn.correct {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .option-btn.incorrect {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            text-align: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .score {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 6px;
+        }
+
+        .score-message {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .restart-btn {
+            padding: 8px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .restart-btn:hover {
+            background: #764ba2;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Carlé ou Gotrand ?</h1>
+        <p class="subtitle">Testez vos connaissances sur votre arbre généalogique !</p>
+
+        <div id="quiz-container">
+            <div class="loading">Chargement des ancêtres...</div>
+        </div>
+    </div>
+
+    <script src="renumeroteLoader.js"></script>
+    <script>
+        let quizData = [];
+        let userAnswers = {};
+        let showingResults = false;
+
+        // Noms à éviter (trop évidents)
+        const EXCLUDED_NAMES = ['CARLÉ', 'GOTRAND', 'PAYAN', 'CARLE'];
+
+        async function loadQuizData() {
+            try {
+                // Charger les deux arbres
+                const carleMap = await window.loadRenumeroteCsv('carle.csv');
+                const gotrandMap = await window.loadRenumeroteCsv('gotrand.csv');
+
+                // Extraire les ancêtres (exclure Id=1 et filtrer les noms évidents)
+                const carleAncestors = Object.keys(carleMap)
+                    .filter(id => id > 1)
+                    .map(id => ({
+                        ...carleMap[id],
+                        source: 'carle',
+                        generation: Math.floor(Math.log2(id))
+                    }))
+                    .filter(ancestor => !EXCLUDED_NAMES.includes(ancestor.Nom?.toUpperCase()));
+
+                const gotrandAncestors = Object.keys(gotrandMap)
+                    .filter(id => id > 1)
+                    .map(id => ({
+                        ...gotrandMap[id],
+                        source: 'gotrand',
+                        generation: Math.floor(Math.log2(id))
+                    }))
+                    .filter(ancestor => !EXCLUDED_NAMES.includes(ancestor.Nom?.toUpperCase()));
+
+                // Prioriser les générations anciennes (generation > 5)
+                const oldCarle = carleAncestors.filter(a => a.generation >= 5);
+                const oldGotrand = gotrandAncestors.filter(a => a.generation >= 5);
+
+                // Compléter avec des générations plus récentes si besoin
+                const allCarle = oldCarle.length >= 5 ? oldCarle : carleAncestors;
+                const allGotrand = oldGotrand.length >= 5 ? oldGotrand : gotrandAncestors;
+
+                // Sélectionner aléatoirement 5 de chaque
+                const selectedCarle = selectRandom(allCarle, 5);
+                const selectedGotrand = selectRandom(allGotrand, 5);
+
+                // Combiner et mélanger
+                quizData = shuffle([...selectedCarle, ...selectedGotrand]);
+
+                // Afficher le quiz
+                renderQuiz();
+            } catch (error) {
+                console.error('Erreur lors du chargement des données:', error);
+                document.getElementById('quiz-container').innerHTML = `
+                    <div class="loading">❌ Erreur de chargement. Vérifiez que les fichiers CSV sont présents.</div>
+                `;
+            }
+        }
+
+        function selectRandom(array, count) {
+            const shuffled = [...array].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, Math.min(count, array.length));
+        }
+
+        function shuffle(array) {
+            const result = [...array];
+            for (let i = result.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
+            }
+            return result;
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+
+            let html = '';
+
+            quizData.forEach((ancestor, index) => {
+                const questionNum = index + 1;
+                const answered = userAnswers[index] !== undefined;
+                const userAnswer = userAnswers[index];
+                const correctAnswer = ancestor.source;
+                const isCorrect = userAnswer === correctAnswer;
+
+                // Classes CSS pour les boutons après validation
+                let carleClass = userAnswers[index] === 'carle' ? 'selected' : '';
+                let gotrandClass = userAnswers[index] === 'gotrand' ? 'selected' : '';
+
+                if (showingResults) {
+                    carleClass = correctAnswer === 'carle' ? 'correct' : (userAnswer === 'carle' ? 'incorrect' : '');
+                    gotrandClass = correctAnswer === 'gotrand' ? 'correct' : (userAnswer === 'gotrand' ? 'incorrect' : '');
+                }
+
+                html += `
+                    <div class="question-card ${answered ? 'answered' : ''}" id="question-${index}">
+                        <div class="question-number">Question ${questionNum}/10</div>
+                        <div class="question-content">
+                            <div class="ancestor-name">${ancestor.Prénom} ${ancestor.Nom}</div>
+                            <div class="options">
+                                <button class="option-btn ${carleClass}"
+                                        onclick="selectAnswer(${index}, 'carle')"
+                                        ${showingResults ? 'disabled' : ''}>
+                                    Carlé
+                                </button>
+                                <button class="option-btn ${gotrandClass}"
+                                        onclick="selectAnswer(${index}, 'gotrand')"
+                                        ${showingResults ? 'disabled' : ''}>
+                                    Gotrand
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ancestor-info">
+                            ${ancestor.Naissance_Date ? `Né(e) le ${ancestor.Naissance_Date}` : ''}
+                            ${ancestor.Naissance_Ville ? ` à ${ancestor.Naissance_Ville}` : ''}
+                            ${ancestor.Profession ? ` - ${ancestor.Profession}` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                <button class="submit-btn" onclick="submitQuiz()" ${Object.keys(userAnswers).length < 10 ? 'disabled' : ''}>
+                    ${showingResults ? 'Quiz terminé' : 'Valider mes réponses'}
+                </button>
+            `;
+
+            if (showingResults) {
+                const score = calculateScore();
+                html += `
+                    <div class="results">
+                        <div class="score">${score}/10</div>
+                        <div class="score-message">${getScoreMessage(score)}</div>
+                        <button class="restart-btn" onclick="restartQuiz()">Recommencer</button>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function selectAnswer(index, answer) {
+            if (showingResults) return;
+
+            userAnswers[index] = answer;
+            renderQuiz();
+        }
+
+        function submitQuiz() {
+            if (Object.keys(userAnswers).length < 10) {
+                alert('Veuillez répondre à toutes les questions avant de valider.');
+                return;
+            }
+
+            showingResults = true;
+
+            renderQuiz();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            quizData.forEach((ancestor, index) => {
+                if (userAnswers[index] === ancestor.source) {
+                    score++;
+                }
+            });
+            return score;
+        }
+
+        function getScoreMessage(score) {
+            if (score === 10) return '🎉 Parfait ! Vous connaissez parfaitement votre arbre généalogique !';
+            if (score >= 8) return '👏 Excellent ! Très bonne connaissance de vos ancêtres !';
+            if (score >= 6) return '👍 Bien joué ! Vous connaissez bien votre famille !';
+            if (score >= 4) return '🤔 Pas mal, mais il y a encore du travail !';
+            return '💪 Continuez à explorer votre arbre généalogique !';
+        }
+
+        function restartQuiz() {
+            userAnswers = {};
+            showingResults = false;
+            loadQuizData();
+        }
+
+        // Démarrer le quiz au chargement de la page
+        window.addEventListener('load', () => {
+            if (typeof window.loadRenumeroteCsv === 'function') {
+                loadQuizData();
+            } else {
+                setTimeout(loadQuizData, 500);
+            }
+        });
+    </script>
+</body>
+</html>
+

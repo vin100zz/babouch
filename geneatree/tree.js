@@ -1,7 +1,7 @@
 let CANVAS_SIZE = 1000;
 let MIDDLE = CANVAS_SIZE/2;
 
-const LAYERS = 11;
+const LAYERS = 13;
 let RADIUS = Math.floor(CANVAS_SIZE / (2*(LAYERS+1)));
 
 let SIZE = LAYERS*RADIUS;
