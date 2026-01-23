@@ -1,10 +1,13 @@
 let CANVAS_SIZE = 1000;
 let MIDDLE = CANVAS_SIZE/2;
 
-const LAYERS = 13;
+const LAYERS = 11;
 let RADIUS = Math.floor(CANVAS_SIZE / (2*(LAYERS+1)));
 
 let SIZE = LAYERS*RADIUS;
+
+// Mode de visualisation : 'arbre' ou 'carte'
+let VISUALIZATION_MODE = 'arbre';
 
 // Système de calques (layers) pour éviter de tout redessiner à chaque mousemove
 const canvasNodes = document.getElementById("canvas-nodes");
@@ -52,7 +55,7 @@ window.addEventListener('load', () => {
     }
 
     // Initialiser le toggle à 3 états pour le CSV
-    const toggleOptions = document.querySelectorAll('.toggle-option');
+    const toggleOptions = document.querySelectorAll('#csv-selector .toggle-option');
     if (toggleOptions.length > 0) {
         toggleOptions.forEach(option => {
             option.addEventListener('click', (e) => {
@@ -74,6 +77,26 @@ window.addEventListener('load', () => {
                     // Pour René ou Évelyne, charger leur CSV respectif
                     switchCsvFile(csvFile);
                 }
+            });
+        });
+    }
+
+    // Initialiser le toggle de visualisation
+    const vizToggleOptions = document.querySelectorAll('#visualization-selector .toggle-option');
+    if (vizToggleOptions.length > 0) {
+        vizToggleOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                const button = e.currentTarget;
+                const vizMode = button.getAttribute('data-value');
+
+                // Retirer la classe active de tous les boutons
+                vizToggleOptions.forEach(opt => opt.classList.remove('active'));
+
+                // Ajouter la classe active au bouton cliqué
+                button.classList.add('active');
+
+                // Changer le mode de visualisation
+                switchVisualizationMode(vizMode);
             });
         });
     }
@@ -947,6 +970,11 @@ function init(map) {
     draw();
     drawTooltip();
     drawFilters();
+
+    // Si on est en mode carte, redessiner la carte
+    if (VISUALIZATION_MODE === 'carte' && typeof window.drawMap === 'function') {
+        window.drawMap();
+    }
 }
 
 let FILTER_MODE = 0;

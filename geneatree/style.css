@@ -215,3 +215,104 @@ body {
   margin-right: 5px;
 }
 
+/* Styles pour la carte */
+.map-container {
+  position: relative;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  margin: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: auto;
+  padding: 20px;
+}
+
+.map-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-wrapper h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.map-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.legend-gradient {
+  width: 200px;
+  height: 20px;
+  background: linear-gradient(to right, #f0f8ff, #4169e1);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.map-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.stat-item {
+  font-size: 14px;
+  color: #555;
+}
+
+.stat-item strong {
+  color: #2c5aa0;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+#france-map {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  background: #f8fbff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.department {
+  transition: all 0.2s ease;
+}
+
+.department:hover {
+  filter: brightness(1.1);
+  stroke-width: 2 !important;
+  stroke: #000 !important;
+}
+
+#map-tooltip {
+  position: fixed;
+  background: white;
+  border: 2px solid #2c5aa0;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  pointer-events: none;
+  z-index: 10000;
+  max-width: 250px;
+}
+
+.leaflet-control-attribution {
+  display: none;
+}
