@@ -18,6 +18,7 @@ const ctxHighlight = canvasHighlight.getContext("2d");
 
 // Écouter les événements sur le canvas du dessus (highlight)
 canvasHighlight.addEventListener('mousemove', onMouseMove);
+canvasHighlight.addEventListener('click', onCanvasClick);
 
 function setCanvasSize(newSize) {
     CANVAS_SIZE = newSize;
@@ -542,7 +543,9 @@ function drawNodes() {
                 let color = 'lightgray';
                 let darken = false;
                 if (FILTER_MODE === 0) {
-                    color = 'lightgray';
+                    // Vérifier si le nœud a un lien
+                    const hasLink = MAP[id]['Lien'] && MAP[id]['Lien'].trim() !== '';
+                    color = hasLink ? 'wheat' : 'lightgray';
                     darken = id%2 === 1;
                 } else if (FILTER_MODE === 1) {
                     color = REGION_LABELS[MAP[id]['Naissance_Region']] ? REGION_LABELS[MAP[id]['Naissance_Region']].color : 'lightgray';
@@ -572,8 +575,8 @@ function drawLabels() {
     const chouiaY = RADIUS;
     drawLabel(extractName(4), MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE-RADIUS*5/2 + chouiaY, 10, '45deg');
     drawLabel(extractName(5), MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE-RADIUS*5/2 + chouiaY, 10, '-45deg');
-    drawLabel(extractName(6), MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '-45deg');
-    drawLabel(extractName(7), MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '45deg');
+    drawLabel(extractName(6), MIDDLE-RADIUS*3/2 - chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '45deg');
+    drawLabel(extractName(7), MIDDLE+RADIUS*3/2 + chouiaX, MIDDLE+RADIUS*5/2 - chouiaY, 10, '-45deg');
 
     for (let layer=3; layer<LAYERS; ++layer) {
         const nbIndexesInLayer = Math.pow(2, layer);
@@ -687,10 +690,55 @@ function onMouseMove(evt) {
     drawNode(ctxHighlight, layer, indexInLayer, 'orange');
   }
 
+  // Changer le curseur si le nœud a un lien (sur toutes les vues)
+  const hasLink = MAP[id]['Lien'] && MAP[id]['Lien'].trim() !== '';
+  canvasHighlight.style.cursor = hasLink ? 'pointer' : 'default';
+
   const label = MAP[id] ? generateTooltipLabel(id) : '-';
   // utiliser pageX/pageY (coordonnées document) pour que le tooltip reste collé
   // à la souris même quand la page est scrollée
   showTooltip(label, evt.pageX, evt.pageY);
+}
+
+function onCanvasClick(evt) {
+  const rect = canvasHighlight.getBoundingClientRect();
+  const x = evt.clientX - rect.left;
+  const y = evt.clientY - rect.top;
+
+  const r = Math.sqrt(Math.pow(x - MIDDLE, 2) + Math.pow(y - MIDDLE, 2));
+  const angle = (y - MIDDLE < 0) ? (-Math.atan2(y - MIDDLE, x - MIDDLE)) : (2*Math.PI - Math.atan2(y - MIDDLE, x - MIDDLE));
+
+  if (r > SIZE) {
+    return;
+  }
+
+  const layer = Math.floor(r / RADIUS);
+
+  if (layer === 0) {
+    return;
+  }
+
+  let indexInLayer = 0;
+  if (layer === 1) {
+    indexInLayer = y - MIDDLE < 0 ? 0 : 1;
+  } else {
+    const nbIndexesInLayer = Math.pow(2, layer);
+    indexInLayer = Math.floor(angle * nbIndexesInLayer / 2 / Math.PI);
+  }
+
+  const id = (layer === 0) ? 1 : (Math.pow(2, layer) + indexInLayer);
+
+  if (!MAP[id]) {
+    return;
+  }
+
+  // Vérifier si le nœud a un lien
+  const link = MAP[id]['Lien'] ? MAP[id]['Lien'].trim() : '';
+  if (link) {
+    // Préfixer le lien avec '../'
+    const fullLink = '../' + link;
+    window.open(fullLink, '_blank');
+  }
 }
 
 function drawNodeById(id, color) {
@@ -804,7 +852,10 @@ function generateTooltipLabel(id) {
     }
 
     return `
-        <span style='display: block; font-size: 125%; font-weight: bold; margin-bottom: 5px'>${prenom} ${nom}</span>
+        <div>
+          <span style='font-size: 125%; font-weight: bold; margin-bottom: 5px'>${prenom} ${nom}</span>
+          <span style='color: #999; margin-left: 5px'>${id}</span>
+        </div>
         ${naissance ? ('<u>Naissance</u> ' + naissance + '<br/>') : ''}
         ${mariage ? ('<u>Mariage</u> ' + mariage + '<br/>') : ''}
         ${deces ? ('<u>Décès</u> ' + deces + '<br/>') : ''}

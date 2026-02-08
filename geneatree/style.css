@@ -45,10 +45,35 @@ body {
   font-weight: bold;
   color: #f0f0f0;
   flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #filters-header:hover {
   background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+}
+
+.quiz-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.quiz-icon:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
 }
 
 .filters-title {
