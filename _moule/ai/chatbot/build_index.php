@@ -308,6 +308,8 @@ function friendlyPath($path) {
         $path = substr($path, $pos + strlen('babouch/'));
     }
     $path = preg_replace('/\/[^\/]+\.html?$/i', '', $path);
+    // Remplace "contenu/pages" par "#/chapitre" pour les URLs du site
+    $path = str_replace('contenu/pages', '#/chapitre', $path);
     return $path;
 }
 

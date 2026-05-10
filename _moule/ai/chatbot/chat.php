@@ -4,6 +4,9 @@
  * Approche RAG : index pré-construit (index.json) → appel API IA → réponse en langage naturel
  * Configuration IA : _moule/ai/config.php  |  Indexation : build_index.php
  */
+// ── Configuration ─────────────────────────────────────────────────────────
+$ENABLE_LINKS = false;  // true = liens cliquables dans les réponses, false = texte brut
+
 header('Content-Type: application/json; charset=utf-8');
 set_time_limit(60);
 
@@ -113,6 +116,14 @@ foreach ($passages as $i => $p) {
 }
 $context = implode("\n\n---\n\n", $contextParts);
 
+$linksInstruction = $ENABLE_LINKS
+    ? "- Intègre des liens markdown tout au long du texte, sur les noms de personnes, lieux et événements mentionnés — pas seulement une fois en début de réponse. Chaque information importante issue d'une page source doit être linkée. Vise au moins un lien par paragraphe.\n"
+    . "  N'ajoute PAS de lien vers les sources dont le chemin commence par \"geneatree\".\n"
+    . "  Exemple correct : \"**[Jean Payan](/1_barles/#/chapitre/1_jean/)** est né vers 1665 à Barles.\"\n"
+    . "  Exemple incorrect : \"Jean Payan est né vers 1665 à Barles (voir la page).\"\n"
+    . "  Le chemin du lien est la partie après le tiret long dans l'en-tête de chaque extrait, préfixée de \"/\" et suffixée de \"/\"."
+    : "- N'ajoute aucun lien dans ta réponse.";
+
 // ── Prompt ────────────────────────────────────────────────────────────────
 $prompt = <<<PROMPT
 Tu es l'assistant du site familial babouch.fr, dédié à l'histoire des familles Payan et Carlé.
@@ -132,10 +143,7 @@ Consignes de rédaction :
 - Organise ta réponse en paragraphes. Tu peux utiliser le gras (**mot**) pour les noms et dates importants.
 - Ne termine PAS la réponse par un paragraphe de synthèse ou de conclusion du type "En somme…", "En résumé…", "Ainsi…", "Pour conclure…" — arrête-toi simplement après le dernier fait pertinent.
 - Ne mentionne JAMAIS les "extraits", les "documents fournis" ou les "sources" dans ta réponse : écris directement les informations, comme si tu les connaissais.
-- Intègre des liens markdown tout au long du texte pour les événements importants mentionnés. Chaque information importante issue d'une page source doit être linkée.
-  Exemple correct : "**[Jean Payan](/1_barles/contenu/pages/1_jean/)** est né vers 1665 à Barles."
-  Exemple incorrect : "Jean Payan est né vers 1665 à Barles (voir la page)."
-  Le chemin du lien est la partie après le tiret long dans l'en-tête de chaque extrait, préfixée de "/" et suffixée de "/".
+- $linksInstruction
 - Si l'information est absente, dis-le brièvement et simplement.
 - Réponds en JSON strict : {"answer": "ta réponse complète ici"}
 PROMPT;

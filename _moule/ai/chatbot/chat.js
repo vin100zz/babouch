@@ -152,7 +152,7 @@ function formatMarkdown(text) {
     // 3. Réinjecter les liens en <a href> (URL limitée à des chemins relatifs)
     escaped = escaped.replace(/\x00LINK(\d+)\x00/g, function(match, idx) {
         var link  = links[parseInt(idx)];
-        var safeUrl = link.url.replace(/['"<>]/g, '');  // sécurité minimale
+        var safeUrl = link.url.replace(/['"<>]/g, '').replace(/%23/g, '#');
         return '<a href="' + safeUrl + '" target="_blank">' + escHtml(link.label) + '</a>';
     });
 
