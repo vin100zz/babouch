@@ -253,6 +253,9 @@ h1 {
 #famille {
  background-image: url(famille.png);
 }
+#famille2 {
+ background-image: url(famille.png);
+}
 #archives {
  background-image: url(archives.png);
 }
@@ -285,4 +288,7 @@ h1 {
 }
 #jean_et_leo {
   background-image: url(jean_et_leo.png);
+}
+#napo {
+  background-image: url(napo.png);	
 }
