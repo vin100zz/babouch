@@ -59,11 +59,11 @@
       "image": "1.jpg",
       "chapitres": [
         {
-          "titre": "Nicolas CARL &  A M STUTZ : naissances et mariage",
+          "titre": "Naissances et mariage",
           "dossier": "1_mariage"
         },
         {
-          "titre": "Nicolas CARL &  A M STUTZ : La famille",
+          "titre": "La famille",
           "dossier": "2_famille",
           "chapitres": [
             {
@@ -121,22 +121,8 @@
           ]
         },
         {
-          "titre": "Nicolas CARL &  A M STUTZ : Leur décès",
+          "titre": "Leur décès",
           "dossier": "3_mort"
-        },
-        {
-          "titre": "Les ancêtres d'Anne Marie STUTZ",
-          "dossier": "0_parents_stutz",
-          "chapitres": [
-            {
-              "titre": "Ensemble",
-              "dossier": "1_ensemble"
-            },
-            {
-              "titre": "8e génération : Joannes STUTZ & Anne HEYSEL",
-              "dossier": "8e_carle"
-            }
-          ]
         }
       ]
     },

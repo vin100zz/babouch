@@ -239,8 +239,12 @@
               "dossier": "4_hotel_ville"
             },
             {
-              "titre": "A partir de 1660 : Les Forts St-Jean et St-Nicolas",
-              "dossier": "2_forts"
+              "titre": "A partir de 1660 : Fort  St-Nicolas",
+              "dossier": "2a_fort_stnic"
+            },
+            {
+              "titre": "A partir de 1668 : Fort St-Jean",
+              "dossier": "2_fort_stjean"
             },
             {
               "titre": "A partir de 1666 : Halle et maison Puget",
@@ -502,7 +506,17 @@
         },
         {
           "titre": "1860 : Pose dela première pierre de La Bourse",
-          "dossier": "5_bourse"
+          "dossier": "5_bourse",
+          "chapitres": [
+            {
+              "titre": "Le palais de la Bourse",
+              "dossier": "1_palais"
+            },
+            {
+              "titre": "La place de la Bourse",
+              "dossier": "2_place"
+            }
+          ]
         },
         {
           "titre": "1862 : Le Palais de Justice (Place Monthyon)",
@@ -854,7 +868,7 @@
                   "dossier": "3_apres"
                 },
                 {
-                  "titre": "La rade sud : des épaves,  Callelongue, l'îlot Degaby, la villa Gaby",
+                  "titre": "La rade sud : des épaves,  Callelongue, l'îlot Degaby, la villa Gaby, Planier",
                   "dossier": "4_sud"
                 },
                 {
@@ -1042,6 +1056,10 @@
         {
           "titre": "Avant la Libération",
           "dossier": "1_avant"
+        },
+        {
+          "titre": "J. Cristofol",
+          "dossier": "1_cristofol"
         },
         {
           "titre": "M. Carlini",
@@ -1272,15 +1290,6 @@
               "titre": "\"Le quartier derrière la Bourse\"",
               "dossier": "bourse_2",
               "chapitres": [
-                {
-                  "titre": "Le Palais de la Bourse",
-                  "dossier": "1_palais"
-                },
-                {
-                  "titre": "La Place de la Bourse",
-                  "dossier": "2_place",
-                  "chapitres": []
-                },
                 {
                   "titre": "Le quartier ancien",
                   "dossier": "3_quartier"

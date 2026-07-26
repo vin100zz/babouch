@@ -65,8 +65,7 @@
       ]
     },
     {
-      "titre": "",
-      "dossier": "4_1er_enfant",
+      "dossier": "4a_1er_enfant_feli",
       "x": 1220,
       "y": 120,
       "image": "enfant_f.jpg",
@@ -81,17 +80,16 @@
           "dossier": "1_jules"
         },
         {
-          "titre": "Le suborneur démasqué ?",
+          "titre": "Le suborneur démaqué ?",
           "dossier": "1a_suborneur"
         }
       ]
     },
     {
-      "titre": "",
-      "dossier": "dossier",
+      "dossier": "4b_1er _enfant_rosine",
       "x": 1220,
       "y": 220,
-	  "image": "enfant_r.jpg",
+      "image": "enfant_r.jpg",
       "chapitres": [
         {
           "titre": "Charles Louis",
@@ -99,19 +97,19 @@
         },
         {
           "titre": "Les nourrices",
-          "dossier": "3_nourrices"
+          "dossier": "2_nourrices"
         },
         {
           "titre": "Le déchirement de l'abandon",
-          "dossier": "4_abandon"
+          "dossier": "3_abandon"
         },
         {
           "titre": "«Enfants trouvés»",
-          "dossier": "5_trouves"
+          "dossier": "4_trouves"
         },
         {
           "titre": "«Filles-mères»",
-          "dossier": "6_secours"
+          "dossier": "5_secours"
         }
       ]
     },

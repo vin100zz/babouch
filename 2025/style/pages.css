@@ -239,6 +239,12 @@ margin: 0px; border-radius: 12px;
   text-align:left;  
  }
  
+ .or { 
+
+  background-color:blue;
+   
+ }
+ 
  .cadreblanc { 
  border:2px solid blue; 
  padding-right: 20px; 

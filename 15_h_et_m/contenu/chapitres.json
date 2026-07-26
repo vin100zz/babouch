@@ -45,6 +45,14 @@
       ]
     },
     {
+      "titre": "Meubles",
+      "dossier": "0a_meubles",
+      "x": -200,
+      "y": 650,
+      "image": "bleu3.jpg",
+      "chapitres": []
+    },
+    {
       "titre": "Henri avant Marie",
       "dossier": "2_henri28",
       "x": 0,

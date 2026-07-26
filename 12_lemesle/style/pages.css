@@ -133,9 +133,8 @@ background-color:#DFF3F7;
   
   
   .conteneur  { 
- display: flex; 
-justify-content:space-around; 
-
+       position:absolute; 
+       top:30%;
  }
  
    .conteneur1  { 
@@ -144,17 +143,44 @@ justify-content:space-around;
 
  }
  
+   .cadre1 { 
+ border:3px solid blue;
+ padding-left: 5px; 
+  }
+ 
  
 .box {
-	 align-items: center;
- }
- 
- .box50 {
-	 align-items: center;
+	 margin:auto;
 	 width:50%;
  }
+ 
+ .box400 {
+	 margin:auto;
+	 width:40%;
+ }
+  .box30 {
+	 align-items: center;
+	 width:30%;
+	 vertical-align:middle;
+ }
+ .box50 {  
+ 
+position:absolute; 
+       top:30%;
+width:50%;
+}
+
+.boxgauche {
+	position:absolute;
+   left :0px;	
+	}
  
   .border { border-width: 3px; border-color: blue; border-style: solid;
 
 }
+
+ .border1 { border-width: 3px; border-color: silver; border-style: solid;
+
+}
+
   

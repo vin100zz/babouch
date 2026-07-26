@@ -9,12 +9,16 @@
       "image": "vert.png"
     },
     {
-      "titre": "Chronologie",
+      "titre": "Sources/Chronologie",
       "dossier": "00_chronologie",
       "x": -100,
       "y": 150,
       "image": "bleu.png",
       "chapitres": [
+        {
+          "titre": "Sources",
+          "dossier": "0_sources"
+        },
         {
           "titre": "Bilan 1974",
           "dossier": "bilan_1974"
@@ -123,7 +127,7 @@
               "dossier": "ares"
             },
             {
-              "titre": "SLS",
+              "titre": "SLS (programme Artemis)",
               "dossier": "sls"
             }
           ]
@@ -312,6 +316,10 @@
             {
               "titre": "Longue Marche 12",
               "dossier": "cz12"
+            },
+            {
+              "titre": "Zhuque-3",
+              "dossier": "zhuque"
             }
           ]
         },
@@ -617,7 +625,7 @@
               ]
             },
             {
-              "titre": "Orion et Artemis",
+              "titre": "Orion (programme Artemis)",
               "dossier": "orion"
             }
           ]
@@ -649,9 +657,17 @@
           ]
         },
         {
+          "titre": "Europe",
+          "dossier": "europe"
+        },
+        {
           "titre": "Chine",
           "dossier": "chine",
           "chapitres": [
+            {
+              "titre": "Projet 714 (Shuguang)",
+              "dossier": "714"
+            },
             {
               "titre": "Shenzhou",
               "dossier": "shenzhou"
@@ -831,16 +847,52 @@
               "dossier": "1985"
             },
             {
-              "titre": "1986 : l'accident de Challenger",
+              "titre": "1986",
               "dossier": "1986"
             },
             {
-              "titre": "Titre",
-              "dossier": "dossier"
+              "titre": "1986 : l'accident de Challenger",
+              "dossier": "1986_challenger"
+            },
+            {
+              "titre": "1987-1989",
+              "dossier": "1987-1989"
+            },
+            {
+              "titre": "1990",
+              "dossier": "1990"
+            },
+            {
+              "titre": "1990 : Discovery et Hubble",
+              "dossier": "1990_hubble"
+            },
+            {
+              "titre": "1991-1992",
+              "dossier": "1991"
+            },
+            {
+              "titre": "1993-1995",
+              "dossier": "1993"
+            },
+            {
+              "titre": "1996-1998",
+              "dossier": "1996"
+            },
+            {
+              "titre": "1999-2002",
+              "dossier": "1999"
             },
             {
               "titre": "Janvier 2003 : l'accident de Columbia",
               "dossier": "2003"
+            },
+            {
+              "titre": "2005-2007",
+              "dossier": "2005"
+            },
+            {
+              "titre": "2008",
+              "dossier": "2008"
             },
             {
               "titre": "2011 :  derniers vols",
@@ -1065,7 +1117,7 @@
                   "dossier": "2022"
                 },
                 {
-                  "titre": "2024-2025",
+                  "titre": "Depuis 2024",
                   "dossier": "2024"
                 }
               ]
@@ -1198,7 +1250,7 @@
                   "dossier": "luna16"
                 },
                 {
-                  "titre": "Luna 17 (1970)",
+                  "titre": "Luna 17 et Lunokhod 1 (1970)",
                   "dossier": "luna17"
                 },
                 {
@@ -1214,7 +1266,7 @@
                   "dossier": "luna20"
                 },
                 {
-                  "titre": "Luna 21 (1973)",
+                  "titre": "Luna 21 et Lunokhod 2 (1973)",
                   "dossier": "luna21"
                 },
                 {
@@ -1238,6 +1290,10 @@
             {
               "titre": "Zond 3 (1965)",
               "dossier": "zond3"
+            },
+            {
+              "titre": "Lunokhod",
+              "dossier": "lunokhod"
             }
           ]
         },
@@ -1246,20 +1302,24 @@
           "dossier": "5_eu",
           "chapitres": [
             {
-              "titre": "Pioneer",
-              "dossier": "pioneer"
+              "titre": "Programme lunaire des E-U",
+              "dossier": "0_programme"
             },
             {
-              "titre": "Ranger",
-              "dossier": "ranger"
+              "titre": "Pioneer (1958-1960)",
+              "dossier": "1_pioneer"
+            },
+            {
+              "titre": "Ranger (1961-1965)",
+              "dossier": "2_ranger"
             },
             {
               "titre": "Explorer 33 (1966) et 35 (1967)",
-              "dossier": "explorer33"
+              "dossier": "3_explorer33"
             },
             {
-              "titre": "Surveyor",
-              "dossier": "surveyor",
+              "titre": "Surveyor (1966-1968)",
+              "dossier": "4_surveyor",
               "chapitres": [
                 {
                   "titre": "Le programme",
@@ -1296,8 +1356,8 @@
               ]
             },
             {
-              "titre": "Lunar Orbiter",
-              "dossier": "orbiter",
+              "titre": "Lunar Orbiter (1966-1967)",
+              "dossier": "5_orbiter",
               "chapitres": [
                 {
                   "titre": "Le programme",
@@ -1324,6 +1384,18 @@
                   "dossier": "orbiter5"
                 }
               ]
+            },
+            {
+              "titre": "Clementine (1994)",
+              "dossier": "6_clementine"
+            },
+            {
+              "titre": "Lunar Prospector (1998)",
+              "dossier": "7_lunar_prospector"
+            },
+            {
+              "titre": "LCROSS (2009)",
+              "dossier": "8_lcross"
             }
           ]
         },
@@ -1332,12 +1404,26 @@
           "dossier": "6_japon",
           "chapitres": [
             {
+              "titre": "Muses-A ou Hiten/Hagomoro  (1990)",
+              "dossier": "muses"
+            },
+            {
               "titre": "Hakuto (2023)",
               "dossier": "hakuto"
             },
             {
               "titre": "SLIM (2024)",
               "dossier": "slim"
+            }
+          ]
+        },
+        {
+          "titre": "Europe",
+          "dossier": "6a_Europe",
+          "chapitres": [
+            {
+              "titre": "SMART-1 (2003)",
+              "dossier": "smart"
             }
           ]
         },
@@ -1534,8 +1620,8 @@
               "dossier": "rover"
             },
             {
-              "titre": "HLS (Human Landing System)",
-              "dossier": "hls"
+              "titre": "Programme Artemis",
+              "dossier": "artemis"
             }
           ]
         },
@@ -1638,7 +1724,7 @@
               "dossier": "mars73"
             },
             {
-              "titre": "Phobos 1 et 2",
+              "titre": "Phobos 1 et 2 (1989)",
               "dossier": "phobos"
             }
           ]
@@ -1647,10 +1733,6 @@
           "titre": "Russie",
           "dossier": "russie",
           "chapitres": [
-            {
-              "titre": "Phobos 1 et 2",
-              "dossier": "phobos"
-            },
             {
               "titre": "Mars 1996",
               "dossier": "mars96"
@@ -1676,59 +1758,59 @@
           ]
         },
         {
-          "titre": "États-Unis (1)",
+          "titre": "États-Unis (1964-1976)",
           "dossier": "eu_1",
           "chapitres": [
             {
-              "titre": "Mariner 3 & 4",
+              "titre": "Mariner 3 & 4 (1964)",
               "dossier": "mariner_3"
             },
             {
-              "titre": "Mariner 6 & 7",
+              "titre": "Mariner 6 & 7 (1969)",
               "dossier": "mariner_6"
             },
             {
-              "titre": "Mariner 8 & 9",
+              "titre": "Mariner 8 & 9 (1971)",
               "dossier": "mariner_8"
             },
             {
-              "titre": "Viking 1 & 2",
+              "titre": "Viking 1 & 2 (1976)",
               "dossier": "viking"
             }
           ]
         },
         {
-          "titre": "États-Unis (2)",
+          "titre": "États-Unis (1992-1999)",
           "dossier": "eu_2",
           "chapitres": [
             {
-              "titre": "Mars Observer",
+              "titre": "Mars Observer (1992)",
               "dossier": "1_observer"
             },
             {
-              "titre": "Mars Global Surveyor",
+              "titre": "Mars Global Surveyor (1996)",
               "dossier": "2_surveyor"
             },
             {
-              "titre": "Mars Pathfinder",
+              "titre": "Mars Pathfinder (1997)",
               "dossier": "3_pathfinder"
             },
             {
-              "titre": "Mars Climate Orbiter",
+              "titre": "Mars Climate Orbiter (1998)",
               "dossier": "4_climate"
             },
             {
-              "titre": "Mars Polar Lander",
+              "titre": "Mars Polar Lander (1999)",
               "dossier": "5_polar"
             }
           ]
         },
         {
-          "titre": "États-Unis (3)",
+          "titre": "États-Unis (2001-2007)",
           "dossier": "eu_3",
           "chapitres": [
             {
-              "titre": "Mars Odyssey",
+              "titre": "Mars Odyssey (2001)",
               "dossier": "1_odyssey"
             },
             {
@@ -1736,33 +1818,33 @@
               "dossier": "2_rover"
             },
             {
-              "titre": "Mars Reconnaissance Orbiter",
+              "titre": "Mars Reconnaissance Orbiter (2005)",
               "dossier": "3_orbiter"
             },
             {
-              "titre": "Phoenix",
+              "titre": "Phoenix (2007)",
               "dossier": "4_phoenix"
             }
           ]
         },
         {
-          "titre": "États-Unis (4)",
+          "titre": "États-Unis (Depuis 2011)",
           "dossier": "eu_4",
           "chapitres": [
             {
-              "titre": "Curiosity",
+              "titre": "Mars Science Laboratory + Curiosity (2011)",
               "dossier": "1_curiosity"
             },
             {
-              "titre": "MAVEN",
+              "titre": "MAVEN (2013)",
               "dossier": "2_maven"
             },
             {
-              "titre": "Insight",
+              "titre": "Insight (2018)",
               "dossier": "3_insight"
             },
             {
-              "titre": "Perseverance et Ingenuity",
+              "titre": "Mars 2020 + Perseverance et Ingenuity",
               "dossier": "4_perseverance"
             }
           ]
@@ -1772,7 +1854,7 @@
           "dossier": "japon",
           "chapitres": [
             {
-              "titre": "Nozomi",
+              "titre": "Nozomi (1998)",
               "dossier": "nozomi"
             }
           ]
@@ -1863,6 +1945,22 @@
             {
               "titre": "Vénus 9 & 10 (1975)",
               "dossier": "venus9"
+            },
+            {
+              "titre": "Venera 11 & 12 (1978)",
+              "dossier": "venera12"
+            },
+            {
+              "titre": "Venera 13 & 14 (1981)",
+              "dossier": "venera13"
+            },
+            {
+              "titre": "Venera 15 & 16 (1983)",
+              "dossier": "venera15"
+            },
+            {
+              "titre": "Vega 1 & 2 (1984)",
+              "dossier": "vega1"
             }
           ]
         },
@@ -1893,8 +1991,12 @@
               ]
             },
             {
-              "titre": "Galileo",
-              "dossier": "galileo"
+              "titre": "Pioneer Venus (1978)",
+              "dossier": "pioneer_venus"
+            },
+            {
+              "titre": "Magellan",
+              "dossier": "magellan"
             }
           ]
         },
@@ -1905,6 +2007,16 @@
             {
               "titre": "Akatsuki",
               "dossier": "akatsuki"
+            }
+          ]
+        },
+        {
+          "titre": "Europe",
+          "dossier": "europe",
+          "chapitres": [
+            {
+              "titre": "Venus Express (2005)",
+              "dossier": "express"
             }
           ]
         }
@@ -2018,16 +2130,20 @@
               "dossier": "pioneer11"
             },
             {
+              "titre": "Voyager (1979)",
+              "dossier": "voyager"
+            },
+            {
               "titre": "Galileo (1989)",
               "dossier": "galileo"
             },
             {
-              "titre": "Juno (2011)",
-              "dossier": "juno"
+              "titre": "New Horizons (2007)",
+              "dossier": "horizons"
             },
             {
-              "titre": "Voyager",
-              "dossier": "voyager"
+              "titre": "Juno (2011)",
+              "dossier": "juno"
             },
             {
               "titre": "Europa Clipper (2024)",
@@ -2180,14 +2296,26 @@
       "dossier": "17_uranus",
       "x": 900,
       "y": 630,
-      "image": "orange.png"
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Voyager 2 (1986)",
+          "dossier": "voyager"
+        }
+      ]
     },
     {
       "titre": "Neptune",
       "dossier": "18_neptune",
       "x": 900,
       "y": 680,
-      "image": "orange.png"
+      "image": "orange.png",
+      "chapitres": [
+        {
+          "titre": "Voyager 2",
+          "dossier": "voyager"
+        }
+      ]
     },
     {
       "titre": "Pluton",
@@ -2250,10 +2378,6 @@
               "dossier": "soho"
             },
             {
-              "titre": "Cluster (2000)",
-              "dossier": "cluster"
-            },
-            {
               "titre": "Genesis (2001)",
               "dossier": "genesis"
             },
@@ -2268,11 +2392,7 @@
           ]
         },
         {
-          "titre": "CNES",
-          "dossier": "cnes"
-        },
-        {
-          "titre": "Europe",
+          "titre": "Europe/CNES",
           "dossier": "europe",
           "chapitres": [
             {
@@ -2282,6 +2402,14 @@
             {
               "titre": "Helios (1974)",
               "dossier": "helios"
+            },
+            {
+              "titre": "Cluster (2000)",
+              "dossier": "cluster"
+            },
+            {
+              "titre": "Picard (2010)",
+              "dossier": "picard"
             },
             {
               "titre": "Solar Orbiter (2020)",

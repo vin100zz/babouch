@@ -7,14 +7,14 @@
       "image": "louis.png"
     },
     {
-      "titre": "Jean PAYAN",
+      "titre": "[800/801] Jean PAYAN (v. 1655-1710) et Marie LOMBARD (v. 1656-1721)",
       "dossier": "1_jean",
       "x": 0,
       "y": 90,
       "image": "jean2.png"
     },
     {
-      "titre": "Charles PAYAN",
+      "titre": "[400/401] Charles PAYAN (v. 1695-1755) et Jeanne ARNAUD (v. 1687-1735)",
       "dossier": "2_charles",
       "x": 300,
       "y": 250,
@@ -25,20 +25,20 @@
           "dossier": "1_mariage1"
         },
         {
-          "titre": "Son remariage",
+          "titre": "Son remariage avec Jeanne ARNAUD",
           "dossier": "2_mariage2"
         }
       ]
     },
     {
-      "titre": "Martin PAYAN (1723-1783)",
+      "titre": "[200/201] Martin PAYAN (1723-1783) et Susanne AUBERT (1722-1783)",
       "dossier": "3_martin",
       "x": 750,
       "y": 410,
       "image": "martin.png",
       "chapitres": [
         {
-          "titre": "Son mariage",
+          "titre": "Le mariage",
           "dossier": "1_mariage"
         },
         {

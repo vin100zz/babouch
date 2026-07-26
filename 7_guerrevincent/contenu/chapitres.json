@@ -1,35 +1,73 @@
 {
   "titre_site": "La guerre de Vincent",
   "chapitres": [
-  
     {
-      "x": 1350,
-      "y": 230,
-      "image": "vp.jpg"
+      "x": 200,
+      "y": 80,
+      "image": "portail_new_1.jpg"
     },
     {
-      "x": 0,
-      "y": 71,
-      "image": "frise.png"
+      "titre": "Les sources",
+      "dossier": "0_sources",
+      "x": 220,
+      "y": 330,
+      "image": "vp.jpg",
+      "chapitres": [
+        {
+          "titre": "Tableau",
+          "dossier": "0_tableau"
+        },
+        {
+          "titre": "Documents qui  concernent personnellement Vincent",
+          "dossier": "1_perso"
+        },
+        {
+          "titre": "Récit de Marie Payan, sa fille",
+          "dossier": "2_marie"
+        },
+        {
+          "titre": "Les régiments de Vincent",
+          "dossier": "3_regiments"
+        },
+        {
+          "titre": "Documents sur les régiments de Vincent",
+          "dossier": "4_officiels",
+          "chapitres": []
+        },
+        {
+          "titre": "JMO 55e RAC",
+          "dossier": "5_jmo_55e"
+        },
+        {
+          "titre": "JMO 46e DI",
+          "dossier": "6_jmo_46e"
+        }
+      ]
     },
-
     {
-      "titre": "Champagne (sept.-oct. 1915)",
+      "titre": "1914 : L'entrée en guerre",
+      "dossier": "14_debuts",
+      "x": -50,
+      "y": 180,
+      "image": "affiche.jpg"
+    },
+    {
+      "titre": "sept.-oct. 1915",
       "dossier": "1_champagne1",
-      "x": 150,
-      "y": 60,
-      "image": "case1.png",
+      "x": 850,
+      "y": 630,
+      "image": "symbole_1.png",
       "chapitres": [
         {
           "titre": "Prélude",
           "dossier": "0_prelude"
         },
         {
-          "titre": "L'échec d'une offensive",
+          "titre": "Situation d'ensemble : L'échec d'une offensive",
           "dossier": "1_offensive"
         },
         {
-          "titre": "Le baptème du feu",
+          "titre": "Le baptème du feu pour Vincent",
           "dossier": "2_jonchery"
         },
         {
@@ -39,278 +77,435 @@
       ]
     },
     {
-      "titre": "Vosges (oct. 1915-juillet 1916)",
+      "titre": "oct. 1915-juillet 1916",
       "dossier": "2_vosges1",
-      "x": 200,
-      "y": 125,
-      "image": "case4.png",
+      "x": 1210,
+      "y": 885,
+      "image": "symbole_2.png",
       "chapitres": [
         {
-          "titre": "Le front",
+          "titre": "Situation d'ensemble : le front des Vosges",
           "dossier": "1_front"
         },
         {
-          "titre": "Sur les pas du 55e R.A.C.",
+          "titre": "Sur les pas du 55e R.A.C., le régiment de Vincent",
           "dossier": "2_55"
         },
         {
-          "titre": "L'hiver",
+          "titre": "L'hiver des Vosges et le souvenir",
           "dossier": "3_hiver"
         }
       ]
     },
     {
-      "titre": "Somme (août-nov. 1916)",
+      "titre": "août-nov. 1916",
       "dossier": "3_somme",
-      "x": 450,
-      "y": 190,
-      "image": "case3.png",
+      "x": 660,
+      "y": 470,
+      "image": "symbole_3.png",
       "chapitres": [
         {
-          "titre": "L'offensive",
+          "titre": "Situation d'ensemble : une nouvelle grande offensive",
           "dossier": "1_offensive"
         },
         {
-          "titre": "La préparation",
+          "titre": "Le 55e RAC se prépare à la bataille",
           "dossier": "2_preparation"
         },
         {
-          "titre": "La participation",
-          "dossier": "3_part"
+          "titre": "Le 55e RAC participe à la bataille",
+          "dossier": "3_part_1"
         },
         {
-          "titre": "La reconstruction",
+          "titre": "La reconstitution de la 55e RAC",
           "dossier": "4_reconst"
         },
         {
-          "titre": "deux",
-          "dossier": "5_deux"
+          "titre": "Seconde participation du 55e RAC à la bataille",
+          "dossier": "5_part_2"
+        },
+        {
+          "titre": "Lieux de  guerre",
+          "dossier": "6_lieux"
         },
         {
           "titre": "La boue",
-          "dossier": "6_boue"
+          "dossier": "7_boue"
+        },
+        {
+          "titre": "Monuments et musées",
+          "dossier": "8_monuments"
+        },
+        {
+          "titre": "A proximité de la Somme, sur le front de 1914 à 1918 : Arras , Bapaume, Vimy",
+          "dossier": "9_front_14_18"
         }
       ]
     },
     {
-      "titre": "Vosges (déc. 1916-janvier 1917)",
+      "titre": "déc. 1916-janvier 1917",
       "dossier": "4_vosges2",
-      "x": 550,
-      "y": 250,
-      "image": "case2.png"
+      "x": 1210,
+      "y": 905,
+      "image": "symbole_4.png"
     },
     {
-      "titre": "Aisne (avril-juin 1917)",
+      "titre": "avril-juin 1917",
       "dossier": "5_aisne",
-      "x": 600,
-      "y": 315,
-      "image": "case5.png",
+      "x": 830,
+      "y": 573,
+      "image": "symbole_5.png",
       "chapitres": [
         {
-          "titre": "La bataille",
-          "dossier": "1_bataille"
+          "titre": "Situation d'ensemble : la bataille de l'Aisne",
+          "dossier": "1_aisne"
         },
         {
-          "titre": "avortée",
-          "dossier": "2_avortee"
+          "titre": "1er-18 avril : 1e phase pour le 55e devenu 227e RAC",
+          "dossier": "2_55e_227e"
         },
         {
-          "titre": "Les combats",
+          "titre": "avril-juin : 2e phase pour le 227e RAC",
           "dossier": "3_combats"
+        },
+        {
+          "titre": "Lieu de guerre : Reims",
+          "dossier": "4_reims"
         }
       ]
     },
     {
-      "titre": "Chemin des Dames (juillet-oct. 1917)",
+      "titre": "juillet-oct. 1917",
       "dossier": "6_dames",
-      "x": 670,
-      "y": 380,
-      "image": "case6.png"
-    },
-    {
-      "titre": "Italie (nov. 1917-avril 1918)",
-      "dossier": "7_italie",
-      "x": 775,
-      "y": 440,
-      "image": "case7.png",
+      "x": 740,
+      "y": 610,
+      "image": "symbole_6.png",
       "chapitres": [
         {
-          "titre": "Au secours de l'Italie",
+          "titre": "Situation d'ensemble : des offensives limitées",
+          "dossier": "1_offensives"
+        },
+        {
+          "titre": "Le 227e RAC face au Chemin des Dames",
+          "dossier": "2_dames"
+        },
+        {
+          "titre": "Lieu de guerre : la Caverne du Dragon",
+          "dossier": "3_dragon"
+        }
+      ]
+    },
+    {
+      "titre": "nov. 1917-avril 1918",
+      "dossier": "7_italie",
+      "x": 1000,
+      "y": 930,
+      "image": "symbole_7.png",
+      "chapitres": [
+        {
+          "titre": "Situation d'ensemble : au secours de l'Italie",
           "dossier": "1_secours"
         },
         {
-          "titre": "Le Mont Tomba",
+          "titre": "Le 227e RAC au pied du Mont Tomba",
           "dossier": "2_tomba"
         },
         {
-          "titre": "neige",
-          "dossier": "3_La neige"
+          "titre": "La neige des Alpes",
+          "dossier": "3_neige"
         }
       ]
     },
     {
-      "titre": "Belgique (mai-juin 1918)",
+      "titre": "mai-juin 1918",
       "dossier": "8_belgique",
-      "x": 1025,
-      "y": 505,
-      "image": "case8.png",
+      "x": 642,
+      "y": 295,
+      "image": "symbole_8.png",
       "chapitres": [
         {
-          "titre": "L'offensive",
-          "dossier": "1_offensive"
+          "titre": "Situation d'ensemble : l'offensive allemande",
+          "dossier": "1_offensive_all"
         },
         {
-          "titre": "Le mouvement",
+          "titre": "Le 227e RAC fait mouvement vers le front",
           "dossier": "2_mouvement"
         },
         {
-          "titre": "Le mont Kemmel",
+          "titre": "Lieux de guerre : Ypres, le mont Kemmel...",
           "dossier": "3_kemmel"
         }
       ]
     },
     {
-      "titre": "Champagne (juillet-août 1918)",
+      "titre": "juillet-août 1918",
       "dossier": "9_champagne2",
-      "x": 1080,
-      "y": 570,
-      "image": "case9.png",
+      "x": 850,
+      "y": 650,
+      "image": "symbole_9.png",
       "chapitres": [
         {
-          "titre": "La Marne",
-          "dossier": "1_marne2"
+          "titre": "Situation d'ensemble : offensives allemandes, contre-offensive alliée",
+          "dossier": "1_off_all"
         },
         {
-          "titre": "Défense",
-          "dossier": "2_defense"
+          "titre": "Le 227e sur le front",
+          "dossier": "2_front"
+        },
+        {
+          "titre": "Lieux de guerre : Fort de la Pompelle, Ferme de Navarin",
+          "dossier": "3_pompelle"
         }
       ]
     },
     {
-      "titre": "Montdidier (août-sept. 1918)",
+      "titre": "août-sept. 1918",
       "dossier": "10_montdidier",
-      "x": 1145,
-      "y": 635,
-      "image": "case10.png",
+      "x": 650,
+      "y": 517,
+      "image": "symbole_10.png",
       "chapitres": [
         {
-          "titre": "L'offensive",
+          "titre": "Situation d'ensemble : l'offensive franco-britannique en Picardie",
           "dossier": "1_offensive"
         },
         {
-          "titre": "Un mois",
-          "dossier": "2_unmois"
+          "titre": "Le 227e RAC \"poursuit l'ennemi\"",
+          "dossier": "2_poursuite"
+        },
+        {
+          "titre": "Lieu de guerre : Montdidier",
+          "dossier": "3_lieux"
         }
       ]
     },
     {
-      "titre": "St-Quentin (oct.-nov 1918)",
+      "titre": "oct.-nov 1918",
       "dossier": "11_quentin",
-      "x": 1200,
-      "y": 700,
-      "image": "case11.png",
+      "x": 770,
+      "y": 510,
+      "image": "symbole_11.png",
       "chapitres": [
         {
-          "titre": "La victoire",
-          "dossier": "1_offensive"
+          "titre": "Dans la grande offensive alliée, la bataille de St-Quentin",
+          "dossier": "1_st_quentin"
         },
         {
-          "titre": "St-Quentin",
-          "dossier": "2_stquentin"
+          "titre": "Les batteries du 227e RAC en position",
+          "dossier": "2_position"
+        },
+        {
+          "titre": "Lieu de guerre : St-Quentin",
+          "dossier": "3_lieux"
         }
       ]
     },
     {
-      "titre": "Sambre (oct.-nov. 1918)",
+      "titre": "oct.-nov. 1918",
       "dossier": "12_sambre",
-      "x": 1260,
-      "y": 765,
-      "image": "case12.png"
+      "x": 858,
+      "y": 428,
+      "image": "symbole_12.png",
+      "chapitres": [
+        {
+          "titre": "Les dernières offensives",
+          "dossier": "1_der_offensives"
+        },
+        {
+          "titre": "Le 227e RAC sur la Sambre",
+          "dossier": "2_sambre"
+        },
+        {
+          "titre": "L'armistice",
+          "dossier": "3_armistice"
+        }
+      ]
     },
     {
-      "titre": "Aix-la-Chapelle (nov. 1918-février 1919)",
-      "dossier": "13_aix",
-      "x": 1295,
-      "y": 830,
-      "image": "case13.png"
+      "titre": "nov. 1918-février 1919",
+      "dossier": "13_occupation",
+      "x": 1110,
+      "y": 331,
+      "image": "symbole_13.png",
+      "chapitres": [
+        {
+          "titre": "L'occupation des pays rhénans",
+          "dossier": "1_rhin"
+        },
+        {
+          "titre": "Le 227e RAC en Allemagne",
+          "dossier": "2_227_all"
+        }
+      ]
     },
     {
-      "titre": "1914 : L'entrée en guerre",
-      "dossier": "14_debuts",
-      "x": 11,
-      "y": 80,
-      "image": "affiche.jpg"
-    },
-    {
-      "titre": "1915 : la mort de son frère Auguste",
+      "titre": "... Mort pour la France",
       "dossier": "15_auguste",
-      "x": 11,
-      "y": 240,
-      "image": "auguste.jpg"
+      "x": 385,
+      "y": 230,
+      "image": "symbole_mort_2.png"
     },
     {
-      "titre": "1916 : la disparition de son frère Émile",
+      "titre": "... Mort pour la France",
       "dossier": "16_emile",
-      "x": 11,
-      "y": 390,
-      "image": "emile.jpg"
+      "x": 620,
+      "y": 230,
+      "image": "symbole_mort_2.png"
     },
     {
-      "titre": "1916 : la mort de son père",
+      "titre": "... à Marseille",
+      "dossier": "16a_francois",
+      "x": 730,
+      "y": 230,
+      "image": "symbole_mort_1.png"
+    },
+    {
+      "titre": "... à Marseille",
       "dossier": "17_pere",
-      "x": 11,
-      "y": 550,
-      "image": "pere.jpg"
+      "x": 1025,
+      "y": 230,
+      "image": "symbole_mort_1.png"
     },
     {
-      "titre": "1919 : la mort de son frère Jean-Baptiste",
+      "titre": "... à Marseille",
       "dossier": "18_jb",
-      "x": 11,
-      "y": 720,
-      "image": "jb.jpg"
+      "x": 1220,
+      "y": 230,
+      "image": "symbole_mort_1.png"
     },
     {
-      "titre": "Le canon de 90",
-      "dossier": "19_canon90",
-      "x": 530,
-      "y": 100,
-      "image": "canon90.jpg"
+      "titre": "L'organisation de l'armée",
+      "dossier": "0b_organisation",
+      "x": 1470,
+      "y": 300,
+      "image": "organisation.jpg"
     },
     {
-      "titre": "Le canon de 75",
-      "dossier": "20_canon75",
-      "x": 680,
-      "y": 100,
+      "titre": "Le 55e RAC",
+      "dossier": "0a_55",
+      "x": 620,
+      "y": 95,
+      "image": "symbole_canon.png"
+    },
+    {
+      "titre": "Le 227e RAC",
+      "dossier": "0a_227",
+      "x": 1055,
+      "y": 95,
+      "image": "symbole_canon.png"
+    },
+
+    {
+      "titre": "Les canons",
+      "dossier": "20_canons",
+      "x": 1450,
+      "y": 500,
       "image": "canon75.jpg"
-    },
-    {
-      "titre": "L'organisation des unités",
-      "dossier": "21_unites",
-      "x": 880,
-      "y": 100,
-      "image": "unites.jpg"
-    },
-	
-    {
-      "titre": "Les sources",
-      "dossier": "0_sources",
-      "x": 1080,
-      "y": 100,
-      "image": "jmo.jpg"
     },
     {
       "titre": "Une vision d'ensemble",
       "dossier": "22_vision",
-      "x": 160,
+      "x": -140,
       "y": 500,
-      "image": "vision.png"
+      "image": "vision_14-18.jpg"
     },
-	
-	  {
-      "titre": "Le musée de Meaux",
+    {
+      "titre": "Champagne",
+      "dossier": "1_champagne1",
+      "x": 530,
+      "y": 190,
+      "image": "symbole_1.png"
+    },
+    {
+      "titre": "Vosges",
+      "dossier": "2_vosges1",
+      "x": 630,
+      "y": 190,
+      "image": "symbole_2.png"
+    },
+    {
+      "titre": "Somme",
+      "dossier": "3_somme",
+      "x": 743,
+      "y": 190,
+      "image": "symbole_3.png"
+    },
+    {
+      "titre": "Vosges",
+      "dossier": "4_vosges2",
+      "x": 810,
+      "y": 190,
+      "image": "symbole_4.png"
+    },
+    {
+      "titre": "Aisne",
+      "dossier": "5_aisne",
+      "x": 885,
+      "y": 190,
+      "image": "symbole_5.png"
+    },
+   
+    {
+      "titre": "Chemin des Dames",
+      "dossier": "6_dames",
+      "x": 950,
+      "y": 190,
+      "image": "symbole_6.png"
+    },
+    {
+      "titre": "Italie",
+      "dossier": "7_italie",
+      "x": 1050,
+      "y": 190,
+      "image": "symbole_7.png"
+    },
+    {
+      "titre": "Belgique",
+      "dossier": "8_belgique",
+      "x": 1125,
+      "y": 190,
+      "image": "symbole_8.png"
+    },
+    {
+      "titre": "Champagne",
+      "dossier": "9_champagne2",
+      "x": 1158,
+      "y": 190,
+      "image": "symbole_9.png"
+    },
+    {
+      "titre": "Montdidier",
+      "dossier": "10_montdidier",
+      "x": 1185,
+      "y": 190,
+      "image": "symbole_10.png"
+    },
+    {
+      "titre": "St-Quentin",
+      "dossier": "11_quentin",
+      "x": 1210,
+      "y": 190,
+      "image": "symbole_11.png"
+    },
+    {
+      "titre": "Sambre",
+      "dossier": "12_sambre",
+      "x": 1228,
+      "y": 190,
+      "image": "symbole_12.png"
+    },
+    {
+      "titre": "En Allemagne",
+      "dossier": "13_occupation",
+      "x": 1270,
+      "y": 190,
+      "image": "symbole_13.png"
+    },
+    {
+      "titre": "Musées et monuments",
       "dossier": "23_meaux",
-      "x": 1280,
-      "y": 100,
+      "x": 1450,
+      "y": 700,
       "image": "meaux.jpg"
     }
   ]

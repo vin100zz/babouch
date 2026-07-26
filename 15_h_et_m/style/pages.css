@@ -126,7 +126,10 @@ font-weight: bold;
  p#bleu {  
  color: blue;}
  
-
+  .cadre1 { 
+ border:3px solid blue;
+ padding-left: 5px; 
+  }
  
  .cadregris { 
  border:2px solid gray; 

@@ -356,9 +356,16 @@
         },
 		{
           "titre_sous_chapitre": "Périgord",
-          "page_html": "14_fin/3_perigord/perigordhtml"
-        }	
-	
+          "page_html": "14_fin/3_perigord/perigord.html"
+        },	
+		{
+          "titre_sous_chapitre": "Jour de l'An",
+          "page_html": "14_fin/4_jour_an/4_jour_an.html"
+        },
+	    {
+          "titre_sous_chapitre": "Bonne année, Rosine",
+          "page_html": "14_fin/5_rosine/5_rosine.html"
+        }
 		
 	  ]
     }

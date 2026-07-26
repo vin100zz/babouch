@@ -43,6 +43,10 @@ h4 {
   text-align:left;
 }
 
+h5 {
+	font-size: 20pt; 
+}
+
 td{  
 vertical-align:middle;
 padding:20px;
@@ -88,6 +92,12 @@ p {
    padding-left: 20px;
  padding-top:10px;
  padding-bottom :10px;
+}
+
+.soir {
+	 background-color:blue;
+ 
+	
 }
 
 .petitformat{
@@ -167,6 +177,12 @@ justify-content:space-between;
 _.box {
 	 align-items: center;
 	 width:40%;
+	 vertical-align:middle;
+ }
+ 
+ .box10 {
+	 align-items: center;
+	 width:10%;
  }
  
  .box20 {
@@ -179,14 +195,30 @@ _.box {
 	 width:30%;
  }
  
+ .a {
+  vertical-align: baseline;
+ } 
+ 
 .box50 {
-	 align-items: center;
+	
+	 vertical-align:middle;
 	 width:50%;
+ }
+ 
+ .box60 {
+	 align-items: center;
+	 width:60%;
+ }
+ 
+  .box90 {
+	 align-items: center;
+	 width:90%;
  }
 
 .box1 {
 	flex-grow:0;
 	flex-basis:1;
+	 vertical-align:middle;
 }
 
 
@@ -196,10 +228,16 @@ _.box {
 margin: 0px;
 }
 
- .cadre { border-width: 2px; border-color: blue; border-style: solid;
-margin: 5px;
+ .cadre { border-width: 5px; border-color: blue; border-style: solid;
+
+margin-left:0px
 }
- 
+
+  .cadre1 { 
+ border:3px solid blue;
+ padding-left: 5px; 
+  }
+  
  .brd {
   border: 1px solid black;
 }
@@ -211,6 +249,8 @@ margin: 5px;
     margin-left: auto;
     margin-right: auto
  }
+ 
+
 
 .cadregris { 
  border:2px solid grey; 
@@ -272,6 +312,12 @@ margin: 5px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.center1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
  .fond0 {
@@ -345,9 +391,7 @@ justify-content:space-between;
  } 
  
  
- body {
-   
-}
+
 
 .container {
 	
@@ -368,8 +412,74 @@ justify-content:space-between;
 }
 
 
- 
+.ombre { box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
 
+.ombre1 { box-shadow: 0 4px 12px rgba(0,0,0,0.30);}
+
+.ombre2 { box-shadow: 0 4px 12px rgba(10,0,0,0.30);}
+
+.ombre3 {box-shadow: 10px 5px 5px blue;}
+
+/*-----------Timeline--------------*/ 
+
+
+
+/* Conteneur de la timeline */
+.timeline {
+  position: relative;
+  margin: 50px;
+  padding-left: 40px;
+}
+
+/* Ligne verticale */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #333;
+}
+
+/* Flèche en bas */
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  bottom: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Chaque événement */
+.event {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* Point sur la ligne */
+.event::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background: #333;
+  border-radius: 50%;
+}
+
+/* Contenu */
+.event h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.event p {
+  margin: 5px 0 0;
+}
 
 
 
