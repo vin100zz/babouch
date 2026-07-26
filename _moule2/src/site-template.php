@@ -18,11 +18,20 @@ $engineBase = '../_moule2';
 
 // Unique numéro de version à incrémenter après toute modification de
 // _moule2/src/ui/**, pour invalider le cache navigateur sur tous les sites.
-$version = 21;
+$version = 30;
 
 $title = ucfirst(str_replace(array('_', '-'), ' ', $site));
 
 $scripts = array('util', 'api', 'richtext', 'filebrowser', 'home-view', 'content-editor', 'tree-editor', 'app');
+
+// style.css optionnel, propre à chaque site (<site>/style/style.css) : permet
+// de surcharger certaines propriétés du moule sans toucher à _moule2. Chargé
+// en dernier s'il existe, pour que ses règles priment. Invalidation via
+// filemtime() (et non $version, propre au moteur) : se met à jour tout seul
+// dès que l'utilisateur modifie son fichier, sans bump manuel.
+$siteDir = dirname($_SERVER['SCRIPT_FILENAME']);
+$customCssPath = $siteDir . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'style.css';
+$customCssVersion = is_file($customCssPath) ? filemtime($customCssPath) : null;
 ?><!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,6 +40,9 @@ $scripts = array('util', 'api', 'richtext', 'filebrowser', 'home-view', 'content
   <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></title>
   <link rel="stylesheet" href="<?php echo $engineBase; ?>/src/ui/css/app.css?v=<?php echo $version; ?>">
   <link rel="stylesheet" href="<?php echo $engineBase; ?>/src/ui/css/editor.css?v=<?php echo $version; ?>">
+<?php if ($customCssVersion !== null): ?>
+  <link rel="stylesheet" href="style/style.css?v=<?php echo $customCssVersion; ?>">
+<?php endif; ?>
 </head>
 <body>
 

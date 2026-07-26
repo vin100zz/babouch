@@ -42,8 +42,9 @@ const Api = (function () {
     saveSite(data) {
       return _post('save.php', { site: SITE_NAME, data });
     },
-    listDocuments(dir) {
-      return _get('documents.php', { dir: dir || '' });
+    listDocuments(dir, opts) {
+      opts = opts || {};
+      return _get('documents.php', { dir: dir || '', root: opts.root || 'documents', type: opts.type || 'image' });
     },
     async uploadDocument(file, dir) {
       const form = new FormData();

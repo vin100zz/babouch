@@ -12,6 +12,66 @@ const HomeView = (function () {
   const MIN_WIDTH = 30;
   const MAX_WIDTH = 500;
 
+  const DEFAULT_HEADER_STYLE = { bg: '#1e293b', titleColor: '#ffffff', titleSize: 18, titleFont: '', titleFontFile: null, titleAlign: 'left' };
+  const DEFAULT_BACKGROUND = { color: '#fafbfc', image: null, mode: 'cover' };
+  const ALIGN_TO_JUSTIFY = { left: 'flex-start', center: 'center', right: 'flex-end' };
+
+  // Polices personnalisées (dossier style/) : une règle @font-face par fichier,
+  // injectée une seule fois dans <head>, partagée entre lecture et édition.
+  const _injectedFontFaces = new Set();
+  function _fontFamilyForFile(path) {
+    return 'm2font-' + path.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  }
+  function ensureFontFace(path) {
+    const family = _fontFamilyForFile(path);
+    if (!_injectedFontFaces.has(family)) {
+      _injectedFontFaces.add(family);
+      const styleTag = document.createElement('style');
+      styleTag.textContent = '@font-face { font-family: "' + family + '"; src: url("style/' + path + '"); font-display: swap; }';
+      document.head.appendChild(styleTag);
+    }
+    return family;
+  }
+
+  /** Applique le style de header (fond, titre) à un `.m2-header` déjà construit
+   *  (avec un `.m2-header__left` contenant `.m2-header__title`). Utilisé à
+   *  l'identique en lecture (app.js) et en édition (tree-editor.js). */
+  function applyHeaderStyle(headerEl, style) {
+    style = Object.assign({}, DEFAULT_HEADER_STYLE, style || {});
+    headerEl.style.background = style.bg;
+    const left = headerEl.querySelector('.m2-header__left');
+    if (left) left.style.justifyContent = ALIGN_TO_JUSTIFY[style.titleAlign] || 'flex-start';
+    const title = headerEl.querySelector('.m2-header__title');
+    if (title) {
+      title.style.color = style.titleColor;
+      title.style.fontSize = style.titleSize + 'px';
+      title.style.fontFamily = style.titleFontFile ? '"' + ensureFontFace(style.titleFontFile) + '"' : (style.titleFont || '');
+    }
+  }
+
+  /** Applique le style de fond (couleur + image, choisie dans le dossier
+   *  style/) à un conteneur `.m2-home`. */
+  function applyBackgroundStyle(targetEl, bg) {
+    bg = Object.assign({}, DEFAULT_BACKGROUND, bg || {});
+    targetEl.style.backgroundColor = bg.color;
+    if (bg.image) {
+      targetEl.style.backgroundImage = 'url(style/' + bg.image + ')';
+      if (bg.mode === 'repeat') {
+        targetEl.style.backgroundRepeat = 'repeat';
+        targetEl.style.backgroundSize = 'auto';
+      } else {
+        targetEl.style.backgroundRepeat = 'no-repeat';
+        targetEl.style.backgroundSize = bg.mode === 'contain' ? 'contain' : 'cover';
+      }
+      targetEl.style.backgroundPosition = 'center';
+    } else {
+      targetEl.style.backgroundImage = '';
+      targetEl.style.backgroundRepeat = '';
+      targetEl.style.backgroundSize = '';
+      targetEl.style.backgroundPosition = '';
+    }
+  }
+
   function render(images, opts) {
     opts = opts || {};
     const canvas = el('div', 'm2-home__canvas');
@@ -188,5 +248,9 @@ const HomeView = (function () {
     }
   }
 
-  return { render, buildThumb, updateThumb };
+  return {
+    render, buildThumb, updateThumb,
+    applyHeaderStyle, applyBackgroundStyle,
+    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND,
+  };
 })();

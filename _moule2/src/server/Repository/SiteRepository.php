@@ -45,6 +45,7 @@ class SiteRepository
         $clean = array(
             'titre_site' => isset($data['titre_site']) ? (string) $data['titre_site'] : $this->site,
             'home'       => $this->cleanHome(isset($data['home']) ? $data['home'] : array()),
+            'pagesStyle' => $this->cleanPagesStyle(isset($data['pagesStyle']) ? $data['pagesStyle'] : array()),
             'chapitres'  => $this->cleanChapitres(isset($data['chapitres']) ? $data['chapitres'] : array()),
         );
 
@@ -80,7 +81,12 @@ class SiteRepository
     {
         return array(
             'titre_site' => $this->site,
-            'home'       => array('images' => array()),
+            'home'       => array(
+                'images'      => array(),
+                'headerStyle' => $this->cleanHeaderStyle(array()),
+                'background'  => $this->cleanBackground(array()),
+            ),
+            'pagesStyle' => $this->cleanPagesStyle(array()),
             'chapitres'  => array(),
         );
     }
@@ -101,7 +107,92 @@ class SiteRepository
                 'lien'   => (isset($img['lien']) && $img['lien'] !== '') ? (string) $img['lien'] : null,
             );
         }
-        return array('images' => $images);
+        return array(
+            'images'      => $images,
+            'headerStyle' => $this->cleanHeaderStyle(isset($home['headerStyle']) && is_array($home['headerStyle']) ? $home['headerStyle'] : array()),
+            'background'  => $this->cleanBackground(isset($home['background']) && is_array($home['background']) ? $home['background'] : array()),
+        );
+    }
+
+    /** Couleur de fond + apparence du titre (taille/couleur/police/alignement) du header. */
+    private function cleanHeaderStyle($style)
+    {
+        return array(
+            'bg'           => $this->cleanColor(isset($style['bg']) ? $style['bg'] : null, '#1e293b'),
+            'titleColor'   => $this->cleanColor(isset($style['titleColor']) ? $style['titleColor'] : null, '#ffffff'),
+            'titleSize'    => isset($style['titleSize']) ? max(10, min(60, (int) $style['titleSize'])) : 18,
+            'titleFont'    => isset($style['titleFont']) ? (string) $style['titleFont'] : '',
+            'titleFontFile'=> $this->cleanRelPath(isset($style['titleFontFile']) ? $style['titleFontFile'] : null),
+            'titleAlign'   => in_array(isset($style['titleAlign']) ? $style['titleAlign'] : '', array('left', 'center', 'right'), true) ? $style['titleAlign'] : 'left',
+        );
+    }
+
+    /** Couleur + image (optionnelle) + mode d'affichage du fond de la page d'accueil. */
+    private function cleanBackground($bg)
+    {
+        return array(
+            'color' => $this->cleanColor(isset($bg['color']) ? $bg['color'] : null, '#fafbfc'),
+            'image' => $this->cleanRelPath(isset($bg['image']) ? $bg['image'] : null),
+            'mode'  => in_array(isset($bg['mode']) ? $bg['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $bg['mode'] : 'cover',
+        );
+    }
+
+    /**
+     * Style des pages de contenu (sous-menus/feuilles, hors page d'accueil) :
+     * fond de page + apparence des titres de section, blocs TEXTE et bordure
+     * des images. Le header, lui, reste géré par home.headerStyle (un seul
+     * header, partagé par toutes les pages du site).
+     */
+    private function cleanPagesStyle($ps)
+    {
+        if (!is_array($ps)) {
+            $ps = array();
+        }
+        return array(
+            'background' => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
+            'section'    => $this->cleanColorTextPair(isset($ps['section']) && is_array($ps['section']) ? $ps['section'] : array(), '#d0e4ff', '#1e293b'),
+            'blocTexte'  => $this->cleanColorTextPair(isset($ps['blocTexte']) && is_array($ps['blocTexte']) ? $ps['blocTexte'] : array(), '#e3f8ff', '#1e293b'),
+            'image'      => $this->cleanImageStyle(isset($ps['image']) && is_array($ps['image']) ? $ps['image'] : array()),
+        );
+    }
+
+    private function cleanColorTextPair($v, $defaultBg, $defaultText)
+    {
+        return array(
+            'bg'        => $this->cleanColor(isset($v['bg']) ? $v['bg'] : null, $defaultBg),
+            'textColor' => $this->cleanColor(isset($v['textColor']) ? $v['textColor'] : null, $defaultText),
+        );
+    }
+
+    private function cleanImageStyle($v)
+    {
+        return array(
+            'borderColor'  => $this->cleanColor(isset($v['borderColor']) ? $v['borderColor'] : null, '#333333'),
+            'borderWidth'  => isset($v['borderWidth']) ? max(0, min(20, (int) $v['borderWidth'])) : 1,
+            'borderRadius' => isset($v['borderRadius']) ? max(0, min(200, (int) $v['borderRadius'])) : 0,
+        );
+    }
+
+    /** #rrggbb ou #rrggbbaa (canal alpha optionnel, pour la transparence). */
+    private function cleanColor($value, $default)
+    {
+        if (is_string($value) && preg_match('/^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/', $value)) {
+            return $value;
+        }
+        return $default;
+    }
+
+    /** Chemin relatif (documents/ ou style/) sans traversal ; null si absent/invalide. */
+    private function cleanRelPath($value)
+    {
+        if (!is_string($value) || $value === '') {
+            return null;
+        }
+        $value = ltrim($value, '/\\');
+        if (strpos($value, '..') !== false) {
+            return null;
+        }
+        return $value;
     }
 
     /** Nettoie récursivement l'arbre de chapitres. */

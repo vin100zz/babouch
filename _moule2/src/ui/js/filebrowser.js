@@ -6,8 +6,12 @@
 
 const FileBrowser = (function () {
 
-  function open(onSelect, initialDir) {
-    const DOCS_BASE = 'documents/';
+  function open(onSelect, opts) {
+    opts = opts || {};
+    const root = opts.root || 'documents';
+    const type = opts.type || 'image';
+    const rootLabel = opts.rootLabel || root;
+    const ASSET_BASE = root + '/';
 
     const overlay = el('div', 'imgbr-overlay');
     const modal   = el('div', 'imgbr-modal');
@@ -21,7 +25,7 @@ const FileBrowser = (function () {
       modal.innerHTML = '';
 
       const hdr = el('div', 'imgbr-hdr');
-      hdr.appendChild(txt('span', 'imgbr-title', '📁 Sélectionner un document'));
+      hdr.appendChild(txt('span', 'imgbr-title', type === 'font' ? '🔤 Sélectionner une police' : '📁 Sélectionner un document'));
       const closeBtn = el('button', 'imgbr-close');
       closeBtn.type = 'button'; closeBtn.textContent = '✕';
       closeBtn.addEventListener('click', _close);
@@ -29,10 +33,10 @@ const FileBrowser = (function () {
       modal.appendChild(hdr);
 
       const crumbs = el('div', 'imgbr-breadcrumb');
-      const root = el('span', 'imgbr-crumb imgbr-crumb--link');
-      root.textContent = 'documents';
-      root.addEventListener('click', () => _browse(''));
-      crumbs.appendChild(root);
+      const rootCrumb = el('span', 'imgbr-crumb imgbr-crumb--link');
+      rootCrumb.textContent = rootLabel;
+      rootCrumb.addEventListener('click', () => _browse(''));
+      crumbs.appendChild(rootCrumb);
       if (dir) {
         const parts = dir.split('/');
         parts.forEach((part, i) => {
@@ -54,7 +58,7 @@ const FileBrowser = (function () {
       modal.appendChild(body);
 
       try {
-        const data = await Api.listDocuments(dir);
+        const data = await Api.listDocuments(dir, { root, type });
         body.innerHTML = '';
 
         if (dir) {
@@ -74,9 +78,13 @@ const FileBrowser = (function () {
 
         data.files.forEach(f => {
           const item = el('div', 'imgbr-item imgbr-item--file');
-          const thumb = document.createElement('img');
-          thumb.src = DOCS_BASE + f.path; thumb.alt = ''; thumb.className = 'imgbr-thumb'; thumb.loading = 'lazy';
-          item.appendChild(thumb);
+          if (type === 'font') {
+            item.appendChild(txt('span', 'imgbr-thumb imgbr-thumb--font', '🔤'));
+          } else {
+            const thumb = document.createElement('img');
+            thumb.src = ASSET_BASE + f.path; thumb.alt = ''; thumb.className = 'imgbr-thumb'; thumb.loading = 'lazy';
+            item.appendChild(thumb);
+          }
           item.appendChild(txt('span', 'imgbr-name', f.name));
           item.addEventListener('click', () => { onSelect(f.path); _close(); });
           body.appendChild(item);
@@ -90,7 +98,7 @@ const FileBrowser = (function () {
       }
     }
 
-    _browse(initialDir || '');
+    _browse(opts.initialDir || '');
   }
 
   return { open };

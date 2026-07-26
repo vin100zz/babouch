@@ -1,11 +1,11 @@
 <?php
 /**
- * Listage des médias disponibles sous <site>/documents/.
+ * Listage des médias disponibles sous <site>/documents/ ou <site>/style/.
  *
- * GET ?site=espace2&dir=chemin/relatif
+ * GET ?site=espace2&dir=chemin/relatif&root=documents|style&type=image|font
  *   → { dir, dirs: [{name, path}], files: [{name, path}] }
  *
- * Sécurité : tout chemin tentant d'échapper au dossier documents/ du site
+ * Sécurité : tout chemin tentant d'échapper au dossier racine du site
  * est rejeté (même contrôle que famille2/Api/images.php).
  */
 require_once __DIR__ . '/../bootstrap.php';
@@ -15,9 +15,10 @@ if (!isValidSiteName($site)) {
     Response::error('Paramètre "site" manquant ou invalide.', 400);
 }
 
-$BASE = siteDocumentsPath($site);
+$root = isset($_GET['root']) ? $_GET['root'] : 'documents';
+$BASE = siteAssetPath($site, $root);
 if ($BASE === null) {
-    Response::error('Dossier documents introuvable pour le site : ' . $site, 404);
+    Response::error('Dossier "' . $root . '" introuvable pour le site : ' . $site, 404);
 }
 
 $relDir = isset($_GET['dir']) ? trim($_GET['dir'], '/\\') : '';
@@ -41,7 +42,8 @@ if (strncmp($real, $BASE, strlen($BASE)) !== 0) {
     Response::error('Accès interdit.', 403);
 }
 
-$extPattern = '/\.(' . implode('|', mediaExtensions()) . ')$/i';
+$type = (isset($_GET['type']) && $_GET['type'] === 'font') ? 'font' : 'image';
+$extPattern = '/\.(' . implode('|', $type === 'font' ? fontExtensions() : mediaExtensions()) . ')$/i';
 
 $dirs  = array();
 $files = array();

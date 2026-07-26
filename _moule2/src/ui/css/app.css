@@ -48,11 +48,26 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: .01em;
 }
 
+.m2-header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Flottant plutôt qu'un item flex du header : sinon sa largeur (variable,
+   recherche + bouton) déséquilibre le calcul de centrage du titre dans
+   `.m2-header__left`, qui ne verrait alors jamais la vraie largeur
+   disponible (donc jamais un centrage réellement centré sur la page). */
 .m2-header__right {
+  position: fixed;
+  top: 12px;
+  right: 24px;
+  z-index: 110;
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-shrink: 0;
 }
 
 .m2-edit-toggle {

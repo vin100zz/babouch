@@ -62,8 +62,7 @@
 
   function buildHeader() {
     const header = el('div', 'm2-header');
-    const left = el('div', '');
-    left.style.cssText = 'display:flex;align-items:center;gap:16px;';
+    const left = el('div', 'm2-header__left');
     left.appendChild(txt('span', 'm2-header__title', SITE.titre_site || SITE_NAME));
     header.appendChild(left);
 
@@ -75,6 +74,8 @@
     editBtn.addEventListener('click', onEditClick);
     right.appendChild(editBtn);
     header.appendChild(right);
+
+    HomeView.applyHeaderStyle(header, SITE.home && SITE.home.headerStyle);
     return header;
   }
 
@@ -182,7 +183,13 @@
 
   function renderHome() {
     root.innerHTML = '';
-    root.appendChild(buildHeader());
+
+    // Header + canevas partagent un même fond (au lieu d'appliquer le fond
+    // uniquement au canevas) : ainsi l'image/couleur de fond continue derrière
+    // le header, visible à travers lui dès qu'il a de la transparence.
+    const page = el('div', 'm2-home-page');
+    HomeView.applyBackgroundStyle(page, SITE.home && SITE.home.background);
+    page.appendChild(buildHeader());
 
     const wrap = el('div', 'm2-home');
     const images = (SITE.home && SITE.home.images) || [];
@@ -191,15 +198,26 @@
     } else {
       wrap.appendChild(HomeView.render(images, { editable: false }));
     }
-    root.appendChild(wrap);
+    page.appendChild(wrap);
+    root.appendChild(page);
   }
 
   // ── Sous-menu ────────────────────────────────────────────────────────────
 
+  // Header + breadcrumb + contenu partagent un même fond de page (voir
+  // renderHome pour le même principe côté page d'accueil) : le fond continue
+  // derrière le header, visible à travers lui dès qu'il a de la transparence.
+  function _buildContentPage() {
+    const page = el('div', 'm2-content-page');
+    HomeView.applyBackgroundStyle(page, SITE.pagesStyle && SITE.pagesStyle.background);
+    page.appendChild(buildHeader());
+    return page;
+  }
+
   function renderSubmenu(node, cumulativePath) {
     root.innerHTML = '';
-    root.appendChild(buildHeader());
-    root.appendChild(renderBreadcrumbBar(_lastConfigs));
+    const page = _buildContentPage();
+    page.appendChild(renderBreadcrumbBar(_lastConfigs));
 
     const wrap = el('div', 'm2-submenu');
     wrap.appendChild(txt('div', 'm2-submenu__title', node.label || node.keyword));
@@ -212,15 +230,16 @@
       list.appendChild(a);
     });
     wrap.appendChild(list);
-    root.appendChild(wrap);
+    page.appendChild(wrap);
+    root.appendChild(page);
   }
 
   // ── Page de contenu (feuille) ────────────────────────────────────────────
 
   function renderLeaf(node, cumulativePath) {
     root.innerHTML = '';
-    root.appendChild(buildHeader());
-    root.appendChild(renderBreadcrumbBar(_lastConfigs));
+    const page = _buildContentPage();
+    page.appendChild(renderBreadcrumbBar(_lastConfigs));
 
     const wrap = el('div', 'm2-page');
     wrap.appendChild(txt('div', 'm2-page__title', node.label || node.keyword));
@@ -228,15 +247,17 @@
     if (sections.length === 0) {
       wrap.appendChild(txt('div', 'm2-page__empty', 'Cette page n\'a pas encore de contenu.'));
     } else {
-      wrap.appendChild(ContentView.render(sections));
+      wrap.appendChild(ContentView.render(sections, SITE.pagesStyle));
     }
-    root.appendChild(wrap);
+    page.appendChild(wrap);
+    root.appendChild(page);
   }
 
   function renderNotFound() {
     root.innerHTML = '';
-    root.appendChild(buildHeader());
-    root.innerHTML += '<div class="m2-error">Page introuvable.</div>';
+    const page = _buildContentPage();
+    page.appendChild(txt('div', 'm2-error', 'Page introuvable.'));
+    root.appendChild(page);
   }
 
   // ── Bascule édition ──────────────────────────────────────────────────────

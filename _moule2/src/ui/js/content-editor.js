@@ -9,6 +9,31 @@
 
 const ContentView = (function () {
 
+  const DEFAULT_SECTION_STYLE = { bg: '#d0e4ff', textColor: '#1e293b' };
+  const DEFAULT_BLOC_TEXTE_STYLE = { bg: '#e3f8ff', textColor: '#1e293b' };
+  const DEFAULT_IMAGE_STYLE = { borderColor: '#333333', borderWidth: 1, borderRadius: 0 };
+
+  /** Fonctions d'application de style partagées entre le rendu réel (`render`)
+   *  et les aperçus cliquables de l'onglet « Style des pages » (tree-editor.js),
+   *  sur le même principe que HomeView.applyHeaderStyle/applyBackgroundStyle. */
+  function applySectionStyle(el, style) {
+    style = Object.assign({}, DEFAULT_SECTION_STYLE, style || {});
+    el.style.background = style.bg;
+    el.style.color = style.textColor;
+  }
+  function applyBlocTexteStyle(el, style) {
+    style = Object.assign({}, DEFAULT_BLOC_TEXTE_STYLE, style || {});
+    el.style.background = style.bg;
+    el.style.color = style.textColor;
+  }
+  function applyImageStyle(imgEl, style) {
+    style = Object.assign({}, DEFAULT_IMAGE_STYLE, style || {});
+    imgEl.style.borderStyle = 'solid';
+    imgEl.style.borderColor = style.borderColor;
+    imgEl.style.borderWidth = style.borderWidth + 'px';
+    imgEl.style.borderRadius = style.borderRadius + 'px';
+  }
+
   function _lightboxEls() {
     let lb = document.getElementById('m2-lightbox');
     if (!lb) {
@@ -32,12 +57,17 @@ const ContentView = (function () {
     lb.classList.add('lightbox--open');
   }
 
-  function render(sections) {
+  function render(sections, pagesStyle) {
+    pagesStyle = pagesStyle || {};
     const frag = document.createDocumentFragment();
     (sections || []).forEach(section => {
       const card = el('div', 'm2-section');
       const hasTitre = section.titre && String(section.titre).trim();
-      if (hasTitre) card.appendChild(txt('div', 'm2-section__titre', section.titre));
+      if (hasTitre) {
+        const titreEl = txt('div', 'm2-section__titre', section.titre);
+        applySectionStyle(titreEl, pagesStyle.section);
+        card.appendChild(titreEl);
+      }
 
       const cols = el('div', 'm2-section__cols');
       (section.colonnes || []).forEach(colBlocks => {
@@ -49,12 +79,14 @@ const ContentView = (function () {
             img.src = 'documents/' + block.fichier;
             img.alt = ''; img.loading = 'lazy';
             if (block.width && block.width !== 100) img.style.maxWidth = block.width + '%';
+            applyImageStyle(img, pagesStyle.image);
             img.addEventListener('click', () => openLightbox(img.src));
             wrap.appendChild(img);
             col.appendChild(wrap);
           } else if (block.type === 'TEXTE') {
             const wrap = el('div', 'm2-bloc-texte');
             wrap.innerHTML = block.html || '';
+            applyBlocTexteStyle(wrap, pagesStyle.blocTexte);
             if (block.align && block.align !== 'left') wrap.style.textAlign = block.align;
             if (block.width) wrap.style.width = block.width + '%';
             col.appendChild(wrap);
@@ -385,5 +417,9 @@ const ContentView = (function () {
     if (block.width) content.style.width = block.width + '%';
   }
 
-  return { render, buildEditor, openLightbox };
+  return {
+    render, buildEditor, openLightbox,
+    applySectionStyle, applyBlocTexteStyle, applyImageStyle,
+    DEFAULT_SECTION_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_IMAGE_STYLE,
+  };
 })();

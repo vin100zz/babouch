@@ -25,6 +25,12 @@ function mediaExtensions()
     return array('jpg', 'jpeg', 'png', 'gif', 'webp');
 }
 
+/** Extensions de police acceptées par l'explorateur de documents (dossier style/). */
+function fontExtensions()
+{
+    return array('ttf', 'otf', 'woff', 'woff2');
+}
+
 /**
  * Valide un nom de site (segment de chemin uniquement, pas de traversal).
  * @return bool
@@ -43,12 +49,15 @@ function siteJsonPath($site)
 }
 
 /**
- * Chemin absolu vers le dossier documents/ d'un site, ou null si le dossier
- * du site (ou son sous-dossier documents/) n'existe pas.
+ * Chemin absolu vers un dossier d'assets d'un site ('documents' ou 'style'),
+ * ou null si ce dossier n'existe pas.
  */
-function siteDocumentsPath($site)
+function siteAssetPath($site, $root = 'documents')
 {
-    $dir = BASE_DIR . DIRECTORY_SEPARATOR . $site . DIRECTORY_SEPARATOR . 'documents';
+    if (!in_array($root, array('documents', 'style'), true)) {
+        return null;
+    }
+    $dir = BASE_DIR . DIRECTORY_SEPARATOR . $site . DIRECTORY_SEPARATOR . $root;
     $real = realpath($dir);
     if ($real === false) {
         return null;
@@ -58,4 +67,13 @@ function siteDocumentsPath($site)
         return null;
     }
     return $real;
+}
+
+/**
+ * Chemin absolu vers le dossier documents/ d'un site, ou null si le dossier
+ * du site (ou son sous-dossier documents/) n'existe pas.
+ */
+function siteDocumentsPath($site)
+{
+    return siteAssetPath($site, 'documents');
 }

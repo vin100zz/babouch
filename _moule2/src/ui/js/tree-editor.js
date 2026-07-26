@@ -17,6 +17,13 @@ const TreeEditor = (function () {
     _site = clone(siteData);
     if (!_site.home) _site.home = { images: [] };
     if (!Array.isArray(_site.home.images)) _site.home.images = [];
+    if (!_site.home.headerStyle) _site.home.headerStyle = clone(HomeView.DEFAULT_HEADER_STYLE);
+    if (!_site.home.background) _site.home.background = clone(HomeView.DEFAULT_BACKGROUND);
+    if (!_site.pagesStyle) _site.pagesStyle = {};
+    if (!_site.pagesStyle.background) _site.pagesStyle.background = clone(HomeView.DEFAULT_BACKGROUND);
+    if (!_site.pagesStyle.section) _site.pagesStyle.section = clone(ContentView.DEFAULT_SECTION_STYLE);
+    if (!_site.pagesStyle.blocTexte) _site.pagesStyle.blocTexte = clone(ContentView.DEFAULT_BLOC_TEXTE_STYLE);
+    if (!_site.pagesStyle.image) _site.pagesStyle.image = clone(ContentView.DEFAULT_IMAGE_STYLE);
     if (!Array.isArray(_site.chapitres)) _site.chapitres = [];
     _onDone = onDone;
     _activeTab = initialTab === 'tree' ? 'tree' : 'home';
@@ -29,12 +36,38 @@ const TreeEditor = (function () {
     _removeAlignBar();
     document.body.appendChild(_buildBar());
     _container.appendChild(_buildTabsBar());
-    _container.appendChild(_buildHeader());
 
-    const panel = el('div', 'ed-panel');
-    if (_activeTab === 'home') panel.appendChild(_buildHomeEditor());
-    else panel.appendChild(_buildTreeEditor());
-    _container.appendChild(panel);
+    if (_activeTab === 'home') {
+      // Header + canevas partagent un même fond (comme en lecture, voir
+      // app.js::renderHome) : le fond continue derrière le header, visible à
+      // travers lui dès qu'il a de la transparence.
+      const page = el('div', 'm2-home-page');
+      HomeView.applyBackgroundStyle(page, _site.home.background);
+      page.appendChild(_buildHeader());
+      const panel = el('div', 'ed-panel');
+      panel.appendChild(_buildHomeEditor(page));
+      page.appendChild(panel);
+      _container.appendChild(page);
+    } else if (_activeTab === 'pages') {
+      // Même principe : header + petit aperçu de fond en haut (cliquables),
+      // puis en dessous, dans un panneau neutre, les styles des éléments de
+      // contenu (section, bloc TEXTE, image).
+      const page = el('div', 'm2-home-page ed-pages-preview');
+      HomeView.applyBackgroundStyle(page, _site.pagesStyle.background);
+      page.addEventListener('click', e => {
+        if (e.target === page) _openBackgroundPopup(page, _site.pagesStyle.background, 'Style du fond des pages');
+      });
+      page.appendChild(_buildHeader());
+      _container.appendChild(page);
+      const panel = el('div', 'ed-panel');
+      panel.appendChild(_buildPagesStyleEditor());
+      _container.appendChild(panel);
+    } else {
+      _container.appendChild(_buildHeader());
+      const panel = el('div', 'ed-panel');
+      panel.appendChild(_buildTreeEditor());
+      _container.appendChild(panel);
+    }
   }
 
   function _buildTabsBar() {
@@ -43,15 +76,26 @@ const TreeEditor = (function () {
     tabHome.type = 'button';
     const tabTree = txt('button', 'm2-tab' + (_activeTab === 'tree' ? ' m2-tab--active' : ''), 'Arborescence');
     tabTree.type = 'button';
+    const tabPages = txt('button', 'm2-tab' + (_activeTab === 'pages' ? ' m2-tab--active' : ''), 'Style des pages');
+    tabPages.type = 'button';
     tabHome.addEventListener('click', () => { _activeTab = 'home'; _render(); });
     tabTree.addEventListener('click', () => { _activeTab = 'tree'; _render(); });
-    bar.appendChild(tabHome); bar.appendChild(tabTree);
+    tabPages.addEventListener('click', () => { _activeTab = 'pages'; _render(); });
+    bar.appendChild(tabHome); bar.appendChild(tabTree); bar.appendChild(tabPages);
     return bar;
   }
 
   function _buildHeader() {
-    const header = el('div', 'm2-header');
-    header.appendChild(txt('span', 'm2-header__title', _site.titre_site || SITE_NAME));
+    const editable = _activeTab === 'home' || _activeTab === 'pages';
+    const header = el('div', 'm2-header' + (editable ? ' m2-header--editable' : ''));
+    const left = el('div', 'm2-header__left');
+    left.appendChild(txt('span', 'm2-header__title', _site.titre_site || SITE_NAME));
+    header.appendChild(left);
+    HomeView.applyHeaderStyle(header, _site.home.headerStyle);
+    if (editable) {
+      header.title = 'Cliquer pour modifier le style du header';
+      header.addEventListener('click', () => _openHeaderStylePopup(header));
+    }
     return header;
   }
 
@@ -106,10 +150,21 @@ const TreeEditor = (function () {
   // navigation). Pas de barre latérale : un bouton flottant pour ajouter une
   // image, une popup pour éditer celle sur laquelle on clique.
 
-  function _buildHomeEditor() {
+  function _buildHomeEditor(pageEl) {
     const images = _site.home.images;
     const flatNodes = _flatten(_site.chapitres);
-    const wrap = el('div', 'm2-home');
+    const wrap = el('div', 'm2-home m2-home--editable');
+    // Le fond est appliqué sur `pageEl` (voir _render), pas ici, pour qu'il
+    // continue derrière le header. Clic sur le fond (en dehors de toute
+    // vignette) : ouvre l'édition du style de fond. Le canevas est un enfant
+    // de `wrap` mais ne couvre pas toujours toute la zone visible (marges,
+    // zone vide sous les images) ; écouter sur `wrap` et vérifier la cible
+    // couvre les deux cas.
+    wrap.addEventListener('click', e => {
+      if (e.target === wrap || e.target.classList.contains('m2-home__canvas')) {
+        _openBackgroundPopup(pageEl, _site.home.background);
+      }
+    });
 
     // Sélection multiple (Ctrl+clic) : Set d'images + Map image→vignette DOM
     // (pour le glissé groupé et l'alignement). Persistent tant que l'onglet
@@ -126,13 +181,14 @@ const TreeEditor = (function () {
       wrap.innerHTML = '';
       thumbMap.clear();
 
+      const canvas = el('div', 'm2-home__canvas');
+      canvas.addEventListener('mousedown', e => {
+        if (e.target === canvas && selection.size > 0) { selection.clear(); refresh(); }
+      });
+
       if (images.length === 0) {
-        wrap.appendChild(txt('div', 'm2-home__empty', 'Aucune image sur la page d\'accueil. Clique sur le bouton + pour en ajouter une.'));
+        canvas.appendChild(txt('div', 'm2-home__empty', 'Aucune image sur la page d\'accueil. Clique sur "Ajouter une image" pour en ajouter une.'));
       } else {
-        const canvas = el('div', 'm2-home__canvas');
-        canvas.addEventListener('mousedown', e => {
-          if (e.target === canvas && selection.size > 0) { selection.clear(); refresh(); }
-        });
         images.forEach(img => {
           const thumb = HomeView.buildThumb(img, {
             editable: true,
@@ -169,11 +225,11 @@ const TreeEditor = (function () {
           thumbMap.set(img, thumb);
           canvas.appendChild(thumb);
         });
-        wrap.appendChild(canvas);
       }
+      wrap.appendChild(canvas);
 
-      const addBtn = el('button', 'm2-home-add-btn');
-      addBtn.type = 'button'; addBtn.title = 'Ajouter une image'; addBtn.textContent = '+';
+      const addBtn = txt('button', 'm2-home-add-btn', '+ Ajouter une image');
+      addBtn.type = 'button'; addBtn.title = 'Ajouter une image';
       addBtn.addEventListener('click', () => {
         FileBrowser.open(path => {
           images.push({ id: uid('img_'), image: path, x: 100, y: 100, texte: '', lien: null });
@@ -411,6 +467,375 @@ const TreeEditor = (function () {
     popup.style.top = top + 'px';
   }
 
+  const HEADER_FONT_CHOICES = [
+    ['', 'Police par défaut'],
+    ['Georgia, serif', 'Georgia'],
+    ['"Times New Roman", serif', 'Times New Roman'],
+    ['"Courier New", monospace', 'Courier New'],
+    ['"Trebuchet MS", sans-serif', 'Trebuchet MS'],
+    ['Verdana, sans-serif', 'Verdana'],
+    ['"Segoe UI", sans-serif', 'Segoe UI'],
+  ];
+
+  function _normalizeHex8(hex) {
+    if (typeof hex === 'string' && /^#[0-9a-fA-F]{6}$/.test(hex)) return hex + 'ff';
+    if (typeof hex === 'string' && /^#[0-9a-fA-F]{8}$/.test(hex)) return hex;
+    return '#000000ff';
+  }
+  function _pctToHex2(pct) {
+    return Math.max(0, Math.min(255, Math.round(pct / 100 * 255))).toString(16).padStart(2, '0');
+  }
+
+  /** Champ couleur + curseur de transparence, combinés en une valeur
+   *  #rrggbbaa. Le <input type=color> natif ne gère pas l'alpha : on le
+   *  pilote séparément via un curseur et on recompose la chaîne à chaque
+   *  changement. */
+  function _buildColorAlphaField(labelText, getValue, onChange) {
+    const wrap = el('div', 'ed-field');
+    wrap.appendChild(txt('label', 'ed-label', labelText));
+    const row = el('div', 'ed-color-alpha-row');
+
+    const hex8 = _normalizeHex8(getValue());
+    const colorInp = document.createElement('input');
+    colorInp.type = 'color'; colorInp.className = 'ed-input ed-input--color';
+    colorInp.value = hex8.slice(0, 7);
+
+    const alphaInp = document.createElement('input');
+    alphaInp.type = 'range'; alphaInp.min = '0'; alphaInp.max = '100'; alphaInp.className = 'ed-alpha-range';
+    alphaInp.value = String(Math.round(parseInt(hex8.slice(7, 9), 16) / 255 * 100));
+
+    const alphaVal = txt('span', 'ed-alpha-val', alphaInp.value + '%');
+
+    function emit() {
+      alphaVal.textContent = alphaInp.value + '%';
+      onChange(colorInp.value + _pctToHex2(+alphaInp.value));
+    }
+    colorInp.addEventListener('input', emit);
+    alphaInp.addEventListener('input', emit);
+
+    row.appendChild(colorInp);
+    row.appendChild(alphaInp);
+    row.appendChild(alphaVal);
+    wrap.appendChild(row);
+    return wrap;
+  }
+
+  /** Popup (modale) d'édition du style du header : fond, couleur/taille/police/
+   *  alignement du titre. Modifie `_site.home.headerStyle` en direct pour un
+   *  aperçu immédiat sur `headerEl`, avec possibilité d'annuler. */
+  function _openHeaderStylePopup(headerEl) {
+    const style = _site.home.headerStyle;
+    const original = clone(style);
+
+    const overlay = el('div', 'ed-popup-overlay');
+    const popup = el('div', 'ed-popup');
+    popup.appendChild(txt('div', 'ed-popup__title', 'Style du header'));
+
+    function field(labelText, inputEl) {
+      const f = el('div', 'ed-field');
+      f.appendChild(txt('label', 'ed-label', labelText));
+      f.appendChild(inputEl);
+      popup.appendChild(f);
+    }
+
+    popup.appendChild(_buildColorAlphaField('Couleur de fond', () => style.bg, v => {
+      style.bg = v; HomeView.applyHeaderStyle(headerEl, style);
+    }));
+    popup.appendChild(_buildColorAlphaField('Couleur du titre', () => style.titleColor, v => {
+      style.titleColor = v; HomeView.applyHeaderStyle(headerEl, style);
+    }));
+
+    const sizeInp = document.createElement('input');
+    sizeInp.type = 'number'; sizeInp.className = 'ed-input'; sizeInp.min = '10'; sizeInp.max = '60';
+    sizeInp.value = style.titleSize;
+    sizeInp.addEventListener('input', () => { style.titleSize = (+sizeInp.value) || 18; HomeView.applyHeaderStyle(headerEl, style); });
+    field('Taille du titre (px)', sizeInp);
+
+    const fontSel = document.createElement('select');
+    fontSel.className = 'ed-input';
+    HEADER_FONT_CHOICES.forEach(([value, label]) => {
+      const opt = document.createElement('option');
+      opt.value = value; opt.textContent = label;
+      if (style.titleFont === value) opt.selected = true;
+      fontSel.appendChild(opt);
+    });
+    fontSel.addEventListener('change', () => { style.titleFont = fontSel.value; HomeView.applyHeaderStyle(headerEl, style); });
+    field('Police du titre', fontSel);
+
+    const fontFileField = el('div', 'ed-field');
+    fontFileField.appendChild(txt('label', 'ed-label', 'Ou police personnalisée (dossier style/)'));
+    const fontFileRow = el('div', 'ed-font-file-row');
+    const fontFileLabel = txt('span', 'ed-font-file-label', '');
+    function refreshFontFileLabel() {
+      fontFileLabel.textContent = style.titleFontFile || 'Aucune — police ci-dessus utilisée';
+    }
+    refreshFontFileLabel();
+    const fontFileBtn = txt('button', 'ed-add-btn', 'Choisir…');
+    fontFileBtn.type = 'button';
+    fontFileBtn.addEventListener('click', () => {
+      FileBrowser.open(path => {
+        style.titleFontFile = path;
+        refreshFontFileLabel();
+        HomeView.applyHeaderStyle(headerEl, style);
+      }, { root: 'style', rootLabel: 'style', type: 'font' });
+    });
+    const fontFileClearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer');
+    fontFileClearBtn.type = 'button';
+    fontFileClearBtn.addEventListener('click', () => {
+      style.titleFontFile = null;
+      refreshFontFileLabel();
+      HomeView.applyHeaderStyle(headerEl, style);
+    });
+    fontFileRow.appendChild(fontFileBtn);
+    fontFileRow.appendChild(fontFileClearBtn);
+    fontFileRow.appendChild(fontFileLabel);
+    fontFileField.appendChild(fontFileRow);
+    popup.appendChild(fontFileField);
+
+    const alignSel = document.createElement('select');
+    alignSel.className = 'ed-input';
+    [['left', 'Gauche'], ['center', 'Centre'], ['right', 'Droite']].forEach(([value, label]) => {
+      const opt = document.createElement('option');
+      opt.value = value; opt.textContent = label;
+      if (style.titleAlign === value) opt.selected = true;
+      alignSel.appendChild(opt);
+    });
+    alignSel.addEventListener('change', () => { style.titleAlign = alignSel.value; HomeView.applyHeaderStyle(headerEl, style); });
+    field('Alignement du titre', alignSel);
+
+    const btnRow = el('div', 'ed-popup__btns');
+    const okBtn = el('button', 'ed-btn ed-btn--save');
+    okBtn.type = 'button'; okBtn.textContent = 'OK';
+    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
+    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
+    cancelBtn.addEventListener('click', () => {
+      Object.assign(style, original);
+      HomeView.applyHeaderStyle(headerEl, style);
+      document.body.removeChild(overlay);
+    });
+    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+  }
+
+  /** Popup (modale) d'édition d'un fond (couleur, image optionnelle via
+   *  l'explorateur de documents, mode d'affichage). `bg` est l'objet à muter
+   *  directement (`_site.home.background` ou `_site.pagesStyle.background`),
+   *  `wrapEl` l'élément sur lequel prévisualiser en direct. */
+  function _openBackgroundPopup(wrapEl, bg, popupTitle) {
+    const original = clone(bg);
+
+    const overlay = el('div', 'ed-popup-overlay');
+    const popup = el('div', 'ed-popup');
+    popup.appendChild(txt('div', 'ed-popup__title', popupTitle || 'Style du fond de la page d\'accueil'));
+
+    popup.appendChild(_buildColorAlphaField('Couleur de fond', () => bg.color, v => {
+      bg.color = v; HomeView.applyBackgroundStyle(wrapEl, bg);
+    }));
+
+    const imgField = el('div', 'ed-field');
+    imgField.appendChild(txt('label', 'ed-label', 'Image de fond (optionnelle, dossier style/)'));
+    const preview = el('div', 'ed-img-block__img');
+    preview.style.cursor = 'pointer';
+    preview.title = 'Cliquer pour choisir une image';
+    function refreshPreview() {
+      preview.innerHTML = '';
+      if (bg.image) {
+        const im = document.createElement('img');
+        im.src = 'style/' + bg.image;
+        preview.appendChild(im);
+      } else {
+        preview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune image — cliquer pour en choisir une'));
+      }
+    }
+    refreshPreview();
+    preview.addEventListener('click', () => {
+      FileBrowser.open(path => {
+        bg.image = path;
+        refreshPreview();
+        HomeView.applyBackgroundStyle(wrapEl, bg);
+      }, { root: 'style', rootLabel: 'style', type: 'image' });
+    });
+    imgField.appendChild(preview);
+
+    const clearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer l\'image');
+    clearBtn.type = 'button'; clearBtn.style.marginTop = '4px';
+    clearBtn.addEventListener('click', () => {
+      bg.image = null;
+      refreshPreview();
+      HomeView.applyBackgroundStyle(wrapEl, bg);
+    });
+    imgField.appendChild(clearBtn);
+    popup.appendChild(imgField);
+
+    const modeSel = document.createElement('select');
+    modeSel.className = 'ed-input';
+    [
+      ['cover', 'Couvrir (recadrée)'],
+      ['contain', 'Contenir (entière, non recadrée)'],
+      ['repeat', 'Répéter en mosaïque'],
+    ].forEach(([value, label]) => {
+      const opt = document.createElement('option');
+      opt.value = value; opt.textContent = label;
+      if (bg.mode === value) opt.selected = true;
+      modeSel.appendChild(opt);
+    });
+    modeSel.addEventListener('change', () => { bg.mode = modeSel.value; HomeView.applyBackgroundStyle(wrapEl, bg); });
+    const modeField = el('div', 'ed-field');
+    modeField.appendChild(txt('label', 'ed-label', 'Affichage de l\'image'));
+    modeField.appendChild(modeSel);
+    popup.appendChild(modeField);
+
+    const btnRow = el('div', 'ed-popup__btns');
+    const okBtn = el('button', 'ed-btn ed-btn--save');
+    okBtn.type = 'button'; okBtn.textContent = 'OK';
+    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
+    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
+    cancelBtn.addEventListener('click', () => {
+      Object.assign(bg, original);
+      HomeView.applyBackgroundStyle(wrapEl, bg);
+      document.body.removeChild(overlay);
+    });
+    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+  }
+
+  // ── Onglet Style des pages ───────────────────────────────────────────────
+  // Header + fond des pages : mêmes popups que la page d'accueil, sur
+  // `_site.pagesStyle.background` (voir _render). Sections/blocs TEXTE/images :
+  // aperçus cliquables, un objet {bg, textColor} chacun pour les deux
+  // premiers, {borderColor, borderWidth, borderRadius} pour les images.
+
+  function _buildPagesStyleEditor() {
+    const wrap = el('div', 'ed-style-grid');
+
+    const secCard = el('div', 'ed-style-card');
+    secCard.appendChild(txt('div', 'ed-style-card__label', 'Titre de section'));
+    const secPreview = txt('div', 'm2-section__titre ed-style-card__preview', 'Titre de section');
+    secPreview.title = 'Cliquer pour modifier';
+    ContentView.applySectionStyle(secPreview, _site.pagesStyle.section);
+    secPreview.addEventListener('click', () => {
+      _openColorTextPopup('Style des titres de section', _site.pagesStyle.section, ContentView.applySectionStyle, secPreview);
+    });
+    secCard.appendChild(secPreview);
+    wrap.appendChild(secCard);
+
+    const txtCard = el('div', 'ed-style-card');
+    txtCard.appendChild(txt('div', 'ed-style-card__label', 'Bloc TEXTE'));
+    const txtPreview = txt('div', 'm2-bloc-texte ed-style-card__preview', 'Exemple de texte');
+    txtPreview.title = 'Cliquer pour modifier';
+    ContentView.applyBlocTexteStyle(txtPreview, _site.pagesStyle.blocTexte);
+    txtPreview.addEventListener('click', () => {
+      _openColorTextPopup('Style des blocs TEXTE', _site.pagesStyle.blocTexte, ContentView.applyBlocTexteStyle, txtPreview);
+    });
+    txtCard.appendChild(txtPreview);
+    wrap.appendChild(txtCard);
+
+    const imgCard = el('div', 'ed-style-card');
+    imgCard.appendChild(txt('div', 'ed-style-card__label', 'Bordure des images'));
+    const imgPreview = el('div', 'ed-style-card__preview ed-style-card__preview--image');
+    imgPreview.title = 'Cliquer pour modifier';
+    ContentView.applyImageStyle(imgPreview, _site.pagesStyle.image);
+    imgPreview.addEventListener('click', () => _openImageStylePopup(imgPreview));
+    imgCard.appendChild(imgPreview);
+    wrap.appendChild(imgCard);
+
+    return wrap;
+  }
+
+  /** Popup générique fond/texte (sections, blocs TEXTE) : deux champs
+   *  couleur+alpha, appliqués en direct via `applyFn(previewEl, styleObj)`. */
+  function _openColorTextPopup(title, styleObj, applyFn, previewEl) {
+    const original = clone(styleObj);
+
+    const overlay = el('div', 'ed-popup-overlay');
+    const popup = el('div', 'ed-popup');
+    popup.appendChild(txt('div', 'ed-popup__title', title));
+
+    popup.appendChild(_buildColorAlphaField('Couleur de fond', () => styleObj.bg, v => {
+      styleObj.bg = v; applyFn(previewEl, styleObj);
+    }));
+    popup.appendChild(_buildColorAlphaField('Couleur du texte', () => styleObj.textColor, v => {
+      styleObj.textColor = v; applyFn(previewEl, styleObj);
+    }));
+
+    const btnRow = el('div', 'ed-popup__btns');
+    const okBtn = el('button', 'ed-btn ed-btn--save');
+    okBtn.type = 'button'; okBtn.textContent = 'OK';
+    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
+    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
+    cancelBtn.addEventListener('click', () => {
+      Object.assign(styleObj, original);
+      applyFn(previewEl, styleObj);
+      document.body.removeChild(overlay);
+    });
+    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+  }
+
+  /** Popup de bordure des images : couleur+alpha, épaisseur, arrondi (px). */
+  function _openImageStylePopup(previewEl) {
+    const style = _site.pagesStyle.image;
+    const original = clone(style);
+
+    const overlay = el('div', 'ed-popup-overlay');
+    const popup = el('div', 'ed-popup');
+    popup.appendChild(txt('div', 'ed-popup__title', 'Bordure des images'));
+
+    popup.appendChild(_buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
+      style.borderColor = v; ContentView.applyImageStyle(previewEl, style);
+    }));
+
+    function numberField(labelText, value, min, max) {
+      const f = el('div', 'ed-field');
+      f.appendChild(txt('label', 'ed-label', labelText));
+      const inp = document.createElement('input');
+      inp.type = 'number'; inp.className = 'ed-input'; inp.min = String(min); inp.max = String(max);
+      inp.value = value;
+      f.appendChild(inp);
+      popup.appendChild(f);
+      return inp;
+    }
+    const widthInp = numberField('Épaisseur (px)', style.borderWidth, 0, 20);
+    widthInp.addEventListener('input', () => {
+      style.borderWidth = (+widthInp.value) || 0;
+      ContentView.applyImageStyle(previewEl, style);
+    });
+    const radiusInp = numberField('Arrondi (px)', style.borderRadius, 0, 200);
+    radiusInp.addEventListener('input', () => {
+      style.borderRadius = (+radiusInp.value) || 0;
+      ContentView.applyImageStyle(previewEl, style);
+    });
+
+    const btnRow = el('div', 'ed-popup__btns');
+    const okBtn = el('button', 'ed-btn ed-btn--save');
+    okBtn.type = 'button'; okBtn.textContent = 'OK';
+    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
+    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
+    cancelBtn.addEventListener('click', () => {
+      Object.assign(style, original);
+      ContentView.applyImageStyle(previewEl, style);
+      document.body.removeChild(overlay);
+    });
+    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+  }
+
   // ── Onglet Arborescence ──────────────────────────────────────────────────
 
   function _setCollapsedAll(chapitres, value) {
@@ -430,6 +855,20 @@ const TreeEditor = (function () {
 
   function _buildTreeEditor() {
     const container = el('div', '');
+
+    const titleField = el('div', 'ed-field ed-site-title-field');
+    titleField.appendChild(txt('label', 'ed-label', 'Titre du site'));
+    const titleInp = document.createElement('input');
+    titleInp.type = 'text'; titleInp.className = 'ed-input';
+    titleInp.placeholder = SITE_NAME;
+    titleInp.value = _site.titre_site || '';
+    titleInp.addEventListener('input', () => {
+      _site.titre_site = titleInp.value;
+      const titleSpan = _container.querySelector('.m2-header__title');
+      if (titleSpan) titleSpan.textContent = _site.titre_site || SITE_NAME;
+    });
+    titleField.appendChild(titleInp);
+    container.appendChild(titleField);
 
     const toolbar = el('div', 'ed-map-toolbar');
     const expandBtn = el('button', 'ed-add-btn');
