@@ -291,6 +291,41 @@
 }
 .ed-txt-content:focus { background: #d9f3fc; border-color: #7dd3f0; }
 
+/* ── Bloc HTML libre ──────────────────────────────────────────────────────── */
+
+.ed-html-block__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: #334155;
+  border-radius: 6px 6px 0 0;
+}
+.ed-block-editor__acts { display: flex; gap: 4px; }
+.ed-html-block__label {
+  font-family: ui-monospace, monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+}
+.ed-html-block__textarea {
+  display: block;
+  width: 100%;
+  min-height: 140px;
+  padding: 12px 14px;
+  font-family: ui-monospace, monospace;
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  resize: vertical;
+  outline: none;
+}
+.ed-html-block__textarea:focus { border-color: var(--accent); background: #fff; }
+
 /* ── Drag-and-drop des blocs ──────────────────────────────────────────────── */
 
 .ed-dragging { opacity: .4; }

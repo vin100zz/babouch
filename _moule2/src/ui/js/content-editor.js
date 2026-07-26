@@ -58,6 +58,10 @@ const ContentView = (function () {
             if (block.align && block.align !== 'left') wrap.style.textAlign = block.align;
             if (block.width) wrap.style.width = block.width + '%';
             col.appendChild(wrap);
+          } else if (block.type === 'HTML') {
+            const wrap = el('div', 'm2-bloc-html');
+            wrap.innerHTML = block.html || '';
+            col.appendChild(wrap);
           }
         });
         cols.appendChild(col);
@@ -182,10 +186,14 @@ const ContentView = (function () {
         blockList.appendChild(bwrap);
       });
       const addRow = el('div', 'ed-add-block-row');
-      [['+ Document', 'DOCUMENTS'], ['+ Texte', 'TEXTE']].forEach(([lbl, type]) => {
+      [['+ Document', 'DOCUMENTS'], ['+ Texte', 'TEXTE'], ['+ HTML', 'HTML']].forEach(([lbl, type]) => {
         const btn = el('button', 'ed-add-btn'); btn.type = 'button'; btn.textContent = lbl;
         btn.addEventListener('click', () => {
-          colBlocks.push(type === 'TEXTE' ? { type, html: '', align: 'left' } : { type, fichier: '', width: 100 });
+          let newBlock;
+          if (type === 'TEXTE') newBlock = { type, html: '', align: 'left' };
+          else if (type === 'HTML') newBlock = { type, html: '' };
+          else newBlock = { type, fichier: '', width: 100 };
+          colBlocks.push(newBlock);
           refreshBlocks();
         });
         addRow.appendChild(btn);
@@ -212,8 +220,38 @@ const ContentView = (function () {
   function _buildBlockEditor(sections, section, block, blockIdx, colBlocks, renderCols, colIdx) {
     const wrap = el('div', 'ed-block-editor');
     if (block.type === 'DOCUMENTS') _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx);
+    else if (block.type === 'HTML') _buildHtmlBlockEditor(wrap, block, blockIdx, colBlocks, renderCols);
     else _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols);
     return wrap;
+  }
+
+  function _buildHtmlBlockEditor(wrap, block, blockIdx, colBlocks, renderCols) {
+    wrap.classList.add('ed-html-block');
+
+    const bar = el('div', 'ed-html-block__bar');
+    bar.appendChild(txt('span', 'ed-html-block__label', '</> HTML brut'));
+    const acts = el('div', 'ed-block-editor__acts');
+    if (blockIdx > 0) acts.appendChild(_ib('▲', 'Monter', '', () => { colBlocks.splice(blockIdx - 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); }));
+    if (blockIdx < colBlocks.length - 1) acts.appendChild(_ib('▼', 'Descendre', '', () => { colBlocks.splice(blockIdx + 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); }));
+    acts.appendChild(_ib('×', 'Supprimer', 'ed-icon-btn--del', () => { colBlocks.splice(blockIdx, 1); renderCols(); }));
+    bar.appendChild(acts);
+    wrap.appendChild(bar);
+
+    const textarea = document.createElement('textarea');
+    textarea.className = 'ed-html-block__textarea';
+    textarea.placeholder = '<table>...</table>';
+    textarea.value = block.html || '';
+    textarea.spellcheck = false;
+    textarea.addEventListener('input', () => { block.html = textarea.value; });
+    textarea.addEventListener('mousedown', () => {
+      const bwrap = textarea.closest('[draggable]');
+      if (bwrap) {
+        bwrap.setAttribute('draggable', 'false');
+        const restore = () => { bwrap.setAttribute('draggable', 'true'); window.removeEventListener('mouseup', restore); };
+        window.addEventListener('mouseup', restore);
+      }
+    });
+    wrap.appendChild(textarea);
   }
 
   function _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx) {

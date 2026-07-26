@@ -175,6 +175,18 @@ class SiteRepository
                     'fichier'=> isset($bloc['fichier']) ? (string) $bloc['fichier'] : '',
                     'width'  => isset($bloc['width']) ? (int) $bloc['width'] : 100,
                 );
+            } elseif ($bloc['type'] === 'HTML') {
+                // Contenu HTML libre, non filtré : à la différence du bloc
+                // TEXTE (sous-ensemble b/i/u/br/a imposé par l'éditeur riche),
+                // celui-ci est saisi et rendu tel quel (couvre les tableaux et
+                // autre contenu sans équivalent dans le modèle de blocs).
+                // Éditable uniquement par le propriétaire du site depuis son
+                // propre CMS : pas une entrée publique, donc pas de risque XSS
+                // tiers à filtrer ici.
+                $out[] = array(
+                    'type' => 'HTML',
+                    'html' => isset($bloc['html']) ? (string) $bloc['html'] : '',
+                );
             }
         }
         return $out;

@@ -350,6 +350,11 @@ a { color: inherit; text-decoration: none; }
   cursor: zoom-in;
 }
 
+/* Bloc HTML libre : rendu tel quel, scroll horizontal de secours pour les
+   tableaux plus larges que la colonne plutôt que de casser la mise en page. */
+.m2-bloc-html { width: 100%; max-width: 100%; overflow-x: auto; }
+.m2-bloc-html table { width: 100%; border-collapse: collapse; }
+
 /* ── Loader / erreurs ─────────────────────────────────────────────────────── */
 
 .m2-loading, .m2-error {
