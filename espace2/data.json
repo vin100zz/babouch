@@ -188,16 +188,16 @@
       }
     ],
     "headerStyle": {
-      "bg": "#1e293b",
+      "bg": "#1e293b00",
       "titleColor": "#ffffff",
-      "titleSize": 18,
+      "titleSize": 40,
       "titleFont": "",
-      "titleFontFile": null,
-      "titleAlign": "left"
+      "titleFontFile": "transformers.ttf",
+      "titleAlign": "center"
     },
     "background": {
       "color": "#fafbfc",
-      "image": null,
+      "image": "background.jpg",
       "mode": "cover"
     }
   },
