@@ -65,6 +65,10 @@
   // couleur/police (home.headerStyle), mais image de fond distincte possible.
   function buildHeader(context) {
     const header = el('div', 'm2-header');
+    // Fixe, en dehors de `.m2-header__left` : toujours en haut à gauche de la
+    // page quel que soit l'alignement du titre, et uniquement sur la page
+    // d'accueil (le contexte 'pages' ne l'affiche pas).
+    if (context === 'home') header.appendChild(_buildNavMenu());
     const left = el('div', 'm2-header__left');
     left.appendChild(txt('span', 'm2-header__title', SITE.titre_site || SITE_NAME));
     header.appendChild(left);
@@ -111,9 +115,65 @@
     return searchWrap;
   }
 
+  // Icône « sandwich » + menu arborescent : ouverture au survol (comme la
+  // liste de frères du fil d'Ariane et la cascade des sous-niveaux), clic
+  // possible aussi en complément (utile au clavier/tactile). Atteint
+  // n'importe quelle page sans repasser par les sous-menus intermédiaires.
+  function _buildNavMenu() {
+    const wrap = el('div', 'm2-navmenu');
+    const btn = el('button', 'm2-hamburger-btn');
+    btn.type = 'button'; btn.title = 'Naviguer dans le site';
+    // Barres dessinées en CSS plutôt que le caractère ☰ : ce dernier n'est pas
+    // centré verticalement de façon fiable selon les polices (métriques du
+    // glyphe), les barres, elles, sont centrées par construction.
+    btn.appendChild(el('span', 'm2-hamburger-btn__bars'));
+    wrap.appendChild(btn);
+
+    const menu = el('ul', 'm2-treemenu');
+    _buildTreeMenuItems(menu, SITE.chapitres, '', null);
+    wrap.appendChild(menu);
+
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const wasOpen = wrap.classList.contains('m2-navmenu--open');
+      _closeNavMenus();
+      if (!wasOpen) wrap.classList.add('m2-navmenu--open');
+    });
+    return wrap;
+  }
+
+  // `currentNode`, si fourni, reçoit une mise en avant visuelle (utilisé par
+  // le fil d'Ariane pour repérer la page actuelle dans la liste des frères).
+  function _buildTreeMenuItems(ulEl, nodes, prefix, currentNode) {
+    (nodes || []).forEach(node => {
+      const path = prefix ? prefix + '/' + node.keyword : node.keyword;
+      const li = el('li', 'm2-treemenu__item');
+      const a = document.createElement('a');
+      a.href = '#/' + path;
+      a.appendChild(document.createTextNode(node.label || node.keyword));
+      if (currentNode && node === currentNode) a.classList.add('m2-treemenu__link--current');
+      if (node.chapitres && node.chapitres.length) {
+        a.appendChild(txt('span', 'm2-treemenu__arrow', '›'));
+        const sub = el('ul', 'm2-treemenu__submenu');
+        _buildTreeMenuItems(sub, node.chapitres, path, currentNode);
+        li.appendChild(a);
+        li.appendChild(sub);
+      } else {
+        li.appendChild(a);
+      }
+      ulEl.appendChild(li);
+    });
+  }
+
+  function _closeNavMenus() {
+    document.querySelectorAll('.m2-navmenu--open').forEach(w => w.classList.remove('m2-navmenu--open'));
+  }
+  document.addEventListener('click', _closeNavMenus);
+
   function renderBreadcrumbBar(configs) {
     const bar = el('div', 'm2-breadcrumb');
     const home = document.createElement('a');
+    home.className = 'm2-breadcrumb__home';
     home.href = '#/'; home.textContent = '🏠';
     bar.appendChild(home);
     configs.forEach((c, i) => {
@@ -146,14 +206,11 @@
 
     if (siblings && siblings.length > 1) {
       wrap.classList.add('m2-breadcrumb__sepwrap--has-dropdown');
-      const dropdown = el('div', 'm2-breadcrumb__dropdown');
-      siblings.forEach(s => {
-        const a = document.createElement('a');
-        a.href = '#/' + (parentPath ? parentPath + '/' + s.keyword : s.keyword);
-        if (s === currentNode) a.className = 'm2-breadcrumb__dropdown-item--current';
-        a.textContent = s.label || s.keyword;
-        dropdown.appendChild(a);
-      });
+      // Même construction récursive que le menu sandwich : un frère qui a
+      // lui-même des enfants cascade à son tour au survol, au lieu d'une
+      // simple liste plate d'un seul niveau.
+      const dropdown = el('ul', 'm2-treemenu m2-breadcrumb__dropdown');
+      _buildTreeMenuItems(dropdown, siblings, parentPath, currentNode);
       wrap.appendChild(dropdown);
       sep.addEventListener('click', e => {
         e.stopPropagation();

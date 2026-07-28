@@ -70,6 +70,113 @@ a { color: inherit; text-decoration: none; }
   gap: 14px;
 }
 
+/* ── Menu de navigation (icône sandwich + arbre en cascade au survol) ────── */
+/* Fixe, comme `.m2-header__right` : toujours en haut à gauche de la page,
+   indépendamment de l'alignement du titre (page d'accueil uniquement, voir
+   buildHeader() dans app.js). */
+.m2-navmenu { position: fixed; top: 12px; left: 24px; z-index: 110; display: flex; align-items: center; }
+
+.m2-hamburger-btn {
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.m2-hamburger-btn:hover { background: rgba(255,255,255,.26); }
+
+/* Barres dessinées en CSS (plutôt que le caractère ☰, dont les métriques de
+   police ne se centrent pas verticalement de façon fiable) : centrage garanti
+   par construction, indépendant de toute police. */
+.m2-hamburger-btn__bars {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+.m2-hamburger-btn__bars::before,
+.m2-hamburger-btn__bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+.m2-hamburger-btn__bars::before { top: -5px; }
+.m2-hamburger-btn__bars::after { top: 5px; }
+
+/* Style partagé par les deux arbres (menu sandwich ET liste de frères du fil
+   d'Ariane, qui porte aussi cette classe) : même apparence, et pas de marge
+   pour que le survol ne se perde pas en glissant la souris du déclencheur
+   vers la liste (bug corrigé, voir plus bas pour le fil d'Ariane). */
+.m2-treemenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0;
+  z-index: 300;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  min-width: 220px;
+  /* Pas d'overflow-y ici : ça masquerait les sous-menus en cascade (positionnés
+     hors de cette boîte via left:100%), overflow-x/y étant couplés en CSS
+     (l'un "auto" force l'autre à "auto" aussi, donc à couper l'axe visible). */
+  padding: 4px;
+}
+.m2-navmenu:hover .m2-treemenu,
+.m2-navmenu--open .m2-treemenu {
+  display: block;
+}
+
+.m2-treemenu__item { position: relative; }
+.m2-treemenu__item > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: .85rem;
+  font-weight: 400;
+  color: var(--text);
+  white-space: nowrap;
+}
+.m2-treemenu__item > a:hover { background: #eee; text-decoration: none; }
+.m2-treemenu__arrow { color: var(--muted); font-size: .75rem; }
+
+/* Sous-menu en cascade : collé au parent (pas de marge) pour que le survol
+   ne se perde pas en glissant la souris de l'un vers l'autre (même bug que
+   pour le fil d'Ariane, corrigé ici dès le départ). */
+.m2-treemenu__submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  min-width: 220px;
+  padding: 4px;
+  z-index: 301;
+}
+.m2-treemenu__item:hover > .m2-treemenu__submenu { display: block; }
+
 .m2-edit-toggle {
   background: rgba(255,255,255,.14);
   border: 1px solid rgba(255,255,255,.3);
@@ -97,9 +204,11 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--border);
   font-size: .88rem;
 }
-.m2-breadcrumb a { color: #2563eb; }
 .m2-breadcrumb a:hover { text-decoration: underline; }
 .m2-breadcrumb__current { color: var(--muted); }
+
+.m2-breadcrumb__home { font-size: 1.3rem; line-height: 1; }
+.m2-breadcrumb a.m2-breadcrumb__home:hover { text-decoration: none; }
 
 .m2-breadcrumb__sepwrap { position: relative; display: inline-flex; }
 .m2-breadcrumb__sep {
@@ -128,36 +237,17 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
 }
 
-.m2-breadcrumb__dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: 4px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  box-shadow: var(--shadow);
-  z-index: 200;
-  min-width: 180px;
-  max-height: calc(100vh - 140px);
-  overflow-y: auto;
-  padding: 4px;
-}
+/* Porte aussi la classe `.m2-treemenu` (fond, bordure, ombre, largeur...
+   partagés avec le menu sandwich — même style des deux côtés) ; ici juste le
+   déclenchement propre au fil d'Ariane (survol de la flèche, ou clic). */
 .m2-breadcrumb__sepwrap--has-dropdown:hover .m2-breadcrumb__dropdown,
 .m2-breadcrumb__sepwrap--open .m2-breadcrumb__dropdown {
   display: block;
 }
-.m2-breadcrumb__dropdown a {
-  display: block;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: .85rem;
-  white-space: nowrap;
-  color: var(--text);
-}
-.m2-breadcrumb__dropdown a:hover { background: var(--gray-light); text-decoration: none; }
-.m2-breadcrumb__dropdown-item--current { font-weight: 700; color: #2563eb !important; }
+/* Spécificité (0,2,1) : doit l'emporter sur `.m2-treemenu__item > a` (0,1,1),
+   qui fixe déjà font-weight/color, sinon la mise en avant est silencieusement
+   écrasée malgré l'ordre de déclaration. */
+.m2-treemenu__item > a.m2-treemenu__link--current { font-weight: 700; color: #2563eb; }
 
 /* ── Page d'accueil ───────────────────────────────────────────────────────── */
 
