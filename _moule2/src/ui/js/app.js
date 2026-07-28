@@ -60,7 +60,10 @@
 
   // ── En-tête / fil d'Ariane ────────────────────────────────────────────────
 
-  function buildHeader() {
+  // `context` : 'home' (image de fond du header propre à la page d'accueil)
+  // ou 'pages' (image de fond propre aux autres pages) — même header, même
+  // couleur/police (home.headerStyle), mais image de fond distincte possible.
+  function buildHeader(context) {
     const header = el('div', 'm2-header');
     const left = el('div', 'm2-header__left');
     left.appendChild(txt('span', 'm2-header__title', SITE.titre_site || SITE_NAME));
@@ -75,7 +78,10 @@
     right.appendChild(editBtn);
     header.appendChild(right);
 
-    HomeView.applyHeaderStyle(header, SITE.home && SITE.home.headerStyle);
+    const imageStyle = context === 'pages'
+      ? (SITE.pagesStyle && SITE.pagesStyle.headerBackground)
+      : (SITE.home && SITE.home.headerStyle);
+    HomeView.applyHeaderStyle(header, SITE.home && SITE.home.headerStyle, imageStyle);
     return header;
   }
 
@@ -189,7 +195,7 @@
     // le header, visible à travers lui dès qu'il a de la transparence.
     const page = el('div', 'm2-home-page');
     HomeView.applyBackgroundStyle(page, SITE.home && SITE.home.background);
-    page.appendChild(buildHeader());
+    page.appendChild(buildHeader('home'));
 
     const wrap = el('div', 'm2-home');
     const images = (SITE.home && SITE.home.images) || [];
@@ -210,7 +216,7 @@
   function _buildContentPage() {
     const page = el('div', 'm2-content-page');
     HomeView.applyBackgroundStyle(page, SITE.pagesStyle && SITE.pagesStyle.background);
-    page.appendChild(buildHeader());
+    page.appendChild(buildHeader('pages'));
     return page;
   }
 

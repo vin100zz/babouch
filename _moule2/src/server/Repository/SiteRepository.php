@@ -58,6 +58,7 @@ class SiteRepository
         if ($json === false) {
             throw new RuntimeException('Erreur d\'encodage JSON : ' . json_last_error_msg());
         }
+        $json = $this->reindentTo2Spaces($json);
 
         $fp = fopen($this->path, 'c+');
         if (!$fp) {
@@ -75,6 +76,25 @@ class SiteRepository
         fclose($fp);
 
         return $clean;
+    }
+
+    /**
+     * JSON_PRETTY_PRINT indente toujours à 4 espaces (pas d'option native pour
+     * changer ça côté PHP) : on retasse chaque indentation de tête à 2 espaces
+     * par niveau après coup. Sûr ligne à ligne, car json_encode échappe tout
+     * retour à la ligne à l'intérieur d'une chaîne (\n littéral), donc chaque
+     * saut de ligne réel du JSON pretty-printé est structurel.
+     */
+    private function reindentTo2Spaces($json)
+    {
+        $lines = explode("\n", $json);
+        foreach ($lines as &$line) {
+            if (preg_match('/^( +)/', $line, $m)) {
+                $level = strlen($m[1]) / 4;
+                $line = str_repeat('  ', (int) $level) . substr($line, strlen($m[1]));
+            }
+        }
+        return implode("\n", $lines);
     }
 
     private function emptySite()
@@ -114,16 +134,23 @@ class SiteRepository
         );
     }
 
-    /** Couleur de fond + apparence du titre (taille/couleur/police/alignement) du header. */
+    /**
+     * Couleur/image de fond + apparence du titre (taille/couleur/police/
+     * alignement) du header. `image`/`mode` ici sont ceux utilisés quand le
+     * header s'affiche sur la page d'accueil (voir cleanPagesStyle pour
+     * l'équivalent propre aux autres pages).
+     */
     private function cleanHeaderStyle($style)
     {
         return array(
             'bg'           => $this->cleanColor(isset($style['bg']) ? $style['bg'] : null, '#1e293b'),
             'titleColor'   => $this->cleanColor(isset($style['titleColor']) ? $style['titleColor'] : null, '#ffffff'),
-            'titleSize'    => isset($style['titleSize']) ? max(10, min(60, (int) $style['titleSize'])) : 18,
+            'titleSize'    => isset($style['titleSize']) ? max(10, min(150, (int) $style['titleSize'])) : 18,
             'titleFont'    => isset($style['titleFont']) ? (string) $style['titleFont'] : '',
             'titleFontFile'=> $this->cleanRelPath(isset($style['titleFontFile']) ? $style['titleFontFile'] : null),
             'titleAlign'   => in_array(isset($style['titleAlign']) ? $style['titleAlign'] : '', array('left', 'center', 'right'), true) ? $style['titleAlign'] : 'left',
+            'image'        => $this->cleanRelPath(isset($style['image']) ? $style['image'] : null),
+            'mode'         => in_array(isset($style['mode']) ? $style['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $style['mode'] : 'cover',
         );
     }
 
@@ -140,16 +167,24 @@ class SiteRepository
     /**
      * Style des pages de contenu (sous-menus/feuilles, hors page d'accueil) :
      * fond de page + apparence des titres de section, blocs TEXTE et bordure
-     * des images. Le header, lui, reste géré par home.headerStyle (un seul
-     * header, partagé par toutes les pages du site).
+     * des images. Le header (couleur, police, taille, alignement) reste géré
+     * par home.headerStyle (un seul header, partagé par toutes les pages du
+     * site) ; seule son image de fond peut différer ici (headerBackground),
+     * pour permettre une image propre à la page d'accueil et une autre aux
+     * autres pages.
      */
     private function cleanPagesStyle($ps)
     {
         if (!is_array($ps)) {
             $ps = array();
         }
+        $hb = (isset($ps['headerBackground']) && is_array($ps['headerBackground'])) ? $ps['headerBackground'] : array();
         return array(
-            'background' => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
+            'background'      => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
+            'headerBackground'=> array(
+                'image' => $this->cleanRelPath(isset($hb['image']) ? $hb['image'] : null),
+                'mode'  => in_array(isset($hb['mode']) ? $hb['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $hb['mode'] : 'cover',
+            ),
             'section'    => $this->cleanColorTextPair(isset($ps['section']) && is_array($ps['section']) ? $ps['section'] : array(), '#d0e4ff', '#1e293b'),
             'blocTexte'  => $this->cleanColorTextPair(isset($ps['blocTexte']) && is_array($ps['blocTexte']) ? $ps['blocTexte'] : array(), '#e3f8ff', '#1e293b'),
             'image'      => $this->cleanImageStyle(isset($ps['image']) && is_array($ps['image']) ? $ps['image'] : array()),

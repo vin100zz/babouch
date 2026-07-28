@@ -2,3 +2,13 @@
 	text-shadow: 2px 2px 4px #8BC9E3;
     letter-spacing: 5px;
 }
+
+.m2-home-page .m2-header {
+	box-shadow: none;
+}
+
+.m2-thumb__label {
+	position: relative;
+	top: -35px;
+	background: none;
+}

@@ -12,7 +12,8 @@ const HomeView = (function () {
   const MIN_WIDTH = 30;
   const MAX_WIDTH = 500;
 
-  const DEFAULT_HEADER_STYLE = { bg: '#1e293b', titleColor: '#ffffff', titleSize: 18, titleFont: '', titleFontFile: null, titleAlign: 'left' };
+  const DEFAULT_HEADER_STYLE = { bg: '#1e293b', titleColor: '#ffffff', titleSize: 18, titleFont: '', titleFontFile: null, titleAlign: 'left', image: null, mode: 'cover' };
+  const DEFAULT_HEADER_BACKGROUND = { image: null, mode: 'cover' };
   const DEFAULT_BACKGROUND = { color: '#fafbfc', image: null, mode: 'cover' };
   const ALIGN_TO_JUSTIFY = { left: 'flex-start', center: 'center', right: 'flex-end' };
 
@@ -33,12 +34,33 @@ const HomeView = (function () {
     return family;
   }
 
-  /** Applique le style de header (fond, titre) à un `.m2-header` déjà construit
-   *  (avec un `.m2-header__left` contenant `.m2-header__title`). Utilisé à
-   *  l'identique en lecture (app.js) et en édition (tree-editor.js). */
-  function applyHeaderStyle(headerEl, style) {
+  /** Applique le style de header (fond couleur/image, titre) à un `.m2-header`
+   *  déjà construit (avec un `.m2-header__left` contenant `.m2-header__title`).
+   *  Utilisé à l'identique en lecture (app.js) et en édition (tree-editor.js).
+   *  `imageStyle` ({image, mode}) est distinct de `style` pour permettre une
+   *  image de fond différente sur la page d'accueil et sur les autres pages
+   *  (même header, même couleur/police partagées, image propre à chaque
+   *  contexte) ; par défaut (non fourni), `style` lui-même sert d'imageStyle. */
+  function applyHeaderStyle(headerEl, style, imageStyle) {
     style = Object.assign({}, DEFAULT_HEADER_STYLE, style || {});
-    headerEl.style.background = style.bg;
+    imageStyle = imageStyle || style;
+    headerEl.style.backgroundColor = style.bg;
+    if (imageStyle.image) {
+      headerEl.style.backgroundImage = 'url(style/' + imageStyle.image + ')';
+      if (imageStyle.mode === 'repeat') {
+        headerEl.style.backgroundRepeat = 'repeat';
+        headerEl.style.backgroundSize = 'auto';
+      } else {
+        headerEl.style.backgroundRepeat = 'no-repeat';
+        headerEl.style.backgroundSize = imageStyle.mode === 'contain' ? 'contain' : 'cover';
+      }
+      headerEl.style.backgroundPosition = 'center';
+    } else {
+      headerEl.style.backgroundImage = '';
+      headerEl.style.backgroundRepeat = '';
+      headerEl.style.backgroundSize = '';
+      headerEl.style.backgroundPosition = '';
+    }
     const left = headerEl.querySelector('.m2-header__left');
     if (left) left.style.justifyContent = ALIGN_TO_JUSTIFY[style.titleAlign] || 'flex-start';
     const title = headerEl.querySelector('.m2-header__title');
@@ -251,6 +273,6 @@ const HomeView = (function () {
   return {
     render, buildThumb, updateThumb,
     applyHeaderStyle, applyBackgroundStyle,
-    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND,
+    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND,
   };
 })();

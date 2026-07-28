@@ -11,6 +11,7 @@ const TreeEditor = (function () {
   let _container = null;
   let _onDone = null;
   let _activeTab = 'home';
+  let _homeKeydownHandler = null;
 
   function open(container, siteData, onDone, initialTab) {
     _container = container;
@@ -21,6 +22,7 @@ const TreeEditor = (function () {
     if (!_site.home.background) _site.home.background = clone(HomeView.DEFAULT_BACKGROUND);
     if (!_site.pagesStyle) _site.pagesStyle = {};
     if (!_site.pagesStyle.background) _site.pagesStyle.background = clone(HomeView.DEFAULT_BACKGROUND);
+    if (!_site.pagesStyle.headerBackground) _site.pagesStyle.headerBackground = clone(HomeView.DEFAULT_HEADER_BACKGROUND);
     if (!_site.pagesStyle.section) _site.pagesStyle.section = clone(ContentView.DEFAULT_SECTION_STYLE);
     if (!_site.pagesStyle.blocTexte) _site.pagesStyle.blocTexte = clone(ContentView.DEFAULT_BLOC_TEXTE_STYLE);
     if (!_site.pagesStyle.image) _site.pagesStyle.image = clone(ContentView.DEFAULT_IMAGE_STYLE);
@@ -34,6 +36,7 @@ const TreeEditor = (function () {
     _container.innerHTML = '';
     _removeBar();
     _removeAlignBar();
+    _removeHomeKeydownListener();
     document.body.appendChild(_buildBar());
     _container.appendChild(_buildTabsBar());
 
@@ -53,11 +56,13 @@ const TreeEditor = (function () {
       // puis en dessous, dans un panneau neutre, les styles des éléments de
       // contenu (section, bloc TEXTE, image).
       const page = el('div', 'm2-home-page ed-pages-preview');
+      page.title = 'Cliquer pour modifier le fond des pages';
       HomeView.applyBackgroundStyle(page, _site.pagesStyle.background);
       page.addEventListener('click', e => {
         if (e.target === page) _openBackgroundPopup(page, _site.pagesStyle.background, 'Style du fond des pages');
       });
       page.appendChild(_buildHeader());
+      page.appendChild(txt('div', 'ed-pages-preview__hint', 'Cliquer pour modifier le fond des pages'));
       _container.appendChild(page);
       const panel = el('div', 'ed-panel');
       panel.appendChild(_buildPagesStyleEditor());
@@ -91,10 +96,13 @@ const TreeEditor = (function () {
     const left = el('div', 'm2-header__left');
     left.appendChild(txt('span', 'm2-header__title', _site.titre_site || SITE_NAME));
     header.appendChild(left);
-    HomeView.applyHeaderStyle(header, _site.home.headerStyle);
+    // Image de fond du header : propre à la page d'accueil ou aux autres
+    // pages selon l'onglet actif (voir applyHeaderStyle dans home-view.js).
+    const imageStyle = _activeTab === 'pages' ? _site.pagesStyle.headerBackground : _site.home.headerStyle;
+    HomeView.applyHeaderStyle(header, _site.home.headerStyle, imageStyle);
     if (editable) {
       header.title = 'Cliquer pour modifier le style du header';
-      header.addEventListener('click', () => _openHeaderStylePopup(header));
+      header.addEventListener('click', () => _openHeaderStylePopup(header, imageStyle));
     }
     return header;
   }
@@ -106,7 +114,7 @@ const TreeEditor = (function () {
     s.type = 'button'; s.textContent = 'Enregistrer'; s.addEventListener('click', _save);
     const c = el('button', 'ed-btn ed-btn--cancel');
     c.type = 'button'; c.textContent = 'Annuler';
-    c.addEventListener('click', () => { _removeBar(); _removeAlignBar(); _onDone(null); });
+    c.addEventListener('click', () => { _removeBar(); _removeAlignBar(); _removeHomeKeydownListener(); _onDone(null); });
     bar.appendChild(s); bar.appendChild(c);
     return bar;
   }
@@ -118,6 +126,17 @@ const TreeEditor = (function () {
     const b = document.getElementById('m2-align-bar');
     if (b) b.parentNode.removeChild(b);
   }
+  function _removeHomeKeydownListener() {
+    if (_homeKeydownHandler) {
+      document.removeEventListener('keydown', _homeKeydownHandler);
+      _homeKeydownHandler = null;
+    }
+  }
+  function _isEditableTarget(el) {
+    if (!el) return false;
+    const tag = el.tagName;
+    return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el.isContentEditable;
+  }
 
   async function _save() {
     const btn = document.getElementById('ed-fixed-bar').querySelector('.ed-btn--save');
@@ -126,6 +145,7 @@ const TreeEditor = (function () {
       const saved = await Api.saveSite(_site);
       _removeBar();
       _removeAlignBar();
+      _removeHomeKeydownListener();
       _onDone(saved.data);
     } catch (e) {
       alert('Erreur lors de la sauvegarde :\n' + e.message);
@@ -246,6 +266,20 @@ const TreeEditor = (function () {
     }
 
     refresh();
+
+    // Ctrl/Cmd+A : sélectionne toutes les images (pour aligner/déplacer le
+    // groupe), au lieu de la sélection de texte native du navigateur. Ignoré
+    // si le focus est sur un champ de saisie (ex : titre dans la popup image).
+    _removeHomeKeydownListener();
+    _homeKeydownHandler = e => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'a' && !_isEditableTarget(document.activeElement)) {
+        e.preventDefault();
+        images.forEach(img => selection.add(img));
+        refresh();
+      }
+    };
+    document.addEventListener('keydown', _homeKeydownHandler);
+
     return wrap;
   }
 
@@ -520,12 +554,17 @@ const TreeEditor = (function () {
     return wrap;
   }
 
-  /** Popup (modale) d'édition du style du header : fond, couleur/taille/police/
-   *  alignement du titre. Modifie `_site.home.headerStyle` en direct pour un
-   *  aperçu immédiat sur `headerEl`, avec possibilité d'annuler. */
-  function _openHeaderStylePopup(headerEl) {
+  /** Popup (modale) d'édition du style du header : fond couleur/image,
+   *  couleur/taille/police/alignement du titre. `style` (`_site.home.headerStyle`)
+   *  porte les réglages partagés par tout le site ; `imageStyle` ({image, mode})
+   *  est propre au contexte d'ouverture (page d'accueil ou autres pages), pour
+   *  permettre une image de fond de header différente selon l'onglet. Modifie
+   *  les deux en direct pour un aperçu immédiat sur `headerEl`, avec
+   *  possibilité d'annuler. */
+  function _openHeaderStylePopup(headerEl, imageStyle) {
     const style = _site.home.headerStyle;
     const original = clone(style);
+    const originalImage = clone(imageStyle);
 
     const overlay = el('div', 'ed-popup-overlay');
     const popup = el('div', 'ed-popup');
@@ -539,16 +578,67 @@ const TreeEditor = (function () {
     }
 
     popup.appendChild(_buildColorAlphaField('Couleur de fond', () => style.bg, v => {
-      style.bg = v; HomeView.applyHeaderStyle(headerEl, style);
+      style.bg = v; HomeView.applyHeaderStyle(headerEl, style, imageStyle);
     }));
+
+    const imgField = el('div', 'ed-field');
+    imgField.appendChild(txt('label', 'ed-label', 'Image de fond du header (optionnelle, dossier style/)'));
+    const imgPreview = el('div', 'ed-img-block__img');
+    imgPreview.style.cursor = 'pointer';
+    imgPreview.title = 'Cliquer pour choisir une image';
+    function refreshImgPreview() {
+      imgPreview.innerHTML = '';
+      if (imageStyle.image) {
+        const im = document.createElement('img');
+        im.src = 'style/' + imageStyle.image;
+        imgPreview.appendChild(im);
+      } else {
+        imgPreview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune image — cliquer pour en choisir une'));
+      }
+    }
+    refreshImgPreview();
+    imgPreview.addEventListener('click', () => {
+      FileBrowser.open(path => {
+        imageStyle.image = path;
+        refreshImgPreview();
+        HomeView.applyHeaderStyle(headerEl, style, imageStyle);
+      }, { root: 'style', rootLabel: 'style', type: 'image' });
+    });
+    imgField.appendChild(imgPreview);
+
+    const clearImgBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer l\'image');
+    clearImgBtn.type = 'button'; clearImgBtn.style.marginTop = '4px';
+    clearImgBtn.addEventListener('click', () => {
+      imageStyle.image = null;
+      refreshImgPreview();
+      HomeView.applyHeaderStyle(headerEl, style, imageStyle);
+    });
+    imgField.appendChild(clearImgBtn);
+    popup.appendChild(imgField);
+
+    const imgModeSel = document.createElement('select');
+    imgModeSel.className = 'ed-input';
+    [
+      ['cover', 'Couvrir (recadrée)'],
+      ['contain', 'Contenir (entière, non recadrée)'],
+      ['repeat', 'Répéter en mosaïque'],
+    ].forEach(([value, label]) => {
+      const opt = document.createElement('option');
+      opt.value = value; opt.textContent = label;
+      if ((imageStyle.mode || 'cover') === value) opt.selected = true;
+      imgModeSel.appendChild(opt);
+    });
+    imgModeSel.addEventListener('change', () => { imageStyle.mode = imgModeSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
+    field('Affichage de l\'image', imgModeSel);
+
     popup.appendChild(_buildColorAlphaField('Couleur du titre', () => style.titleColor, v => {
-      style.titleColor = v; HomeView.applyHeaderStyle(headerEl, style);
+      style.titleColor = v; HomeView.applyHeaderStyle(headerEl, style, imageStyle);
     }));
 
     const sizeInp = document.createElement('input');
-    sizeInp.type = 'number'; sizeInp.className = 'ed-input'; sizeInp.min = '10'; sizeInp.max = '60';
+    sizeInp.type = 'number'; sizeInp.className = 'ed-input'; sizeInp.min = '10'; sizeInp.max = '150';
     sizeInp.value = style.titleSize;
-    sizeInp.addEventListener('input', () => { style.titleSize = (+sizeInp.value) || 18; HomeView.applyHeaderStyle(headerEl, style); });
+    sizeInp.addEventListener('input', () => { style.titleSize = (+sizeInp.value) || 18; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
     field('Taille du titre (px)', sizeInp);
 
     const fontSel = document.createElement('select');
@@ -559,7 +649,7 @@ const TreeEditor = (function () {
       if (style.titleFont === value) opt.selected = true;
       fontSel.appendChild(opt);
     });
-    fontSel.addEventListener('change', () => { style.titleFont = fontSel.value; HomeView.applyHeaderStyle(headerEl, style); });
+    fontSel.addEventListener('change', () => { style.titleFont = fontSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
     field('Police du titre', fontSel);
 
     const fontFileField = el('div', 'ed-field');
@@ -576,7 +666,7 @@ const TreeEditor = (function () {
       FileBrowser.open(path => {
         style.titleFontFile = path;
         refreshFontFileLabel();
-        HomeView.applyHeaderStyle(headerEl, style);
+        HomeView.applyHeaderStyle(headerEl, style, imageStyle);
       }, { root: 'style', rootLabel: 'style', type: 'font' });
     });
     const fontFileClearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer');
@@ -584,7 +674,7 @@ const TreeEditor = (function () {
     fontFileClearBtn.addEventListener('click', () => {
       style.titleFontFile = null;
       refreshFontFileLabel();
-      HomeView.applyHeaderStyle(headerEl, style);
+      HomeView.applyHeaderStyle(headerEl, style, imageStyle);
     });
     fontFileRow.appendChild(fontFileBtn);
     fontFileRow.appendChild(fontFileClearBtn);
@@ -600,7 +690,7 @@ const TreeEditor = (function () {
       if (style.titleAlign === value) opt.selected = true;
       alignSel.appendChild(opt);
     });
-    alignSel.addEventListener('change', () => { style.titleAlign = alignSel.value; HomeView.applyHeaderStyle(headerEl, style); });
+    alignSel.addEventListener('change', () => { style.titleAlign = alignSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
     field('Alignement du titre', alignSel);
 
     const btnRow = el('div', 'ed-popup__btns');
@@ -611,7 +701,8 @@ const TreeEditor = (function () {
     cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
     cancelBtn.addEventListener('click', () => {
       Object.assign(style, original);
-      HomeView.applyHeaderStyle(headerEl, style);
+      Object.assign(imageStyle, originalImage);
+      HomeView.applyHeaderStyle(headerEl, style, imageStyle);
       document.body.removeChild(overlay);
     });
     btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
