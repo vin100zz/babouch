@@ -43,6 +43,20 @@
     return { configs, found: true };
   }
 
+  // Vrai si la route actuelle mène à l'éditeur de contenu d'une page (feuille,
+  // sans enfants) ; faux pour la page d'accueil et les pages hub/sous-menu,
+  // qui ouvrent l'éditeur du site (TreeEditor). Sert à la fois au libellé du
+  // bouton Modifier et reflète exactement la logique de bascule d'édition
+  // (onEditClick, plus bas).
+  function _isLeafRoute() {
+    const path = currentPath();
+    if (path.length === 0) return false;
+    const { configs, found } = resolvePath(path);
+    if (!found) return false;
+    const last = configs[configs.length - 1];
+    return !(last.node.chapitres && last.node.chapitres.length > 0);
+  }
+
   function route() {
     if (editing) return; // ne pas re-router pendant une édition en cours
     const path = currentPath();
@@ -77,7 +91,8 @@
     right.appendChild(_buildSearchBox());
 
     const editBtn = el('button', 'm2-edit-toggle');
-    editBtn.type = 'button'; editBtn.textContent = '✏️ Modifier';
+    editBtn.type = 'button';
+    editBtn.textContent = _isLeafRoute() ? '✏️ Modifier la page' : '✏️ Modifier le site';
     editBtn.addEventListener('click', onEditClick);
     right.appendChild(editBtn);
     header.appendChild(right);
