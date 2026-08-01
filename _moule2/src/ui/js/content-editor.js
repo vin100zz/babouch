@@ -9,29 +9,42 @@
 
 const ContentView = (function () {
 
-  const DEFAULT_SECTION_STYLE = { bg: '#d0e4ff', textColor: '#1e293b' };
-  const DEFAULT_BLOC_TEXTE_STYLE = { bg: '#e3f8ff', textColor: '#1e293b' };
+  const DEFAULT_SECTION_STYLE = { bg: '#d0e4ff', textColor: '#1e293b', borderColor: '#b8d4f8', borderWidth: 1, borderRadius: 0 };
+  const DEFAULT_BLOC_TEXTE_STYLE = { bg: '#e3f8ff', textColor: '#1e293b', borderColor: '#b8e6f5', borderWidth: 1, borderRadius: 6 };
+  const DEFAULT_PAGE_TITLE_STYLE = { bg: '#ffffff00', textColor: '#1e293b', borderColor: '#e2e8f0', borderWidth: 0, borderRadius: 0 };
   const DEFAULT_IMAGE_STYLE = { borderColor: '#333333', borderWidth: 1, borderRadius: 0 };
+  const DEFAULT_FOOTER_ICON = { image: null, width: 40 };
 
   /** Fonctions d'application de style partagées entre le rendu réel (`render`)
    *  et les aperçus cliquables de l'onglet « Style des pages » (tree-editor.js),
    *  sur le même principe que HomeView.applyHeaderStyle/applyBackgroundStyle. */
+  function _applyBoxBorder(el, style) {
+    el.style.borderStyle = 'solid';
+    el.style.borderColor = style.borderColor;
+    el.style.borderWidth = style.borderWidth + 'px';
+    el.style.borderRadius = style.borderRadius + 'px';
+  }
   function applySectionStyle(el, style) {
     style = Object.assign({}, DEFAULT_SECTION_STYLE, style || {});
     el.style.background = style.bg;
     el.style.color = style.textColor;
+    _applyBoxBorder(el, style);
   }
   function applyBlocTexteStyle(el, style) {
     style = Object.assign({}, DEFAULT_BLOC_TEXTE_STYLE, style || {});
     el.style.background = style.bg;
     el.style.color = style.textColor;
+    _applyBoxBorder(el, style);
+  }
+  function applyPageTitleStyle(el, style) {
+    style = Object.assign({}, DEFAULT_PAGE_TITLE_STYLE, style || {});
+    el.style.background = style.bg;
+    el.style.color = style.textColor;
+    _applyBoxBorder(el, style);
   }
   function applyImageStyle(imgEl, style) {
     style = Object.assign({}, DEFAULT_IMAGE_STYLE, style || {});
-    imgEl.style.borderStyle = 'solid';
-    imgEl.style.borderColor = style.borderColor;
-    imgEl.style.borderWidth = style.borderWidth + 'px';
-    imgEl.style.borderRadius = style.borderRadius + 'px';
+    _applyBoxBorder(imgEl, style);
   }
 
   function _lightboxEls() {
@@ -419,7 +432,7 @@ const ContentView = (function () {
 
   return {
     render, buildEditor, openLightbox,
-    applySectionStyle, applyBlocTexteStyle, applyImageStyle,
-    DEFAULT_SECTION_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_IMAGE_STYLE,
+    applySectionStyle, applyBlocTexteStyle, applyPageTitleStyle, applyImageStyle,
+    DEFAULT_SECTION_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_PAGE_TITLE_STYLE, DEFAULT_IMAGE_STYLE, DEFAULT_FOOTER_ICON,
   };
 })();

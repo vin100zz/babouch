@@ -54,7 +54,6 @@ const HomeView = (function () {
         headerEl.style.backgroundRepeat = 'no-repeat';
         headerEl.style.backgroundSize = imageStyle.mode === 'contain' ? 'contain' : 'cover';
       }
-      headerEl.style.backgroundPosition = 'center';
     } else {
       headerEl.style.backgroundImage = '';
       headerEl.style.backgroundRepeat = '';

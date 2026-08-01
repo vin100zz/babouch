@@ -179,32 +179,56 @@ class SiteRepository
             $ps = array();
         }
         $hb = (isset($ps['headerBackground']) && is_array($ps['headerBackground'])) ? $ps['headerBackground'] : array();
+        $fi = (isset($ps['footerIcon']) && is_array($ps['footerIcon'])) ? $ps['footerIcon'] : array();
         return array(
             'background'      => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
             'headerBackground'=> array(
                 'image' => $this->cleanRelPath(isset($hb['image']) ? $hb['image'] : null),
                 'mode'  => in_array(isset($hb['mode']) ? $hb['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $hb['mode'] : 'cover',
             ),
-            'section'    => $this->cleanColorTextPair(isset($ps['section']) && is_array($ps['section']) ? $ps['section'] : array(), '#d0e4ff', '#1e293b'),
-            'blocTexte'  => $this->cleanColorTextPair(isset($ps['blocTexte']) && is_array($ps['blocTexte']) ? $ps['blocTexte'] : array(), '#e3f8ff', '#1e293b'),
+            'section'    => $this->cleanColorTextPair(
+                isset($ps['section']) && is_array($ps['section']) ? $ps['section'] : array(),
+                array('bg' => '#d0e4ff', 'textColor' => '#1e293b', 'borderColor' => '#b8d4f8', 'borderWidth' => 1, 'borderRadius' => 0)
+            ),
+            'blocTexte'  => $this->cleanColorTextPair(
+                isset($ps['blocTexte']) && is_array($ps['blocTexte']) ? $ps['blocTexte'] : array(),
+                array('bg' => '#e3f8ff', 'textColor' => '#1e293b', 'borderColor' => '#b8e6f5', 'borderWidth' => 1, 'borderRadius' => 6)
+            ),
+            'pageTitle'  => $this->cleanColorTextPair(
+                isset($ps['pageTitle']) && is_array($ps['pageTitle']) ? $ps['pageTitle'] : array(),
+                array('bg' => '#ffffff00', 'textColor' => '#1e293b', 'borderColor' => '#e2e8f0', 'borderWidth' => 0, 'borderRadius' => 0)
+            ),
             'image'      => $this->cleanImageStyle(isset($ps['image']) && is_array($ps['image']) ? $ps['image'] : array()),
+            'footerIcon' => array(
+                'image' => $this->cleanRelPath(isset($fi['image']) ? $fi['image'] : null),
+                'width' => isset($fi['width']) ? max(12, min(300, (int) $fi['width'])) : 40,
+            ),
         );
     }
 
-    private function cleanColorTextPair($v, $defaultBg, $defaultText)
+    /** Fond + texte + bordure (couleur/épaisseur/arrondi) : sections et blocs TEXTE. */
+    private function cleanColorTextPair($v, $defaults)
     {
-        return array(
-            'bg'        => $this->cleanColor(isset($v['bg']) ? $v['bg'] : null, $defaultBg),
-            'textColor' => $this->cleanColor(isset($v['textColor']) ? $v['textColor'] : null, $defaultText),
+        return array_merge(
+            array(
+                'bg'        => $this->cleanColor(isset($v['bg']) ? $v['bg'] : null, $defaults['bg']),
+                'textColor' => $this->cleanColor(isset($v['textColor']) ? $v['textColor'] : null, $defaults['textColor']),
+            ),
+            $this->cleanBorder($v, $defaults['borderColor'], $defaults['borderWidth'], $defaults['borderRadius'])
         );
     }
 
     private function cleanImageStyle($v)
     {
+        return $this->cleanBorder($v, '#333333', 1, 0);
+    }
+
+    private function cleanBorder($v, $defaultColor, $defaultWidth, $defaultRadius)
+    {
         return array(
-            'borderColor'  => $this->cleanColor(isset($v['borderColor']) ? $v['borderColor'] : null, '#333333'),
-            'borderWidth'  => isset($v['borderWidth']) ? max(0, min(20, (int) $v['borderWidth'])) : 1,
-            'borderRadius' => isset($v['borderRadius']) ? max(0, min(200, (int) $v['borderRadius'])) : 0,
+            'borderColor'  => $this->cleanColor(isset($v['borderColor']) ? $v['borderColor'] : null, $defaultColor),
+            'borderWidth'  => isset($v['borderWidth']) ? max(0, min(20, (int) $v['borderWidth'])) : $defaultWidth,
+            'borderRadius' => isset($v['borderRadius']) ? max(0, min(200, (int) $v['borderRadius'])) : $defaultRadius,
         );
     }
 

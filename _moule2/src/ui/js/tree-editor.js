@@ -13,19 +13,30 @@ const TreeEditor = (function () {
   let _activeTab = 'home';
   let _homeKeydownHandler = null;
 
+  // Complète un objet de style avec les valeurs par défaut pour les champs
+  // absents (site déjà sauvegardé avant l'ajout d'un nouveau champ, ex :
+  // bordure ajoutée après coup à `section`/`blocTexte`) : sans ça, le popup
+  // afficherait une valeur "vide" divergente de ce que le rendu affiche
+  // réellement (qui, lui, fusionne déjà avec les valeurs par défaut).
+  function _withDefaults(obj, defaults) {
+    return Object.assign({}, defaults, obj || {});
+  }
+
   function open(container, siteData, onDone, initialTab) {
     _container = container;
     _site = clone(siteData);
     if (!_site.home) _site.home = { images: [] };
     if (!Array.isArray(_site.home.images)) _site.home.images = [];
-    if (!_site.home.headerStyle) _site.home.headerStyle = clone(HomeView.DEFAULT_HEADER_STYLE);
-    if (!_site.home.background) _site.home.background = clone(HomeView.DEFAULT_BACKGROUND);
-    if (!_site.pagesStyle) _site.pagesStyle = {};
-    if (!_site.pagesStyle.background) _site.pagesStyle.background = clone(HomeView.DEFAULT_BACKGROUND);
-    if (!_site.pagesStyle.headerBackground) _site.pagesStyle.headerBackground = clone(HomeView.DEFAULT_HEADER_BACKGROUND);
-    if (!_site.pagesStyle.section) _site.pagesStyle.section = clone(ContentView.DEFAULT_SECTION_STYLE);
-    if (!_site.pagesStyle.blocTexte) _site.pagesStyle.blocTexte = clone(ContentView.DEFAULT_BLOC_TEXTE_STYLE);
-    if (!_site.pagesStyle.image) _site.pagesStyle.image = clone(ContentView.DEFAULT_IMAGE_STYLE);
+    _site.home.headerStyle = _withDefaults(_site.home.headerStyle, HomeView.DEFAULT_HEADER_STYLE);
+    _site.home.background = _withDefaults(_site.home.background, HomeView.DEFAULT_BACKGROUND);
+    _site.pagesStyle = _site.pagesStyle || {};
+    _site.pagesStyle.background = _withDefaults(_site.pagesStyle.background, HomeView.DEFAULT_BACKGROUND);
+    _site.pagesStyle.headerBackground = _withDefaults(_site.pagesStyle.headerBackground, HomeView.DEFAULT_HEADER_BACKGROUND);
+    _site.pagesStyle.section = _withDefaults(_site.pagesStyle.section, ContentView.DEFAULT_SECTION_STYLE);
+    _site.pagesStyle.blocTexte = _withDefaults(_site.pagesStyle.blocTexte, ContentView.DEFAULT_BLOC_TEXTE_STYLE);
+    _site.pagesStyle.pageTitle = _withDefaults(_site.pagesStyle.pageTitle, ContentView.DEFAULT_PAGE_TITLE_STYLE);
+    _site.pagesStyle.image = _withDefaults(_site.pagesStyle.image, ContentView.DEFAULT_IMAGE_STYLE);
+    _site.pagesStyle.footerIcon = _withDefaults(_site.pagesStyle.footerIcon, ContentView.DEFAULT_FOOTER_ICON);
     if (!Array.isArray(_site.chapitres)) _site.chapitres = [];
     _onDone = onDone;
     _activeTab = initialTab === 'tree' ? 'tree' : 'home';
@@ -534,6 +545,13 @@ const TreeEditor = (function () {
     colorInp.type = 'color'; colorInp.className = 'ed-input ed-input--color';
     colorInp.value = hex8.slice(0, 7);
 
+    // Code hexa visible et modifiable directement, en plus du sélecteur natif
+    // (qui ne l'affiche pas de façon lisible/éditable en ligne).
+    const hexInp = document.createElement('input');
+    hexInp.type = 'text'; hexInp.className = 'ed-input ed-input--hex';
+    hexInp.maxLength = 7; hexInp.spellcheck = false; hexInp.autocomplete = 'off';
+    hexInp.value = colorInp.value;
+
     const alphaInp = document.createElement('input');
     alphaInp.type = 'range'; alphaInp.min = '0'; alphaInp.max = '100'; alphaInp.className = 'ed-alpha-range';
     alphaInp.value = String(Math.round(parseInt(hex8.slice(7, 9), 16) / 255 * 100));
@@ -544,10 +562,17 @@ const TreeEditor = (function () {
       alphaVal.textContent = alphaInp.value + '%';
       onChange(colorInp.value + _pctToHex2(+alphaInp.value));
     }
-    colorInp.addEventListener('input', emit);
+    colorInp.addEventListener('input', () => { hexInp.value = colorInp.value; emit(); });
+    hexInp.addEventListener('input', () => {
+      let v = hexInp.value.trim();
+      if (!v.startsWith('#')) v = '#' + v;
+      if (/^#[0-9a-fA-F]{6}$/.test(v)) { colorInp.value = v; emit(); }
+    });
+    hexInp.addEventListener('blur', () => { hexInp.value = colorInp.value; });
     alphaInp.addEventListener('input', emit);
 
     row.appendChild(colorInp);
+    row.appendChild(hexInp);
     row.appendChild(alphaInp);
     row.appendChild(alphaVal);
     wrap.appendChild(row);
@@ -829,6 +854,18 @@ const TreeEditor = (function () {
     txtCard.appendChild(txtPreview);
     wrap.appendChild(txtCard);
 
+    const titleCard = el('div', 'ed-style-card');
+    titleCard.appendChild(txt('div', 'ed-style-card__label', 'Titre de page'));
+    const titlePreview = txt('div', 'm2-page__title ed-style-card__preview', 'Titre de la page');
+    titlePreview.style.margin = '0';
+    titlePreview.title = 'Cliquer pour modifier';
+    ContentView.applyPageTitleStyle(titlePreview, _site.pagesStyle.pageTitle);
+    titlePreview.addEventListener('click', () => {
+      _openColorTextPopup('Style des titres de page', _site.pagesStyle.pageTitle, ContentView.applyPageTitleStyle, titlePreview);
+    });
+    titleCard.appendChild(titlePreview);
+    wrap.appendChild(titleCard);
+
     const imgCard = el('div', 'ed-style-card');
     imgCard.appendChild(txt('div', 'ed-style-card__label', 'Bordure des images'));
     const imgPreview = el('div', 'ed-style-card__preview ed-style-card__preview--image');
@@ -838,11 +875,109 @@ const TreeEditor = (function () {
     imgCard.appendChild(imgPreview);
     wrap.appendChild(imgCard);
 
+    const footerCard = el('div', 'ed-style-card');
+    footerCard.appendChild(txt('div', 'ed-style-card__label', 'Icône de fin de page'));
+    const footerPreview = el('div', 'ed-style-card__preview ed-style-card__preview--image');
+    footerPreview.style.cssText += 'display:flex;align-items:center;justify-content:center;';
+    footerPreview.title = 'Cliquer pour modifier';
+    function refreshFooterPreview() {
+      footerPreview.innerHTML = '';
+      if (_site.pagesStyle.footerIcon.image) {
+        const im = document.createElement('img');
+        im.src = 'style/' + _site.pagesStyle.footerIcon.image;
+        im.style.width = _site.pagesStyle.footerIcon.width + 'px';
+        footerPreview.appendChild(im);
+      } else {
+        footerPreview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune icône'));
+      }
+    }
+    refreshFooterPreview();
+    footerPreview.addEventListener('click', () => _openFooterIconPopup(refreshFooterPreview));
+    footerCard.appendChild(footerPreview);
+    wrap.appendChild(footerCard);
+
     return wrap;
   }
 
-  /** Popup générique fond/texte (sections, blocs TEXTE) : deux champs
-   *  couleur+alpha, appliqués en direct via `applyFn(previewEl, styleObj)`. */
+  /** Popup de l'icône de fin de page (dossier style/) : image + largeur (px).
+   *  Absente des autres pages tant qu'aucune image n'est choisie. */
+  function _openFooterIconPopup(onChange) {
+    const cfg = _site.pagesStyle.footerIcon;
+    const original = clone(cfg);
+
+    const overlay = el('div', 'ed-popup-overlay');
+    const popup = el('div', 'ed-popup');
+    popup.appendChild(txt('div', 'ed-popup__title', 'Icône de fin de page'));
+    const hint = txt('div', 'ed-label', 'Affichée en bas de toutes les pages, sauf la page d\'accueil.');
+    hint.style.cssText = 'text-transform:none;letter-spacing:normal;font-weight:400;';
+    popup.appendChild(hint);
+
+    const imgField = el('div', 'ed-field');
+    imgField.appendChild(txt('label', 'ed-label', 'Image (dossier style/)'));
+    const preview = el('div', 'ed-img-block__img');
+    preview.style.cursor = 'pointer';
+    preview.title = 'Cliquer pour choisir une image';
+    function refreshPreview() {
+      preview.innerHTML = '';
+      if (cfg.image) {
+        const im = document.createElement('img');
+        im.src = 'style/' + cfg.image;
+        preview.appendChild(im);
+      } else {
+        preview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune image — cliquer pour en choisir une'));
+      }
+      onChange();
+    }
+    refreshPreview();
+    preview.addEventListener('click', () => {
+      FileBrowser.open(path => {
+        cfg.image = path;
+        refreshPreview();
+      }, { root: 'style', rootLabel: 'style', type: 'image' });
+    });
+    imgField.appendChild(preview);
+
+    const clearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer l\'image');
+    clearBtn.type = 'button'; clearBtn.style.marginTop = '4px';
+    clearBtn.addEventListener('click', () => { cfg.image = null; refreshPreview(); });
+    imgField.appendChild(clearBtn);
+    popup.appendChild(imgField);
+
+    _buildNumberField(popup, 'Largeur (px)', cfg.width, 12, 300, v => { cfg.width = v; onChange(); });
+
+    const btnRow = el('div', 'ed-popup__btns');
+    const okBtn = el('button', 'ed-btn ed-btn--save');
+    okBtn.type = 'button'; okBtn.textContent = 'OK';
+    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
+    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
+    cancelBtn.addEventListener('click', () => {
+      Object.assign(cfg, original);
+      onChange();
+      document.body.removeChild(overlay);
+    });
+    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+  }
+
+  /** Champ nombre générique, ajouté directement au popup fourni. */
+  function _buildNumberField(popup, labelText, value, min, max, onChange) {
+    const f = el('div', 'ed-field');
+    f.appendChild(txt('label', 'ed-label', labelText));
+    const inp = document.createElement('input');
+    inp.type = 'number'; inp.className = 'ed-input'; inp.min = String(min); inp.max = String(max);
+    inp.value = value;
+    inp.addEventListener('input', () => onChange((+inp.value) || 0));
+    f.appendChild(inp);
+    popup.appendChild(f);
+  }
+
+  /** Popup générique fond/texte/bordure (sections, blocs TEXTE) : couleur de
+   *  fond, couleur du texte, couleur/épaisseur/arrondi de bordure, appliqués
+   *  en direct via `applyFn(previewEl, styleObj)`. */
   function _openColorTextPopup(title, styleObj, applyFn, previewEl) {
     const original = clone(styleObj);
 
@@ -856,6 +991,15 @@ const TreeEditor = (function () {
     popup.appendChild(_buildColorAlphaField('Couleur du texte', () => styleObj.textColor, v => {
       styleObj.textColor = v; applyFn(previewEl, styleObj);
     }));
+    popup.appendChild(_buildColorAlphaField('Couleur de la bordure', () => styleObj.borderColor, v => {
+      styleObj.borderColor = v; applyFn(previewEl, styleObj);
+    }));
+    _buildNumberField(popup, 'Épaisseur de la bordure (px)', styleObj.borderWidth, 0, 20, v => {
+      styleObj.borderWidth = v; applyFn(previewEl, styleObj);
+    });
+    _buildNumberField(popup, 'Arrondi (px)', styleObj.borderRadius, 0, 200, v => {
+      styleObj.borderRadius = v; applyFn(previewEl, styleObj);
+    });
 
     const btnRow = el('div', 'ed-popup__btns');
     const okBtn = el('button', 'ed-btn ed-btn--save');
@@ -887,26 +1031,11 @@ const TreeEditor = (function () {
     popup.appendChild(_buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
       style.borderColor = v; ContentView.applyImageStyle(previewEl, style);
     }));
-
-    function numberField(labelText, value, min, max) {
-      const f = el('div', 'ed-field');
-      f.appendChild(txt('label', 'ed-label', labelText));
-      const inp = document.createElement('input');
-      inp.type = 'number'; inp.className = 'ed-input'; inp.min = String(min); inp.max = String(max);
-      inp.value = value;
-      f.appendChild(inp);
-      popup.appendChild(f);
-      return inp;
-    }
-    const widthInp = numberField('Épaisseur (px)', style.borderWidth, 0, 20);
-    widthInp.addEventListener('input', () => {
-      style.borderWidth = (+widthInp.value) || 0;
-      ContentView.applyImageStyle(previewEl, style);
+    _buildNumberField(popup, 'Épaisseur (px)', style.borderWidth, 0, 20, v => {
+      style.borderWidth = v; ContentView.applyImageStyle(previewEl, style);
     });
-    const radiusInp = numberField('Arrondi (px)', style.borderRadius, 0, 200);
-    radiusInp.addEventListener('input', () => {
-      style.borderRadius = (+radiusInp.value) || 0;
-      ContentView.applyImageStyle(previewEl, style);
+    _buildNumberField(popup, 'Arrondi (px)', style.borderRadius, 0, 200, v => {
+      style.borderRadius = v; ContentView.applyImageStyle(previewEl, style);
     });
 
     const btnRow = el('div', 'ed-popup__btns');

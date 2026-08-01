@@ -277,6 +277,21 @@
     return page;
   }
 
+  // Icône de fin de page (dossier style/), affichée en bas de toutes les
+  // pages sauf la page d'accueil ; absente tant qu'aucune image n'a été
+  // choisie (voir l'onglet Style des pages en édition).
+  function _buildPageFooterIcon() {
+    const cfg = SITE.pagesStyle && SITE.pagesStyle.footerIcon;
+    if (!cfg || !cfg.image) return null;
+    const wrap = el('div', 'm2-page-footer');
+    const img = document.createElement('img');
+    img.src = 'style/' + cfg.image;
+    img.alt = '';
+    img.style.width = (cfg.width || 40) + 'px';
+    wrap.appendChild(img);
+    return wrap;
+  }
+
   function renderSubmenu(node, cumulativePath) {
     root.innerHTML = '';
     const page = _buildContentPage();
@@ -294,6 +309,10 @@
     });
     wrap.appendChild(list);
     page.appendChild(wrap);
+    const footer = _buildPageFooterIcon();
+    if (footer) {
+      page.appendChild(footer);
+    }
     root.appendChild(page);
   }
 
@@ -305,7 +324,9 @@
     page.appendChild(renderBreadcrumbBar(_lastConfigs));
 
     const wrap = el('div', 'm2-page');
-    wrap.appendChild(txt('div', 'm2-page__title', node.label || node.keyword));
+    const titleEl = txt('div', 'm2-page__title', node.label || node.keyword);
+    ContentView.applyPageTitleStyle(titleEl, SITE.pagesStyle && SITE.pagesStyle.pageTitle);
+    wrap.appendChild(titleEl);
     const sections = node.sections || [];
     if (sections.length === 0) {
       wrap.appendChild(txt('div', 'm2-page__empty', 'Cette page n\'a pas encore de contenu.'));
@@ -313,6 +334,8 @@
       wrap.appendChild(ContentView.render(sections, SITE.pagesStyle));
     }
     page.appendChild(wrap);
+    const footer = _buildPageFooterIcon();
+    if (footer) page.appendChild(footer);
     root.appendChild(page);
   }
 

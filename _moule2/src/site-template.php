@@ -18,7 +18,7 @@ $engineBase = '../_moule2';
 
 // Unique numéro de version à incrémenter après toute modification de
 // _moule2/src/ui/**, pour invalider le cache navigateur sur tous les sites.
-$version = 40;
+$version = 45;
 
 $title = ucfirst(str_replace(array('_', '-'), ' ', $site));
 

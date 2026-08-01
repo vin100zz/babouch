@@ -214,17 +214,34 @@
       "mode": "cover"
     },
     "section": {
-      "bg": "#d0e4ff",
-      "textColor": "#1e293b"
+      "bg": "#011a44ff",
+      "textColor": "#ccccccff",
+      "borderColor": "#011a44ff",
+      "borderWidth": 1,
+      "borderRadius": 0
     },
     "blocTexte": {
-      "bg": "#e3f8ff",
-      "textColor": "#1e293b"
+      "bg": "#ffffffff",
+      "textColor": "#1e293b",
+      "borderColor": "#1e293bff",
+      "borderWidth": 1,
+      "borderRadius": 0
+    },
+    "pageTitle": {
+      "bg": "#011a44ff",
+      "textColor": "#ffffffff",
+      "borderColor": "#011a44ff",
+      "borderWidth": 0,
+      "borderRadius": 0
     },
     "image": {
       "borderColor": "#333333",
       "borderWidth": 1,
       "borderRadius": 0
+    },
+    "footerIcon": {
+      "image": "footer.png",
+      "width": 40
     }
   },
   "chapitres": [

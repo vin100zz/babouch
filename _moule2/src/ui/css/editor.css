@@ -52,6 +52,7 @@
 /* Couleur + curseur de transparence (alpha), combinés en une valeur #rrggbbaa. */
 .ed-color-alpha-row { display: flex; align-items: center; gap: 8px; }
 .ed-input--color { width: 42px; padding: 2px; height: 32px; flex-shrink: 0; }
+.ed-input--hex { width: 84px; flex-shrink: 0; font-family: ui-monospace, "SF Mono", Consolas, monospace; text-transform: lowercase; }
 .ed-alpha-range { flex: 1; accent-color: var(--accent); }
 .ed-alpha-val { font-size: .78rem; color: var(--muted); min-width: 34px; text-align: right; }
 
