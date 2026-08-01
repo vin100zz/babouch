@@ -113,7 +113,7 @@ const HomeView = (function () {
 
     const imgWrap = el('div', 'm2-thumb__imgwrap');
     const im = document.createElement('img');
-    im.src = 'documents/' + img.image;
+    im.src = 'style/' + img.image;
     _applyWidth(im, img);
     imgWrap.appendChild(im);
     thumb.appendChild(imgWrap);
@@ -258,7 +258,7 @@ const HomeView = (function () {
   /** Reflète en direct un changement d'image/texte/taille sur une vignette déjà construite. */
   function updateThumb(thumb, img) {
     const imgEl = thumb.querySelector('img');
-    imgEl.src = 'documents/' + img.image;
+    imgEl.src = 'style/' + img.image;
     _applyWidth(imgEl, img);
     let label = thumb.querySelector('.m2-thumb__label');
     if (img.texte) {

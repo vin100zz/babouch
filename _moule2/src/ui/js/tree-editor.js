@@ -265,7 +265,7 @@ const TreeEditor = (function () {
         FileBrowser.open(path => {
           images.push({ id: uid('img_'), image: path, x: 100, y: 100, texte: '', lien: null });
           refresh();
-        });
+        }, { root: 'style', rootLabel: 'style', type: 'image' });
       });
       wrap.appendChild(addBtn);
 
@@ -414,7 +414,7 @@ const TreeEditor = (function () {
     function refreshPreview() {
       preview.innerHTML = '';
       const im = document.createElement('img');
-      im.src = 'documents/' + img.image;
+      im.src = 'style/' + img.image;
       preview.appendChild(im);
     }
     refreshPreview();
@@ -423,7 +423,7 @@ const TreeEditor = (function () {
         img.image = path;
         refreshPreview();
         HomeView.updateThumb(thumb, img);
-      });
+      }, { root: 'style', rootLabel: 'style', type: 'image' });
     });
     popup.appendChild(preview);
 
