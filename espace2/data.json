@@ -381,7 +381,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"http://www.astronautix.com/.jpg\" target=\"_blank\" rel=\"noopener noreferrer\">Encyclopédie de l'espace</a>",
+                    "html": "<a href=\"http://www.astronautix.com/.jpg\" target=\"_blank\" rel=\"noopener noreferrer\">Encyclopédie de l'espace</a>",
                     "align": "left"
                   }
                 ]
@@ -393,7 +393,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"http://www.wikiarchives.space\" target=\"_blank\" rel=\"noopener noreferrer\">Wikiarchives</a>",
+                    "html": "<a href=\"http://www.wikiarchives.space\" target=\"_blank\" rel=\"noopener noreferrer\">Wikiarchives</a>",
                     "align": "left"
                   }
                 ]
@@ -405,7 +405,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"https://cnes.fr\" target=\"_blank\" rel=\"noopener noreferrer\">CNES</a>",
+                    "html": "<a href=\"https://cnes.fr\" target=\"_blank\" rel=\"noopener noreferrer\">CNES</a>",
                     "align": "left"
                   }
                 ]
@@ -417,7 +417,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"https://www.esa.int\" target=\"_blank\" rel=\"noopener noreferrer\">ESA (Agence européenne)</a>",
+                    "html": "<a href=\"https://www.esa.int\" target=\"_blank\" rel=\"noopener noreferrer\">ESA (Agence européenne)</a>",
                     "align": "left"
                   }
                 ]
@@ -429,7 +429,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"https://www.nasa.gov\" target=\"_blank\" rel=\"noopener noreferrer\">NASA History Office</a>",
+                    "html": "<a href=\"https://www.nasa.gov\" target=\"_blank\" rel=\"noopener noreferrer\">NASA History Office</a>",
                     "align": "left"
                   },
                   {
@@ -446,7 +446,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"https://www.nasa.gov/history/history-office/\" target=\"_blank\" rel=\"noopener noreferrer\">NASA</a>",
+                    "html": "<a href=\"https://www.nasa.gov/history/history-office/\" target=\"_blank\" rel=\"noopener noreferrer\">NASA</a>",
                     "align": "left"
                   }
                 ]
@@ -458,7 +458,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"https://kosmosnews.fr\" target=\"_blank\" rel=\"noopener noreferrer\">Kosmosnews</a>",
+                    "html": "<a href=\"https://kosmosnews.fr\" target=\"_blank\" rel=\"noopener noreferrer\">Kosmosnews</a>",
                     "align": "left"
                   },
                   {
@@ -475,7 +475,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"https://space.skyrocket.de/\" target=\"_blank\" rel=\"noopener noreferrer\">Gunter's Space Page</a>",
+                    "html": "<a href=\"https://space.skyrocket.de/\" target=\"_blank\" rel=\"noopener noreferrer\">Gunter's Space Page</a>",
                     "align": "left"
                   }
                 ]
@@ -487,7 +487,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/> https://space.skyrocket.de NASA Image and Video Library : une immense base d'archives photographiques et vidéo. Roscosmos : le site officiel de l'agence spatiale russe contient des informations sur l'histoire du programme spatial soviétique et russe, même si certaines ressources ne sont disponibles qu'en russe. JAXA : l'agence spatiale japonaise propose des ressources historiques sur le développement spatial au Japon. Musées et centres d'archives Smithsonian National Air and Space Museum – National Air and Space Museum : expositions virtuelles, dossiers historiques et archives de grande qualité. Cité de l'espace – Cité de l'espace : ressources pédagogiques et historiques en français. National Space Centre – National Space Centre UK : dossiers thématiques et chronologies. Sites spécialisés reconnus Encyclopedia Astronautica (version archivée) : une encyclopédie historique très riche sur les fusées, les programmes spatiaux et les astronautes. Certaines informations méritent toutefois d'être recoupées avec des sources institutionnelles. Spacefacts : base de données détaillée sur les astronautes, les missions habitées et les records spatiaux. Gunter's Space Page : référence très appréciée des passionnés pour les lanceurs, satellites et missions. The Space Review : articles de fond et analyses historiques rédigés par des spécialistes. Archives et ressources universitaires Internet Archive – Collection Space Exploration : ouvrages anciens, films, magazines et documents historiques numérisés. Google Books : permet de consulter de nombreux ouvrages épuisés ou des extraits de livres de référence. Persée : portail français d'articles scientifiques et historiques. JSTOR : articles universitaires sur l'histoire des sciences et des techniques (accès partiellement gratuit).",
+                    "html": " https://space.skyrocket.de NASA Image and Video Library : une immense base d'archives photographiques et vidéo. Roscosmos : le site officiel de l'agence spatiale russe contient des informations sur l'histoire du programme spatial soviétique et russe, même si certaines ressources ne sont disponibles qu'en russe. JAXA : l'agence spatiale japonaise propose des ressources historiques sur le développement spatial au Japon. Musées et centres d'archives Smithsonian National Air and Space Museum – National Air and Space Museum : expositions virtuelles, dossiers historiques et archives de grande qualité. Cité de l'espace – Cité de l'espace : ressources pédagogiques et historiques en français. National Space Centre – National Space Centre UK : dossiers thématiques et chronologies. Sites spécialisés reconnus Encyclopedia Astronautica (version archivée) : une encyclopédie historique très riche sur les fusées, les programmes spatiaux et les astronautes. Certaines informations méritent toutefois d'être recoupées avec des sources institutionnelles. Spacefacts : base de données détaillée sur les astronautes, les missions habitées et les records spatiaux. Gunter's Space Page : référence très appréciée des passionnés pour les lanceurs, satellites et missions. The Space Review : articles de fond et analyses historiques rédigés par des spécialistes. Archives et ressources universitaires Internet Archive – Collection Space Exploration : ouvrages anciens, films, magazines et documents historiques numérisés. Google Books : permet de consulter de nombreux ouvrages épuisés ou des extraits de livres de référence. Persée : portail français d'articles scientifiques et historiques. JSTOR : articles universitaires sur l'histoire des sciences et des techniques (accès partiellement gratuit).",
                     "align": "left"
                   }
                 ]
@@ -989,7 +989,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/> - 1937 : début du développement <br/> - octobre 1942 : 1er tir réussi<br/> - septembre 1944 : 1er tir visant une ville (Paris)<br/> - Dernier tir : mars 1945",
+                    "html": " - 1937 : début du développement <br/> - octobre 1942 : 1er tir réussi<br/> - septembre 1944 : 1er tir visant une ville (Paris)<br/> - Dernier tir : mars 1945",
                     "align": "left"
                   }
                 ]
@@ -1073,7 +1073,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><a href=\"http://www.babouch.fr/r1/berlin/page.php?page=4_hitler/1_guerre/guerre.php\" target=\"_blank\" rel=\"noopener noreferrer\">Deutsches Historisches Museum, 2011</a>",
+                    "html": "<a href=\"http://www.babouch.fr/r1/berlin/page.php?page=4_hitler/1_guerre/guerre.php\" target=\"_blank\" rel=\"noopener noreferrer\">Deutsches Historisches Museum, 2011</a>",
                     "align": "left"
                   },
                   {
@@ -1273,7 +1273,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - moteur alcool et oxygène liquide - poussée : 34 t <br/> - charge utile : 3 t (charge nucléaire)",
+                        "html": " - moteur alcool et oxygène liquide - poussée : 34 t <br/> - charge utile : 3 t (charge nucléaire)",
                         "align": "left"
                       },
                       {
@@ -1324,7 +1324,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\n - 1er étage : Redstone<br/>\n Au sommet de Redstone un récipient métallique contenant les étages supérieurs :<br/>\n - 2e étage : 11 missiles Recruit<br/>\n - 3e étage : 4 Recruit<br/>\n - 4e étage : un Recruit qui reste solidaire du satellite, l'ensemble formant un fuseau de 2 m de long et 0,15 m de diamètre.",
+                        "html": "\n - 1er étage : Redstone<br/>\n Au sommet de Redstone un récipient métallique contenant les étages supérieurs :<br/>\n - 2e étage : 11 missiles Recruit<br/>\n - 3e étage : 4 Recruit<br/>\n - 4e étage : un Recruit qui reste solidaire du satellite, l'ensemble formant un fuseau de 2 m de long et 0,15 m de diamètre.",
                         "align": "left"
                       },
                       {
@@ -1346,7 +1346,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\nDans la continuité des travaux sur la Juno I, la Juno II est développée par von Braun sur la base du missile PGM-19 Jupiter de portée intermédiaire. Pour le transformer en lanceur, il ne fut pas nécessaire de modifier sa propulsion car il était d'origine suffisamment puissant pour placer 41 kg en orbite basse et 6 kg en orbite interplanétaire une fois surmonté des 3 étages improvisés pour la Juno I.<br/>\n\nLes lancements ont lieu entre 1958 et 1961 depuis Cap Canaveral. Sur les 10 lancements, 6 sont des échecs. Deux des tirs emportent une sonde lunaire Pioneer, sept des satellites de la série Explorer. Le lanceur ne connut aucun développement ultérieur.",
+                        "html": "\nDans la continuité des travaux sur la Juno I, la Juno II est développée par von Braun sur la base du missile PGM-19 Jupiter de portée intermédiaire. Pour le transformer en lanceur, il ne fut pas nécessaire de modifier sa propulsion car il était d'origine suffisamment puissant pour placer 41 kg en orbite basse et 6 kg en orbite interplanétaire une fois surmonté des 3 étages improvisés pour la Juno I.<br/>\n\nLes lancements ont lieu entre 1958 et 1961 depuis Cap Canaveral. Sur les 10 lancements, 6 sont des échecs. Deux des tirs emportent une sonde lunaire Pioneer, sept des satellites de la série Explorer. Le lanceur ne connut aucun développement ultérieur.",
                         "align": "left"
                       },
                       {
@@ -1882,7 +1882,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Agena_(fus%C3%A9e)\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Agena_(fus%C3%A9e)\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
                         "align": "left"
                       }
                     ]
@@ -2159,7 +2159,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\nSur la propulsion nucéaire cf. \"Espace &amp; Exploration\" mai 2023 n° 75",
+                        "html": "\nSur la propulsion nucéaire cf. \"Espace &amp; Exploration\" mai 2023 n° 75",
                         "align": "left"
                       }
                     ]
@@ -2272,7 +2272,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - 2 juillet 1960 : 1er lancement de Scout<br/> - 124 lancements ; 17 échecs.",
+                        "html": " - 2 juillet 1960 : 1er lancement de Scout<br/> - 124 lancements ; 17 échecs.",
                         "align": "left"
                       }
                     ]
@@ -2399,7 +2399,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>Thor-Delta : charge utile : 217 kg",
+                        "html": "Thor-Delta : charge utile : 217 kg",
                         "align": "left"
                       }
                     ]
@@ -2411,7 +2411,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>- 23 janvier 1957 : 1er lancement de Thor",
+                        "html": "- 23 janvier 1957 : 1er lancement de Thor",
                         "align": "left"
                       }
                     ]
@@ -3361,7 +3361,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\nPrévu pour placer en orbite les charges lourdes nécessaires aux missions vers la Lune planifiées dans le cadre du programme Constellation (début 2011). Le lanceur devait d'une part mettre en orbite basse le module lunaire Altair, d'autre part fournir aux deux vaisseaux de la mission lunaire, Orion (lancé par l'autre fusée du programme Ares I) et Altair, une vitesse suffisante pour rejoindre l'orbite lunaire.<br/>\n \nElle devait être la fusée la plus puissante jamais construite : d'une hauteur de 120 mètres pour un diamètre de 10 mètres au niveau du premier étage, elle devait permettre de placer 188 tonnes en orbite basse et 71 tonnes sur une trajectoire lunaire. <br/>\n\nLe président américain Barack Obama annonce le 1er février 2010 son intention d'abandonner le programme Constellation. Cette décision est approuvée par le Congrès américain, entraînant l'arrêt du développement du vaisseau Altair ainsi que des lanceurs Ares.<br/>\n Le projet de lanceur lourd renaît en 2011 sous l'appellation Space Launch System (SLS).",
+                        "html": "\nPrévu pour placer en orbite les charges lourdes nécessaires aux missions vers la Lune planifiées dans le cadre du programme Constellation (début 2011). Le lanceur devait d'une part mettre en orbite basse le module lunaire Altair, d'autre part fournir aux deux vaisseaux de la mission lunaire, Orion (lancé par l'autre fusée du programme Ares I) et Altair, une vitesse suffisante pour rejoindre l'orbite lunaire.<br/>\n \nElle devait être la fusée la plus puissante jamais construite : d'une hauteur de 120 mètres pour un diamètre de 10 mètres au niveau du premier étage, elle devait permettre de placer 188 tonnes en orbite basse et 71 tonnes sur une trajectoire lunaire. <br/>\n\nLe président américain Barack Obama annonce le 1er février 2010 son intention d'abandonner le programme Constellation. Cette décision est approuvée par le Congrès américain, entraînant l'arrêt du développement du vaisseau Altair ainsi que des lanceurs Ares.<br/>\n Le projet de lanceur lourd renaît en 2011 sous l'appellation Space Launch System (SLS).",
                         "align": "left"
                       }
                     ]
@@ -3710,7 +3710,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Falcon_9#Caract%C3%A9ristiques_techniques\" target=\"_blank\" rel=\"noopener noreferrer\">Caractéristiques complètes</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Falcon_9#Caract%C3%A9ristiques_techniques\" target=\"_blank\" rel=\"noopener noreferrer\">Caractéristiques complètes</a>",
                         "align": "left"
                       }
                     ]
@@ -3727,7 +3727,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Falcon_9#Historique_des_lancements\" target=\"_blank\" rel=\"noopener noreferrer\">Historique complet des lancements</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Falcon_9#Historique_des_lancements\" target=\"_blank\" rel=\"noopener noreferrer\">Historique complet des lancements</a>",
                         "align": "left"
                       }
                     ]
@@ -3981,7 +3981,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> Après un test d'allumage statique réalisé le 24 janvier 2018 le vol inaugural a eu lieu le 6 février 2018 depuis le pas de tir 39A du centre spatial Kennedy.",
+                        "html": " Après un test d'allumage statique réalisé le 24 janvier 2018 le vol inaugural a eu lieu le 6 février 2018 depuis le pas de tir 39A du centre spatial Kennedy.",
                         "align": "left"
                       },
                       {
@@ -4211,7 +4211,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/> - avril 2013 : 1er vol <br/> - octobre 2014 : explosion du lanceur (5e vol)",
+                        "html": "<br/> - avril 2013 : 1er vol <br/> - octobre 2014 : explosion du lanceur (5e vol)",
                         "align": "left"
                       },
                       {
@@ -4257,7 +4257,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/><br/> Voir : Tourisme spatial",
+                        "html": "<br/><br/> Voir : Tourisme spatial",
                         "align": "left"
                       }
                     ]
@@ -6477,7 +6477,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Rockot\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Rockot\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
                         "align": "left"
                       }
                     ]
@@ -6689,7 +6689,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Douze fusées Diamant ont été lancées en tout (3 échecs).",
+                        "html": " - Douze fusées Diamant ont été lancées en tout (3 échecs).",
                         "align": "left"
                       },
                       {
@@ -8108,7 +8108,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/>- 3 novembre 2016 : 1er tir",
+                        "html": "- 3 novembre 2016 : 1er tir",
                         "align": "left"
                       },
                       {
@@ -8125,7 +8125,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>- 2 juillet 2017 : échec du 2e tir (E&amp;E 40)",
+                        "html": "- 2 juillet 2017 : échec du 2e tir (E&amp;E 40)",
                         "align": "left"
                       }
                     ]
@@ -8137,7 +8137,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>- 2019 (E&amp;E 54)",
+                        "html": "- 2019 (E&amp;E 54)",
                         "align": "left"
                       }
                     ]
@@ -8168,7 +8168,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>- 5 mai 2020 : 4e tir",
+                        "html": "- 5 mai 2020 : 4e tir",
                         "align": "left"
                       }
                     ]
@@ -9257,7 +9257,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Spoutnik\" target=\"_blank\" rel=\"noopener noreferrer\">cf. Tous les Spoutnik</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Spoutnik\" target=\"_blank\" rel=\"noopener noreferrer\">cf. Tous les Spoutnik</a>",
                         "align": "left"
                       }
                     ]
@@ -10929,7 +10929,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/><a href=\"https://external-preview.redd.it/fXooovzrhnpC_FZ15fMcbsq4qRJIv5V2Qy0z6r-Mwis.jpg?auto=webp&amp;s=7aca637f24d5c7cd7d4a0f5395aeb1c33b593a38\" target=\"_blank\" rel=\"noopener noreferrer\">Tableau des engins habités</a>",
+                            "html": "<a href=\"https://external-preview.redd.it/fXooovzrhnpC_FZ15fMcbsq4qRJIv5V2Qy0z6r-Mwis.jpg?auto=webp&amp;s=7aca637f24d5c7cd7d4a0f5395aeb1c33b593a38\" target=\"_blank\" rel=\"noopener noreferrer\">Tableau des engins habités</a>",
                             "align": "left"
                           }
                         ]
@@ -11071,7 +11071,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Programme_Soyouz\" target=\"_blank\" rel=\"noopener noreferrer\">Liste des vols Soyouz</a>",
+                            "html": "<a href=\"https://fr.wikipedia.org/wiki/Programme_Soyouz\" target=\"_blank\" rel=\"noopener noreferrer\">Liste des vols Soyouz</a>",
                             "align": "left"
                           }
                         ]
@@ -17960,7 +17960,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/><br/> Voir : Tourisme spatial",
+                        "html": "<br/><br/> Voir : Tourisme spatial",
                         "align": "left"
                       }
                     ]
@@ -26557,7 +26557,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Cosmos 3M<br/> - Masse : 1,5 t",
+                        "html": " - Lanceur : Cosmos 3M<br/> - Masse : 1,5 t",
                         "align": "left"
                       },
                       {
@@ -26598,7 +26598,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - 4 juin 1982 : (Cosmos-1374) Vol suborbital, amerrissage dans l'océan Indien à environ 900 km à l'ouest de l'Australie.<br/> - 16 mars 1983 : (Cosmos 1445) Vol orbital, amerrissage dans l'océan Indien à environ 900 km à l'ouest de l'Australie.<br/> - 27 décembre 1983 : (Cosmos 1517) Vol orbital, amerrissage dans la mer Noire à l'ouest de la péninsule de Crimée.<br/> - 19 décembre 1984 : (Cosmos 1614) Vol orbital, amerrissage dans la mer Noire à l'ouest de la péninsule de Crimée.<br/>(Wikipedia)",
+                        "html": " - 4 juin 1982 : (Cosmos-1374) Vol suborbital, amerrissage dans l'océan Indien à environ 900 km à l'ouest de l'Australie.<br/> - 16 mars 1983 : (Cosmos 1445) Vol orbital, amerrissage dans l'océan Indien à environ 900 km à l'ouest de l'Australie.<br/> - 27 décembre 1983 : (Cosmos 1517) Vol orbital, amerrissage dans la mer Noire à l'ouest de la péninsule de Crimée.<br/> - 19 décembre 1984 : (Cosmos 1614) Vol orbital, amerrissage dans la mer Noire à l'ouest de la péninsule de Crimée.<br/>(Wikipedia)",
                         "align": "left"
                       }
                     ]
@@ -26762,7 +26762,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : fusée Energiya<br/> - Masse : 75 t",
+                        "html": " - Lanceur : fusée Energiya<br/> - Masse : 75 t",
                         "align": "left"
                       },
                       {
@@ -26779,7 +26779,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - 15 novembre 1988 : unique vol de Buran.",
+                        "html": " - 15 novembre 1988 : unique vol de Buran.",
                         "align": "left"
                       }
                     ]
@@ -27171,7 +27171,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\nProjet de navette spatiale européenne envisagé à partir de 1975 par le Centre national d'études spatiales français (CNES) et repris par l'Agence spatiale européenne (ESA) en 1985.<br/>\nHermès devait être lancé par une fusée Ariane 5 et desservir la station autonome européenne Columbus  (devenu le laboratoire européen intégré à l'ISS).<br/>\nLe projet est abandonné en 1992.",
+                        "html": "\nProjet de navette spatiale européenne envisagé à partir de 1975 par le Centre national d'études spatiales français (CNES) et repris par l'Agence spatiale européenne (ESA) en 1985.<br/>\nHermès devait être lancé par une fusée Ariane 5 et desservir la station autonome européenne Columbus  (devenu le laboratoire européen intégré à l'ISS).<br/>\nLe projet est abandonné en 1992.",
                         "align": "left"
                       },
                       {
@@ -27210,7 +27210,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Ariane V<br/> - Masse : t",
+                        "html": " - Lanceur : Ariane V<br/> - Masse : t",
                         "align": "left"
                       },
                       {
@@ -27971,7 +27971,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Vega<br/> - Masse : 2 t.",
+                        "html": " - Lanceur : Vega<br/> - Masse : 2 t.",
                         "align": "left"
                       }
                     ]
@@ -28184,7 +28184,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/> - Lanceur : Titan III",
+                    "html": " - Lanceur : Titan III",
                     "align": "left"
                   },
                   {
@@ -28776,7 +28776,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/>Saliout 2e génération\n <br/><br/>Saliout 7 et Soyouz T5\n  <br/><br/>",
+                        "html": "<br/>Saliout 2e génération\n <br/><br/>Saliout 7 et Soyouz T5\n  <br/><br/>",
                         "align": "left"
                       }
                     ]
@@ -30591,7 +30591,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/>\n Equipage Berezovoy-Lebedev (mai-décembre 1982)<br/>\n V. Djanibekov, A. Ivantchenkov et J-L Chrétien (juin-juillet 1982)<br/>\n S. Savitskaia (2e femme de l'espace), L. Popov et A Serebrov \n Equipage Liakhov-Aleksandrov (juin-novembre 1983)<br/>\n Equipage Kizim-Solovyov-Atkov (février-octobre 1984)<br/>\n Equipage Djanibekov-Savinykh (juin-septembre 1985)<br/>\n Equipage Vassioutine-Savinykh-Volkov (septembre-novembre 1985)<br/>\n Equipage Kyzym-Soloviov (mai-juin 1986)<br/>\n\n<br/>\n  (D'après Wikipedia)",
+                            "html": "\n Equipage Berezovoy-Lebedev (mai-décembre 1982)<br/>\n V. Djanibekov, A. Ivantchenkov et J-L Chrétien (juin-juillet 1982)<br/>\n S. Savitskaia (2e femme de l'espace), L. Popov et A Serebrov \n Equipage Liakhov-Aleksandrov (juin-novembre 1983)<br/>\n Equipage Kizim-Solovyov-Atkov (février-octobre 1984)<br/>\n Equipage Djanibekov-Savinykh (juin-septembre 1985)<br/>\n Equipage Vassioutine-Savinykh-Volkov (septembre-novembre 1985)<br/>\n Equipage Kyzym-Soloviov (mai-juin 1986)<br/>\n\n<br/>\n  (D'après Wikipedia)",
                             "align": "left"
                           },
                           {
@@ -31604,7 +31604,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://www.hq.nasa.gov/pao/History/SP-4225/documentation/mhh/mirheritage.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Source</a>",
+                        "html": "<a href=\"https://www.hq.nasa.gov/pao/History/SP-4225/documentation/mhh/mirheritage.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Source</a>",
                         "align": "left"
                       },
                       {
@@ -33990,7 +33990,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 81)",
+                        "html": " 81)",
                         "align": "left"
                       },
                       {
@@ -35456,7 +35456,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/><br/><a href=\"https://fr.wikipedia.org/wiki/New_Shepard\" target=\"_blank\" rel=\"noopener noreferrer\">Chronologie sur Wikipedia</a><br/><br/> - 23 novembre 2015 : premier vol complet comprenant une ascension jusqu'à une altitude de 100 km (ligne de Von Karman considérée comme la \"frontière\" de l'espace).La fusée atterrit doucement sur la rampe d'atterrissage, en restant debout et intacte.<br/> - 22 janvier 2016, Blue Origin réalise une nouvelle première historique en faisant revoler sa fusée pour une seconde fois jusque l'altitude de 101 km. Comme lors du précédent vol du 23 novembre 2015, le lanceur a atterri. C'est la première fusée réutilisable de l'histoire des vols spatiaux.<br/> - New Shepard 2, auteur de 5 vols avec les mêmes moteurs, laisse place au New Shepard 3 (vol inaugural en décembre 2017).",
+                    "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/New_Shepard\" target=\"_blank\" rel=\"noopener noreferrer\">Chronologie sur Wikipedia</a><br/><br/> - 23 novembre 2015 : premier vol complet comprenant une ascension jusqu'à une altitude de 100 km (ligne de Von Karman considérée comme la \"frontière\" de l'espace).La fusée atterrit doucement sur la rampe d'atterrissage, en restant debout et intacte.<br/> - 22 janvier 2016, Blue Origin réalise une nouvelle première historique en faisant revoler sa fusée pour une seconde fois jusque l'altitude de 101 km. Comme lors du précédent vol du 23 novembre 2015, le lanceur a atterri. C'est la première fusée réutilisable de l'histoire des vols spatiaux.<br/> - New Shepard 2, auteur de 5 vols avec les mêmes moteurs, laisse place au New Shepard 3 (vol inaugural en décembre 2017).",
                     "align": "left"
                   },
                   {
@@ -36633,7 +36633,7 @@
                           },
                           {
                             "type": "TEXTE",
-                            "html": "<br/> - Lanceur : Molnya<br/> - 1552 kg",
+                            "html": " - Lanceur : Molnya<br/> - 1552 kg",
                             "align": "left"
                           }
                         ]
@@ -37115,7 +37115,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/>",
+                            "html": "",
                             "align": "left"
                           },
                           {
@@ -38086,7 +38086,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://babouch.fr/espace/#/chapitre/5a_lune_hab/urss\" target=\"_blank\" rel=\"noopener noreferrer\">Voir aussi : missions habitées</a>",
+                        "html": "<a href=\"https://babouch.fr/espace/#/chapitre/5a_lune_hab/urss\" target=\"_blank\" rel=\"noopener noreferrer\">Voir aussi : missions habitées</a>",
                         "align": "left"
                       }
                     ]
@@ -38320,7 +38320,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - 17 août 1958 : Lancement de Pioneer 0 (ou Able 1 ou Mona) par Thor-Able: 1ère tentative américaine pour quitter l'orbite terrestre et s'approcher de la Lune ; explosion du 1er étage après 77 sec.",
+                        "html": " - 17 août 1958 : Lancement de Pioneer 0 (ou Able 1 ou Mona) par Thor-Able: 1ère tentative américaine pour quitter l'orbite terrestre et s'approcher de la Lune ; explosion du 1er étage après 77 sec.",
                         "align": "left"
                       },
                       {
@@ -38569,7 +38569,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - lanceur : Atlas-Agena B (depuis Cap Canaveral devenu Capa Kennedy)<br/> - masse : 300 à 365 kg",
+                        "html": " - lanceur : Atlas-Agena B (depuis Cap Canaveral devenu Capa Kennedy)<br/> - masse : 300 à 365 kg",
                         "align": "left"
                       }
                     ]
@@ -39594,7 +39594,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/> - Lanceur : Atlas-Agena<br/> - Masse au lancement : 400 kg",
+                            "html": " - Lanceur : Atlas-Agena<br/> - Masse au lancement : 400 kg",
                             "align": "left"
                           },
                           {
@@ -40373,7 +40373,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 2350 kg (1) ; 2480 kg (2)",
+                        "html": " 2350 kg (1) ; 2480 kg (2)",
                         "align": "left"
                       }
                     ]
@@ -40803,7 +40803,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement : 23 novembre 2020<br/> - 16 décembre 2020 : Récupération d'échantillons lunaires",
+                        "html": " - Lancement : 23 novembre 2020<br/> - 16 décembre 2020 : Récupération d'échantillons lunaires",
                         "align": "left"
                       }
                     ]
@@ -40910,7 +40910,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement : 3 mai 2024<br/> - 3 juin 2024 : Récupération d'échantillons lunaires",
+                        "html": " - Lancement : 3 mai 2024<br/> - 3 juin 2024 : Récupération d'échantillons lunaires",
                         "align": "left"
                       }
                     ]
@@ -41041,7 +41041,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : fusée GSLV MarkIII - Orbiteur : 1,4 t - Atterrisseur (Vikram) : 1,3 t - Rover (Pragyan) : 25 kg",
+                        "html": " - Lanceur : fusée GSLV MarkIII - Orbiteur : 1,4 t - Atterrisseur (Vikram) : 1,3 t - Rover (Pragyan) : 25 kg",
                         "align": "left"
                       }
                     ]
@@ -41053,7 +41053,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement : 22 juillet 2019.",
+                        "html": " - Lancement : 22 juillet 2019.",
                         "align": "left"
                       }
                     ]
@@ -41184,7 +41184,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement : 14 juillet 2023.",
+                        "html": " - Lancement : 14 juillet 2023.",
                         "align": "left"
                       }
                     ]
@@ -41196,7 +41196,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> cf. Espace &amp; Exploration septembre 2023 n° 77",
+                        "html": " cf. Espace &amp; Exploration septembre 2023 n° 77",
                         "align": "left"
                       },
                       {
@@ -41288,7 +41288,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - 22 février 2019 : l'engin spatial est placé sur une orbite terrestre elliptique par une fusée Falcon 9. <br/> - 4 avril : insertion en orbite lunaire. <br/> - 11 avril : descente vers le sol lunaire mais la sonde insuffisamment ralentie s'écrase.",
+                        "html": " - 22 février 2019 : l'engin spatial est placé sur une orbite terrestre elliptique par une fusée Falcon 9. <br/> - 4 avril : insertion en orbite lunaire. <br/> - 11 avril : descente vers le sol lunaire mais la sonde insuffisamment ralentie s'écrase.",
                         "align": "left"
                       }
                     ]
@@ -41331,7 +41331,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/><a href=\"http://babouch.fr/espace/#/chapitre/2_lanceurs/prive/vulcan\" target=\"_blank\" rel=\"noopener noreferrer\">Voir Vulcan</a>",
+                        "html": "<br/><a href=\"http://babouch.fr/espace/#/chapitre/2_lanceurs/prive/vulcan\" target=\"_blank\" rel=\"noopener noreferrer\">Voir Vulcan</a>",
                         "align": "left"
                       }
                     ]
@@ -41533,7 +41533,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/><br/><br/><a href=\"https://babouch.fr/espace/#/chapitre/1_cabines/nasa/apollo/programme\" target=\"_blank\" rel=\"noopener noreferrer\">Cabine Apollo</a>",
+                            "html": "<br/><br/><a href=\"https://babouch.fr/espace/#/chapitre/1_cabines/nasa/apollo/programme\" target=\"_blank\" rel=\"noopener noreferrer\">Cabine Apollo</a>",
                             "align": "left"
                           }
                         ]
@@ -48268,7 +48268,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\n Destinées à photographier Mars.<br/>\nEchecs : à la suite d'une défaillance du lanceur (R 7), les sondes du 24 octobre et du 4 novembre ne peuvent atteindre l'orbite terrestre.<br/>\nEn mars 1963 le contact est perdu avec Mars 1 qui passe à 193 000 km de la planète.",
+                        "html": "\n Destinées à photographier Mars.<br/>\nEchecs : à la suite d'une défaillance du lanceur (R 7), les sondes du 24 octobre et du 4 novembre ne peuvent atteindre l'orbite terrestre.<br/>\nEn mars 1963 le contact est perdu avec Mars 1 qui passe à 193 000 km de la planète.",
                         "align": "left"
                       },
                       {
@@ -48361,7 +48361,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\n Destinée à photographier Mars.<br/>\nEchec : en mai 1965, alors que Zond 2 est distante de 150 millions de kilomètres, les communications sont définitivement perdues. La sonde survole néanmoins la planète Mars le 6 août 1965 à une distance de 1 500 kilomètres. De plus, Zond 2 aura permis de valider l'usage des moteurs ioniques qui auront fonctionné correctement dans des conditions réelles durant 70 minutes.<br/>\nZond 3 était similaire à Zond 2 mais la fenêtre de lancement de 1964 étant manquée, l'engin a été lancé comme vaisseau spatial d'essai sur une trajectoire de Mars, alors que Mars n'était plus atteignable. Elle photographie la surface de la Lune. (Voir :  Missions non habitées vers la Lune)",
+                        "html": "\n Destinée à photographier Mars.<br/>\nEchec : en mai 1965, alors que Zond 2 est distante de 150 millions de kilomètres, les communications sont définitivement perdues. La sonde survole néanmoins la planète Mars le 6 août 1965 à une distance de 1 500 kilomètres. De plus, Zond 2 aura permis de valider l'usage des moteurs ioniques qui auront fonctionné correctement dans des conditions réelles durant 70 minutes.<br/>\nZond 3 était similaire à Zond 2 mais la fenêtre de lancement de 1964 étant manquée, l'engin a été lancé comme vaisseau spatial d'essai sur une trajectoire de Mars, alors que Mars n'était plus atteignable. Elle photographie la surface de la Lune. (Voir :  Missions non habitées vers la Lune)",
                         "align": "left"
                       },
                       {
@@ -48615,7 +48615,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement le 21 juillet 1973<br/> - 10 février 1974 : arrivée à proximité de Mars.<br/> - Echec : Mars 4 ne peut se mettre en orbite autour de Mars.",
+                        "html": " - Lancement le 21 juillet 1973<br/> - 10 février 1974 : arrivée à proximité de Mars.<br/> - Echec : Mars 4 ne peut se mettre en orbite autour de Mars.",
                         "align": "left"
                       },
                       {
@@ -48637,7 +48637,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement le 23 juillet 1973 <br/> - Demi-succès pour Mars 5 qui réussit à se placer en orbite autour de Mars le 12 février 1974, envoie des informations mais le contact est perdu le 5 mars.",
+                        "html": " - Lancement le 23 juillet 1973 <br/> - Demi-succès pour Mars 5 qui réussit à se placer en orbite autour de Mars le 12 février 1974, envoie des informations mais le contact est perdu le 5 mars.",
                         "align": "left"
                       },
                       {
@@ -48659,7 +48659,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement le 5 août 1973 <br/> - Demi-succès : Mars 6 se pose sur Mars le 12 mars 1974 mais le contact est perdu avant de toucher le sol. Elle a transmis des données pendant 150 secondes, représentant les premières données renvoyées de l'atmosphère de Mars.",
+                        "html": " - Lancement le 5 août 1973 <br/> - Demi-succès : Mars 6 se pose sur Mars le 12 mars 1974 mais le contact est perdu avant de toucher le sol. Elle a transmis des données pendant 150 secondes, représentant les premières données renvoyées de l'atmosphère de Mars.",
                         "align": "left"
                       },
                       {
@@ -48688,7 +48688,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement le 9 août 1973 <br/> - Echec : le module d'atterrissage de Mars 7 manque la planète.",
+                        "html": " - Lancement le 9 août 1973 <br/> - Echec : le module d'atterrissage de Mars 7 manque la planète.",
                         "align": "left"
                       },
                       {
@@ -48896,7 +48896,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\nÉchec : le plus gros engin jamais lancé vers Mars élaboré par vingt nations dont la France devait se mettre en orbite puis larguer deux petites stations et deux pénétrateurs sur la planéte mais il est victime d'une défaillance de son lanceur.",
+                        "html": "\nÉchec : le plus gros engin jamais lancé vers Mars élaboré par vingt nations dont la France devait se mettre en orbite puis larguer deux petites stations et deux pénétrateurs sur la planéte mais il est victime d'une défaillance de son lanceur.",
                         "align": "left"
                       },
                       {
@@ -48989,7 +48989,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/>\n \nPhobos-Grunt  c'est-à-dire « Sol de Phobos ») est une mission spatiale russe destinée à l'étude de Phobos, un des deux satellites naturels de la planète Mars. Elle a été lancée sans encombre le 8 novembre 2011 mais n'a pu rejoindre son orbite de transit vers Mars. Après plusieurs semaines sans contrôle en orbite basse, elle est donc retombée sur Terre le 15 janvier 2012 en plein océan Pacifique à 1 250 km à l'ouest de l'île Wellington, au large du Chili.",
+                        "html": "\n \nPhobos-Grunt  c'est-à-dire « Sol de Phobos ») est une mission spatiale russe destinée à l'étude de Phobos, un des deux satellites naturels de la planète Mars. Elle a été lancée sans encombre le 8 novembre 2011 mais n'a pu rejoindre son orbite de transit vers Mars. Après plusieurs semaines sans contrôle en orbite basse, elle est donc retombée sur Terre le 15 janvier 2012 en plein océan Pacifique à 1 250 km à l'ouest de l'île Wellington, au large du Chili.",
                         "align": "left"
                       },
                       {
@@ -49043,7 +49043,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/> - Lanceur : Soyouz (depuis Baïkonour)",
+                        "html": "<br/> - Lanceur : Soyouz (depuis Baïkonour)",
                         "align": "left"
                       },
                       {
@@ -49217,7 +49217,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Proton (depuis Baïkonour)<br/> - Orbiteur : 4, 3 t. ; atterrisseur : 600 kg",
+                        "html": " - Lanceur : Proton (depuis Baïkonour)<br/> - Orbiteur : 4, 3 t. ; atterrisseur : 600 kg",
                         "align": "left"
                       },
                       {
@@ -49738,7 +49738,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Titan III-Centaur<br/> - Masse au lancement : 883 kg",
+                        "html": " - Lanceur : Titan III-Centaur<br/> - Masse au lancement : 883 kg",
                         "align": "left"
                       }
                     ]
@@ -50218,7 +50218,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/><a href=\"https://fr.wikipedia.org/wiki/Mars_Global_Surveyor\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
+                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Mars_Global_Surveyor\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
                         "align": "left"
                       },
                       {
@@ -50309,7 +50309,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/> &gt;",
+                        "html": "<br/> &gt;",
                         "align": "left"
                       }
                     ]
@@ -50362,7 +50362,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Mars_Pathfinder\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Mars_Pathfinder\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
                         "align": "left"
                       }
                     ]
@@ -50405,7 +50405,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement : 4 décembre 1996<br/> - 4 juillet 1997 : atterrissage en douceur<br/> _ 27 septembre 1997 : fin de la mission",
+                        "html": " - Lancement : 4 décembre 1996<br/> - 4 juillet 1997 : atterrissage en douceur<br/> _ 27 septembre 1997 : fin de la mission",
                         "align": "left"
                       }
                     ]
@@ -50531,7 +50531,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><a href=\"https://fr.wikipedia.org/wiki/Mars_Climate_Orbiter\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
+                        "html": "<a href=\"https://fr.wikipedia.org/wiki/Mars_Climate_Orbiter\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia</a>",
                         "align": "left"
                       }
                     ]
@@ -50663,7 +50663,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lancement : 3 janvier 1999 <br/> - 3 décembre 1999 : rentrée dans l'atmosphére de Mars et perte de la sonde spatiale.",
+                        "html": " - Lancement : 3 janvier 1999 <br/> - 3 décembre 1999 : rentrée dans l'atmosphére de Mars et perte de la sonde spatiale.",
                         "align": "left"
                       }
                     ]
@@ -51160,7 +51160,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Atlas V<br/> - Masse au départ : 2 180 kg dont 1 149 kg d'ergols",
+                        "html": " - Lanceur : Atlas V<br/> - Masse au départ : 2 180 kg dont 1 149 kg d'ergols",
                         "align": "left"
                       },
                       {
@@ -52262,7 +52262,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Près de 5 t.",
+                        "html": " - Près de 5 t.",
                         "align": "left"
                       },
                       {
@@ -53048,7 +53048,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> - Lanceur : Molnya<br/> - 1100 kg",
+                        "html": " - Lanceur : Molnya<br/> - 1100 kg",
                         "align": "left"
                       },
                       {
@@ -54071,7 +54071,7 @@
                         [
                           {
                             "type": "TEXTE",
-                            "html": "<br/>La sonde",
+                            "html": "La sonde",
                             "align": "left"
                           },
                           {
@@ -54201,7 +54201,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 6",
+                        "html": " 6",
                         "align": "left"
                       }
                     ]
@@ -54322,7 +54322,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 6",
+                        "html": " 6",
                         "align": "left"
                       }
                     ]
@@ -54403,7 +54403,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 6",
+                        "html": " 6",
                         "align": "left"
                       }
                     ]
@@ -54704,7 +54704,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/>Le survol de Jupiter<br/>Le survol de Saturne",
+                    "html": "Le survol de Jupiter<br/>Le survol de Saturne",
                     "align": "left"
                   }
                 ]
@@ -54759,7 +54759,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/>Le survol de Vénus<br/>Le survol de Mercure",
+                    "html": "Le survol de Vénus<br/>Le survol de Mercure",
                     "align": "left"
                   }
                 ]
@@ -54803,7 +54803,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/>La sonde",
+                    "html": "La sonde",
                     "align": "left"
                   },
                   {
@@ -55119,7 +55119,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 6",
+                        "html": " 6",
                         "align": "left"
                       }
                     ]
@@ -55490,7 +55490,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 6",
+                        "html": " 6",
                         "align": "left"
                       }
                     ]
@@ -55705,7 +55705,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/> 6",
+                        "html": " 6",
                         "align": "left"
                       }
                     ]
@@ -57144,7 +57144,7 @@
                     [
                       {
                         "type": "TEXTE",
-                        "html": "<br/><br/>",
+                        "html": "<br/>",
                         "align": "left"
                       }
                     ]
@@ -57494,7 +57494,7 @@
                       },
                       {
                         "type": "TEXTE",
-                        "html": "<br/> cf. Espace &amp; Exploration n° 77 p. 18 et n° 78 p.28",
+                        "html": " cf. Espace &amp; Exploration n° 77 p. 18 et n° 78 p.28",
                         "align": "left"
                       },
                       {
@@ -58337,7 +58337,7 @@
                   },
                   {
                     "type": "TEXTE",
-                    "html": "<br/>Le survol de Jupiter",
+                    "html": "Le survol de Jupiter",
                     "align": "left"
                   },
                   {
@@ -59121,7 +59121,7 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<br/>Au-delà du système solaire",
+                    "html": "Au-delà du système solaire",
                     "align": "left"
                   }
                 ]

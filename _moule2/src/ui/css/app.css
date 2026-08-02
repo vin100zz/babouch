@@ -275,6 +275,8 @@ a { color: inherit; text-decoration: none; }
   transform: translate(-50%, -50%);
   cursor: pointer;
   text-align: center;
+  color: inherit;
+  text-decoration: none;
 }
 .m2-thumb:not(.m2-thumb--link) { cursor: default; }
 
@@ -289,10 +291,13 @@ a { color: inherit; text-decoration: none; }
   height: auto;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  transition: transform .15s, box-shadow .15s;
+  filter: brightness(.9);
+  transition: filter .15s, box-shadow .15s;
   background: var(--gray-light);
 }
-.m2-thumb--link:hover img { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+/* Assombrie par défaut (90%), pleine luminosité au survol : ni déplacement
+   ni changement de taille, juste un contraste net entre les deux états. */
+.m2-thumb--link:hover img { filter: brightness(1); box-shadow: 0 6px 20px rgba(0,0,0,.18); }
 
 .m2-thumb__label {
   font-weight: 600;
@@ -444,6 +449,15 @@ a { color: inherit; text-decoration: none; }
      (toujours appelée), configurables dans l'onglet Style des pages. */
   padding: 12px 24px;
 }
+.m2-bloc-texte a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color .15s, background-color .15s;
+}
+.m2-bloc-texte a:hover {
+  background-color: #eee;
+}
 .m2-bloc-image { width: 100%; display: flex; justify-content: center; }
 .m2-bloc-image img {
   display: block;
@@ -467,3 +481,13 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 .m2-error { color: #dc2626; }
+
+.m2-bloc-html table,
+.m2-bloc-html th,
+.m2-bloc-html td {
+  border: #333 1px solid;
+}
+.m2-bloc-html th,
+.m2-bloc-html td {
+  padding: 5px;
+}

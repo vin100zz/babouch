@@ -104,10 +104,15 @@ const HomeView = (function () {
 
   function buildThumb(img, opts) {
     const isSelected = !!(opts.selectedSet && opts.selectedSet.has(img));
-    const thumb = el('div', 'm2-thumb'
+    // Un vrai <a href> (plutôt qu'un div + click listener) pour que
+    // clic milieu / Ctrl+clic ouvrent nativement un nouvel onglet, sans
+    // avoir à réimplémenter ce comportement à la main.
+    const isRealLink = !opts.editable && !!img.lien;
+    const thumb = el(isRealLink ? 'a' : 'div', 'm2-thumb'
       + (img.lien ? ' m2-thumb--link' : '')
       + (opts.editable ? ' m2-thumb--editable' : '')
       + (isSelected ? ' m2-thumb--multiselected' : ''));
+    if (isRealLink) thumb.href = '#/' + img.lien;
     thumb.style.left = (img.x + CANVAS_ORIGIN_X) + 'px';
     thumb.style.top = (img.y + CANVAS_ORIGIN_Y) + 'px';
 
@@ -123,11 +128,6 @@ const HomeView = (function () {
     if (opts.editable) {
       _makeDraggable(thumb, img, opts);
       _addResizeHandles(imgWrap, im, img, thumb);
-    } else if (img.lien) {
-      thumb.addEventListener('click', () => {
-        if (opts.onNavigate) opts.onNavigate(img.lien);
-        else location.hash = '#/' + img.lien;
-      });
     }
 
     return thumb;

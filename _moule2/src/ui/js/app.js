@@ -324,10 +324,6 @@
     });
     wrap.appendChild(list);
     page.appendChild(wrap);
-    const footer = _buildPageFooterIcon();
-    if (footer) {
-      page.appendChild(footer);
-    }
     root.appendChild(page);
   }
 
