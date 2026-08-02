@@ -114,7 +114,7 @@ const RichText = (function () {
     return str.replace(/^(?:<br>|\s)+/i, '').replace(/(?:<br>|\s)+$/i, '');
   }
 
-  function _serializeRichText(node) {
+  function _serializeRichTextInner(node) {
     let out = '';
     node.childNodes.forEach(child => {
       if (child.nodeType === Node.TEXT_NODE) {
@@ -122,25 +122,34 @@ const RichText = (function () {
       } else if (child.nodeType === Node.ELEMENT_NODE) {
         const t = child.tagName.toLowerCase();
         if      (t === 'br')                  out += '<br/>';
-        else if (t === 'b' || t === 'strong') out += '<b>' + _serializeRichText(child) + '</b>';
-        else if (t === 'i' || t === 'em')     out += '<i>' + _serializeRichText(child) + '</i>';
-        else if (t === 'u')                   out += '<u>' + _serializeRichText(child) + '</u>';
+        else if (t === 'b' || t === 'strong') out += '<b>' + _serializeRichTextInner(child) + '</b>';
+        else if (t === 'i' || t === 'em')     out += '<i>' + _serializeRichTextInner(child) + '</i>';
+        else if (t === 'u')                   out += '<u>' + _serializeRichTextInner(child) + '</u>';
         else if (t === 'a') {
           const href = _sanitizeUrl(child.getAttribute('href') || '');
           if (href) {
             const escaped = href.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-            out += '<a href="' + escaped + '" target="_blank" rel="noopener noreferrer">' + _serializeRichText(child) + '</a>';
+            out += '<a href="' + escaped + '" target="_blank" rel="noopener noreferrer">' + _serializeRichTextInner(child) + '</a>';
           } else {
-            out += _serializeRichText(child);
+            out += _serializeRichTextInner(child);
           }
         }
         else if (t === 'div' || t === 'p') {
-          const inner = _serializeRichText(child);
+          const inner = _serializeRichTextInner(child);
           out += (out && !out.endsWith('<br/>') ? '<br/>' : '') + inner;
-        } else out += _serializeRichText(child);
+        } else out += _serializeRichTextInner(child);
       }
     });
-    return out.replace(/(<br\/>)+$/, '');
+    return out;
+  }
+
+  // Ne retire un <br/> final que tout à la fin, sur le contenu complet du bloc :
+  // le faire à chaque niveau de récursion (comme avant) supprimait à tort tout
+  // saut de ligne qui atterrissait comme dernier enfant DANS un tag inline
+  // (ex: <a>Texte<br/></a><i>suite</i>) — cas fréquent quand le navigateur
+  // insère le <br> juste à l'intérieur d'un lien en fin de sélection.
+  function _serializeRichText(node) {
+    return _serializeRichTextInner(node).replace(/(<br\/>)+$/, '');
   }
 
   function _insertBr(edDiv) {

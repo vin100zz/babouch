@@ -382,7 +382,7 @@
                   {
                     "type": "TEXTE",
                     "html": "<a href=\"http://www.astronautix.com/.jpg\" target=\"_blank\" rel=\"noopener noreferrer\">Encyclopédie de l'espace</a>",
-                    "align": "left"
+                    "align": "center"
                   }
                 ]
               ]
@@ -394,7 +394,7 @@
                   {
                     "type": "TEXTE",
                     "html": "<a href=\"http://www.wikiarchives.space\" target=\"_blank\" rel=\"noopener noreferrer\">Wikiarchives</a>",
-                    "align": "left"
+                    "align": "center"
                   }
                 ]
               ]
@@ -406,7 +406,7 @@
                   {
                     "type": "TEXTE",
                     "html": "<a href=\"https://cnes.fr\" target=\"_blank\" rel=\"noopener noreferrer\">CNES</a>",
-                    "align": "left"
+                    "align": "center"
                   }
                 ]
               ]
@@ -418,7 +418,7 @@
                   {
                     "type": "TEXTE",
                     "html": "<a href=\"https://www.esa.int\" target=\"_blank\" rel=\"noopener noreferrer\">ESA (Agence européenne)</a>",
-                    "align": "left"
+                    "align": "center"
                   }
                 ]
               ]
@@ -429,13 +429,8 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<a href=\"https://www.nasa.gov\" target=\"_blank\" rel=\"noopener noreferrer\">NASA History Office</a>",
-                    "align": "left"
-                  },
-                  {
-                    "type": "TEXTE",
-                    "html": "<i>Le site met à disposition des milliers de documents, rapports, photographies et ouvrages numérisés sur les programmes Mercury, Gemini, Apollo, la navette spatiale et les missions récentes.</i>",
-                    "align": "left"
+                    "html": "<a href=\"https://www.nasa.gov\" target=\"_blank\" rel=\"noopener noreferrer\">NASA History Office<br/></a><i>Le site met à disposition des milliers de documents, rapports, photographies et ouvrages numérisés sur les programmes Mercury, Gemini, Apollo, la navette spatiale et les missions récentes.</i>",
+                    "align": "center"
                   }
                 ]
               ]
@@ -447,7 +442,7 @@
                   {
                     "type": "TEXTE",
                     "html": "<a href=\"https://www.nasa.gov/history/history-office/\" target=\"_blank\" rel=\"noopener noreferrer\">NASA</a>",
-                    "align": "left"
+                    "align": "center"
                   }
                 ]
               ]
@@ -458,13 +453,8 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": "<a href=\"https://kosmosnews.fr\" target=\"_blank\" rel=\"noopener noreferrer\">Kosmosnews</a>",
-                    "align": "left"
-                  },
-                  {
-                    "type": "TEXTE",
-                    "html": "<i>Actualités de l'astronautique russe</i>",
-                    "align": "left"
+                    "html": "<a href=\"https://kosmosnews.fr\" target=\"_blank\" rel=\"noopener noreferrer\">Kosmosnews<br/></a><i>Actualités de l'astronautique russe</i>",
+                    "align": "center"
                   }
                 ]
               ]
@@ -476,7 +466,7 @@
                   {
                     "type": "TEXTE",
                     "html": "<a href=\"https://space.skyrocket.de/\" target=\"_blank\" rel=\"noopener noreferrer\">Gunter's Space Page</a>",
-                    "align": "left"
+                    "align": "center"
                   }
                 ]
               ]
@@ -487,8 +477,8 @@
                 [
                   {
                     "type": "TEXTE",
-                    "html": " https://space.skyrocket.de NASA Image and Video Library : une immense base d'archives photographiques et vidéo. Roscosmos : le site officiel de l'agence spatiale russe contient des informations sur l'histoire du programme spatial soviétique et russe, même si certaines ressources ne sont disponibles qu'en russe. JAXA : l'agence spatiale japonaise propose des ressources historiques sur le développement spatial au Japon. Musées et centres d'archives Smithsonian National Air and Space Museum – National Air and Space Museum : expositions virtuelles, dossiers historiques et archives de grande qualité. Cité de l'espace – Cité de l'espace : ressources pédagogiques et historiques en français. National Space Centre – National Space Centre UK : dossiers thématiques et chronologies. Sites spécialisés reconnus Encyclopedia Astronautica (version archivée) : une encyclopédie historique très riche sur les fusées, les programmes spatiaux et les astronautes. Certaines informations méritent toutefois d'être recoupées avec des sources institutionnelles. Spacefacts : base de données détaillée sur les astronautes, les missions habitées et les records spatiaux. Gunter's Space Page : référence très appréciée des passionnés pour les lanceurs, satellites et missions. The Space Review : articles de fond et analyses historiques rédigés par des spécialistes. Archives et ressources universitaires Internet Archive – Collection Space Exploration : ouvrages anciens, films, magazines et documents historiques numérisés. Google Books : permet de consulter de nombreux ouvrages épuisés ou des extraits de livres de référence. Persée : portail français d'articles scientifiques et historiques. JSTOR : articles universitaires sur l'histoire des sciences et des techniques (accès partiellement gratuit).",
-                    "align": "left"
+                    "html": "<a href=\"https://space.skyrocket.de\" target=\"_blank\" rel=\"noopener noreferrer\">NASA Image and Video Library</a> : une immense base d'archives photographiques et vidéo. Roscosmos : le site officiel de l'agence spatiale russe contient des informations sur l'histoire du programme spatial soviétique et russe, même si certaines ressources ne sont disponibles qu'en russe. JAXA : l'agence spatiale japonaise propose des ressources historiques sur le développement spatial au Japon. Musées et centres d'archives Smithsonian National Air and Space Museum – National Air and Space Museum : expositions virtuelles, dossiers historiques et archives de grande qualité. Cité de l'espace – Cité de l'espace : ressources pédagogiques et historiques en français. National Space Centre – National Space Centre UK : dossiers thématiques et chronologies. Sites spécialisés reconnus Encyclopedia Astronautica (version archivée) : une encyclopédie historique très riche sur les fusées, les programmes spatiaux et les astronautes. Certaines informations méritent toutefois d'être recoupées avec des sources institutionnelles. Spacefacts : base de données détaillée sur les astronautes, les missions habitées et les records spatiaux. Gunter's Space Page : référence très appréciée des passionnés pour les lanceurs, satellites et missions. The Space Review : articles de fond et analyses historiques rédigés par des spécialistes. Archives et ressources universitaires Internet Archive – Collection Space Exploration : ouvrages anciens, films, magazines et documents historiques numérisés. Google Books : permet de consulter de nombreux ouvrages épuisés ou des extraits de livres de référence. Persée : portail français d'articles scientifiques et historiques. JSTOR : articles universitaires sur l'histoire des sciences et des techniques (accès partiellement gratuit).",
+                    "align": "center"
                   }
                 ]
               ]

@@ -28,6 +28,16 @@ a { color: inherit; text-decoration: none; }
 
 /* ── En-tête + bouton bascule édition ────────────────────────────────────── */
 
+/* Regroupe header + fil d'Ariane pour qu'ils restent fixes ensemble au
+   scroll sur les pages de contenu (voir _buildContentPage dans app.js) :
+   colle le bloc entier plutôt que de recalculer un top: <hauteur du header>
+   en CSS, ce qui serait fragile vu que cette hauteur est personnalisable. */
+.m2-page-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .m2-header {
   position: sticky;
   top: 0;

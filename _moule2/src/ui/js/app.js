@@ -285,10 +285,16 @@
   // Header + breadcrumb + contenu partagent un même fond de page (voir
   // renderHome pour le même principe côté page d'accueil) : le fond continue
   // derrière le header, visible à travers lui dès qu'il a de la transparence.
-  function _buildContentPage() {
+  function _buildContentPage(configs) {
     const page = el('div', 'm2-content-page');
     HomeView.applyBackgroundStyle(page, SITE.pagesStyle && SITE.pagesStyle.background);
-    page.appendChild(buildHeader('pages'));
+    // Header + fil d'Ariane regroupés dans un même bloc collant (voir
+    // .m2-page-topbar) : ainsi ils restent fixes ensemble au scroll, sans
+    // dépendre de la hauteur (variable, personnalisable) du header.
+    const topbar = el('div', 'm2-page-topbar');
+    topbar.appendChild(buildHeader('pages'));
+    if (configs) topbar.appendChild(renderBreadcrumbBar(configs));
+    page.appendChild(topbar);
     return page;
   }
 
@@ -309,8 +315,7 @@
 
   function renderSubmenu(node, cumulativePath) {
     root.innerHTML = '';
-    const page = _buildContentPage();
-    page.appendChild(renderBreadcrumbBar(_lastConfigs));
+    const page = _buildContentPage(_lastConfigs);
 
     const wrap = el('div', 'm2-submenu');
     wrap.appendChild(txt('div', 'm2-submenu__title', node.label || node.keyword));
@@ -331,8 +336,7 @@
 
   function renderLeaf(node, cumulativePath) {
     root.innerHTML = '';
-    const page = _buildContentPage();
-    page.appendChild(renderBreadcrumbBar(_lastConfigs));
+    const page = _buildContentPage(_lastConfigs);
 
     const wrap = el('div', 'm2-page');
     const titleEl = txt('div', 'm2-page__title', node.label || node.keyword);
@@ -399,7 +403,7 @@
 
     const wrap = el('div', 'm2-page');
     wrap.style.paddingTop = '20px';
-    wrap.appendChild(ContentView.buildEditor(workingNode.sections));
+    wrap.appendChild(ContentView.buildEditor(workingNode.sections, SITE.pagesStyle));
     root.appendChild(wrap);
 
     cancelBtn.addEventListener('click', () => {

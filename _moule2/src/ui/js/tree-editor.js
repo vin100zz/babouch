@@ -79,7 +79,15 @@ const TreeEditor = (function () {
       panel.appendChild(_buildPagesStyleEditor());
       _container.appendChild(panel);
     } else {
-      _container.appendChild(_buildHeader());
+      // Même principe que l'onglet Page d'accueil : le header (transparent
+      // par défaut) a besoin d'un fond derrière lui pour que son style soit
+      // visible, sinon il apparaît à plat même quand une image de fond est
+      // configurée. Fond des pages enfants (pas celui de la page d'accueil) :
+      // l'arborescence liste les pages du site, pas la page d'accueil elle-même.
+      const page = el('div', 'm2-home-page');
+      HomeView.applyBackgroundStyle(page, _site.pagesStyle.background);
+      page.appendChild(_buildHeader());
+      _container.appendChild(page);
       const panel = el('div', 'ed-panel');
       panel.appendChild(_buildTreeEditor());
       _container.appendChild(panel);
@@ -109,7 +117,9 @@ const TreeEditor = (function () {
     header.appendChild(left);
     // Image de fond du header : propre à la page d'accueil ou aux autres
     // pages selon l'onglet actif (voir applyHeaderStyle dans home-view.js).
-    const imageStyle = _activeTab === 'pages' ? _site.pagesStyle.headerBackground : _site.home.headerStyle;
+    // L'onglet Arborescence n'édite pas la page d'accueil : il doit refléter
+    // le style des pages enfants, comme l'onglet Style des pages.
+    const imageStyle = (_activeTab === 'pages' || _activeTab === 'tree') ? _site.pagesStyle.headerBackground : _site.home.headerStyle;
     HomeView.applyHeaderStyle(header, _site.home.headerStyle, imageStyle);
     if (editable) {
       header.title = 'Cliquer pour modifier le style du header';
@@ -1073,6 +1083,18 @@ const TreeEditor = (function () {
     return (root.chapitres || []).some(c => _nodeContains(c, target));
   }
 
+  /** "1 page" / "3 pages" : le "s" final seulement si n > 1. */
+  function _plural(n, word) {
+    return n + ' ' + word + (n > 1 ? 's' : '');
+  }
+
+  /** Nombre total de pages feuilles (sans enfants) dans tout le sous-arbre. */
+  function _countLeaves(chapitres) {
+    return (chapitres || []).reduce((sum, node) => {
+      return sum + ((node.chapitres && node.chapitres.length) ? _countLeaves(node.chapitres) : 1);
+    }, 0);
+  }
+
   function _buildTreeEditor() {
     const container = el('div', '');
 
@@ -1102,10 +1124,14 @@ const TreeEditor = (function () {
     toolbar.appendChild(addRootBtn);
     container.appendChild(toolbar);
 
+    const countEl = txt('div', 'ed-map-count', '');
+    container.appendChild(countEl);
+
     const wrap = el('div', 'ed-map-list');
     container.appendChild(wrap);
 
     function refresh() {
+      countEl.textContent = _plural(_countLeaves(_site.chapitres), 'page') + ' au total';
       wrap.innerHTML = '';
       _site.chapitres.forEach((node, i) => _renderNode(wrap, node, _site.chapitres, 0, i, refresh, null));
     }
@@ -1158,8 +1184,10 @@ const TreeEditor = (function () {
     _preventDragWhileEditing(line, keywordInp);
     line.appendChild(keywordInp);
 
-    if (!hasChildren) {
-      line.appendChild(txt('span', 'ed-label', node.sections && node.sections.length ? node.sections.length + ' section(s)' : 'page vide'));
+    if (hasChildren) {
+      line.appendChild(txt('span', 'ed-label', _plural(node.chapitres.length, 'enfant')));
+    } else {
+      line.appendChild(txt('span', 'ed-label', node.sections && node.sections.length ? _plural(node.sections.length, 'section') : 'page vide'));
     }
 
     const acts = el('div', 'ed-map-actions');
@@ -1219,8 +1247,8 @@ const TreeEditor = (function () {
 
       const zone = _dropZone(e);
       if (zone === 'into' && !hasChildren && node.sections && node.sections.length &&
-          !confirm('"' + (node.label || node.keyword) + '" contient déjà ' + node.sections.length +
-                    ' section(s) de contenu, qui seront perdues en la transformant en sous-menu. Continuer ?')) {
+          !confirm('"' + (node.label || node.keyword) + '" contient déjà ' + _plural(node.sections.length, 'section') +
+                    ' de contenu, qui seront perdues en la transformant en sous-menu. Continuer ?')) {
         return;
       }
 

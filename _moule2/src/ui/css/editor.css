@@ -301,6 +301,16 @@
   word-break: break-word;
 }
 .ed-txt-content:focus { background: #d9f3fc; border-color: #7dd3f0; }
+.ed-txt-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color .15s, background-color .15s;
+}
+.ed-txt-content a:hover {
+  color: #ffffff;
+  background-color: #1d4ed8;
+}
 
 /* ── Bloc HTML libre ──────────────────────────────────────────────────────── */
 
@@ -461,6 +471,7 @@
 
 .ed-site-title-field { max-width: 360px; padding: 20px 24px 0; margin-bottom: 0; }
 .ed-map-toolbar { display: flex; gap: 8px; padding: 16px 24px 0; }
+.ed-map-count { padding: 12px 24px 0; font-size: .82rem; color: var(--muted); font-weight: 600; }
 .ed-map-list { display: flex; flex-direction: column; gap: 4px; padding: 16px 24px; }
 .ed-map-line {
   display: flex;

@@ -154,11 +154,12 @@ const ContentView = (function () {
     return null;
   }
 
-  function buildEditor(sections) {
+  function buildEditor(sections, pagesStyle) {
+    pagesStyle = pagesStyle || {};
     const wrap = el('div', 'ed-section-list');
     const refresh = () => {
       wrap.innerHTML = '';
-      sections.forEach((section, i) => wrap.appendChild(_buildSectionCard(sections, section, i, refresh)));
+      sections.forEach((section, i) => wrap.appendChild(_buildSectionCard(sections, section, i, refresh, pagesStyle)));
       const addBtn = el('button', 'ed-add-btn');
       addBtn.type = 'button'; addBtn.textContent = '+ Ajouter une section';
       addBtn.addEventListener('click', () => { sections.push({ titre: null, colonnes: [[]] }); refresh(); });
@@ -168,7 +169,7 @@ const ContentView = (function () {
     return wrap;
   }
 
-  function _buildSectionCard(sections, section, idx, refreshAll) {
+  function _buildSectionCard(sections, section, idx, refreshAll, pagesStyle) {
     if (!section.colonnes || !section.colonnes.length) section.colonnes = [[]];
     const card = el('div', 'ed-section-card');
 
@@ -178,6 +179,7 @@ const ContentView = (function () {
     titreInp.placeholder = 'Titre de la section (optionnel)';
     titreInp.value = section.titre || '';
     titreInp.addEventListener('input', () => { section.titre = titreInp.value; });
+    applySectionStyle(titreInp, pagesStyle.section);
     bar.appendChild(titreInp);
 
     const acts = el('div', 'ed-section-card__actions');
@@ -187,7 +189,7 @@ const ContentView = (function () {
     const colsWrap = el('div', 'ed-doc-cols');
     const renderCols = () => {
       colsWrap.innerHTML = '';
-      section.colonnes.forEach((_, ci) => colsWrap.appendChild(_buildColEditor(sections, section, ci, renderCols)));
+      section.colonnes.forEach((_, ci) => colsWrap.appendChild(_buildColEditor(sections, section, ci, renderCols, pagesStyle)));
       addColBtn.disabled = section.colonnes.length >= 4;
       delColBtn.disabled = section.colonnes.length <= 1;
     };
@@ -211,7 +213,7 @@ const ContentView = (function () {
     return card;
   }
 
-  function _buildColEditor(sections, section, colIdx, renderCols) {
+  function _buildColEditor(sections, section, colIdx, renderCols, pagesStyle) {
     const colBlocks = section.colonnes[colIdx];
     const col = el('div', 'ed-doc-col');
     const blockList = el('div', 'ed-block-list');
@@ -220,7 +222,7 @@ const ContentView = (function () {
     const refreshBlocks = () => {
       blockList.innerHTML = '';
       colBlocks.forEach((block, bi) => {
-        const bwrap = _buildBlockEditor(sections, section, block, bi, colBlocks, renderCols, colIdx);
+        const bwrap = _buildBlockEditor(sections, section, block, bi, colBlocks, renderCols, colIdx, pagesStyle);
         bwrap.setAttribute('draggable', 'true');
         bwrap.addEventListener('dragstart', e => {
           _dragPayload = { section, fromCol: colIdx, fromIdx: bi };
@@ -262,11 +264,11 @@ const ContentView = (function () {
     return col;
   }
 
-  function _buildBlockEditor(sections, section, block, blockIdx, colBlocks, renderCols, colIdx) {
+  function _buildBlockEditor(sections, section, block, blockIdx, colBlocks, renderCols, colIdx, pagesStyle) {
     const wrap = el('div', 'ed-block-editor');
-    if (block.type === 'DOCUMENTS') _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx);
+    if (block.type === 'DOCUMENTS') _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx, pagesStyle);
     else if (block.type === 'HTML') _buildHtmlBlockEditor(wrap, block, blockIdx, colBlocks, renderCols);
-    else _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols);
+    else _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols, pagesStyle);
     return wrap;
   }
 
@@ -299,7 +301,7 @@ const ContentView = (function () {
     wrap.appendChild(textarea);
   }
 
-  function _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx) {
+  function _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx, pagesStyle) {
     wrap.classList.add('ed-img-block');
 
     const imgWrap = el('div', 'ed-img-block__img');
@@ -311,6 +313,7 @@ const ContentView = (function () {
         const img = document.createElement('img');
         img.src = 'documents/' + path; img.alt = '';
         if (block.width && block.width !== 100) img.style.maxWidth = block.width + '%';
+        applyImageStyle(img, pagesStyle.image);
         imgWrap.appendChild(img);
       } else {
         imgWrap.appendChild(txt('span', 'ed-img-placeholder', '📷 Cliquer pour choisir un document'));
@@ -401,7 +404,7 @@ const ContentView = (function () {
     wrap.appendChild(overlay);
   }
 
-  function _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols) {
+  function _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols, pagesStyle) {
     const { bar, content } = RichText.buildEditor(block, (toolbar) => {
       if (blockIdx > 0) {
         const up = el('button', 'ed-txt-btn'); up.type = 'button'; up.title = 'Monter'; up.textContent = '▲';
@@ -425,6 +428,7 @@ const ContentView = (function () {
         window.addEventListener('mouseup', restore);
       }
     });
+    applyBlocTexteStyle(content, pagesStyle.blocTexte);
     wrap.appendChild(bar);
     wrap.appendChild(content);
     if (block.width) content.style.width = block.width + '%';
