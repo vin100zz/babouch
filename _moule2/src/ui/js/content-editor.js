@@ -335,7 +335,7 @@ const ContentView = (function () {
         pathInp.value = path;
         errEl.textContent = '';
         if (path.includes('/')) _lastUsedDir = path.replace(/\/[^/]+$/, '');
-      }, initialDir);
+      }, { initialDir });
     }
     imgWrap.addEventListener('click', _openBrowser);
     wrap.appendChild(imgWrap);
