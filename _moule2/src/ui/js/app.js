@@ -403,6 +403,12 @@
 
     const wrap = el('div', 'm2-page');
     wrap.style.paddingTop = '20px';
+    // Titre de la page en contexte (lecture seule ici ; se renomme depuis
+    // l'onglet Arborescence) : sans lui, on ne sait plus quelle page on édite
+    // une fois descendu dans la liste des sections.
+    const titleEl = txt('div', 'm2-page__title', node.label || node.keyword);
+    ContentView.applyPageTitleStyle(titleEl, SITE.pagesStyle && SITE.pagesStyle.pageTitle);
+    wrap.appendChild(titleEl);
     wrap.appendChild(ContentView.buildEditor(workingNode.sections, SITE.pagesStyle));
     root.appendChild(wrap);
 
