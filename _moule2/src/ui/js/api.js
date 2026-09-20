@@ -1,15 +1,18 @@
 'use strict';
 
-// Client API générique _moule2. Chaque site charge ce fichier avec deux
-// variables globales déjà définies par son index.html :
-//   SITE_NAME    → nom du site (segment d'URL et clé du fichier JSON)
-//   ENGINE_BASE  → chemin relatif vers le dossier _moule2 (ex: '../_moule2')
+// Client API générique _moule2. Chaque site charge ce fichier avec trois
+// variables globales déjà définies par son index.php (site-template.php) :
+//   SITE_NAME    → nom d'affichage du site (dernier segment de son chemin)
+//   SITE_PATH    → chemin du site relatif à la racine, clé transmise à l'API
+//                  (ex: 'espace2', 'r1/sardaigne')
+//   ENGINE_BASE  → chemin relatif vers le dossier _moule2 (ex: '../_moule2',
+//                  '../../_moule2' pour un site rangé dans un sous-dossier)
 
 const Api = (function () {
   const baseUrl = ENGINE_BASE + '/src/server/Api';
 
   async function _get(endpoint, params) {
-    const p = Object.assign({ site: SITE_NAME }, params || {});
+    const p = Object.assign({ site: SITE_PATH }, params || {});
     const qs = Object.keys(p)
       .filter(k => p[k] !== undefined && p[k] !== null)
       .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(p[k]))
@@ -40,7 +43,7 @@ const Api = (function () {
       return _get('site.php', {});
     },
     saveSite(data) {
-      return _post('save.php', { site: SITE_NAME, data });
+      return _post('save.php', { site: SITE_PATH, data });
     },
     listDocuments(dir, opts) {
       opts = opts || {};
@@ -49,7 +52,7 @@ const Api = (function () {
     async uploadDocument(file, dir) {
       const form = new FormData();
       form.append('file', file);
-      form.append('site', SITE_NAME);
+      form.append('site', SITE_PATH);
       form.append('dir', dir || '');
       const r = await fetch(baseUrl + '/upload.php', { method: 'POST', body: form });
       if (!r.ok) {

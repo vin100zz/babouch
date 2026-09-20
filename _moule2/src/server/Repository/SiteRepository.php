@@ -9,15 +9,17 @@
  */
 class SiteRepository
 {
+    /** Nom d'affichage du site (dernier segment de son chemin). */
     private $site;
     private $path;
 
+    /** @param string $site chemin du site relatif à la racine (ex. 'espace2', 'r1/sardaigne') */
     public function __construct($site)
     {
-        if (!isValidSiteName($site)) {
-            throw new RuntimeException('Nom de site invalide : ' . $site);
+        if (!isValidSitePath($site)) {
+            throw new RuntimeException('Chemin de site invalide : ' . $site);
         }
-        $this->site = $site;
+        $this->site = basename($site);
         $this->path = siteJsonPath($site);
     }
 

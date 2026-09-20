@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $site = isset($_POST['site']) ? $_POST['site'] : '';
-if (!isValidSiteName($site)) {
+if (!isValidSitePath($site)) {
     Response::error('Paramètre "site" manquant ou invalide.', 400);
 }
 

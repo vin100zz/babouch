@@ -1,6 +1,6 @@
 <?php
 /**
- * POST { site, data }  →  écrit <site>/data.json
+ * POST { site, data }  →  écrit <site>/data.json (site = chemin relatif à la racine, ex. 'r1/sardaigne')
  */
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -20,7 +20,7 @@ if (!is_array($body)) {
 $site = isset($body['site']) ? $body['site'] : '';
 $data = isset($body['data']) ? $body['data'] : null;
 
-if (!isValidSiteName($site)) {
+if (!isValidSitePath($site)) {
     Response::error('Paramètre "site" manquant ou invalide.', 400);
 }
 if (!is_array($data)) {

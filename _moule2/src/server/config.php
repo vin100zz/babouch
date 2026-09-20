@@ -3,10 +3,13 @@
  * Configuration du moteur _moule2.
  *
  * _moule2 est générique : il ne connaît pas un site en particulier, chaque
- * requête précise ?site=<nom>. Les données de ce site vivent dans son propre
- * dossier, à la racine du dépôt (à côté de _moule2/, pas dedans) :
- *   - <racine>/<site>/data.json          (arborescence + contenu des pages)
- *   - <racine>/<site>/documents/         (médias de ce site)
+ * requête précise ?site=<chemin>. <chemin> est le chemin du dossier du site
+ * relatif à la racine (parent de _moule2/) : 'espace2' pour un site placé à
+ * la racine, 'r1/sardaigne' pour un site rangé dans un sous-dossier. Les
+ * données de ce site vivent dans son propre dossier (à côté de _moule2/ ou
+ * dans un de ses sous-dossiers, jamais dedans) :
+ *   - <racine>/<chemin>/data.json          (arborescence + contenu des pages)
+ *   - <racine>/<chemin>/documents/         (médias de ce site)
  */
 
 // Racine du dépôt (parent de _moule2/)
@@ -32,12 +35,37 @@ function fontExtensions()
 }
 
 /**
- * Valide un nom de site (segment de chemin uniquement, pas de traversal).
+ * Valide le chemin d'un site, relatif à BASE_DIR : un ou plusieurs segments
+ * séparés par '/', chacun limité à [a-zA-Z0-9_-] (donc ni '..', ni '.', ni
+ * chemin absolu, ni séparateur Windows : pas de traversal possible).
  * @return bool
  */
-function isValidSiteName($site)
+function isValidSitePath($site)
 {
-    return is_string($site) && preg_match('/^[a-zA-Z0-9_-]+$/', $site) === 1;
+    return is_string($site) && preg_match('#^[a-zA-Z0-9_-]+(/[a-zA-Z0-9_-]+)*$#', $site) === 1;
+}
+
+/**
+ * Chemin relatif à BASE_DIR (séparateur '/') d'un dossier de site donné en
+ * chemin absolu, ou null s'il n'est pas sous BASE_DIR ou n'est pas un chemin
+ * de site valide.
+ */
+function sitePathFromDir($dir)
+{
+    $real = realpath($dir);
+    if ($real === false) {
+        return null;
+    }
+    $prefix = BASE_DIR . DIRECTORY_SEPARATOR;
+    // Système de fichiers insensible à la casse sous Windows.
+    $sameCase = DIRECTORY_SEPARATOR === '\\'
+        ? strncasecmp($real, $prefix, strlen($prefix)) === 0
+        : strncmp($real, $prefix, strlen($prefix)) === 0;
+    if (!$sameCase) {
+        return null;
+    }
+    $rel = str_replace(DIRECTORY_SEPARATOR, '/', substr($real, strlen($prefix)));
+    return isValidSitePath($rel) ? $rel : null;
 }
 
 /**
@@ -45,7 +73,7 @@ function isValidSiteName($site)
  */
 function siteJsonPath($site)
 {
-    return BASE_DIR . DIRECTORY_SEPARATOR . $site . DIRECTORY_SEPARATOR . 'data.json';
+    return BASE_DIR . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $site) . DIRECTORY_SEPARATOR . 'data.json';
 }
 
 /**
@@ -57,12 +85,12 @@ function siteAssetPath($site, $root = 'documents')
     if (!in_array($root, array('documents', 'style'), true)) {
         return null;
     }
-    $dir = BASE_DIR . DIRECTORY_SEPARATOR . $site . DIRECTORY_SEPARATOR . $root;
+    $dir = BASE_DIR . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $site) . DIRECTORY_SEPARATOR . $root;
     $real = realpath($dir);
     if ($real === false) {
         return null;
     }
-    // Le dossier du site doit être un enfant direct de la racine (pas de '..').
+    // Le dossier doit rester sous la racine (garde-fou, ex. lien symbolique).
     if (strncmp($real, BASE_DIR, strlen(BASE_DIR)) !== 0) {
         return null;
     }

@@ -11,7 +11,7 @@
 require_once __DIR__ . '/../bootstrap.php';
 
 $site = isset($_GET['site']) ? $_GET['site'] : '';
-if (!isValidSiteName($site)) {
+if (!isValidSitePath($site)) {
     Response::error('Paramètre "site" manquant ou invalide.', 400);
 }
 
