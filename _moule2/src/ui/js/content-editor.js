@@ -14,6 +14,12 @@ const ContentView = (function () {
   const DEFAULT_PAGE_TITLE_STYLE = { bg: '#ffffff00', textColor: '#1e293b', borderColor: '#e2e8f0', borderWidth: 0, borderRadius: 0 };
   const DEFAULT_IMAGE_STYLE = { borderColor: '#333333', borderWidth: 1, borderRadius: 0 };
   const DEFAULT_FOOTER_ICON = { image: null, width: 40 };
+  // Boîte propre à chaque section (fond + bordure de l'ensemble titre/colonnes),
+  // distincte de DEFAULT_SECTION_STYLE qui ne stylise que le bandeau du titre.
+  // Sans fond (null) et sans bordure (largeur 0 = désactivée) : une section
+  // sans réglage s'affiche comme avant. Cocher « Bordure » dans le popup
+  // fait passer la largeur à 1px, avec la couleur ci-dessous (opaque).
+  const DEFAULT_SECTION_BOX_STYLE = { bg: null, borderColor: '#94a3b8ff', borderWidth: 0, borderRadius: 0 };
 
   /** Fonctions d'application de style partagées entre le rendu réel (`render`)
    *  et les aperçus cliquables de l'onglet « Style des pages » (tree-editor.js),
@@ -29,6 +35,26 @@ const ContentView = (function () {
     el.style.background = style.bg;
     el.style.color = style.textColor;
     _applyBoxBorder(el, style);
+  }
+  /** Fond + bordure de la boîte d'une section (`section.style`, voir
+   *  DEFAULT_SECTION_BOX_STYLE). Les propriétés non réglées sont remises à ''
+   *  pour retomber sur le CSS de l'élément (aucun style dans la page de
+   *  lecture, cadre de l'éditeur dans `.ed-section-card`). */
+  function applySectionBoxStyle(el, style) {
+    style = Object.assign({}, DEFAULT_SECTION_BOX_STYLE, style || {});
+    const hasBorder = style.borderWidth > 0;
+    const custom = !!style.bg || hasBorder;
+    el.style.background = style.bg || '';
+    if (hasBorder) {
+      el.style.borderStyle = 'solid';
+      el.style.borderColor = style.borderColor;
+      el.style.borderWidth = style.borderWidth + 'px';
+    } else {
+      el.style.border = '';
+    }
+    el.style.borderRadius = custom ? style.borderRadius + 'px' : '';
+    // Le bandeau du titre (fond opaque) déborderait des coins arrondis.
+    el.style.overflow = custom && style.borderRadius > 0 ? 'hidden' : '';
   }
   function applyBlocTexteStyle(el, style) {
     style = Object.assign({}, DEFAULT_BLOC_TEXTE_STYLE, style || {});
@@ -75,6 +101,7 @@ const ContentView = (function () {
     const frag = document.createDocumentFragment();
     (sections || []).forEach(section => {
       const card = el('div', 'm2-section');
+      applySectionBoxStyle(card, section.style);
       const hasTitre = section.titre && String(section.titre).trim();
       if (hasTitre) {
         const titreEl = txt('div', 'm2-section__titre', section.titre);
@@ -172,6 +199,7 @@ const ContentView = (function () {
   function _buildSectionCard(sections, section, idx, refreshAll, pagesStyle) {
     if (!section.colonnes || !section.colonnes.length) section.colonnes = [[]];
     const card = el('div', 'ed-section-card');
+    applySectionBoxStyle(card, section.style);
 
     const bar = el('div', 'ed-section-card__bar');
     const titreInp = document.createElement('input');
@@ -203,6 +231,7 @@ const ContentView = (function () {
     });
     acts.appendChild(addColBtn);
     acts.appendChild(delColBtn);
+    acts.appendChild(_ib('🎨', 'Style de la section (fond, bordure)', '', () => _openSectionStylePopup(section, card)));
     acts.appendChild(_ib('×', 'Supprimer la section', 'ed-icon-btn--del', () => {
       if (confirm('Supprimer cette section ?')) { sections.splice(idx, 1); refreshAll(); }
     }));
@@ -211,6 +240,94 @@ const ContentView = (function () {
     card.appendChild(colsWrap);
     renderCols();
     return card;
+  }
+
+  /** Popup de style d'une section : fond (optionnel) et bordure, appliqués en
+   *  direct sur `card` avec possibilité d'annuler. Écrit dans `section.style`. */
+  function _openSectionStylePopup(section, card) {
+    const original = clone(section.style);
+    const style = Object.assign({}, DEFAULT_SECTION_BOX_STYLE, section.style || {});
+    const apply = () => { section.style = style; applySectionBoxStyle(card, style); };
+
+    const overlay = el('div', 'ed-popup-overlay');
+    const popup = el('div', 'ed-popup');
+    popup.appendChild(txt('div', 'ed-popup__title', 'Style de la section'));
+
+    // Case + bloc de champs : décochée, la fonction est désactivée (pas de fond /
+    // pas de bordure) et le bloc masqué, sans perdre les valeurs déjà choisies
+    // si on la recoche.
+    function toggleGroup(labelText, checked, onToggle) {
+      const head = el('label', 'ed-field');
+      head.style.cssText = 'flex-direction:row;align-items:center;gap:8px;cursor:pointer;';
+      const check = document.createElement('input');
+      check.type = 'checkbox'; check.checked = checked;
+      head.appendChild(check);
+      head.appendChild(txt('span', 'ed-label', labelText));
+      const body = el('div');
+      body.style.display = checked ? '' : 'none';
+      check.addEventListener('change', () => {
+        body.style.display = check.checked ? '' : 'none';
+        onToggle(check.checked);
+        syncRadius();
+      });
+      popup.appendChild(head);
+      popup.appendChild(body);
+      return { body, check };
+    }
+
+    function syncRadius() {
+      radiusBody.style.display = (bg.check.checked || border.check.checked) ? '' : 'none';
+    }
+
+    let lastBg = style.bg || '#f1f5f9ff';
+    const bg = toggleGroup('Couleur de fond', !!style.bg, on => {
+      style.bg = on ? lastBg : null; apply();
+    });
+    const bgField = buildColorAlphaField('', () => lastBg, v => {
+      lastBg = v;
+      if (bg.check.checked) { style.bg = v; apply(); }
+    });
+    bgField.removeChild(bgField.firstChild); // le libellé est porté par la case à cocher
+    bg.body.appendChild(bgField);
+
+    let lastWidth = style.borderWidth > 0 ? style.borderWidth : 1;
+    const border = toggleGroup('Bordure', style.borderWidth > 0, on => {
+      style.borderWidth = on ? (lastWidth || 1) : 0; apply();
+    });
+    border.body.appendChild(buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
+      style.borderColor = v; apply();
+    }));
+    buildNumberField(border.body, 'Épaisseur (px)', lastWidth, 1, 20, v => {
+      lastWidth = v;
+      if (border.check.checked) { style.borderWidth = v; apply(); }
+    });
+
+    // L'arrondi vaut pour un fond comme pour une bordure : affiché dès que l'une
+    // des deux cases est cochée, masqué (et sans effet) quand les deux sont
+    // décochées.
+    const radiusBody = el('div');
+    buildNumberField(radiusBody, 'Arrondi (px)', style.borderRadius, 0, 200, v => {
+      style.borderRadius = v; apply();
+    });
+    popup.appendChild(radiusBody);
+    syncRadius();
+
+    const btnRow = el('div', 'ed-popup__btns');
+    const okBtn = el('button', 'ed-btn ed-btn--save');
+    okBtn.type = 'button'; okBtn.textContent = 'OK';
+    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
+    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
+    cancelBtn.addEventListener('click', () => {
+      if (original) section.style = original; else delete section.style;
+      applySectionBoxStyle(card, section.style);
+      document.body.removeChild(overlay);
+    });
+    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
   }
 
   function _buildColEditor(sections, section, colIdx, renderCols, pagesStyle) {
@@ -436,7 +553,7 @@ const ContentView = (function () {
 
   return {
     render, buildEditor, openLightbox,
-    applySectionStyle, applyBlocTexteStyle, applyPageTitleStyle, applyImageStyle,
-    DEFAULT_SECTION_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_PAGE_TITLE_STYLE, DEFAULT_IMAGE_STYLE, DEFAULT_FOOTER_ICON,
+    applySectionStyle, applySectionBoxStyle, applyBlocTexteStyle, applyPageTitleStyle, applyImageStyle,
+    DEFAULT_SECTION_STYLE, DEFAULT_SECTION_BOX_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_PAGE_TITLE_STYLE, DEFAULT_IMAGE_STYLE, DEFAULT_FOOTER_ICON,
   };
 })();

@@ -304,10 +304,30 @@ class SiteRepository
             }
             $out[] = array(
                 'titre'    => (isset($section['titre']) && $section['titre'] !== '') ? (string) $section['titre'] : null,
+                'style'    => $this->cleanSectionBox(isset($section['style']) ? $section['style'] : null),
                 'colonnes' => $colonnes,
             );
         }
         return $out;
+    }
+
+    /**
+     * Fond + bordure propres à une section (l'ensemble titre/colonnes), à ne
+     * pas confondre avec pagesStyle.section qui ne stylise que le bandeau du
+     * titre. Une largeur de bordure à 0 signifie « pas de bordure ». null si
+     * ni fond ni bordure : la section s'affiche alors comme avant.
+     */
+    private function cleanSectionBox($v)
+    {
+        if (!is_array($v)) {
+            return null;
+        }
+        $bg = $this->cleanColor(isset($v['bg']) ? $v['bg'] : null, '');
+        $border = $this->cleanBorder($v, '#94a3b8ff', 0, 0);
+        if ($bg === '' && $border['borderWidth'] === 0) {
+            return null;
+        }
+        return array_merge(array('bg' => $bg !== '' ? $bg : null), $border);
     }
 
     private function cleanBlocs($blocs)

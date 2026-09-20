@@ -532,63 +532,6 @@ const TreeEditor = (function () {
     ['"Segoe UI", sans-serif', 'Segoe UI'],
   ];
 
-  function _normalizeHex8(hex) {
-    if (typeof hex === 'string' && /^#[0-9a-fA-F]{6}$/.test(hex)) return hex + 'ff';
-    if (typeof hex === 'string' && /^#[0-9a-fA-F]{8}$/.test(hex)) return hex;
-    return '#000000ff';
-  }
-  function _pctToHex2(pct) {
-    return Math.max(0, Math.min(255, Math.round(pct / 100 * 255))).toString(16).padStart(2, '0');
-  }
-
-  /** Champ couleur + curseur de transparence, combinés en une valeur
-   *  #rrggbbaa. Le <input type=color> natif ne gère pas l'alpha : on le
-   *  pilote séparément via un curseur et on recompose la chaîne à chaque
-   *  changement. */
-  function _buildColorAlphaField(labelText, getValue, onChange) {
-    const wrap = el('div', 'ed-field');
-    wrap.appendChild(txt('label', 'ed-label', labelText));
-    const row = el('div', 'ed-color-alpha-row');
-
-    const hex8 = _normalizeHex8(getValue());
-    const colorInp = document.createElement('input');
-    colorInp.type = 'color'; colorInp.className = 'ed-input ed-input--color';
-    colorInp.value = hex8.slice(0, 7);
-
-    // Code hexa visible et modifiable directement, en plus du sélecteur natif
-    // (qui ne l'affiche pas de façon lisible/éditable en ligne).
-    const hexInp = document.createElement('input');
-    hexInp.type = 'text'; hexInp.className = 'ed-input ed-input--hex';
-    hexInp.maxLength = 7; hexInp.spellcheck = false; hexInp.autocomplete = 'off';
-    hexInp.value = colorInp.value;
-
-    const alphaInp = document.createElement('input');
-    alphaInp.type = 'range'; alphaInp.min = '0'; alphaInp.max = '100'; alphaInp.className = 'ed-alpha-range';
-    alphaInp.value = String(Math.round(parseInt(hex8.slice(7, 9), 16) / 255 * 100));
-
-    const alphaVal = txt('span', 'ed-alpha-val', alphaInp.value + '%');
-
-    function emit() {
-      alphaVal.textContent = alphaInp.value + '%';
-      onChange(colorInp.value + _pctToHex2(+alphaInp.value));
-    }
-    colorInp.addEventListener('input', () => { hexInp.value = colorInp.value; emit(); });
-    hexInp.addEventListener('input', () => {
-      let v = hexInp.value.trim();
-      if (!v.startsWith('#')) v = '#' + v;
-      if (/^#[0-9a-fA-F]{6}$/.test(v)) { colorInp.value = v; emit(); }
-    });
-    hexInp.addEventListener('blur', () => { hexInp.value = colorInp.value; });
-    alphaInp.addEventListener('input', emit);
-
-    row.appendChild(colorInp);
-    row.appendChild(hexInp);
-    row.appendChild(alphaInp);
-    row.appendChild(alphaVal);
-    wrap.appendChild(row);
-    return wrap;
-  }
-
   /** Popup (modale) d'édition du style du header : fond couleur/image,
    *  couleur/taille/police/alignement du titre. `style` (`_site.home.headerStyle`)
    *  porte les réglages partagés par tout le site ; `imageStyle` ({image, mode})
@@ -612,7 +555,7 @@ const TreeEditor = (function () {
       popup.appendChild(f);
     }
 
-    popup.appendChild(_buildColorAlphaField('Couleur de fond', () => style.bg, v => {
+    popup.appendChild(buildColorAlphaField('Couleur de fond', () => style.bg, v => {
       style.bg = v; HomeView.applyHeaderStyle(headerEl, style, imageStyle);
     }));
 
@@ -666,7 +609,7 @@ const TreeEditor = (function () {
     imgModeSel.addEventListener('change', () => { imageStyle.mode = imgModeSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
     field('Affichage de l\'image', imgModeSel);
 
-    popup.appendChild(_buildColorAlphaField('Couleur du titre', () => style.titleColor, v => {
+    popup.appendChild(buildColorAlphaField('Couleur du titre', () => style.titleColor, v => {
       style.titleColor = v; HomeView.applyHeaderStyle(headerEl, style, imageStyle);
     }));
 
@@ -758,7 +701,7 @@ const TreeEditor = (function () {
     const popup = el('div', 'ed-popup');
     popup.appendChild(txt('div', 'ed-popup__title', popupTitle || 'Style du fond de la page d\'accueil'));
 
-    popup.appendChild(_buildColorAlphaField('Couleur de fond', () => bg.color, v => {
+    popup.appendChild(buildColorAlphaField('Couleur de fond', () => bg.color, v => {
       bg.color = v; HomeView.applyBackgroundStyle(wrapEl, bg);
     }));
 
@@ -953,7 +896,7 @@ const TreeEditor = (function () {
     imgField.appendChild(clearBtn);
     popup.appendChild(imgField);
 
-    _buildNumberField(popup, 'Largeur (px)', cfg.width, 12, 300, v => { cfg.width = v; onChange(); });
+    buildNumberField(popup, 'Largeur (px)', cfg.width, 12, 300, v => { cfg.width = v; onChange(); });
 
     const btnRow = el('div', 'ed-popup__btns');
     const okBtn = el('button', 'ed-btn ed-btn--save');
@@ -973,18 +916,6 @@ const TreeEditor = (function () {
     document.body.appendChild(overlay);
   }
 
-  /** Champ nombre générique, ajouté directement au popup fourni. */
-  function _buildNumberField(popup, labelText, value, min, max, onChange) {
-    const f = el('div', 'ed-field');
-    f.appendChild(txt('label', 'ed-label', labelText));
-    const inp = document.createElement('input');
-    inp.type = 'number'; inp.className = 'ed-input'; inp.min = String(min); inp.max = String(max);
-    inp.value = value;
-    inp.addEventListener('input', () => onChange((+inp.value) || 0));
-    f.appendChild(inp);
-    popup.appendChild(f);
-  }
-
   /** Popup générique fond/texte/bordure (sections, blocs TEXTE) : couleur de
    *  fond, couleur du texte, couleur/épaisseur/arrondi de bordure, appliqués
    *  en direct via `applyFn(previewEl, styleObj)`. */
@@ -995,19 +926,19 @@ const TreeEditor = (function () {
     const popup = el('div', 'ed-popup');
     popup.appendChild(txt('div', 'ed-popup__title', title));
 
-    popup.appendChild(_buildColorAlphaField('Couleur de fond', () => styleObj.bg, v => {
+    popup.appendChild(buildColorAlphaField('Couleur de fond', () => styleObj.bg, v => {
       styleObj.bg = v; applyFn(previewEl, styleObj);
     }));
-    popup.appendChild(_buildColorAlphaField('Couleur du texte', () => styleObj.textColor, v => {
+    popup.appendChild(buildColorAlphaField('Couleur du texte', () => styleObj.textColor, v => {
       styleObj.textColor = v; applyFn(previewEl, styleObj);
     }));
-    popup.appendChild(_buildColorAlphaField('Couleur de la bordure', () => styleObj.borderColor, v => {
+    popup.appendChild(buildColorAlphaField('Couleur de la bordure', () => styleObj.borderColor, v => {
       styleObj.borderColor = v; applyFn(previewEl, styleObj);
     }));
-    _buildNumberField(popup, 'Épaisseur de la bordure (px)', styleObj.borderWidth, 0, 20, v => {
+    buildNumberField(popup, 'Épaisseur de la bordure (px)', styleObj.borderWidth, 0, 20, v => {
       styleObj.borderWidth = v; applyFn(previewEl, styleObj);
     });
-    _buildNumberField(popup, 'Arrondi (px)', styleObj.borderRadius, 0, 200, v => {
+    buildNumberField(popup, 'Arrondi (px)', styleObj.borderRadius, 0, 200, v => {
       styleObj.borderRadius = v; applyFn(previewEl, styleObj);
     });
 
@@ -1038,13 +969,13 @@ const TreeEditor = (function () {
     const popup = el('div', 'ed-popup');
     popup.appendChild(txt('div', 'ed-popup__title', 'Bordure des images'));
 
-    popup.appendChild(_buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
+    popup.appendChild(buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
       style.borderColor = v; ContentView.applyImageStyle(previewEl, style);
     }));
-    _buildNumberField(popup, 'Épaisseur (px)', style.borderWidth, 0, 20, v => {
+    buildNumberField(popup, 'Épaisseur (px)', style.borderWidth, 0, 20, v => {
       style.borderWidth = v; ContentView.applyImageStyle(previewEl, style);
     });
-    _buildNumberField(popup, 'Arrondi (px)', style.borderRadius, 0, 200, v => {
+    buildNumberField(popup, 'Arrondi (px)', style.borderRadius, 0, 200, v => {
       style.borderRadius = v; ContentView.applyImageStyle(previewEl, style);
     });
 
