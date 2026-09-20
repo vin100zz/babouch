@@ -6,8 +6,15 @@ class Response
 {
     public static function json($data, $status = 200)
     {
+        $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($json === false) {
+            // Sans ce garde-fou, `echo false` renvoie un corps vide avec un
+            // statut 200 : le client ne voit alors que « Unexpected end of JSON input ».
+            $status = 500;
+            $json = json_encode(array('error' => 'Encodage JSON impossible : ' . json_last_error_msg()));
+        }
         self::sendHeaders($status);
-        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        echo $json;
         exit;
     }
 

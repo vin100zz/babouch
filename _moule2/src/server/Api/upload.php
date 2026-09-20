@@ -47,13 +47,13 @@ $targetDir = $relDir !== ''
     ? $BASE . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relDir)
     : $BASE;
 
-if (!is_dir($targetDir)) {
+if (realpathFromUtf8($targetDir) === false) {
     if (!mkdir($targetDir, 0755, true)) {
         Response::error('Impossible de créer le dossier de destination', 500);
     }
 }
 
-$real = realpath($targetDir);
+$real = realpathFromUtf8($targetDir);
 if ($real === false || strncmp($real, $BASE, strlen($BASE)) !== 0) {
     Response::error('Accès interdit.', 403);
 }

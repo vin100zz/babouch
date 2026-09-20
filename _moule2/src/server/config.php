@@ -68,6 +68,51 @@ function sitePathFromDir($dir)
     return isValidSitePath($rel) ? $rel : null;
 }
 
+/** Convertit une chaîne d'un encodage à un autre ; inchangée si aucune extension ne sait le faire. */
+function convertEncoding($s, $from, $to)
+{
+    if (function_exists('iconv')) {
+        $r = @iconv($from, $to . '//TRANSLIT', $s);
+        if ($r !== false) {
+            return $r;
+        }
+    }
+    if (function_exists('mb_convert_encoding')) {
+        return mb_convert_encoding($s, $to, $from);
+    }
+    return $s;
+}
+
+/**
+ * Nom lu sur le disque (DirectoryIterator...) → UTF-8, seul encodage que
+ * json_encode() accepte : sans ça, un 'é' dans un nom de fichier fait échouer
+ * l'encodage de toute la liste (réponse vide côté client). Sous Windows, PHP
+ * renvoie ces noms dans la page de code ANSI (Windows-1252), pas en UTF-8 ; un
+ * nom déjà en UTF-8 valide (Linux, PHP récent) est laissé tel quel.
+ */
+function fsNameToUtf8($name)
+{
+    if (preg_match('//u', $name) === 1) {
+        return $name;
+    }
+    return convertEncoding($name, 'Windows-1252', 'UTF-8');
+}
+
+/**
+ * realpath() d'un chemin reçu du client (donc en UTF-8), ou false s'il
+ * n'existe pas. Essaie d'abord tel quel, puis converti vers la page de code
+ * ANSI : sous Windows, selon la version de PHP, les fonctions de fichiers
+ * n'attendent pas de l'UTF-8 et ne trouveraient pas un dossier accentué.
+ */
+function realpathFromUtf8($path)
+{
+    $real = realpath($path);
+    if ($real === false && preg_match('/[\x80-\xff]/', $path) === 1) {
+        $real = realpath(convertEncoding($path, 'UTF-8', 'Windows-1252'));
+    }
+    return $real;
+}
+
 /**
  * Chemin absolu vers le fichier data.json d'un site (n'implique pas qu'il existe).
  */

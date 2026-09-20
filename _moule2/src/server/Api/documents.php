@@ -34,7 +34,7 @@ $targetDir = $relDir !== ''
     ? $BASE . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relDir)
     : $BASE;
 
-$real = realpath($targetDir);
+$real = realpathFromUtf8($targetDir);
 if ($real === false) {
     Response::error('Dossier introuvable.', 404);
 }
@@ -51,7 +51,7 @@ $files = array();
 $it = new DirectoryIterator($real);
 foreach ($it as $entry) {
     if ($entry->isDot()) { continue; }
-    $name    = $entry->getFilename();
+    $name    = fsNameToUtf8($entry->getFilename());
     $relPath = $relDir !== '' ? $relDir . '/' . $name : $name;
 
     if ($entry->isDir()) {
