@@ -299,15 +299,14 @@ a { color: inherit; text-decoration: none; }
 .m2-thumb img {
   width: auto;
   height: auto;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
   filter: brightness(.9);
   transition: filter .15s, box-shadow .15s;
-  background: var(--gray-light);
+  /* Pas de fond : sinon les zones transparentes d'un PNG apparaissent grises. */
+  background: none;
 }
 /* Assombrie par défaut (90%), pleine luminosité au survol : ni déplacement
    ni changement de taille, juste un contraste net entre les deux états. */
-.m2-thumb--link:hover img { filter: brightness(1); box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+.m2-thumb--link:hover img { filter: brightness(1); }
 
 .m2-thumb__label {
   font-weight: 600;

@@ -125,6 +125,8 @@ class SiteRepository
                 'image'  => isset($img['image']) ? (string) $img['image'] : '',
                 'x'      => isset($img['x']) ? (int) $img['x'] : 0,
                 'y'      => isset($img['y']) ? (int) $img['y'] : 0,
+                // Largeur en px après redimensionnement ; null = taille naturelle.
+                'width'  => (isset($img['width']) && (int) $img['width'] > 0) ? max(10, min(1000, (int) $img['width'])) : null,
                 'texte'  => (isset($img['texte']) && $img['texte'] !== '') ? (string) $img['texte'] : null,
                 'lien'   => (isset($img['lien']) && $img['lien'] !== '') ? (string) $img['lien'] : null,
             );
