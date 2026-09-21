@@ -90,6 +90,18 @@ const ContentView = (function () {
     }
     return lb;
   }
+  /** <video> d'un bloc DOCUMENTS : avec contrôles en lecture, muet et sans
+   *  contrôles pour l'aperçu de l'éditeur. `#t=0.1` force l'affichage d'une
+   *  image fixe avant la lecture (sinon certains navigateurs, iOS surtout,
+   *  montrent un rectangle noir). */
+  function _videoEl(path, controls) {
+    const v = document.createElement('video');
+    v.src = 'documents/' + path + '#t=0.1';
+    v.preload = 'metadata';
+    v.playsInline = true;
+    if (controls) v.controls = true; else v.muted = true;
+    return v;
+  }
   function openLightbox(src) {
     const lb = _lightboxEls();
     lb.querySelector('.lightbox__img').src = src;
@@ -115,13 +127,18 @@ const ContentView = (function () {
         (colBlocks || []).forEach(block => {
           if (block.type === 'DOCUMENTS') {
             const wrap = el('div', 'm2-bloc-image');
-            const img = document.createElement('img');
-            img.src = 'documents/' + block.fichier;
-            img.alt = ''; img.loading = 'lazy';
-            if (block.width && block.width !== 100) img.style.maxWidth = block.width + '%';
-            applyImageStyle(img, pagesStyle.image);
-            img.addEventListener('click', () => openLightbox(img.src));
-            wrap.appendChild(img);
+            let media;
+            if (isVideoPath(block.fichier)) {
+              media = _videoEl(block.fichier, true);
+            } else {
+              media = document.createElement('img');
+              media.src = 'documents/' + block.fichier;
+              media.alt = ''; media.loading = 'lazy';
+              media.addEventListener('click', () => openLightbox(media.src));
+            }
+            if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
+            applyImageStyle(media, pagesStyle.image);
+            wrap.appendChild(media);
             col.appendChild(wrap);
           } else if (block.type === 'TEXTE') {
             const wrap = el('div', 'm2-bloc-texte');
@@ -427,11 +444,16 @@ const ContentView = (function () {
     function _refreshPreview(path) {
       imgWrap.innerHTML = '';
       if (path) {
-        const img = document.createElement('img');
-        img.src = 'documents/' + path; img.alt = '';
-        if (block.width && block.width !== 100) img.style.maxWidth = block.width + '%';
-        applyImageStyle(img, pagesStyle.image);
-        imgWrap.appendChild(img);
+        let media;
+        if (isVideoPath(path)) {
+          media = _videoEl(path, false);
+        } else {
+          media = document.createElement('img');
+          media.src = 'documents/' + path; media.alt = '';
+        }
+        if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
+        applyImageStyle(media, pagesStyle.image);
+        imgWrap.appendChild(media);
       } else {
         imgWrap.appendChild(txt('span', 'ed-img-placeholder', '📷 Cliquer pour choisir un document'));
       }
@@ -452,7 +474,7 @@ const ContentView = (function () {
         pathInp.value = path;
         errEl.textContent = '';
         if (path.includes('/')) _lastUsedDir = path.replace(/\/[^/]+$/, '');
-      }, { initialDir });
+      }, { initialDir, type: 'media' });
     }
     imgWrap.addEventListener('click', _openBrowser);
     wrap.appendChild(imgWrap);
@@ -460,7 +482,7 @@ const ContentView = (function () {
     const pathRow = el('div', 'ed-img-path-row');
     const pathInp = document.createElement('input');
     pathInp.type = 'text'; pathInp.className = 'ed-input ed-input--sm';
-    pathInp.placeholder = 'ex : demo/photo.jpg'; pathInp.value = block.fichier || '';
+    pathInp.placeholder = 'ex : demo/photo.jpg ou demo/film.mp4'; pathInp.value = block.fichier || '';
 
     const browseBtn = el('button', 'ed-icon-btn');
     browseBtn.type = 'button'; browseBtn.title = 'Parcourir…'; browseBtn.textContent = '📁';
@@ -506,8 +528,8 @@ const ContentView = (function () {
     sizeInp.addEventListener('input', () => {
       block.width = +sizeInp.value;
       sizeVal.textContent = block.width + ' %';
-      const img = imgWrap.querySelector('img');
-      if (img) img.style.maxWidth = block.width + '%';
+      const media = imgWrap.querySelector('img, video');
+      if (media) media.style.maxWidth = block.width + '%';
     });
     sizeRow.appendChild(sizeLabel);
     sizeRow.appendChild(sizeInp);

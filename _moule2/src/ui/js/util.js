@@ -22,6 +22,11 @@ function uid(prefix) {
   return (prefix || 'id_') + Math.random().toString(36).slice(2, 10);
 }
 
+/** true si le chemin désigne une vidéo (mêmes extensions que videoExtensions() côté serveur). */
+function isVideoPath(path) {
+  return /\.(mp4|m4v|webm|ogv|mov)$/i.test(path || '');
+}
+
 // ── Champs de formulaire partagés (éditeurs de style) ────────────────────────
 
 function normalizeHex8(hex) {
