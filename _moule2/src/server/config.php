@@ -28,6 +28,16 @@ function mediaExtensions()
     return array('jpg', 'jpeg', 'png', 'gif', 'webp');
 }
 
+/**
+ * Extensions de vidéo lues nativement par les navigateurs (balise <video>).
+ * Listées par l'explorateur pour les blocs DOCUMENTS (type=media), mais pas
+ * acceptées par upload.php, qui ne gère que les images (voir mediaExtensions).
+ */
+function videoExtensions()
+{
+    return array('mp4', 'm4v', 'webm', 'ogv', 'mov');
+}
+
 /** Extensions de police acceptées par l'explorateur de documents (dossier style/). */
 function fontExtensions()
 {

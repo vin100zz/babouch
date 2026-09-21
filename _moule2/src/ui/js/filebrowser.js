@@ -80,6 +80,8 @@ const FileBrowser = (function () {
           const item = el('div', 'imgbr-item imgbr-item--file');
           if (type === 'font') {
             item.appendChild(txt('span', 'imgbr-thumb imgbr-thumb--font', '🔤'));
+          } else if (isVideoPath(f.name)) {
+            item.appendChild(txt('span', 'imgbr-thumb imgbr-thumb--video', '🎬'));
           } else {
             const thumb = document.createElement('img');
             thumb.src = ASSET_BASE + f.path; thumb.alt = ''; thumb.className = 'imgbr-thumb'; thumb.loading = 'lazy';

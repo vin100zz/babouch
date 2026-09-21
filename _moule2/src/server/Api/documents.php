@@ -2,8 +2,9 @@
 /**
  * Listage des médias disponibles sous <site>/documents/ ou <site>/style/.
  *
- * GET ?site=espace2&dir=chemin/relatif&root=documents|style&type=image|font
+ * GET ?site=espace2&dir=chemin/relatif&root=documents|style&type=image|font|media
  *   → { dir, dirs: [{name, path}], files: [{name, path}] }
+ * (type=media : images et vidéos, pour les blocs DOCUMENTS)
  *
  * Sécurité : tout chemin tentant d'échapper au dossier racine du site
  * est rejeté (même contrôle que famille2/Api/images.php).
@@ -42,8 +43,15 @@ if (strncmp($real, $BASE, strlen($BASE)) !== 0) {
     Response::error('Accès interdit.', 403);
 }
 
-$type = (isset($_GET['type']) && $_GET['type'] === 'font') ? 'font' : 'image';
-$extPattern = '/\.(' . implode('|', $type === 'font' ? fontExtensions() : mediaExtensions()) . ')$/i';
+$type = isset($_GET['type']) ? $_GET['type'] : 'image';
+if ($type === 'font') {
+    $extensions = fontExtensions();
+} elseif ($type === 'media') {
+    $extensions = array_merge(mediaExtensions(), videoExtensions());
+} else {
+    $extensions = mediaExtensions();
+}
+$extPattern = '/\.(' . implode('|', $extensions) . ')$/i';
 
 $dirs  = array();
 $files = array();
