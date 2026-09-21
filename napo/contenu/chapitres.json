@@ -6,76 +6,62 @@
   
   "chapitres": [
      {
-      "x": 450,
-      "y": -10,
+      "x": 250,
+      "y": 50,
       "image": "titre.jpg"
     },
   
-    {
-      "x": -250,
-      "y": 80,
-      "image": "0.jpg"
-    },	
+   
 	{
-      "titre": "",
-      "dossier": "1_louis15",
-      "x": 563,
-      "y": 150,
-      "image": "00.jpg"
+      "titre": "Sous Louis XIV",
+      "dossier": "1_louis14",
+      "x": -250,
+      "y": 250,
+      "image": "1a.jpg"
     },
+
 	
-	{
+	{	
+	 "titre": "Sous Louis XV",
+      "dossier": "2_louis15",
       "x": -250,
-      "y": 280,
-      "image": "1.jpg"
+      "y": 500,
+     "image": "2.jpg"
     },
 	{
-      "titre": "",
-      "dossier": "2_soldats",
-      "x": 563,
-      "y": 350,
-      "image": "01.jpg"
+      "titre": "Soldats de Napoléon",
+      "dossier": "3_soldats",
+      "x": -250,
+      "y": 750,
+      "image": "3.jpg"
     },
   
-   {
-      "x": -250,
-      "y": 480,
-      "image": "2.jpg"
-    },    
+     
     {
-      "titre": "",
-      "dossier": "3_nap3",
-      "x": 563,
-      "y": 550,
-      "image": "02.jpg",
+      "titre": "Le Second Empire",
+      "dossier": "4_nap3",
+      "x": 550,
+      "y": 250,
+      "image": "4.jpg",
+      "chapitres": []
+    },
+   
+    {
+      "titre": "1914-1918",
+      "dossier": "5_14_18",
+      "x": 550,
+      "y": 500,
+      "image": "5.jpg",
       "chapitres": []
     },
 
-       {
-      "x": -250,
-      "y": 680,
-      "image": "3.jpg"
-    },    
+    
     {
-      "titre": "",
-      "dossier": "4_14_18",
-      "x": 563,
+      "titre": "1939-1945",
+      "dossier": "6_39_45",
+      "x": 550,
       "y": 750,
-      "image": "03.jpg",
-      "chapitres": []
-    },
-
-    {
-      "x": -250,
-      "y": 880,
-      "image": "4.jpg"
-    },    
-    {
-      "titre": "",
-      "dossier": "5_39_45",
-      "x": 563,
-      "y": 950,
-      "image": "04.jpg",
+      "image": "6.jpg",
       "chapitres": []
     }
   
