@@ -38,6 +38,16 @@ function videoExtensions()
     return array('mp4', 'm4v', 'webm', 'ogv', 'mov');
 }
 
+/**
+ * Extensions audio lues nativement par les navigateurs (balise <audio>).
+ * Même statut que videoExtensions() : listées pour les blocs DOCUMENTS
+ * (type=media), pas acceptées par upload.php.
+ */
+function audioExtensions()
+{
+    return array('mp3', 'm4a', 'ogg', 'oga', 'wav');
+}
+
 /** Extensions de police acceptées par l'explorateur de documents (dossier style/). */
 function fontExtensions()
 {

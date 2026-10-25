@@ -236,6 +236,7 @@
 /* Aperçu vidéo sans contrôles : le clic doit atteindre la zone (ouverture de
    l'explorateur), comme pour une image. */
 .ed-img-block__img video { pointer-events: none; }
+.ed-img-block__img audio { display: block; width: 100%; margin: 10px 0; }
 .ed-img-placeholder { font-size: .78rem; color: var(--muted); font-style: italic; }
 .ed-img-path-row { display: flex; gap: 6px; align-items: center; }
 .ed-img-path-error { font-size: .78rem; color: #dc2626; font-style: italic; min-height: 1em; }
@@ -438,7 +439,8 @@
 }
 .imgbr-thumb { width: 120px; height: 90px; object-fit: cover; border-radius: 3px; background: #e2e8f0; display: block; }
 .imgbr-thumb--font,
-.imgbr-thumb--video {
+.imgbr-thumb--video,
+.imgbr-thumb--audio {
   display: flex; align-items: center; justify-content: center;
   font-size: 2.2rem;
 }

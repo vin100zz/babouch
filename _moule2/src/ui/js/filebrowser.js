@@ -82,6 +82,8 @@ const FileBrowser = (function () {
             item.appendChild(txt('span', 'imgbr-thumb imgbr-thumb--font', '🔤'));
           } else if (isVideoPath(f.name)) {
             item.appendChild(txt('span', 'imgbr-thumb imgbr-thumb--video', '🎬'));
+          } else if (isAudioPath(f.name)) {
+            item.appendChild(txt('span', 'imgbr-thumb imgbr-thumb--audio', '🎵'));
           } else {
             const thumb = document.createElement('img');
             thumb.src = ASSET_BASE + f.path; thumb.alt = ''; thumb.className = 'imgbr-thumb'; thumb.loading = 'lazy';
