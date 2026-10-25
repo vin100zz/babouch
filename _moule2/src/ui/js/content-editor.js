@@ -102,6 +102,16 @@ const ContentView = (function () {
     if (controls) v.controls = true; else v.muted = true;
     return v;
   }
+  /** <audio> d'un bloc DOCUMENTS, toujours avec contrôles (sans eux l'élément
+   *  est invisible), y compris dans l'aperçu de l'éditeur. Pas de bordure de
+   *  style image : le lecteur natif a déjà son propre habillage. */
+  function _audioEl(path) {
+    const a = document.createElement('audio');
+    a.src = 'documents/' + path;
+    a.preload = 'metadata';
+    a.controls = true;
+    return a;
+  }
   function openLightbox(src) {
     const lb = _lightboxEls();
     lb.querySelector('.lightbox__img').src = src;
@@ -130,6 +140,8 @@ const ContentView = (function () {
             let media;
             if (isVideoPath(block.fichier)) {
               media = _videoEl(block.fichier, true);
+            } else if (isAudioPath(block.fichier)) {
+              media = _audioEl(block.fichier);
             } else {
               media = document.createElement('img');
               media.src = 'documents/' + block.fichier;
@@ -137,7 +149,7 @@ const ContentView = (function () {
               media.addEventListener('click', () => openLightbox(media.src));
             }
             if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
-            applyImageStyle(media, pagesStyle.image);
+            if (media.tagName !== 'AUDIO') applyImageStyle(media, pagesStyle.image);
             wrap.appendChild(media);
             col.appendChild(wrap);
           } else if (block.type === 'TEXTE') {
@@ -447,12 +459,17 @@ const ContentView = (function () {
         let media;
         if (isVideoPath(path)) {
           media = _videoEl(path, false);
+        } else if (isAudioPath(path)) {
+          // Contrôles actifs pour pouvoir écouter depuis l'éditeur : le clic
+          // sur le lecteur ne doit pas ouvrir l'explorateur.
+          media = _audioEl(path);
+          media.addEventListener('click', e => e.stopPropagation());
         } else {
           media = document.createElement('img');
           media.src = 'documents/' + path; media.alt = '';
         }
         if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
-        applyImageStyle(media, pagesStyle.image);
+        if (media.tagName !== 'AUDIO') applyImageStyle(media, pagesStyle.image);
         imgWrap.appendChild(media);
       } else {
         imgWrap.appendChild(txt('span', 'ed-img-placeholder', '📷 Cliquer pour choisir un document'));
@@ -482,7 +499,7 @@ const ContentView = (function () {
     const pathRow = el('div', 'ed-img-path-row');
     const pathInp = document.createElement('input');
     pathInp.type = 'text'; pathInp.className = 'ed-input ed-input--sm';
-    pathInp.placeholder = 'ex : demo/photo.jpg ou demo/film.mp4'; pathInp.value = block.fichier || '';
+    pathInp.placeholder = 'ex : demo/photo.jpg, demo/film.mp4 ou demo/son.mp3'; pathInp.value = block.fichier || '';
 
     const browseBtn = el('button', 'ed-icon-btn');
     browseBtn.type = 'button'; browseBtn.title = 'Parcourir…'; browseBtn.textContent = '📁';
@@ -528,7 +545,7 @@ const ContentView = (function () {
     sizeInp.addEventListener('input', () => {
       block.width = +sizeInp.value;
       sizeVal.textContent = block.width + ' %';
-      const media = imgWrap.querySelector('img, video');
+      const media = imgWrap.querySelector('img, video, audio');
       if (media) media.style.maxWidth = block.width + '%';
     });
     sizeRow.appendChild(sizeLabel);

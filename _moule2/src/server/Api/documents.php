@@ -4,7 +4,7 @@
  *
  * GET ?site=espace2&dir=chemin/relatif&root=documents|style&type=image|font|media
  *   → { dir, dirs: [{name, path}], files: [{name, path}] }
- * (type=media : images et vidéos, pour les blocs DOCUMENTS)
+ * (type=media : images, vidéos et audios, pour les blocs DOCUMENTS)
  *
  * Sécurité : tout chemin tentant d'échapper au dossier racine du site
  * est rejeté (même contrôle que famille2/Api/images.php).
@@ -47,7 +47,7 @@ $type = isset($_GET['type']) ? $_GET['type'] : 'image';
 if ($type === 'font') {
     $extensions = fontExtensions();
 } elseif ($type === 'media') {
-    $extensions = array_merge(mediaExtensions(), videoExtensions());
+    $extensions = array_merge(mediaExtensions(), videoExtensions(), audioExtensions());
 } else {
     $extensions = mediaExtensions();
 }

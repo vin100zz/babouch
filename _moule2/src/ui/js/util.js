@@ -27,6 +27,11 @@ function isVideoPath(path) {
   return /\.(mp4|m4v|webm|ogv|mov)$/i.test(path || '');
 }
 
+/** true si le chemin désigne un audio (mêmes extensions que audioExtensions() côté serveur). */
+function isAudioPath(path) {
+  return /\.(mp3|m4a|ogg|oga|wav)$/i.test(path || '');
+}
+
 // ── Champs de formulaire partagés (éditeurs de style) ────────────────────────
 
 function normalizeHex8(hex) {

@@ -479,6 +479,8 @@ a { color: inherit; text-decoration: none; }
 }
 /* Pas de lightbox pour une vidéo : ses contrôles natifs ont déjà le plein écran. */
 .m2-bloc-image video { cursor: auto; }
+/* Lecteur audio natif : pleine largeur (réduite par le curseur Largeur). */
+.m2-bloc-image audio { display: block; width: 100%; }
 
 /* Bloc HTML libre : rendu tel quel, scroll horizontal de secours pour les
    tableaux plus larges que la colonne plutôt que de casser la mise en page. */
