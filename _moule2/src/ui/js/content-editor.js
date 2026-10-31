@@ -184,6 +184,18 @@ const ContentView = (function () {
     return card;
   }
 
+  // Largeur d'un média (`width` en % de la colonne). Par défaut, une image garde
+  // sa taille naturelle, plafonnée en hauteur, et `width` ne fait que la réduire.
+  // Ajustée (`fit`), elle prend exactement `width` % de la colonne, quitte à être
+  // agrandie, sans plafond de hauteur : 100 % = toute la largeur de la colonne.
+  function applyMediaWidth(media, width, fit) {
+    const reduced = width && width !== 100 ? width + '%' : '';
+    if (media.tagName === 'AUDIO') { media.style.maxWidth = reduced; return; }
+    media.style.width = fit ? (width || 100) + '%' : '';
+    media.style.maxWidth = fit ? '' : reduced;
+    media.style.maxHeight = fit ? 'none' : '';
+  }
+
   function renderBlock(block, pagesStyle, opts) {
     pagesStyle = pagesStyle || {};
     opts = opts || {};
@@ -202,7 +214,7 @@ const ContentView = (function () {
         media.alt = ''; media.loading = 'lazy';
         if (!opts.editing) media.addEventListener('click', () => openLightbox(media.src));
       }
-      if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
+      applyMediaWidth(media, block.width, block.fit);
       if (media.tagName !== 'AUDIO') applyImageStyle(media, pagesStyle.image);
       wrap.appendChild(media);
     } else if (block.type === 'TEXTE') {
@@ -220,7 +232,7 @@ const ContentView = (function () {
   }
 
   return {
-    render, renderSection, renderBlock, openLightbox,
+    render, renderSection, renderBlock, openLightbox, applyMediaWidth,
     applySectionStyle, applySectionBoxStyle, applyBlocTexteStyle, applyPageTitleStyle, applyImageStyle, applyTextExtras,
     DEFAULT_SECTION_STYLE, DEFAULT_SECTION_BOX_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_PAGE_TITLE_STYLE, DEFAULT_IMAGE_STYLE, DEFAULT_FOOTER_ICON,
   };

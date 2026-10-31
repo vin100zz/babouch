@@ -573,11 +573,14 @@ const PageEditor = (function () {
       const startW = media.getBoundingClientRect().width;
       const sx = e.clientX;
       studio.record(null);
-      // Image centrée : tirer le coin de d px l'élargit de 2d.
+      // Image centrée : tirer le coin de d px l'élargit de 2d. Tirer la poignée
+      // ajuste l'image à la colonne, pour pouvoir l'agrandir au-delà de sa
+      // taille naturelle (jusqu'à toute la largeur).
       const onMove = ev => {
+        block.fit = true;
         const w = startW + (ev.clientX - sx) * 2;
         block.width = Math.max(10, Math.min(100, Math.round(w / wrapW * 100)));
-        media.style.maxWidth = block.width === 100 ? '' : block.width + '%';
+        ContentView.applyMediaWidth(media, block.width, block.fit);
       };
       const onUp = () => {
         window.removeEventListener('mousemove', onMove);
@@ -687,6 +690,8 @@ const PageEditor = (function () {
         { type: 'image', label: 'Fichier', root: 'documents', fileType: 'media', empty: 'Aucun document',
           initialDir: () => nearestDir(block),
           get: () => block.fichier, set: p => change('fichier', () => { block.fichier = p; }, { section: sectionOf(block), panel: true }) },
+        { type: 'toggle', label: 'Taille', on: 'Ajustée à la colonne', off: 'Naturelle',
+          get: () => block.fit, set: v => change('doc.fit', () => { block.fit = v; }, { section: sectionOf(block) }) },
         { type: 'range', label: 'Largeur', min: 10, max: 100, unit: ' %',
           get: () => block.width || 100, set: v => change('doc.width', () => { block.width = v; }, { section: sectionOf(block) }) },
       ];

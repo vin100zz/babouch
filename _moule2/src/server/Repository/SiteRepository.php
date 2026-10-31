@@ -573,11 +573,16 @@ class SiteRepository
                 }
                 $out[] = $clean;
             } elseif ($bloc['type'] === 'DOCUMENTS') {
-                $out[] = array(
+                $clean = array(
                     'type'   => 'DOCUMENTS',
                     'fichier'=> isset($bloc['fichier']) ? (string) $bloc['fichier'] : '',
                     'width'  => isset($bloc['width']) ? (int) $bloc['width'] : 100,
                 );
+                // Facultatif : image ajustée à la colonne (largeur en % de celle-ci).
+                if (!empty($bloc['fit'])) {
+                    $clean['fit'] = true;
+                }
+                $out[] = $clean;
             } elseif ($bloc['type'] === 'HTML') {
                 // Contenu HTML libre, non filtré : à la différence du bloc
                 // TEXTE (sous-ensemble b/i/u/br/a imposé par l'éditeur riche),
