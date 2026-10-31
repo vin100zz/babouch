@@ -212,6 +212,7 @@
   background: #fff;
 }
 .pp-input:focus { outline: 2px solid var(--st-blue); outline-offset: -1px; border-color: var(--st-blue); }
+.pp-text { margin: 4px 0; line-height: 1.35; resize: none; overflow: hidden; }
 .pp-textarea { min-height: 120px; margin: 4px 0; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; resize: vertical; }
 .pp-hex { flex: 0 0 82px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
 .pp-num { flex: 0 0 auto; width: 58px; padding: 5px 4px 5px 6px; font-size: 13px; }
@@ -399,6 +400,9 @@
   background: #fff;
   cursor: nwse-resize;
 }
+/* Une colonne vide réserve sa place dans la page : le « + Ajouter » posé
+   dessus reste dans la section au lieu de déborder sous elle. */
+.st-page .m2-section__col:empty { min-height: 48px; }
 .st-emptycol {
   display: flex;
   align-items: flex-start;

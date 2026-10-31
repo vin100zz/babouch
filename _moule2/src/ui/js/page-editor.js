@@ -479,7 +479,7 @@ const PageEditor = (function () {
         b.style.left = (r.left + window.scrollX) + 'px';
         b.style.top = (r.top + window.scrollY) + 'px';
         b.style.width = r.width + 'px';
-        b.style.height = Math.max(r.height, 48) + 'px';
+        b.style.height = r.height + 'px';
       });
       for (let i = n; i < emptyCols.length; i++) emptyCols[i].hidden = true;
 

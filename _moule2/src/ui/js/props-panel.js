@@ -113,12 +113,23 @@ const PropsPanel = (function () {
   }
 
   const ROWS = {
+    // Texte d'une ligne, mais affiché sur plusieurs : la barre est étroite et
+    // un titre long serait coupé dans un <input>. Le champ grandit avec son
+    // contenu ; Entrée et les retours à la ligne collés sont neutralisés.
     text(val, it, id) {
-      const inp = _input('text', id);
-      inp.value = it.get() || '';
-      if (it.placeholder) inp.placeholder = it.placeholder;
-      inp.addEventListener('input', () => it.set(inp.value));
-      val.appendChild(inp);
+      const ta = document.createElement('textarea');
+      ta.id = id; ta.className = 'pp-input pp-text'; ta.rows = 1;
+      ta.value = it.get() || '';
+      if (it.placeholder) ta.placeholder = it.placeholder;
+      const fit = () => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 2 + 'px'; };
+      ta.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(); });
+      ta.addEventListener('input', () => {
+        if (/[\r\n]/.test(ta.value)) ta.value = ta.value.replace(/\s*[\r\n]+\s*/g, ' ');
+        fit();
+        it.set(ta.value);
+      });
+      val.appendChild(ta);
+      requestAnimationFrame(fit);
     },
 
     textarea(val, it, id) {
