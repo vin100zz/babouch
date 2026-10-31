@@ -42,12 +42,13 @@ const StyleItems = (function () {
     return site;
   }
 
-  /** En-tête : remplissage, image de fond (propre à l'accueil ou aux autres
-   *  pages selon `context`), marge intérieure. */
+  /** En-tête : titre du site (texte, police…), remplissage, image de fond
+   *  (propre à l'accueil ou aux autres pages selon `context`), marge intérieure. */
   function header(site, context, change) {
     const hs = site.home.headerStyle;
     const img = context === 'home' ? hs : site.pagesStyle.headerBackground;
     return [
+      ...siteTitle(site, change, 'Titre du site'),
       { group: 'Remplissage' },
       ...PropsPanel.fillRows(() => hs.bg, v => change('header.bg', () => { hs.bg = v; })),
       { group: 'Image de fond' },
@@ -65,11 +66,11 @@ const StyleItems = (function () {
 
   /** Titre du site : texte + le widget Texte commun (police, taille,
    *  couleur, alignement), sur les clés title* historiques du header. */
-  function siteTitle(site, change) {
+  function siteTitle(site, change, group) {
     const hs = site.home.headerStyle;
     const KEYS = { font: 'titleFont', fontFile: 'titleFontFile', size: 'titleSize', color: 'titleColor', align: 'titleAlign' };
     return [
-      { group: 'Texte' },
+      { group: group || 'Texte' },
       { type: 'text', label: 'Titre', placeholder: SITE_NAME,
         get: () => site.titre_site || '', set: v => change('titre', () => { site.titre_site = v; }) },
       ...PropsPanel.textRows({
