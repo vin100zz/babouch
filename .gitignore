@@ -46,6 +46,7 @@ mg/*
 r1/*
 tdf-saisie/*
 ve/*
+!ve/chess_android/
 
 **/contenu/pages/*
 **/contenu/bd/*

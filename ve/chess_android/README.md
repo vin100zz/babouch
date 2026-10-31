@@ -9,7 +9,7 @@ meilleurs coups en flèches par-dessus l'échiquier.
 
 ## Installer sur le téléphone
 
-1. Chaque push qui touche `appli_echecs/` lance le workflow GitHub Actions **« Appli échecs (APK Android) »**,
+1. Chaque push qui touche `ve/chess_android/` lance le workflow GitHub Actions **« Appli échecs (APK Android) »**,
    qui compile l'APK.
 2. Sur le téléphone, ouvrez la page **Releases** du dépôt → **« Échecs Overlay (dernière version) »** →
    téléchargez `echecs-overlay.apk`. (L'APK est aussi disponible en « artifact » sur la page du workflow.)
