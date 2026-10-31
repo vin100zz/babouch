@@ -528,9 +528,16 @@ class OverlayService : Service() {
             setTextColor(Color.WHITE)
             textSize = 13f
             typeface = Typeface.MONOSPACE
-            maxWidth = dp(300f)
+            maxWidth = dp(320f)
+            minWidth = dp(240f)
         }
-        details.addView(status)
+        // Largeurs explicites « contenu » : dans un parent en WRAP_CONTENT, un enfant en MATCH_PARENT
+        // (valeur par défaut d'un LinearLayout vertical) ne compte pas, et le panneau se réduisait
+        // à la largeur de la bulle.
+        fun wrap() = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,
+        )
+        details.addView(status, wrap())
         val buttons = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
         fun button(label: String, action: () -> Unit) = Button(this).apply {
             text = label
@@ -561,8 +568,8 @@ class OverlayService : Service() {
             arrowView?.arrows = emptyList()
             arrowView?.board = null
         }
-        details.addView(buttons)
-        root.addView(details)
+        details.addView(buttons, wrap())
+        root.addView(details, wrap().apply { topMargin = dp(4f) })
 
         panelParams = overlayParams(
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
