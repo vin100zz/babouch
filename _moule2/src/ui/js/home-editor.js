@@ -29,6 +29,7 @@ const HomeEditor = (function () {
 
     const studio = Studio.open({
       container,
+      site,
       title: "Modifier la page d'accueil",
       subtitle: site.titre_site || SITE_NAME,
       snapshot: () => JSON.stringify({ titre_site: site.titre_site, home: site.home }),

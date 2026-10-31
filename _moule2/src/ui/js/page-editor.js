@@ -47,6 +47,7 @@ const PageEditor = (function () {
     const snapshot = () => JSON.stringify({ label: node.label, sections: node.sections });
     const studio = Studio.open({
       container,
+      site,
       title: node.label || node.keyword,
       subtitle: 'Modifier la page',
       snapshot,

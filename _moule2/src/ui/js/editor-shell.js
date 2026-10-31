@@ -24,6 +24,8 @@ const Studio = (function () {
    * opts :
    *   container               → élément où monter l'éditeur (#m2-root)
    *   title, subtitle         → en-tête de la barre d'édition
+   *   site                    → données en cours d'édition (couleurs déjà
+   *                             employées, proposées par les sélecteurs)
    *   snapshot() / restore(s) → état sérialisé, pour annuler / rétablir
    *   save()                  → Promise du site enregistré
    *   onPick(id, event)       → clic dans la page (id suivi le plus proche, ou null)
@@ -36,6 +38,7 @@ const Studio = (function () {
     const container = opts.container;
     container.innerHTML = '';
     document.body.classList.add('m2-editing');
+    PropsPanel.setSite(opts.site);
 
     // ── Barre d'édition ──
     const sidebar = el('aside', 'st-sidebar');
@@ -258,6 +261,7 @@ const Studio = (function () {
       document.removeEventListener('keydown', onKeydown);
       window.removeEventListener('beforeunload', onBeforeUnload);
       if (layer.parentNode) layer.parentNode.removeChild(layer);
+      PropsPanel.setSite(null);
       document.body.classList.remove('m2-editing');
       container.innerHTML = '';
     }

@@ -62,6 +62,7 @@ const PropsPanel = (function () {
    * conditionnelles.
    */
   function render(container, items) {
+    _closePalette();
     container.innerHTML = '';
     let body = container;
     items.forEach(it => {
@@ -151,23 +152,50 @@ const PropsPanel = (function () {
 
     // Couleur RVB seule : l'opacité (canal alpha des valeurs #rrggbbaa) est
     // conservée, et se règle sur sa propre ligne (type 'opacity').
+    // Comme dans PowerPoint, le bouton ouvre d'abord les couleurs déjà
+    // employées sur le site ; « Autres couleurs… » ouvre le sélecteur du
+    // navigateur, ancré sur le bouton (champ natif invisible posé dessus).
     color(val, it, id) {
       const cur = normalizeHex8(it.get());
-      const colorInp = _input('color', id, 'pp-color');
-      colorInp.value = cur.slice(0, 7);
+      const wrap = el('span', 'pp-swatch');
+      const swatch = el('button', 'pp-color');
+      swatch.type = 'button'; swatch.id = id; swatch.title = 'Choisir une couleur';
+      swatch.setAttribute('aria-haspopup', 'true');
+      const chip = el('span', 'pp-color__chip');
+      swatch.appendChild(chip);
+      swatch.insertAdjacentHTML('beforeend', svgIcon('M6 9l6 6 6-6', 10));
+      const colorInp = _input('color', null, 'pp-color__native');
+      colorInp.tabIndex = -1; colorInp.setAttribute('aria-hidden', 'true');
       const hexInp = _input('text', null, 'pp-input pp-hex');
       hexInp.maxLength = 7; hexInp.spellcheck = false; hexInp.autocomplete = 'off';
-      hexInp.value = cur.slice(0, 7);
       hexInp.setAttribute('aria-label', (it.label || 'Couleur') + ' (code hexadécimal)');
+      const show = rgb => { colorInp.value = rgb; hexInp.value = rgb; chip.style.background = rgb; };
       const emit = rgb => it.set(rgb + normalizeHex8(it.get()).slice(7, 9));
-      colorInp.addEventListener('input', () => { hexInp.value = colorInp.value; emit(colorInp.value); });
+      const pick = rgb => { show(rgb); emit(rgb); };
+      const openNative = () => {
+        try { colorInp.showPicker(); } catch (e) { colorInp.click(); }
+      };
+      show(cur.slice(0, 7));
+      swatch.addEventListener('click', () => {
+        if (_palette && _palette.anchor === swatch) { _closePalette(); return; }
+        const colors = _usedColors();
+        if (!colors.length) openNative();
+        else _openPalette(swatch, colors, colorInp.value, pick, openNative);
+      });
+      colorInp.addEventListener('input', () => pick(colorInp.value));
       hexInp.addEventListener('input', () => {
         let v = hexInp.value.trim();
         if (!v.startsWith('#')) v = '#' + v;
-        if (/^#[0-9a-fA-F]{6}$/.test(v)) { colorInp.value = v.toLowerCase(); emit(v.toLowerCase()); }
+        if (/^#[0-9a-fA-F]{6}$/.test(v)) {
+          v = v.toLowerCase();
+          colorInp.value = v; chip.style.background = v;
+          emit(v);
+        }
       });
       hexInp.addEventListener('blur', () => { hexInp.value = colorInp.value; });
-      val.appendChild(colorInp);
+      wrap.appendChild(swatch);
+      wrap.appendChild(colorInp);
+      val.appendChild(wrap);
       val.appendChild(hexInp);
     },
 
@@ -359,6 +387,99 @@ const PropsPanel = (function () {
     },
   };
 
+  // ── Couleurs déjà employées sur le site ──
+  // Les données en cours d'édition (setSite, appelé par Studio) sont lues à
+  // chaque ouverture : une couleur choisie à l'instant y figure déjà.
+
+  let _site = null;
+  let _palette = null;   // { anchor, close } de la palette ouverte
+
+  function setSite(site) {
+    _closePalette();
+    _site = site || null;
+  }
+
+  // Toutes les valeurs #rrggbb(aa) du site, les plus fréquentes d'abord
+  // (à égalité, dans l'ordre de rencontre). Une couleur totalement
+  // transparente (alpha 00) n'est pas une couleur « employée ».
+  function _usedColors() {
+    const count = new Map();
+    (function walk(v) {
+      if (typeof v === 'string') {
+        const m = /^#([0-9a-fA-F]{6})([0-9a-fA-F]{2})?$/.exec(v);
+        if (m && m[2] !== '00') {
+          const c = '#' + m[1].toLowerCase();
+          count.set(c, (count.get(c) || 0) + 1);
+        }
+      } else if (v && typeof v === 'object') {
+        Object.values(v).forEach(walk);
+      }
+    })(_site);
+    return [...count.entries()].sort((a, b) => b[1] - a[1]).slice(0, 24).map(e => e[0]);
+  }
+
+  function _openPalette(anchor, colors, cur, onPick, onMore) {
+    _closePalette();
+    const pop = el('div', 'pp-palette');
+    pop.setAttribute('role', 'dialog');
+    pop.setAttribute('aria-label', 'Couleurs du site');
+    pop.appendChild(txt('div', 'pp-palette__title', 'Couleurs du site'));
+    const grid = el('div', 'pp-palette__grid');
+    // Focus sur la couleur actuelle ; sinon sur la palette, pour qu'aucune
+    // pastille n'ait l'air sélectionnée.
+    pop.tabIndex = -1;
+    let focus = pop;
+    colors.forEach(c => {
+      const on = c === cur;
+      const b = el('button', 'pp-palette__swatch' + (on ? ' pp-palette__swatch--on' : ''));
+      b.type = 'button'; b.title = c;
+      b.setAttribute('aria-label', c);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.style.background = c;
+      b.addEventListener('click', () => { _closePalette(); onPick(c); });
+      if (on) focus = b;
+      grid.appendChild(b);
+    });
+    pop.appendChild(grid);
+    pop.appendChild(button('Autres couleurs…', () => { _closePalette(); onMore(); }, 'light'));
+    document.body.appendChild(pop);
+
+    // Sous le bouton, ou au-dessus s'il n'y a pas la place.
+    const r = anchor.getBoundingClientRect();
+    const h = pop.offsetHeight;
+    pop.style.left = Math.max(4, Math.min(r.left, innerWidth - pop.offsetWidth - 4)) + 'px';
+    pop.style.top = (r.bottom + 4 + h > innerHeight ? Math.max(4, r.top - 4 - h) : r.bottom + 4) + 'px';
+
+    const onDown = e => { if (!pop.contains(e.target) && !anchor.contains(e.target)) _closePalette(); };
+    const onKey = e => {
+      if (e.key !== 'Escape') return;
+      e.stopPropagation();
+      _closePalette();
+      anchor.focus();
+    };
+    const onScroll = e => { if (!pop.contains(e.target)) _closePalette(); };
+    document.addEventListener('mousedown', onDown, true);
+    document.addEventListener('keydown', onKey, true);
+    window.addEventListener('scroll', onScroll, true);
+    _palette = {
+      anchor,
+      close() {
+        document.removeEventListener('mousedown', onDown, true);
+        document.removeEventListener('keydown', onKey, true);
+        window.removeEventListener('scroll', onScroll, true);
+        pop.remove();
+      },
+    };
+    focus.focus();
+  }
+
+  function _closePalette() {
+    if (!_palette) return;
+    const p = _palette;
+    _palette = null;
+    p.close();
+  }
+
   function _iconBtn(title, path, onClick, on) {
     const b = el('button', 'pp-iconbtn' + (on ? ' pp-iconbtn--on' : ''));
     b.type = 'button'; b.title = title;
@@ -407,5 +528,5 @@ const PropsPanel = (function () {
     ];
   }
 
-  return { render, textRows, fillRows, spacingRows, button, svgIcon, ALIGN_OPTIONS };
+  return { render, setSite, textRows, fillRows, spacingRows, button, svgIcon, ALIGN_OPTIONS };
 })();

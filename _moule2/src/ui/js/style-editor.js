@@ -53,6 +53,7 @@ const StyleEditor = (function () {
 
     const studio = Studio.open({
       container,
+      site,
       title: 'Style des pages',
       subtitle: "Page d'exemple, jamais publiée",
       snapshot: () => JSON.stringify({ titre_site: site.titre_site, headerStyle: site.home.headerStyle, pagesStyle: site.pagesStyle }),
