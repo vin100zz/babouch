@@ -1,1233 +1,502 @@
 'use strict';
 
-// ── Édition de l'architecture globale du site ───────────────────────────────
-// Deux onglets : page d'accueil (images positionnées) et arborescence
-// (nœuds keyword/label). Remplace le contenu de `container` pendant l'édition
-// et appelle onDone() (sauvegardé ou annulé) pour rendre la main à app.js.
+// ── Plan du site : arborescence des pages ──────────────────────────────────
+// Liste repliable des rubriques et des pages (glisser-déposer pour déplacer),
+// et à droite les réglages de la page sélectionnée : titre, adresse,
+// emplacement, suppression. L'adresse (keyword) d'une nouvelle page suit son
+// titre ; la changer met à jour les liens des blocs de la page d'accueil.
 
 const TreeEditor = (function () {
 
-  let _site = null;      // copie de travail (clone) du JSON complet du site
-  let _container = null;
-  let _onDone = null;
-  let _activeTab = 'home';
-  let _homeKeydownHandler = null;
+  const ICON = {
+    folder: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2h9A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></svg>',
+    page: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>',
+    grip: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>',
+    chev: 'M9 6l6 6-6 6',
+    back: 'M15 6l-6 6 6 6',
+  };
 
-  // Complète un objet de style avec les valeurs par défaut pour les champs
-  // absents (site déjà sauvegardé avant l'ajout d'un nouveau champ, ex :
-  // bordure ajoutée après coup à `section`/`blocTexte`) : sans ça, le popup
-  // afficherait une valeur "vide" divergente de ce que le rendu affiche
-  // réellement (qui, lui, fusionne déjà avec les valeurs par défaut).
-  function _withDefaults(obj, defaults) {
-    return Object.assign({}, defaults, obj || {});
+  /** Adresse (keyword) tirée d'un titre : sans accents, [a-z0-9_-]. */
+  function slugify(s) {
+    return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+      .replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '') || 'page';
   }
-
-  function open(container, siteData, onDone, initialTab) {
-    _container = container;
-    _site = clone(siteData);
-    if (!_site.home) _site.home = { images: [] };
-    if (!Array.isArray(_site.home.images)) _site.home.images = [];
-    _site.home.headerStyle = _withDefaults(_site.home.headerStyle, HomeView.DEFAULT_HEADER_STYLE);
-    _site.home.background = _withDefaults(_site.home.background, HomeView.DEFAULT_BACKGROUND);
-    _site.pagesStyle = _site.pagesStyle || {};
-    _site.pagesStyle.background = _withDefaults(_site.pagesStyle.background, HomeView.DEFAULT_BACKGROUND);
-    _site.pagesStyle.headerBackground = _withDefaults(_site.pagesStyle.headerBackground, HomeView.DEFAULT_HEADER_BACKGROUND);
-    _site.pagesStyle.section = _withDefaults(_site.pagesStyle.section, ContentView.DEFAULT_SECTION_STYLE);
-    _site.pagesStyle.blocTexte = _withDefaults(_site.pagesStyle.blocTexte, ContentView.DEFAULT_BLOC_TEXTE_STYLE);
-    _site.pagesStyle.pageTitle = _withDefaults(_site.pagesStyle.pageTitle, ContentView.DEFAULT_PAGE_TITLE_STYLE);
-    _site.pagesStyle.image = _withDefaults(_site.pagesStyle.image, ContentView.DEFAULT_IMAGE_STYLE);
-    _site.pagesStyle.footerIcon = _withDefaults(_site.pagesStyle.footerIcon, ContentView.DEFAULT_FOOTER_ICON);
-    if (!Array.isArray(_site.chapitres)) _site.chapitres = [];
-    _onDone = onDone;
-    _activeTab = initialTab === 'tree' ? 'tree' : 'home';
-    _render();
+  function uniqueKeyword(base, siblings, self) {
+    let k = base, i = 2;
+    while (siblings.some(n => n !== self && n.keyword === k)) k = base + '-' + (i++);
+    return k;
   }
+  const isFolder = n => !!(n.chapitres && n.chapitres.length);
+  function countLeaves(nodes) {
+    return (nodes || []).reduce((sum, n) => sum + (isFolder(n) ? countLeaves(n.chapitres) : 1), 0);
+  }
+  function plural(n, word) { return n + ' ' + word + (n > 1 ? 's' : ''); }
 
-  function _render() {
-    _container.innerHTML = '';
-    _removeBar();
-    _removeAlignBar();
-    _removeHomeKeydownListener();
-    document.body.appendChild(_buildBar());
-    _container.appendChild(_buildTabsBar());
+  /**
+   * onDone(siteEnregistré|null, nav) : nav = { path, edit } pour ouvrir une
+   * page (edit : directement dans l'éditeur de page) après la fermeture.
+   */
+  function open(container, siteData, onDone) {
+    const site = clone(siteData);
+    if (!Array.isArray(site.chapitres)) site.chapitres = [];
+    if (!site.home) site.home = { images: [] };
+    if (!Array.isArray(site.home.images)) site.home.images = [];
 
-    if (_activeTab === 'home') {
-      // Header + canevas partagent un même fond (comme en lecture, voir
-      // app.js::renderHome) : le fond continue derrière le header, visible à
-      // travers lui dès qu'il a de la transparence.
-      const page = el('div', 'm2-home-page');
-      HomeView.applyBackgroundStyle(page, _site.home.background);
-      page.appendChild(_buildHeader());
-      const panel = el('div', 'ed-panel');
-      panel.appendChild(_buildHomeEditor(page));
-      page.appendChild(panel);
-      _container.appendChild(page);
-    } else if (_activeTab === 'pages') {
-      // Même principe : header + petit aperçu de fond en haut (cliquables),
-      // puis en dessous, dans un panneau neutre, les styles des éléments de
-      // contenu (section, bloc TEXTE, image).
-      const page = el('div', 'm2-home-page ed-pages-preview');
-      page.title = 'Cliquer pour modifier le fond des pages';
-      HomeView.applyBackgroundStyle(page, _site.pagesStyle.background);
-      page.addEventListener('click', e => {
-        if (e.target === page) _openBackgroundPopup(page, _site.pagesStyle.background, 'Style du fond des pages');
-      });
-      page.appendChild(_buildHeader());
-      page.appendChild(txt('div', 'ed-pages-preview__hint', 'Cliquer pour modifier le fond des pages'));
-      _container.appendChild(page);
-      const panel = el('div', 'ed-panel');
-      panel.appendChild(_buildPagesStyleEditor());
-      _container.appendChild(panel);
-    } else {
-      // Même principe que l'onglet Page d'accueil : le header (transparent
-      // par défaut) a besoin d'un fond derrière lui pour que son style soit
-      // visible, sinon il apparaît à plat même quand une image de fond est
-      // configurée. Fond des pages enfants (pas celui de la page d'accueil) :
-      // l'arborescence liste les pages du site, pas la page d'accueil elle-même.
-      const page = el('div', 'm2-home-page');
-      HomeView.applyBackgroundStyle(page, _site.pagesStyle.background);
-      page.appendChild(_buildHeader());
-      _container.appendChild(page);
-      const panel = el('div', 'ed-panel');
-      panel.appendChild(_buildTreeEditor());
-      _container.appendChild(panel);
+    const openNodes = new WeakSet();   // rubriques dépliées
+    const fresh = new WeakSet();       // pages créées ici : l'adresse suit le titre
+    let sel = null, query = '', keywordOpen = false;
+    let dirty = false, savedSite = null;
+    const undoStack = [], redoStack = [];
+    let lastKey = null, lastAt = 0;
+    let dragNode = null;
+
+    container.innerHTML = '';
+    const root = el('div', 'pl');
+    container.appendChild(root);
+
+    // ── Barre du haut ──
+    const top = el('div', 'pl-top');
+    const back = el('button', 'pl-back');
+    back.type = 'button';
+    back.innerHTML = PropsPanel.svgIcon(ICON.back);
+    back.appendChild(document.createTextNode('Retour au site'));
+    const titles = el('div', 'pl-top__titles');
+    titles.appendChild(txt('div', 'st-top__sub', site.titre_site || SITE_NAME));
+    titles.appendChild(txt('div', 'pl-top__title', 'Plan du site'));
+    const status = el('span', 'st-status__text');
+    const dot = el('span', 'st-status__dot');
+    const undoBtn = el('button', 'st-iconbtn');
+    undoBtn.type = 'button'; undoBtn.title = 'Annuler (Ctrl+Z)'; undoBtn.setAttribute('aria-label', 'Annuler la dernière modification');
+    undoBtn.innerHTML = PropsPanel.svgIcon('M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3');
+    const redoBtn = el('button', 'st-iconbtn');
+    redoBtn.type = 'button'; redoBtn.title = 'Rétablir (Ctrl+Y)'; redoBtn.setAttribute('aria-label', 'Rétablir');
+    redoBtn.innerHTML = PropsPanel.svgIcon('M15 14l5-5-5-5M20 9H10a6 6 0 0 0 0 12h3');
+    const saveBtn = txt('button', 'st-save', 'Enregistrer');
+    saveBtn.type = 'button';
+    [back, titles, dot, status, undoBtn, redoBtn, saveBtn].forEach(n => top.appendChild(n));
+    root.appendChild(top);
+
+    const body = el('div', 'pl-body');
+    const treeCard = el('section', 'pl-card pl-tree');
+    treeCard.setAttribute('aria-label', 'Pages du site');
+    const details = el('aside', 'pl-card pl-details');
+    details.setAttribute('aria-label', 'Page sélectionnée');
+    body.appendChild(treeCard);
+    body.appendChild(details);
+    root.appendChild(body);
+
+    // Barre d'outils de la liste (construite une fois : le champ de recherche
+    // garde ainsi le focus pendant la frappe).
+    const toolbar = el('div', 'pl-toolbar');
+    const addBtn = PropsPanel.button('+ Nouvelle page', () => addPage());
+    const search = document.createElement('input');
+    search.type = 'search'; search.className = 'pp-input pl-search';
+    search.placeholder = 'Rechercher une page…';
+    search.setAttribute('aria-label', 'Rechercher une page');
+    search.addEventListener('input', () => { query = search.value.trim().toLowerCase(); renderTree(); });
+    const expandBtn = PropsPanel.button('Tout déplier', () => { allFolders(site.chapitres).forEach(n => openNodes.add(n)); renderTree(); }, 'light');
+    const collapseBtn = PropsPanel.button('Tout replier', () => { allFolders(site.chapitres).forEach(n => openNodes.delete(n)); renderTree(); }, 'light');
+    [addBtn, search, expandBtn, collapseBtn].forEach(n => toolbar.appendChild(n));
+    treeCard.appendChild(toolbar);
+    const countEl = el('div', 'pl-count');
+    treeCard.appendChild(countEl);
+    const list = el('div', 'pl-list');
+    list.setAttribute('role', 'tree');
+    treeCard.appendChild(list);
+
+    function allFolders(nodes) {
+      let out = [];
+      (nodes || []).forEach(n => { if (isFolder(n)) out = out.concat([n], allFolders(n.chapitres)); });
+      return out;
     }
-  }
 
-  function _buildTabsBar() {
-    const bar = el('div', 'm2-tabsbar');
-    const tabHome = txt('button', 'm2-tab' + (_activeTab === 'home' ? ' m2-tab--active' : ''), 'Page d\'accueil');
-    tabHome.type = 'button';
-    const tabTree = txt('button', 'm2-tab' + (_activeTab === 'tree' ? ' m2-tab--active' : ''), 'Arborescence');
-    tabTree.type = 'button';
-    const tabPages = txt('button', 'm2-tab' + (_activeTab === 'pages' ? ' m2-tab--active' : ''), 'Style des pages');
-    tabPages.type = 'button';
-    tabHome.addEventListener('click', () => { _activeTab = 'home'; _render(); });
-    tabTree.addEventListener('click', () => { _activeTab = 'tree'; _render(); });
-    tabPages.addEventListener('click', () => { _activeTab = 'pages'; _render(); });
-    bar.appendChild(tabHome); bar.appendChild(tabTree); bar.appendChild(tabPages);
-    return bar;
-  }
-
-  function _buildHeader() {
-    const editable = _activeTab === 'home' || _activeTab === 'pages';
-    const header = el('div', 'm2-header' + (editable ? ' m2-header--editable' : ''));
-    const left = el('div', 'm2-header__left');
-    left.appendChild(txt('span', 'm2-header__title', _site.titre_site || SITE_NAME));
-    header.appendChild(left);
-    // Image de fond du header : propre à la page d'accueil ou aux autres
-    // pages selon l'onglet actif (voir applyHeaderStyle dans home-view.js).
-    // L'onglet Arborescence n'édite pas la page d'accueil : il doit refléter
-    // le style des pages enfants, comme l'onglet Style des pages.
-    const imageStyle = (_activeTab === 'pages' || _activeTab === 'tree') ? _site.pagesStyle.headerBackground : _site.home.headerStyle;
-    HomeView.applyHeaderStyle(header, _site.home.headerStyle, imageStyle);
-    if (editable) {
-      header.title = 'Cliquer pour modifier le style du header';
-      header.addEventListener('click', () => _openHeaderStylePopup(header, imageStyle));
+    // ── Historique + enregistrement ──
+    const snapshot = () => JSON.stringify({ chapitres: site.chapitres, images: site.home.images });
+    function record(key) {
+      if (key && key === lastKey && Date.now() - lastAt < 1200) { lastAt = Date.now(); return; }
+      undoStack.push(snapshot()); redoStack.length = 0;
+      lastKey = key || null; lastAt = Date.now();
     }
-    return header;
-  }
-
-  function _buildBar() {
-    const bar = el('div', 'ed-bar');
-    bar.id = 'ed-fixed-bar';
-    const s = el('button', 'ed-btn ed-btn--save');
-    s.type = 'button'; s.textContent = 'Enregistrer'; s.addEventListener('click', _save);
-    const c = el('button', 'ed-btn ed-btn--cancel');
-    c.type = 'button'; c.textContent = 'Annuler';
-    c.addEventListener('click', () => { _removeBar(); _removeAlignBar(); _removeHomeKeydownListener(); _onDone(null); });
-    bar.appendChild(s); bar.appendChild(c);
-    return bar;
-  }
-  function _removeBar() {
-    const b = document.getElementById('ed-fixed-bar');
-    if (b) b.parentNode.removeChild(b);
-  }
-  function _removeAlignBar() {
-    const b = document.getElementById('m2-align-bar');
-    if (b) b.parentNode.removeChild(b);
-  }
-  function _removeHomeKeydownListener() {
-    if (_homeKeydownHandler) {
-      document.removeEventListener('keydown', _homeKeydownHandler);
-      _homeKeydownHandler = null;
+    function restore(s) {
+      const d = JSON.parse(s);
+      site.chapitres = d.chapitres;
+      site.home.images = d.images;
+      sel = null;
+      lastKey = null;
+      changed();
     }
-  }
-  function _isEditableTarget(el) {
-    if (!el) return false;
-    const tag = el.tagName;
-    return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el.isContentEditable;
-  }
-
-  async function _save() {
-    const btn = document.getElementById('ed-fixed-bar').querySelector('.ed-btn--save');
-    btn.disabled = true; btn.textContent = 'Enregistrement…';
-    try {
-      const saved = await Api.saveSite(_site);
-      _removeBar();
-      _removeAlignBar();
-      _removeHomeKeydownListener();
-      _onDone(saved.data);
-    } catch (e) {
-      alert('Erreur lors de la sauvegarde :\n' + e.message);
-      btn.disabled = false; btn.textContent = 'Enregistrer';
+    function undo() { if (undoStack.length) { redoStack.push(snapshot()); restore(undoStack.pop()); } }
+    function redo() { if (redoStack.length) { undoStack.push(snapshot()); restore(redoStack.pop()); } }
+    function changed() { dirty = true; renderAll(); }
+    function renderStatus() {
+      status.textContent = dirty ? 'Non enregistré' : (savedSite ? 'Enregistré' : 'Aucune modification');
+      dot.className = 'st-status__dot' + (dirty ? ' st-status__dot--dirty' : (savedSite ? ' st-status__dot--ok' : ''));
+      saveBtn.disabled = !dirty;
+      undoBtn.disabled = !undoStack.length;
+      redoBtn.disabled = !redoStack.length;
     }
-  }
-
-  // ── Liste des pages de niveau 1 (pour le sélecteur de lien) ─────────────
-  // La racine de l'arbre est le niveau 0 : seuls ses enfants directs
-  // (niveau 1) sont proposés comme cible de lien depuis la page d'accueil.
-
-  function _flatten(chapitres) {
-    return (chapitres || []).map(node => ({
-      path: node.keyword,
-      label: node.label || node.keyword || '(sans nom)',
-    }));
-  }
-
-  // ── Onglet Page d'accueil ────────────────────────────────────────────────
-  // Rendu du canevas strictement identique à la lecture (HomeView.render) :
-  // seul le comportement change (glisser-déposer + popup au lieu de la
-  // navigation). Pas de barre latérale : un bouton flottant pour ajouter une
-  // image, une popup pour éditer celle sur laquelle on clique.
-
-  function _buildHomeEditor(pageEl) {
-    const images = _site.home.images;
-    const flatNodes = _flatten(_site.chapitres);
-    const wrap = el('div', 'm2-home m2-home--editable');
-    // Le fond est appliqué sur `pageEl` (voir _render), pas ici, pour qu'il
-    // continue derrière le header. Clic sur le fond (en dehors de toute
-    // vignette) : ouvre l'édition du style de fond. Le canevas est un enfant
-    // de `wrap` mais ne couvre pas toujours toute la zone visible (marges,
-    // zone vide sous les images) ; écouter sur `wrap` et vérifier la cible
-    // couvre les deux cas.
-    wrap.addEventListener('click', e => {
-      if (e.target === wrap || e.target.classList.contains('m2-home__canvas')) {
-        _openBackgroundPopup(pageEl, _site.home.background);
+    async function save() {
+      if (!dirty) return true;
+      saveBtn.disabled = true;
+      status.textContent = 'Enregistrement…';
+      try {
+        savedSite = (await Api.saveSite(site)).data;
+        dirty = false;
+        renderStatus();
+        return true;
+      } catch (e) {
+        renderStatus();
+        alert('Erreur lors de la sauvegarde :\n' + e.message);
+        return false;
       }
-    });
-
-    // Sélection multiple (Ctrl+clic) : Set d'images + Map image→vignette DOM
-    // (pour le glissé groupé et l'alignement). Persistent tant que l'onglet
-    // Page d'accueil reste monté ; réinitialisé à chaque refresh() sur les
-    // images qui existent encore.
-    const selection = new Set();
-    const thumbMap = new Map();
-    let alignBar = null;
-
-    function refresh() {
-      for (const img of [...selection]) {
-        if (images.indexOf(img) === -1) selection.delete(img);
+    }
+    // Quitter vers une page : propose d'enregistrer d'abord.
+    async function leave(nav) {
+      if (dirty) {
+        if (confirm('Enregistrer les modifications du plan du site avant de continuer ?')) {
+          if (!(await save())) return;
+        } else if (!confirm('Quitter sans enregistrer ? Vos modifications seront perdues.')) {
+          return;
+        }
       }
-      wrap.innerHTML = '';
-      thumbMap.clear();
+      close();
+      onDone(savedSite, nav || null);
+    }
+    function onKeydown(e) {
+      const mod = e.ctrlKey || e.metaKey;
+      if (mod && e.key.toLowerCase() === 's') { e.preventDefault(); save(); return; }
+      if (Studio.isTyping(e.target)) return;
+      if (mod && e.key.toLowerCase() === 'z' && !e.shiftKey) { e.preventDefault(); undo(); }
+      else if (mod && (e.key.toLowerCase() === 'y' || (e.key.toLowerCase() === 'z' && e.shiftKey))) { e.preventDefault(); redo(); }
+    }
+    function onBeforeUnload(e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } }
+    function close() {
+      document.removeEventListener('keydown', onKeydown);
+      window.removeEventListener('beforeunload', onBeforeUnload);
+      container.innerHTML = '';
+    }
+    document.addEventListener('keydown', onKeydown);
+    window.addEventListener('beforeunload', onBeforeUnload);
+    back.addEventListener('click', () => leave(null));
+    saveBtn.addEventListener('click', save);
+    undoBtn.addEventListener('click', undo);
+    redoBtn.addEventListener('click', redo);
 
-      const canvas = el('div', 'm2-home__canvas');
-      canvas.addEventListener('mousedown', e => {
-        if (e.target === canvas && selection.size > 0) { selection.clear(); refresh(); }
+    // ── Repères dans l'arbre ──
+    function parentInfo(target, nodes, parent) {
+      nodes = nodes || site.chapitres;
+      for (const n of nodes) {
+        if (n === target) return { parent: parent || null, siblings: nodes };
+        if (n.chapitres) {
+          const r = parentInfo(target, n.chapitres, n);
+          if (r) return r;
+        }
+      }
+      return null;
+    }
+    function pathOf(target) {
+      const p = [];
+      let n = target;
+      while (n) { p.unshift(n.keyword); const info = parentInfo(n); n = info && info.parent; }
+      return p.join('/');
+    }
+    const contains = (rootNode, target) => rootNode === target || (rootNode.chapitres || []).some(c => contains(c, target));
+
+    // ── Opérations ──
+    function newNode() {
+      const n = { keyword: '', label: 'Nouvelle page', chapitres: [], sections: [] };
+      fresh.add(n);
+      return n;
+    }
+    function addPage() {
+      record(null);
+      const n = newNode();
+      let siblings = site.chapitres, at = siblings.length;
+      if (sel && isFolder(sel)) { siblings = sel.chapitres; at = siblings.length; openNodes.add(sel); }
+      else if (sel) { const info = parentInfo(sel); siblings = info.siblings; at = siblings.indexOf(sel) + 1; }
+      n.keyword = uniqueKeyword(slugify(n.label), siblings, n);
+      siblings.splice(at, 0, n);
+      sel = n;
+      changed();
+      focusTitle();
+    }
+    function addChild(node) {
+      if (!isFolder(node) && node.sections && node.sections.length &&
+          !confirm('« ' + (node.label || node.keyword) + ' » contient ' + plural(node.sections.length, 'section') +
+                   ' de contenu, qui seront perdues en la transformant en rubrique. Continuer ?')) return;
+      record(null);
+      const n = newNode();
+      node.chapitres = node.chapitres || [];
+      n.keyword = uniqueKeyword(slugify(n.label), node.chapitres, n);
+      node.chapitres.push(n);
+      delete node.sections;
+      openNodes.add(node);
+      sel = n;
+      changed();
+      focusTitle();
+    }
+    function remove(node) {
+      const info = parentInfo(node);
+      const n = isFolder(node) ? countLeaves(node.chapitres) : 0;
+      const msg = isFolder(node)
+        ? 'Supprimer la rubrique « ' + (node.label || node.keyword) + ' » et ses ' + plural(n, 'page') + ' ?'
+        : 'Supprimer la page « ' + (node.label || node.keyword) + ' » et tout son contenu ?';
+      if (!confirm(msg)) return;
+      record(null);
+      info.siblings.splice(info.siblings.indexOf(node), 1);
+      // Une rubrique vidée redevient une page (vide).
+      if (info.parent && !info.parent.chapitres.length) info.parent.sections = [];
+      // Liens de l'accueil vers une page de premier niveau supprimée.
+      if (!info.parent) site.home.images.forEach(img => { if (img.lien === node.keyword) img.lien = null; });
+      sel = null;
+      changed();
+    }
+    // Déplace `node` dans `newParent` (null : en haut du site), à la fin, ou
+    // juste avant / après `anchor` (un de ses futurs frères).
+    function moveTo(node, newParent, anchor, after) {
+      const from = parentInfo(node);
+      const oldPath = from.parent ? null : node.keyword;
+      from.siblings.splice(from.siblings.indexOf(node), 1);
+      if (from.parent && !from.parent.chapitres.length) from.parent.sections = [];
+      const siblings = newParent ? (newParent.chapitres = newParent.chapitres || []) : site.chapitres;
+      if (newParent) { delete newParent.sections; openNodes.add(newParent); }
+      node.keyword = uniqueKeyword(node.keyword, siblings, node);
+      const index = anchor ? siblings.indexOf(anchor) + (after ? 1 : 0) : siblings.length;
+      siblings.splice(index, 0, node);
+      // Une page de premier niveau qui descend d'un niveau n'est plus une
+      // cible de lien de l'accueil.
+      if (oldPath && newParent) site.home.images.forEach(img => { if (img.lien === oldPath) img.lien = null; });
+    }
+    function setKeyword(node, raw) {
+      const info = parentInfo(node);
+      const old = node.keyword;
+      const k = uniqueKeyword(slugify(raw), info.siblings, node);
+      node.keyword = k;
+      if (!info.parent && old !== k) site.home.images.forEach(img => { if (img.lien === old) img.lien = k; });
+    }
+
+    // ── Liste ──
+    function matches(node) {
+      if (!query) return true;
+      return (node.label || node.keyword || '').toLowerCase().includes(query) || (node.chapitres || []).some(matches);
+    }
+    function renderTree() {
+      list.innerHTML = '';
+      countEl.textContent = plural(countLeaves(site.chapitres), 'page') + ' · glissez une ligne par sa poignée pour la déplacer';
+      addBtn.textContent = sel && isFolder(sel) ? '+ Nouvelle page dans « ' + (sel.label || sel.keyword) + ' »' : '+ Nouvelle page';
+      const walk = (nodes, depth) => nodes.forEach(n => {
+        if (!matches(n)) return;
+        list.appendChild(renderRow(n, depth));
+        if (isFolder(n) && (openNodes.has(n) || query)) walk(n.chapitres, depth + 1);
       });
+      walk(site.chapitres, 0);
+      if (!site.chapitres.length) list.appendChild(txt('div', 'pp-hint', 'Aucune page pour le moment : cliquez sur « + Nouvelle page ».'));
+    }
 
-      if (images.length === 0) {
-        canvas.appendChild(txt('div', 'm2-home__empty', 'Aucune image sur la page d\'accueil. Clique sur "Ajouter une image" pour en ajouter une.'));
-      } else {
-        images.forEach(img => {
-          const thumb = HomeView.buildThumb(img, {
-            editable: true,
-            selectedSet: selection,
-            onClick: (im, th) => {
-              // Un clic simple sélectionne aussi l'image (comme Ctrl+clic,
-              // mais en remplaçant plutôt qu'en ajoutant à la sélection), en
-              // plus d'ouvrir sa popup d'édition.
-              // Ne pas rafraîchir tout le canevas ici : la popup garde une
-              // référence directe à `th` pour ses mises à jour en direct, un
-              // refresh() la détacherait du DOM. On met juste à jour
-              // l'affichage de la sélection à la main.
-              selection.clear();
-              selection.add(im);
-              thumbMap.forEach(t => t.classList.remove('m2-thumb--multiselected'));
-              th.classList.add('m2-thumb--multiselected');
-              _removeAlignBar();
-              _openImagePopup(im, th, flatNodes, () => {
-                images.splice(images.indexOf(im), 1);
-                refresh();
-              });
-            },
-            onToggleSelect: (im) => {
-              if (selection.has(im)) selection.delete(im); else selection.add(im);
-              refresh();
-            },
-            getSelectionGroup: (im) => {
-              if (selection.size > 1 && selection.has(im)) {
-                return [...selection].map(i => ({ img: i, thumb: thumbMap.get(i) }));
-              }
-              return [{ img: im, thumb: thumbMap.get(im) }];
-            },
-          });
-          thumbMap.set(img, thumb);
-          canvas.appendChild(thumb);
+    function renderRow(node, depth) {
+      const folder = isFolder(node);
+      const row = el('div', 'pl-row' + (node === sel ? ' pl-row--sel' : ''));
+      row.setAttribute('role', 'treeitem');
+      row.setAttribute('aria-selected', node === sel ? 'true' : 'false');
+      if (folder) row.setAttribute('aria-expanded', openNodes.has(node) ? 'true' : 'false');
+      row.draggable = true;
+
+      const grip = el('span', 'pl-grip');
+      grip.innerHTML = ICON.grip;
+      grip.title = 'Glisser pour déplacer';
+      row.appendChild(grip);
+      const indent = el('span', 'pl-indent');
+      indent.style.width = (depth * 24) + 'px';
+      row.appendChild(indent);
+
+      if (folder) {
+        const chev = el('button', 'pl-chev' + (openNodes.has(node) ? ' pl-chev--open' : ''));
+        chev.type = 'button';
+        chev.setAttribute('aria-label', (openNodes.has(node) ? 'Replier ' : 'Déplier ') + (node.label || node.keyword));
+        chev.innerHTML = PropsPanel.svgIcon(ICON.chev, 14);
+        chev.addEventListener('click', e => {
+          e.stopPropagation();
+          if (openNodes.has(node)) openNodes.delete(node); else openNodes.add(node);
+          renderTree();
         });
+        row.appendChild(chev);
+      } else {
+        row.appendChild(el('span', 'pl-chev-spacer'));
       }
-      wrap.appendChild(canvas);
 
-      const addBtn = txt('button', 'm2-home-add-btn', '+ Ajouter une image');
-      addBtn.type = 'button'; addBtn.title = 'Ajouter une image';
-      addBtn.addEventListener('click', () => {
-        FileBrowser.open(path => {
-          images.push({ id: uid('img_'), image: path, x: 100, y: 100, texte: '', lien: null });
-          refresh();
-        }, { root: 'style', rootLabel: 'style', type: 'image' });
+      const main = el('button', 'pl-row__main');
+      main.type = 'button';
+      main.innerHTML = folder ? ICON.folder : ICON.page;
+      main.appendChild(txt('span', 'pl-row__label' + (depth === 0 ? ' pl-row__label--top' : ''), node.label || node.keyword || '(sans titre)'));
+      main.appendChild(txt('span', 'pl-row__meta', folder ? plural(countLeaves(node.chapitres), 'page')
+        : (node.sections && node.sections.length ? plural(node.sections.length, 'section') : 'page vide')));
+      main.addEventListener('click', () => { sel = node; keywordOpen = false; renderAll(); });
+      row.appendChild(main);
+
+      if (node === sel) {
+        const acts = el('div', 'pl-row__acts');
+        acts.appendChild(PropsPanel.button('+ Sous-page', () => addChild(node), 'sm'));
+        acts.appendChild(PropsPanel.button('Ouvrir', () => leave({ path: pathOf(node), edit: false }), 'sm'));
+        row.appendChild(acts);
+      }
+
+      // Glisser-déposer : avant / après la ligne, ou dedans (milieu).
+      row.addEventListener('dragstart', e => {
+        dragNode = node;
+        row.classList.add('pl-row--dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', node.label || '');
       });
-      wrap.appendChild(addBtn);
-
-      if (alignBar) { alignBar.remove(); alignBar = null; }
-      if (selection.size > 1) {
-        alignBar = _buildAlignBar(selection, thumbMap, refresh);
-        document.body.appendChild(alignBar);
-      }
-    }
-
-    refresh();
-
-    // Ctrl/Cmd+A : sélectionne toutes les images (pour aligner/déplacer le
-    // groupe), au lieu de la sélection de texte native du navigateur. Ignoré
-    // si le focus est sur un champ de saisie (ex : titre dans la popup image).
-    _removeHomeKeydownListener();
-    _homeKeydownHandler = e => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'a' && !_isEditableTarget(document.activeElement)) {
+      row.addEventListener('dragend', () => { row.classList.remove('pl-row--dragging'); dragNode = null; });
+      const zone = e => {
+        const r = row.getBoundingClientRect();
+        const ratio = (e.clientY - r.top) / r.height;
+        return ratio < .28 ? 'before' : (ratio > .72 ? 'after' : 'into');
+      };
+      const clearDrop = () => row.classList.remove('pl-row--drop-before', 'pl-row--drop-after', 'pl-row--drop-into');
+      row.addEventListener('dragover', e => {
+        if (!dragNode || contains(dragNode, node)) return;
         e.preventDefault();
-        images.forEach(img => selection.add(img));
-        refresh();
-      }
-    };
-    document.addEventListener('keydown', _homeKeydownHandler);
-
-    return wrap;
-  }
-
-  function _buildAlignBar(selection, thumbMap, refresh) {
-    const bar = el('div', 'm2-align-bar');
-    bar.id = 'm2-align-bar';
-    bar.appendChild(txt('span', 'm2-align-count', selection.size + ' images sélectionnées'));
-    bar.appendChild(txt('span', 'm2-align-label', 'Aligner :'));
-
-    function alignBtn(label, title, mode) {
-      const btn = txt('button', 'm2-align-btn', label);
-      btn.type = 'button'; btn.title = title;
-      btn.addEventListener('click', () => { _alignSelection(selection, thumbMap, mode); refresh(); });
-      return btn;
+        const z = zone(e);
+        row.classList.toggle('pl-row--drop-before', z === 'before');
+        row.classList.toggle('pl-row--drop-after', z === 'after');
+        row.classList.toggle('pl-row--drop-into', z === 'into');
+      });
+      row.addEventListener('dragleave', clearDrop);
+      row.addEventListener('drop', e => {
+        e.preventDefault();
+        clearDrop();
+        if (!dragNode || contains(dragNode, node)) return;
+        const z = zone(e);
+        if (z === 'into' && !isFolder(node) && node.sections && node.sections.length &&
+            !confirm('« ' + (node.label || node.keyword) + ' » contient ' + plural(node.sections.length, 'section') +
+                     ' de contenu, qui seront perdues en la transformant en rubrique. Continuer ?')) return;
+        record(null);
+        const moving = dragNode;
+        if (z === 'into') moveTo(moving, node, null);
+        else moveTo(moving, parentInfo(node).parent, node, z === 'after');
+        sel = moving;
+        dragNode = null;
+        changed();
+      });
+      return row;
     }
 
-    const hGroup = el('div', 'm2-align-group');
-    hGroup.appendChild(alignBtn('Gauche', 'Aligner à gauche', 'left'));
-    hGroup.appendChild(alignBtn('Centre', 'Centrer horizontalement', 'hcenter'));
-    hGroup.appendChild(alignBtn('Droite', 'Aligner à droite', 'right'));
-    bar.appendChild(hGroup);
-
-    const vGroup = el('div', 'm2-align-group');
-    vGroup.appendChild(alignBtn('Haut', 'Aligner en haut', 'top'));
-    vGroup.appendChild(alignBtn('Milieu', 'Centrer verticalement', 'vcenter'));
-    vGroup.appendChild(alignBtn('Bas', 'Aligner en bas', 'bottom'));
-    bar.appendChild(vGroup);
-
-    return bar;
-  }
-
-  /** Aligne les images sélectionnées sur un même bord/centre (horizontal ou vertical). */
-  function _alignSelection(selection, thumbMap, mode) {
-    const items = [...selection].map(img => {
-      const thumb = thumbMap.get(img);
-      const imEl = thumb ? thumb.querySelector('img') : null;
-      return { img, w: (imEl && imEl.offsetWidth) || 140, h: (imEl && imEl.offsetHeight) || 140 };
-    });
-    if (items.length < 2) return;
-
-    switch (mode) {
-      case 'left': {
-        const v = Math.min(...items.map(it => it.img.x - it.w / 2));
-        items.forEach(it => { it.img.x = Math.max(-CANVAS_ORIGIN_X, v + it.w / 2); });
-        break;
-      }
-      case 'right': {
-        const v = Math.max(...items.map(it => it.img.x + it.w / 2));
-        items.forEach(it => { it.img.x = Math.max(-CANVAS_ORIGIN_X, v - it.w / 2); });
-        break;
-      }
-      case 'hcenter': {
-        const v = items.reduce((s, it) => s + it.img.x, 0) / items.length;
-        items.forEach(it => { it.img.x = Math.max(-CANVAS_ORIGIN_X, v); });
-        break;
-      }
-      case 'top': {
-        const v = Math.min(...items.map(it => it.img.y - it.h / 2));
-        items.forEach(it => { it.img.y = Math.max(-CANVAS_ORIGIN_Y, v + it.h / 2); });
-        break;
-      }
-      case 'bottom': {
-        const v = Math.max(...items.map(it => it.img.y + it.h / 2));
-        items.forEach(it => { it.img.y = Math.max(-CANVAS_ORIGIN_Y, v - it.h / 2); });
-        break;
-      }
-      case 'vcenter': {
-        const v = items.reduce((s, it) => s + it.img.y, 0) / items.length;
-        items.forEach(it => { it.img.y = Math.max(-CANVAS_ORIGIN_Y, v); });
-        break;
-      }
+    // ── Détails de la page sélectionnée ──
+    function focusTitle() {
+      const inp = details.querySelector('#pl-title');
+      if (inp) { inp.focus(); inp.select(); }
     }
-  }
-
-  function _openImagePopup(img, thumb, flatNodes, onDelete) {
-    // Instantané des champs modifiables ici, pour pouvoir les restaurer si
-    // l'utilisateur ferme sans valider (croix ou clic hors de la popup).
-    const original = { image: img.image, texte: img.texte, lien: img.lien, x: img.x, y: img.y };
-
-    // Popup flottante, positionnée près de la vignette : pas d'overlay plein
-    // écran, le reste du canevas reste visible et manipulable pendant l'édition.
-    const popup = el('div', 'ed-popup ed-popup--floating');
-
-    const closeX = el('button', 'ed-popup__close');
-    closeX.type = 'button'; closeX.title = 'Fermer sans enregistrer'; closeX.textContent = '✕';
-    closeX.addEventListener('click', () => _cancelAndClose());
-    popup.appendChild(closeX);
-
-    function _close() {
-      document.body.removeChild(popup);
-      document.removeEventListener('mousedown', _onOutsideClick, true);
+    function field(labelText, control, id) {
+      const f = el('div', 'pl-field');
+      const l = txt('label', 'pl-field__label', labelText);
+      if (id) l.htmlFor = id;
+      f.appendChild(l);
+      f.appendChild(control);
+      return f;
     }
-    function _cancelAndClose() {
-      Object.assign(img, original);
-      HomeView.updateThumb(thumb, img);
-      thumb.style.left = (img.x + CANVAS_ORIGIN_X) + 'px';
-      thumb.style.top = (img.y + CANVAS_ORIGIN_Y) + 'px';
-      _close();
+    function folderOptions(node) {
+      const out = [['', 'En haut du site']];
+      const walk = (nodes, depth) => nodes.forEach(n => {
+        if (contains(node, n)) return;
+        if (isFolder(n)) out.push([pathOf(n), '  '.repeat(depth) + (n.label || n.keyword)]);
+        if (n.chapitres) walk(n.chapitres, depth + 1);
+      });
+      walk(site.chapitres, 1);
+      return out;
     }
-    function _onOutsideClick(e) {
-      if (popup.contains(e.target)) return;
-      // L'explorateur de documents (ouvert depuis la popup, ex : changer
-      // l'image) est un modal séparé au-dessus : ne pas fermer la popup
-      // quand on interagit avec.
-      if (e.target.closest && e.target.closest('.imgbr-overlay')) return;
-      _cancelAndClose();
+    function nodeByPath(path) {
+      let nodes = site.chapitres, node = null;
+      path.split('/').forEach(k => { node = (nodes || []).find(n => n.keyword === k); nodes = node && node.chapitres; });
+      return node;
     }
 
-    const preview = el('div', 'ed-img-block__img');
-    const texteInp = document.createElement('input');
-    texteInp.type = 'text'; texteInp.className = 'ed-popup__title-input'; texteInp.placeholder = 'Titre / texte affiché';
-    texteInp.value = img.texte || '';
-    texteInp.addEventListener('input', () => {
-      img.texte = texteInp.value || null;
-      HomeView.updateThumb(thumb, img);
-    });
-    popup.appendChild(texteInp);
-
-    preview.style.cursor = 'pointer';
-    preview.title = 'Cliquer pour changer l\'image';
-    function refreshPreview() {
-      preview.innerHTML = '';
-      const im = document.createElement('img');
-      im.src = 'style/' + img.image;
-      preview.appendChild(im);
-    }
-    refreshPreview();
-    preview.addEventListener('click', () => {
-      FileBrowser.open(path => {
-        img.image = path;
-        refreshPreview();
-        HomeView.updateThumb(thumb, img);
-      }, { root: 'style', rootLabel: 'style', type: 'image' });
-    });
-    popup.appendChild(preview);
-
-    const lienField = el('div', 'ed-field');
-    lienField.appendChild(txt('label', 'ed-label', 'Lien vers'));
-    const lienSel = document.createElement('select');
-    lienSel.className = 'ed-input';
-    const optNone = document.createElement('option');
-    optNone.value = ''; optNone.textContent = '(aucun lien)';
-    lienSel.appendChild(optNone);
-    flatNodes.forEach(n => {
-      const opt = document.createElement('option');
-      opt.value = n.path; opt.textContent = n.label;
-      if (img.lien === n.path) opt.selected = true;
-      lienSel.appendChild(opt);
-    });
-    lienSel.addEventListener('change', () => { img.lien = lienSel.value || null; });
-    lienField.appendChild(lienSel);
-    popup.appendChild(lienField);
-
-    const posRow = el('div', '');
-    posRow.style.cssText = 'display:flex;gap:10px;';
-    const xField = el('div', 'ed-field'); xField.style.flex = '1';
-    xField.appendChild(txt('label', 'ed-label', 'x'));
-    const xInp = document.createElement('input');
-    xInp.type = 'number'; xInp.className = 'ed-input'; xInp.value = img.x;
-    xInp.addEventListener('input', () => {
-      img.x = Math.max(-CANVAS_ORIGIN_X, +xInp.value || 0);
-      thumb.style.left = (img.x + CANVAS_ORIGIN_X) + 'px';
-    });
-    xField.appendChild(xInp);
-    const yField = el('div', 'ed-field'); yField.style.flex = '1';
-    yField.appendChild(txt('label', 'ed-label', 'y'));
-    const yInp = document.createElement('input');
-    yInp.type = 'number'; yInp.className = 'ed-input'; yInp.value = img.y;
-    yInp.addEventListener('input', () => {
-      img.y = Math.max(-CANVAS_ORIGIN_Y, +yInp.value || 0);
-      thumb.style.top = (img.y + CANVAS_ORIGIN_Y) + 'px';
-    });
-    yField.appendChild(yInp);
-    posRow.appendChild(xField);
-    posRow.appendChild(yField);
-    popup.appendChild(posRow);
-
-    const btnRow = el('div', 'ed-popup__btns');
-    btnRow.style.justifyContent = 'space-between';
-    const delBtn = el('button', 'ed-btn');
-    delBtn.style.cssText = 'background:#dc2626;color:#fff;';
-    delBtn.type = 'button'; delBtn.textContent = 'Supprimer cette image';
-    delBtn.addEventListener('click', () => {
-      if (confirm('Supprimer cette image de la page d\'accueil ?')) {
-        _close();
-        onDelete();
-      }
-    });
-    const closeBtn = el('button', 'ed-btn ed-btn--save');
-    closeBtn.type = 'button'; closeBtn.textContent = 'OK';
-    closeBtn.addEventListener('click', () => _close());
-    btnRow.appendChild(delBtn);
-    btnRow.appendChild(closeBtn);
-    popup.appendChild(btnRow);
-
-    document.body.appendChild(popup);
-    _positionFloatingPopup(popup, thumb);
-    // Capture plutôt que bubbling : ferme même si un clic ailleurs appelle
-    // stopPropagation() (ex : sur une autre vignette).
-    document.addEventListener('mousedown', _onOutsideClick, true);
-  }
-
-  /** Place la popup près de la vignette, en la gardant dans la fenêtre visible. */
-  function _positionFloatingPopup(popup, thumb) {
-    const rect = thumb.getBoundingClientRect();
-    const popRect = popup.getBoundingClientRect();
-    const margin = 12;
-
-    let left = rect.right + 14;
-    if (left + popRect.width > window.innerWidth - margin) {
-      left = rect.left - popRect.width - 14;
-    }
-    left = Math.max(margin, Math.min(left, window.innerWidth - popRect.width - margin));
-
-    let top = rect.top;
-    top = Math.max(margin, Math.min(top, window.innerHeight - popRect.height - margin));
-
-    popup.style.left = left + 'px';
-    popup.style.top = top + 'px';
-  }
-
-  const HEADER_FONT_CHOICES = [
-    ['', 'Police par défaut'],
-    ['Georgia, serif', 'Georgia'],
-    ['"Times New Roman", serif', 'Times New Roman'],
-    ['"Courier New", monospace', 'Courier New'],
-    ['"Trebuchet MS", sans-serif', 'Trebuchet MS'],
-    ['Verdana, sans-serif', 'Verdana'],
-    ['"Segoe UI", sans-serif', 'Segoe UI'],
-  ];
-
-  /** Popup (modale) d'édition du style du header : fond couleur/image,
-   *  couleur/taille/police/alignement du titre. `style` (`_site.home.headerStyle`)
-   *  porte les réglages partagés par tout le site ; `imageStyle` ({image, mode})
-   *  est propre au contexte d'ouverture (page d'accueil ou autres pages), pour
-   *  permettre une image de fond de header différente selon l'onglet. Modifie
-   *  les deux en direct pour un aperçu immédiat sur `headerEl`, avec
-   *  possibilité d'annuler. */
-  function _openHeaderStylePopup(headerEl, imageStyle) {
-    const style = _site.home.headerStyle;
-    const original = clone(style);
-    const originalImage = clone(imageStyle);
-
-    const overlay = el('div', 'ed-popup-overlay');
-    const popup = el('div', 'ed-popup');
-    popup.appendChild(txt('div', 'ed-popup__title', 'Style du header'));
-
-    function field(labelText, inputEl) {
-      const f = el('div', 'ed-field');
-      f.appendChild(txt('label', 'ed-label', labelText));
-      f.appendChild(inputEl);
-      popup.appendChild(f);
-    }
-
-    popup.appendChild(buildColorAlphaField('Couleur de fond', () => style.bg, v => {
-      style.bg = v; HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-    }));
-
-    const imgField = el('div', 'ed-field');
-    imgField.appendChild(txt('label', 'ed-label', 'Image de fond du header (optionnelle, dossier style/)'));
-    const imgPreview = el('div', 'ed-img-block__img');
-    imgPreview.style.cursor = 'pointer';
-    imgPreview.title = 'Cliquer pour choisir une image';
-    function refreshImgPreview() {
-      imgPreview.innerHTML = '';
-      if (imageStyle.image) {
-        const im = document.createElement('img');
-        im.src = 'style/' + imageStyle.image;
-        imgPreview.appendChild(im);
-      } else {
-        imgPreview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune image — cliquer pour en choisir une'));
-      }
-    }
-    refreshImgPreview();
-    imgPreview.addEventListener('click', () => {
-      FileBrowser.open(path => {
-        imageStyle.image = path;
-        refreshImgPreview();
-        HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-      }, { root: 'style', rootLabel: 'style', type: 'image' });
-    });
-    imgField.appendChild(imgPreview);
-
-    const clearImgBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer l\'image');
-    clearImgBtn.type = 'button'; clearImgBtn.style.marginTop = '4px';
-    clearImgBtn.addEventListener('click', () => {
-      imageStyle.image = null;
-      refreshImgPreview();
-      HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-    });
-    imgField.appendChild(clearImgBtn);
-    popup.appendChild(imgField);
-
-    const imgModeSel = document.createElement('select');
-    imgModeSel.className = 'ed-input';
-    [
-      ['cover', 'Couvrir (recadrée)'],
-      ['contain', 'Contenir (entière, non recadrée)'],
-      ['repeat', 'Répéter en mosaïque'],
-    ].forEach(([value, label]) => {
-      const opt = document.createElement('option');
-      opt.value = value; opt.textContent = label;
-      if ((imageStyle.mode || 'cover') === value) opt.selected = true;
-      imgModeSel.appendChild(opt);
-    });
-    imgModeSel.addEventListener('change', () => { imageStyle.mode = imgModeSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
-    field('Affichage de l\'image', imgModeSel);
-
-    popup.appendChild(buildColorAlphaField('Couleur du titre', () => style.titleColor, v => {
-      style.titleColor = v; HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-    }));
-
-    const sizeInp = document.createElement('input');
-    sizeInp.type = 'number'; sizeInp.className = 'ed-input'; sizeInp.min = '10'; sizeInp.max = '150';
-    sizeInp.value = style.titleSize;
-    sizeInp.addEventListener('input', () => { style.titleSize = (+sizeInp.value) || 18; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
-    field('Taille du titre (px)', sizeInp);
-
-    const fontSel = document.createElement('select');
-    fontSel.className = 'ed-input';
-    HEADER_FONT_CHOICES.forEach(([value, label]) => {
-      const opt = document.createElement('option');
-      opt.value = value; opt.textContent = label;
-      if (style.titleFont === value) opt.selected = true;
-      fontSel.appendChild(opt);
-    });
-    fontSel.addEventListener('change', () => { style.titleFont = fontSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
-    field('Police du titre', fontSel);
-
-    const fontFileField = el('div', 'ed-field');
-    fontFileField.appendChild(txt('label', 'ed-label', 'Ou police personnalisée (dossier style/)'));
-    const fontFileRow = el('div', 'ed-font-file-row');
-    const fontFileLabel = txt('span', 'ed-font-file-label', '');
-    function refreshFontFileLabel() {
-      fontFileLabel.textContent = style.titleFontFile || 'Aucune — police ci-dessus utilisée';
-    }
-    refreshFontFileLabel();
-    const fontFileBtn = txt('button', 'ed-add-btn', 'Choisir…');
-    fontFileBtn.type = 'button';
-    fontFileBtn.addEventListener('click', () => {
-      FileBrowser.open(path => {
-        style.titleFontFile = path;
-        refreshFontFileLabel();
-        HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-      }, { root: 'style', rootLabel: 'style', type: 'font' });
-    });
-    const fontFileClearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer');
-    fontFileClearBtn.type = 'button';
-    fontFileClearBtn.addEventListener('click', () => {
-      style.titleFontFile = null;
-      refreshFontFileLabel();
-      HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-    });
-    fontFileRow.appendChild(fontFileBtn);
-    fontFileRow.appendChild(fontFileClearBtn);
-    fontFileRow.appendChild(fontFileLabel);
-    fontFileField.appendChild(fontFileRow);
-    popup.appendChild(fontFileField);
-
-    const alignSel = document.createElement('select');
-    alignSel.className = 'ed-input';
-    [['left', 'Gauche'], ['center', 'Centre'], ['right', 'Droite']].forEach(([value, label]) => {
-      const opt = document.createElement('option');
-      opt.value = value; opt.textContent = label;
-      if (style.titleAlign === value) opt.selected = true;
-      alignSel.appendChild(opt);
-    });
-    alignSel.addEventListener('change', () => { style.titleAlign = alignSel.value; HomeView.applyHeaderStyle(headerEl, style, imageStyle); });
-    field('Alignement du titre', alignSel);
-
-    const btnRow = el('div', 'ed-popup__btns');
-    const okBtn = el('button', 'ed-btn ed-btn--save');
-    okBtn.type = 'button'; okBtn.textContent = 'OK';
-    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    cancelBtn.addEventListener('click', () => {
-      Object.assign(style, original);
-      Object.assign(imageStyle, originalImage);
-      HomeView.applyHeaderStyle(headerEl, style, imageStyle);
-      document.body.removeChild(overlay);
-    });
-    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
-    popup.appendChild(btnRow);
-
-    overlay.appendChild(popup);
-    document.body.appendChild(overlay);
-  }
-
-  /** Popup (modale) d'édition d'un fond (couleur, image optionnelle via
-   *  l'explorateur de documents, mode d'affichage). `bg` est l'objet à muter
-   *  directement (`_site.home.background` ou `_site.pagesStyle.background`),
-   *  `wrapEl` l'élément sur lequel prévisualiser en direct. */
-  function _openBackgroundPopup(wrapEl, bg, popupTitle) {
-    const original = clone(bg);
-
-    const overlay = el('div', 'ed-popup-overlay');
-    const popup = el('div', 'ed-popup');
-    popup.appendChild(txt('div', 'ed-popup__title', popupTitle || 'Style du fond de la page d\'accueil'));
-
-    popup.appendChild(buildColorAlphaField('Couleur de fond', () => bg.color, v => {
-      bg.color = v; HomeView.applyBackgroundStyle(wrapEl, bg);
-    }));
-
-    const imgField = el('div', 'ed-field');
-    imgField.appendChild(txt('label', 'ed-label', 'Image de fond (optionnelle, dossier style/)'));
-    const preview = el('div', 'ed-img-block__img');
-    preview.style.cursor = 'pointer';
-    preview.title = 'Cliquer pour choisir une image';
-    function refreshPreview() {
-      preview.innerHTML = '';
-      if (bg.image) {
-        const im = document.createElement('img');
-        im.src = 'style/' + bg.image;
-        preview.appendChild(im);
-      } else {
-        preview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune image — cliquer pour en choisir une'));
-      }
-    }
-    refreshPreview();
-    preview.addEventListener('click', () => {
-      FileBrowser.open(path => {
-        bg.image = path;
-        refreshPreview();
-        HomeView.applyBackgroundStyle(wrapEl, bg);
-      }, { root: 'style', rootLabel: 'style', type: 'image' });
-    });
-    imgField.appendChild(preview);
-
-    const clearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer l\'image');
-    clearBtn.type = 'button'; clearBtn.style.marginTop = '4px';
-    clearBtn.addEventListener('click', () => {
-      bg.image = null;
-      refreshPreview();
-      HomeView.applyBackgroundStyle(wrapEl, bg);
-    });
-    imgField.appendChild(clearBtn);
-    popup.appendChild(imgField);
-
-    const modeSel = document.createElement('select');
-    modeSel.className = 'ed-input';
-    [
-      ['cover', 'Couvrir (recadrée)'],
-      ['contain', 'Contenir (entière, non recadrée)'],
-      ['repeat', 'Répéter en mosaïque'],
-    ].forEach(([value, label]) => {
-      const opt = document.createElement('option');
-      opt.value = value; opt.textContent = label;
-      if (bg.mode === value) opt.selected = true;
-      modeSel.appendChild(opt);
-    });
-    modeSel.addEventListener('change', () => { bg.mode = modeSel.value; HomeView.applyBackgroundStyle(wrapEl, bg); });
-    const modeField = el('div', 'ed-field');
-    modeField.appendChild(txt('label', 'ed-label', 'Affichage de l\'image'));
-    modeField.appendChild(modeSel);
-    popup.appendChild(modeField);
-
-    const btnRow = el('div', 'ed-popup__btns');
-    const okBtn = el('button', 'ed-btn ed-btn--save');
-    okBtn.type = 'button'; okBtn.textContent = 'OK';
-    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    cancelBtn.addEventListener('click', () => {
-      Object.assign(bg, original);
-      HomeView.applyBackgroundStyle(wrapEl, bg);
-      document.body.removeChild(overlay);
-    });
-    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
-    popup.appendChild(btnRow);
-
-    overlay.appendChild(popup);
-    document.body.appendChild(overlay);
-  }
-
-  // ── Onglet Style des pages ───────────────────────────────────────────────
-  // Header + fond des pages : mêmes popups que la page d'accueil, sur
-  // `_site.pagesStyle.background` (voir _render). Sections/blocs TEXTE/images :
-  // aperçus cliquables, un objet {bg, textColor} chacun pour les deux
-  // premiers, {borderColor, borderWidth, borderRadius} pour les images.
-
-  function _buildPagesStyleEditor() {
-    const wrap = el('div', 'ed-style-grid');
-
-    const secCard = el('div', 'ed-style-card');
-    secCard.appendChild(txt('div', 'ed-style-card__label', 'Titre de section'));
-    const secPreview = txt('div', 'm2-section__titre ed-style-card__preview', 'Titre de section');
-    secPreview.title = 'Cliquer pour modifier';
-    ContentView.applySectionStyle(secPreview, _site.pagesStyle.section);
-    secPreview.addEventListener('click', () => {
-      _openColorTextPopup('Style des titres de section', _site.pagesStyle.section, ContentView.applySectionStyle, secPreview);
-    });
-    secCard.appendChild(secPreview);
-    wrap.appendChild(secCard);
-
-    const txtCard = el('div', 'ed-style-card');
-    txtCard.appendChild(txt('div', 'ed-style-card__label', 'Bloc TEXTE'));
-    const txtPreview = txt('div', 'm2-bloc-texte ed-style-card__preview', 'Exemple de texte');
-    txtPreview.title = 'Cliquer pour modifier';
-    ContentView.applyBlocTexteStyle(txtPreview, _site.pagesStyle.blocTexte);
-    txtPreview.addEventListener('click', () => {
-      _openColorTextPopup('Style des blocs TEXTE', _site.pagesStyle.blocTexte, ContentView.applyBlocTexteStyle, txtPreview);
-    });
-    txtCard.appendChild(txtPreview);
-    wrap.appendChild(txtCard);
-
-    const titleCard = el('div', 'ed-style-card');
-    titleCard.appendChild(txt('div', 'ed-style-card__label', 'Titre de page'));
-    const titlePreview = txt('div', 'm2-page__title ed-style-card__preview', 'Titre de la page');
-    titlePreview.style.margin = '0';
-    titlePreview.title = 'Cliquer pour modifier';
-    ContentView.applyPageTitleStyle(titlePreview, _site.pagesStyle.pageTitle);
-    titlePreview.addEventListener('click', () => {
-      _openColorTextPopup('Style des titres de page', _site.pagesStyle.pageTitle, ContentView.applyPageTitleStyle, titlePreview);
-    });
-    titleCard.appendChild(titlePreview);
-    wrap.appendChild(titleCard);
-
-    const imgCard = el('div', 'ed-style-card');
-    imgCard.appendChild(txt('div', 'ed-style-card__label', 'Bordure des images'));
-    const imgPreview = el('div', 'ed-style-card__preview ed-style-card__preview--image');
-    imgPreview.title = 'Cliquer pour modifier';
-    ContentView.applyImageStyle(imgPreview, _site.pagesStyle.image);
-    imgPreview.addEventListener('click', () => _openImageStylePopup(imgPreview));
-    imgCard.appendChild(imgPreview);
-    wrap.appendChild(imgCard);
-
-    const footerCard = el('div', 'ed-style-card');
-    footerCard.appendChild(txt('div', 'ed-style-card__label', 'Icône de fin de page'));
-    const footerPreview = el('div', 'ed-style-card__preview ed-style-card__preview--image');
-    footerPreview.style.cssText += 'display:flex;align-items:center;justify-content:center;';
-    footerPreview.title = 'Cliquer pour modifier';
-    function refreshFooterPreview() {
-      footerPreview.innerHTML = '';
-      if (_site.pagesStyle.footerIcon.image) {
-        const im = document.createElement('img');
-        im.src = 'style/' + _site.pagesStyle.footerIcon.image;
-        im.style.width = _site.pagesStyle.footerIcon.width + 'px';
-        footerPreview.appendChild(im);
-      } else {
-        footerPreview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune icône'));
-      }
-    }
-    refreshFooterPreview();
-    footerPreview.addEventListener('click', () => _openFooterIconPopup(refreshFooterPreview));
-    footerCard.appendChild(footerPreview);
-    wrap.appendChild(footerCard);
-
-    return wrap;
-  }
-
-  /** Popup de l'icône de fin de page (dossier style/) : image + largeur (px).
-   *  Absente des autres pages tant qu'aucune image n'est choisie. */
-  function _openFooterIconPopup(onChange) {
-    const cfg = _site.pagesStyle.footerIcon;
-    const original = clone(cfg);
-
-    const overlay = el('div', 'ed-popup-overlay');
-    const popup = el('div', 'ed-popup');
-    popup.appendChild(txt('div', 'ed-popup__title', 'Icône de fin de page'));
-    const hint = txt('div', 'ed-label', 'Affichée en bas de toutes les pages, sauf la page d\'accueil.');
-    hint.style.cssText = 'text-transform:none;letter-spacing:normal;font-weight:400;';
-    popup.appendChild(hint);
-
-    const imgField = el('div', 'ed-field');
-    imgField.appendChild(txt('label', 'ed-label', 'Image (dossier style/)'));
-    const preview = el('div', 'ed-img-block__img');
-    preview.style.cursor = 'pointer';
-    preview.title = 'Cliquer pour choisir une image';
-    function refreshPreview() {
-      preview.innerHTML = '';
-      if (cfg.image) {
-        const im = document.createElement('img');
-        im.src = 'style/' + cfg.image;
-        preview.appendChild(im);
-      } else {
-        preview.appendChild(txt('span', 'ed-img-placeholder', 'Aucune image — cliquer pour en choisir une'));
-      }
-      onChange();
-    }
-    refreshPreview();
-    preview.addEventListener('click', () => {
-      FileBrowser.open(path => {
-        cfg.image = path;
-        refreshPreview();
-      }, { root: 'style', rootLabel: 'style', type: 'image' });
-    });
-    imgField.appendChild(preview);
-
-    const clearBtn = txt('button', 'ed-btn ed-btn--cancel', 'Retirer l\'image');
-    clearBtn.type = 'button'; clearBtn.style.marginTop = '4px';
-    clearBtn.addEventListener('click', () => { cfg.image = null; refreshPreview(); });
-    imgField.appendChild(clearBtn);
-    popup.appendChild(imgField);
-
-    buildNumberField(popup, 'Largeur (px)', cfg.width, 12, 300, v => { cfg.width = v; onChange(); });
-
-    const btnRow = el('div', 'ed-popup__btns');
-    const okBtn = el('button', 'ed-btn ed-btn--save');
-    okBtn.type = 'button'; okBtn.textContent = 'OK';
-    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    cancelBtn.addEventListener('click', () => {
-      Object.assign(cfg, original);
-      onChange();
-      document.body.removeChild(overlay);
-    });
-    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
-    popup.appendChild(btnRow);
-
-    overlay.appendChild(popup);
-    document.body.appendChild(overlay);
-  }
-
-  /** Popup générique fond/texte/bordure (sections, blocs TEXTE) : couleur de
-   *  fond, couleur du texte, couleur/épaisseur/arrondi de bordure, appliqués
-   *  en direct via `applyFn(previewEl, styleObj)`. */
-  function _openColorTextPopup(title, styleObj, applyFn, previewEl) {
-    const original = clone(styleObj);
-
-    const overlay = el('div', 'ed-popup-overlay');
-    const popup = el('div', 'ed-popup');
-    popup.appendChild(txt('div', 'ed-popup__title', title));
-
-    popup.appendChild(buildColorAlphaField('Couleur de fond', () => styleObj.bg, v => {
-      styleObj.bg = v; applyFn(previewEl, styleObj);
-    }));
-    popup.appendChild(buildColorAlphaField('Couleur du texte', () => styleObj.textColor, v => {
-      styleObj.textColor = v; applyFn(previewEl, styleObj);
-    }));
-    popup.appendChild(buildColorAlphaField('Couleur de la bordure', () => styleObj.borderColor, v => {
-      styleObj.borderColor = v; applyFn(previewEl, styleObj);
-    }));
-    buildNumberField(popup, 'Épaisseur de la bordure (px)', styleObj.borderWidth, 0, 20, v => {
-      styleObj.borderWidth = v; applyFn(previewEl, styleObj);
-    });
-    buildNumberField(popup, 'Arrondi (px)', styleObj.borderRadius, 0, 200, v => {
-      styleObj.borderRadius = v; applyFn(previewEl, styleObj);
-    });
-
-    const btnRow = el('div', 'ed-popup__btns');
-    const okBtn = el('button', 'ed-btn ed-btn--save');
-    okBtn.type = 'button'; okBtn.textContent = 'OK';
-    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    cancelBtn.addEventListener('click', () => {
-      Object.assign(styleObj, original);
-      applyFn(previewEl, styleObj);
-      document.body.removeChild(overlay);
-    });
-    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
-    popup.appendChild(btnRow);
-
-    overlay.appendChild(popup);
-    document.body.appendChild(overlay);
-  }
-
-  /** Popup de bordure des images : couleur+alpha, épaisseur, arrondi (px). */
-  function _openImageStylePopup(previewEl) {
-    const style = _site.pagesStyle.image;
-    const original = clone(style);
-
-    const overlay = el('div', 'ed-popup-overlay');
-    const popup = el('div', 'ed-popup');
-    popup.appendChild(txt('div', 'ed-popup__title', 'Bordure des images'));
-
-    popup.appendChild(buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
-      style.borderColor = v; ContentView.applyImageStyle(previewEl, style);
-    }));
-    buildNumberField(popup, 'Épaisseur (px)', style.borderWidth, 0, 20, v => {
-      style.borderWidth = v; ContentView.applyImageStyle(previewEl, style);
-    });
-    buildNumberField(popup, 'Arrondi (px)', style.borderRadius, 0, 200, v => {
-      style.borderRadius = v; ContentView.applyImageStyle(previewEl, style);
-    });
-
-    const btnRow = el('div', 'ed-popup__btns');
-    const okBtn = el('button', 'ed-btn ed-btn--save');
-    okBtn.type = 'button'; okBtn.textContent = 'OK';
-    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    cancelBtn.addEventListener('click', () => {
-      Object.assign(style, original);
-      ContentView.applyImageStyle(previewEl, style);
-      document.body.removeChild(overlay);
-    });
-    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
-    popup.appendChild(btnRow);
-
-    overlay.appendChild(popup);
-    document.body.appendChild(overlay);
-  }
-
-  // ── Onglet Arborescence ──────────────────────────────────────────────────
-
-  function _setCollapsedAll(chapitres, value) {
-    (chapitres || []).forEach(node => {
-      if (node.chapitres && node.chapitres.length) {
-        node.collapsed = value;
-        _setCollapsedAll(node.chapitres, value);
-      }
-    });
-  }
-
-  /** true si `target` est `root` lui-même ou se trouve dans son sous-arbre. */
-  function _nodeContains(root, target) {
-    if (root === target) return true;
-    return (root.chapitres || []).some(c => _nodeContains(c, target));
-  }
-
-  /** "1 page" / "3 pages" : le "s" final seulement si n > 1. */
-  function _plural(n, word) {
-    return n + ' ' + word + (n > 1 ? 's' : '');
-  }
-
-  /** Nombre total de pages feuilles (sans enfants) dans tout le sous-arbre. */
-  function _countLeaves(chapitres) {
-    return (chapitres || []).reduce((sum, node) => {
-      return sum + ((node.chapitres && node.chapitres.length) ? _countLeaves(node.chapitres) : 1);
-    }, 0);
-  }
-
-  function _buildTreeEditor() {
-    const container = el('div', '');
-
-    const titleField = el('div', 'ed-field ed-site-title-field');
-    titleField.appendChild(txt('label', 'ed-label', 'Titre du site'));
-    const titleInp = document.createElement('input');
-    titleInp.type = 'text'; titleInp.className = 'ed-input';
-    titleInp.placeholder = SITE_NAME;
-    titleInp.value = _site.titre_site || '';
-    titleInp.addEventListener('input', () => {
-      _site.titre_site = titleInp.value;
-      const titleSpan = _container.querySelector('.m2-header__title');
-      if (titleSpan) titleSpan.textContent = _site.titre_site || SITE_NAME;
-    });
-    titleField.appendChild(titleInp);
-    container.appendChild(titleField);
-
-    const toolbar = el('div', 'ed-map-toolbar');
-    const expandBtn = el('button', 'ed-add-btn');
-    expandBtn.type = 'button'; expandBtn.textContent = 'Tout déplier';
-    const collapseBtn = el('button', 'ed-add-btn');
-    collapseBtn.type = 'button'; collapseBtn.textContent = 'Tout replier';
-    const addRootBtn = el('button', 'ed-add-btn');
-    addRootBtn.type = 'button'; addRootBtn.textContent = '+ Ajouter une page racine';
-    toolbar.appendChild(expandBtn);
-    toolbar.appendChild(collapseBtn);
-    toolbar.appendChild(addRootBtn);
-    container.appendChild(toolbar);
-
-    const countEl = txt('div', 'ed-map-count', '');
-    container.appendChild(countEl);
-
-    const wrap = el('div', 'ed-map-list');
-    container.appendChild(wrap);
-
-    function refresh() {
-      countEl.textContent = _plural(_countLeaves(_site.chapitres), 'page') + ' au total';
-      wrap.innerHTML = '';
-      _site.chapitres.forEach((node, i) => _renderNode(wrap, node, _site.chapitres, 0, i, refresh, null));
-    }
-    expandBtn.addEventListener('click', () => { _setCollapsedAll(_site.chapitres, false); refresh(); });
-    collapseBtn.addEventListener('click', () => { _setCollapsedAll(_site.chapitres, true); refresh(); });
-    addRootBtn.addEventListener('click', () => { _site.chapitres.push({ keyword: 'nouveau', label: 'Nouveau', chapitres: [], sections: [] }); refresh(); });
-    refresh();
-    return container;
-  }
-
-  // Nœud en cours de glissement : {node, siblings, parentNode}. parentNode
-  // est null pour un nœud racine. Le drop est autorisé n'importe où dans
-  // l'arbre (sauf sur soi-même ou l'un de ses propres descendants).
-  let _dragNode = null;
-
-  function _renderNode(wrap, node, siblings, indent, index, refresh, parentNode) {
-    if (node.collapsed === undefined) node.collapsed = true;
-    const hasChildren = node.chapitres && node.chapitres.length > 0;
-    const line = el('div', 'ed-map-line ' + (hasChildren ? 'ed-map-line--menu' : 'ed-map-line--leaf'));
-    line.style.marginLeft = (indent * 24) + 'px';
-    line.draggable = true;
-
-    const handle = txt('span', 'ed-map-handle', '⠿');
-    handle.title = 'Glisser pour réordonner';
-    line.appendChild(handle);
-
-    if (hasChildren) {
-      const collapse = el('button', 'ed-map-collapse');
-      collapse.type = 'button'; collapse.textContent = node.collapsed ? '+' : '−';
-      collapse.addEventListener('click', () => { node.collapsed = !node.collapsed; refresh(); });
-      line.appendChild(collapse);
-    } else {
-      line.appendChild(el('span', 'ed-map-spacer'));
-    }
-
-    const labelInp = document.createElement('input');
-    labelInp.type = 'text'; labelInp.className = 'ed-map-label';
-    labelInp.placeholder = 'Libellé'; labelInp.value = node.label || '';
-    labelInp.addEventListener('input', () => { node.label = labelInp.value; });
-    _preventDragWhileEditing(line, labelInp);
-    line.appendChild(labelInp);
-
-    const keywordInp = document.createElement('input');
-    keywordInp.type = 'text'; keywordInp.className = 'ed-map-keyword';
-    keywordInp.placeholder = 'keyword-url'; keywordInp.value = node.keyword || '';
-    keywordInp.addEventListener('input', () => {
-      node.keyword = keywordInp.value.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
-    });
-    keywordInp.addEventListener('blur', () => { keywordInp.value = node.keyword; });
-    _preventDragWhileEditing(line, keywordInp);
-    line.appendChild(keywordInp);
-
-    if (hasChildren) {
-      line.appendChild(txt('span', 'ed-label', _plural(node.chapitres.length, 'enfant')));
-    } else {
-      line.appendChild(txt('span', 'ed-label', node.sections && node.sections.length ? _plural(node.sections.length, 'section') : 'page vide'));
-    }
-
-    const acts = el('div', 'ed-map-actions');
-    acts.appendChild(_ib2('+', 'Ajouter une page après', () => {
-      siblings.splice(index + 1, 0, { keyword: 'nouveau', label: 'Nouveau', chapitres: [], sections: [] });
-      refresh();
-    }));
-    if (!hasChildren) {
-      acts.appendChild(_ib2('++', 'Ajouter une sous-page (transforme en menu)', () => {
-        node.chapitres = [{ keyword: 'nouveau', label: 'Nouveau', chapitres: [], sections: [] }];
-        delete node.sections;
-        refresh();
-      }));
-    }
-    acts.appendChild(_ib2('×', 'Supprimer', () => {
-      if (confirm('Supprimer "' + (node.label || node.keyword) + '" et tout son contenu ?')) {
-        siblings.splice(index, 1);
-        refresh();
-      }
-    }, 'ed-icon-btn--del'));
-    line.appendChild(acts);
-
-    line.addEventListener('dragstart', e => {
-      _dragNode = { node, siblings, parentNode };
-      line.classList.add('ed-dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    });
-    line.addEventListener('dragend', () => {
-      line.classList.remove('ed-dragging');
-      _dragNode = null;
-    });
-
-    function _dropZone(e) {
-      const rect = line.getBoundingClientRect();
-      const ratio = (e.clientY - rect.top) / line.offsetHeight;
-      if (ratio < 0.25) return 'before';
-      if (ratio > 0.75) return 'after';
-      return 'into';
-    }
-    function _clearDropClasses() {
-      line.classList.remove('ed-map-line--drop-before', 'ed-map-line--drop-after', 'ed-map-line--drop-into');
-    }
-
-    line.addEventListener('dragover', e => {
-      if (!_dragNode || _dragNode.node === node || _nodeContains(_dragNode.node, node)) return;
-      e.preventDefault();
-      const zone = _dropZone(e);
-      line.classList.toggle('ed-map-line--drop-before', zone === 'before');
-      line.classList.toggle('ed-map-line--drop-after', zone === 'after');
-      line.classList.toggle('ed-map-line--drop-into', zone === 'into');
-    });
-    line.addEventListener('dragleave', _clearDropClasses);
-    line.addEventListener('drop', e => {
-      e.preventDefault();
-      _clearDropClasses();
-      if (!_dragNode || _dragNode.node === node || _nodeContains(_dragNode.node, node)) return;
-
-      const zone = _dropZone(e);
-      if (zone === 'into' && !hasChildren && node.sections && node.sections.length &&
-          !confirm('"' + (node.label || node.keyword) + '" contient déjà ' + _plural(node.sections.length, 'section') +
-                    ' de contenu, qui seront perdues en la transformant en sous-menu. Continuer ?')) {
+    function renderDetails() {
+      details.innerHTML = '';
+      if (!sel) {
+        details.appendChild(txt('div', 'pp-hint', 'Cliquez sur une page de la liste pour la renommer, la déplacer ou la supprimer.'));
         return;
       }
+      const node = sel;
+      const info = parentInfo(node);
+      details.appendChild(txt('h2', 'pl-details__title', node.label || node.keyword || '(sans titre)'));
+      details.appendChild(txt('div', 'pl-details__where', info.parent ? 'Dans « ' + (info.parent.label || info.parent.keyword) + ' »' : 'En haut du site'));
 
-      const fromSiblings = _dragNode.siblings;
-      const fromIdx = fromSiblings.indexOf(_dragNode.node);
-      if (fromIdx === -1) return;
-      fromSiblings.splice(fromIdx, 1);
-      // Le parent d'origine, s'il n'a plus d'enfants, redevient une page feuille.
-      if (_dragNode.parentNode && fromSiblings.length === 0) {
-        _dragNode.parentNode.sections = _dragNode.parentNode.sections || [];
-      }
+      const titleInp = document.createElement('input');
+      titleInp.type = 'text'; titleInp.id = 'pl-title'; titleInp.className = 'pp-input';
+      titleInp.value = node.label || '';
+      titleInp.addEventListener('input', () => {
+        record('label');
+        node.label = titleInp.value;
+        if (fresh.has(node)) setKeyword(node, titleInp.value);
+        dirty = true;
+        details.querySelector('.pl-details__title').textContent = node.label || node.keyword || '(sans titre)';
+        urlEl.textContent = '#/' + pathOf(node);
+        renderTree();
+        renderStatus();
+      });
+      details.appendChild(field('Titre de la page', titleInp, 'pl-title'));
 
-      if (zone === 'into') {
-        if (!node.chapitres) node.chapitres = [];
-        node.chapitres.push(_dragNode.node);
-        delete node.sections;
-        node.collapsed = false;
+      const urlBox = el('div', '');
+      const urlEl = txt('div', 'pl-url', '#/' + pathOf(node));
+      urlBox.appendChild(urlEl);
+      if (keywordOpen) {
+        const kwInp = document.createElement('input');
+        kwInp.type = 'text'; kwInp.className = 'pp-input'; kwInp.value = node.keyword;
+        kwInp.setAttribute('aria-label', 'Adresse de la page');
+        kwInp.addEventListener('change', () => {
+          record(null);
+          fresh.delete(node);
+          setKeyword(node, kwInp.value);
+          changed();
+        });
+        urlBox.appendChild(kwInp);
+        urlBox.appendChild(txt('div', 'pl-help', 'Lettres sans accents, chiffres, - et _. Les liens de la page d\'accueil sont mis à jour.'));
       } else {
-        let to = siblings.indexOf(node);
-        if (zone === 'after') to += 1;
-        siblings.splice(to, 0, _dragNode.node);
+        const more = txt('button', 'pl-link', "Modifier l'adresse (avancé)");
+        more.type = 'button';
+        more.addEventListener('click', () => { keywordOpen = true; renderDetails(); });
+        urlBox.appendChild(more);
+      }
+      details.appendChild(field('Adresse de la page', urlBox));
+
+      const moveSel = document.createElement('select');
+      moveSel.id = 'pl-move'; moveSel.className = 'pp-input';
+      const curParent = info.parent ? pathOf(info.parent) : '';
+      folderOptions(node).forEach(([v, l]) => {
+        const opt = document.createElement('option');
+        opt.value = v; opt.textContent = l;
+        if (v === curParent) opt.selected = true;
+        moveSel.appendChild(opt);
+      });
+      moveSel.addEventListener('change', () => {
+        record(null);
+        moveTo(node, moveSel.value ? nodeByPath(moveSel.value) : null);
+        changed();
+      });
+      details.appendChild(field('Déplacer dans', moveSel, 'pl-move'));
+
+      if (!info.parent && site.home.images.some(img => img.lien === node.keyword)) {
+        details.appendChild(txt('div', 'pl-help', "Un bloc de la page d'accueil mène à cette page."));
       }
 
-      _dragNode = null;
-      refresh();
-    });
-
-    wrap.appendChild(line);
-
-    if (hasChildren && !node.collapsed) {
-      node.chapitres.forEach((child, ci) => _renderNode(wrap, child, node.chapitres, indent + 1, ci, refresh, node));
+      const acts = el('div', 'pp-actions');
+      acts.appendChild(PropsPanel.button('Voir la page', () => leave({ path: pathOf(node), edit: false })));
+      if (!isFolder(node)) acts.appendChild(PropsPanel.button('Modifier le contenu', () => leave({ path: pathOf(node), edit: true })));
+      details.appendChild(acts);
+      const danger = el('div', 'pp-actions pl-danger');
+      danger.appendChild(PropsPanel.button(isFolder(node)
+        ? 'Supprimer la rubrique et ses ' + plural(countLeaves(node.chapitres), 'page') + '…'
+        : 'Supprimer la page…', () => remove(node), 'danger'));
+      details.appendChild(danger);
     }
-  }
 
-  function _ib2(label, title, onClick, extraClass) {
-    const btn = el('button', extraClass || '');
-    btn.type = 'button'; btn.title = title; btn.textContent = label;
-    btn.addEventListener('click', onClick);
-    return btn;
-  }
-
-  /** Désactive le drag de la ligne pendant qu'on sélectionne du texte dans un champ. */
-  function _preventDragWhileEditing(line, field) {
-    field.addEventListener('mousedown', () => {
-      line.draggable = false;
-      const restore = () => { line.draggable = true; window.removeEventListener('mouseup', restore); };
-      window.addEventListener('mouseup', restore);
-    });
+    function renderAll() {
+      renderTree();
+      renderDetails();
+      renderStatus();
+    }
+    renderAll();
   }
 
   return { open };

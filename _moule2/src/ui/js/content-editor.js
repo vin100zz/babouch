@@ -1,11 +1,12 @@
 'use strict';
 
 // ── Contenu d'une page feuille : sections > colonnes > blocs ───────────────
-// Lecture (renderSections) et édition (buildSectionsEditor) d'un tableau
-// `sections`, porté du modèle documents/contenu de famille2 (voir
-// famille2/src/ui/js/{components,editor}.js) en renommant :
+// Rendu d'un tableau `sections`, porté du modèle documents/contenu de
+// famille2 (voir famille2/src/ui/js/components.js) en renommant :
 //   documents → sections, contenu → colonnes, IMAGE → DOCUMENTS,
 //   block.fichier (texte) → block.html
+// Le même rendu sert à la lecture (app.js) et à l'édition (page-editor.js,
+// style-editor.js) : l'éditeur ne fait que poser ses outils par-dessus.
 
 const ContentView = (function () {
 
@@ -17,29 +18,46 @@ const ContentView = (function () {
   // Boîte propre à chaque section (fond + bordure de l'ensemble titre/colonnes),
   // distincte de DEFAULT_SECTION_STYLE qui ne stylise que le bandeau du titre.
   // Sans fond (null) et sans bordure (largeur 0 = désactivée) : une section
-  // sans réglage s'affiche comme avant. Cocher « Bordure » dans le popup
-  // fait passer la largeur à 1px, avec la couleur ci-dessous (opaque).
+  // sans réglage s'affiche comme avant.
   const DEFAULT_SECTION_BOX_STYLE = { bg: null, borderColor: '#94a3b8ff', borderWidth: 0, borderRadius: 0 };
 
   /** Fonctions d'application de style partagées entre le rendu réel (`render`)
-   *  et les aperçus cliquables de l'onglet « Style des pages » (tree-editor.js),
-   *  sur le même principe que HomeView.applyHeaderStyle/applyBackgroundStyle. */
+   *  et l'éditeur, sur le même principe que HomeView.applyHeaderStyle. */
   function _applyBoxBorder(el, style) {
     el.style.borderStyle = 'solid';
     el.style.borderColor = style.borderColor;
     el.style.borderWidth = style.borderWidth + 'px';
     el.style.borderRadius = style.borderRadius + 'px';
   }
+
+  /** Police/taille/alignement/marges facultatifs d'un texte (voir
+   *  SiteRepository::cleanTextExtras). Une propriété absente remet le style en
+   *  ligne à '' : le rendu retombe alors sur app.css, comme avant leur ajout.
+   *  `withAlign`/`withSpacing` : seulement pour les titres (l'alignement d'un
+   *  bloc TEXTE est porté par le bloc lui-même). */
+  function applyTextExtras(el, style, withAlign, withSpacing) {
+    style = style || {};
+    el.style.fontFamily = HomeView.cssFontFamily(style.font, style.fontFile);
+    el.style.fontSize = style.size ? style.size + 'px' : '';
+    if (withAlign) el.style.textAlign = style.align || '';
+    if (withSpacing) {
+      el.style.paddingTop = el.style.paddingBottom = style.padY != null ? style.padY + 'px' : '';
+      el.style.paddingLeft = el.style.paddingRight = style.padX != null ? style.padX + 'px' : '';
+      el.style.marginTop = style.mTop != null ? style.mTop + 'px' : '';
+      el.style.marginBottom = style.mBottom != null ? style.mBottom + 'px' : '';
+    }
+  }
+
   function applySectionStyle(el, style) {
     style = Object.assign({}, DEFAULT_SECTION_STYLE, style || {});
     el.style.background = style.bg;
     el.style.color = style.textColor;
     _applyBoxBorder(el, style);
+    applyTextExtras(el, style, true, true);
   }
   /** Fond + bordure de la boîte d'une section (`section.style`, voir
    *  DEFAULT_SECTION_BOX_STYLE). Les propriétés non réglées sont remises à ''
-   *  pour retomber sur le CSS de l'élément (aucun style dans la page de
-   *  lecture, cadre de l'éditeur dans `.ed-section-card`). */
+   *  pour retomber sur le CSS de l'élément. */
   function applySectionBoxStyle(el, style) {
     style = Object.assign({}, DEFAULT_SECTION_BOX_STYLE, style || {});
     const hasBorder = style.borderWidth > 0;
@@ -56,17 +74,26 @@ const ContentView = (function () {
     // Le bandeau du titre (fond opaque) déborderait des coins arrondis.
     el.style.overflow = custom && style.borderRadius > 0 ? 'hidden' : '';
   }
-  function applyBlocTexteStyle(el, style) {
+  /** Style commun des blocs TEXTE (pagesStyle.blocTexte), puis réglages propres
+   *  au bloc (block.style : police/taille/couleur), prioritaires. */
+  function applyBlocTexteStyle(el, style, blockStyle) {
     style = Object.assign({}, DEFAULT_BLOC_TEXTE_STYLE, style || {});
+    blockStyle = blockStyle || {};
     el.style.background = style.bg;
-    el.style.color = style.textColor;
+    el.style.color = blockStyle.color || style.textColor;
     _applyBoxBorder(el, style);
+    applyTextExtras(el, {
+      font: blockStyle.fontFile || blockStyle.font ? blockStyle.font : style.font,
+      fontFile: blockStyle.fontFile || blockStyle.font ? blockStyle.fontFile : style.fontFile,
+      size: blockStyle.size || style.size,
+    }, false, false);
   }
   function applyPageTitleStyle(el, style) {
     style = Object.assign({}, DEFAULT_PAGE_TITLE_STYLE, style || {});
     el.style.background = style.bg;
     el.style.color = style.textColor;
     _applyBoxBorder(el, style);
+    applyTextExtras(el, style, true, true);
   }
   function applyImageStyle(imgEl, style) {
     style = Object.assign({}, DEFAULT_IMAGE_STYLE, style || {});
@@ -90,24 +117,23 @@ const ContentView = (function () {
     }
     return lb;
   }
-  /** <video> d'un bloc DOCUMENTS : avec contrôles en lecture, muet et sans
-   *  contrôles pour l'aperçu de l'éditeur. `#t=0.1` force l'affichage d'une
-   *  image fixe avant la lecture (sinon certains navigateurs, iOS surtout,
-   *  montrent un rectangle noir). */
-  function _videoEl(path, controls) {
+  /** <video> d'un bloc DOCUMENTS. `#t=0.1` force l'affichage d'une image fixe
+   *  avant la lecture (sinon certains navigateurs, iOS surtout, montrent un
+   *  rectangle noir). */
+  function _videoEl(src) {
     const v = document.createElement('video');
-    v.src = 'documents/' + path + '#t=0.1';
+    v.src = src + '#t=0.1';
     v.preload = 'metadata';
     v.playsInline = true;
-    if (controls) v.controls = true; else v.muted = true;
+    v.controls = true;
     return v;
   }
   /** <audio> d'un bloc DOCUMENTS, toujours avec contrôles (sans eux l'élément
-   *  est invisible), y compris dans l'aperçu de l'éditeur. Pas de bordure de
-   *  style image : le lecteur natif a déjà son propre habillage. */
-  function _audioEl(path) {
+   *  est invisible). Pas de bordure de style image : le lecteur natif a déjà
+   *  son propre habillage. */
+  function _audioEl(src) {
     const a = document.createElement('audio');
-    a.src = 'documents/' + path;
+    a.src = src;
     a.preload = 'metadata';
     a.controls = true;
     return a;
@@ -118,481 +144,84 @@ const ContentView = (function () {
     lb.classList.add('lightbox--open');
   }
 
-  function render(sections, pagesStyle) {
-    pagesStyle = pagesStyle || {};
-    const frag = document.createDocumentFragment();
-    (sections || []).forEach(section => {
-      const card = el('div', 'm2-section');
-      applySectionBoxStyle(card, section.style);
-      const hasTitre = section.titre && String(section.titre).trim();
-      if (hasTitre) {
-        const titreEl = txt('div', 'm2-section__titre', section.titre);
-        applySectionStyle(titreEl, pagesStyle.section);
-        card.appendChild(titreEl);
-      }
+  // `opts` (facultatif, pour l'éditeur) :
+  //   editing     → pas de lightbox au clic sur une image ;
+  //   resolveSrc  → URL d'un fichier (défaut : documents/<chemin>) ;
+  //   onElement(el, kind, obj, colIdx) → appelé pour chaque élément rendu,
+  //     kind ∈ 'section' | 'sectionTitle' | 'col' | 'block'.
 
-      const cols = el('div', 'm2-section__cols');
-      (section.colonnes || []).forEach(colBlocks => {
-        const col = el('div', 'm2-section__col');
-        (colBlocks || []).forEach(block => {
-          if (block.type === 'DOCUMENTS') {
-            const wrap = el('div', 'm2-bloc-image');
-            let media;
-            if (isVideoPath(block.fichier)) {
-              media = _videoEl(block.fichier, true);
-            } else if (isAudioPath(block.fichier)) {
-              media = _audioEl(block.fichier);
-            } else {
-              media = document.createElement('img');
-              media.src = 'documents/' + block.fichier;
-              media.alt = ''; media.loading = 'lazy';
-              media.addEventListener('click', () => openLightbox(media.src));
-            }
-            if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
-            if (media.tagName !== 'AUDIO') applyImageStyle(media, pagesStyle.image);
-            wrap.appendChild(media);
-            col.appendChild(wrap);
-          } else if (block.type === 'TEXTE') {
-            const wrap = el('div', 'm2-bloc-texte');
-            wrap.innerHTML = block.html || '';
-            applyBlocTexteStyle(wrap, pagesStyle.blocTexte);
-            if (block.align && block.align !== 'left') wrap.style.textAlign = block.align;
-            if (block.width) wrap.style.width = block.width + '%';
-            col.appendChild(wrap);
-          } else if (block.type === 'HTML') {
-            const wrap = el('div', 'm2-bloc-html');
-            wrap.innerHTML = block.html || '';
-            col.appendChild(wrap);
-          }
-        });
-        cols.appendChild(col);
-      });
-      card.appendChild(cols);
-      frag.appendChild(card);
-    });
+  function render(sections, pagesStyle, opts) {
+    const frag = document.createDocumentFragment();
+    (sections || []).forEach(section => frag.appendChild(renderSection(section, pagesStyle, opts)));
     return frag;
   }
 
-  // ── Édition ────────────────────────────────────────────────────────────
-
-  function _ib(label, title, extraClass, onClick) {
-    const btn = el('button', 'ed-icon-btn' + (extraClass ? ' ' + extraClass : ''));
-    btn.type = 'button'; btn.title = title; btn.textContent = label;
-    if (onClick) btn.addEventListener('click', onClick);
-    return btn;
-  }
-
-  let _dragPayload = null;
-  let _lastUsedDir = '';
-
-  function _findNearestDir(sections, section, colIdx) {
-    const getDir = f => (f && f.includes('/')) ? f.replace(/\/[^/]+$/, '') : null;
-    for (const b of section.colonnes[colIdx]) {
-      const d = (b.type === 'DOCUMENTS') ? getDir(b.fichier) : null;
-      if (d !== null) return d;
-    }
-    for (let ci = 0; ci < section.colonnes.length; ci++) {
-      if (ci === colIdx) continue;
-      for (const b of section.colonnes[ci]) {
-        const d = (b.type === 'DOCUMENTS') ? getDir(b.fichier) : null;
-        if (d !== null) return d;
-      }
-    }
-    for (const other of sections) {
-      if (other === section) continue;
-      for (const col of (other.colonnes || [])) {
-        for (const b of col) {
-          const d = (b.type === 'DOCUMENTS') ? getDir(b.fichier) : null;
-          if (d !== null) return d;
-        }
-      }
-    }
-    return null;
-  }
-
-  function buildEditor(sections, pagesStyle) {
+  function renderSection(section, pagesStyle, opts) {
     pagesStyle = pagesStyle || {};
-    const wrap = el('div', 'ed-section-list');
-    const refresh = () => {
-      wrap.innerHTML = '';
-      sections.forEach((section, i) => wrap.appendChild(_buildSectionCard(sections, section, i, refresh, pagesStyle)));
-      const addBtn = el('button', 'ed-add-btn');
-      addBtn.type = 'button'; addBtn.textContent = '+ Ajouter une section';
-      addBtn.addEventListener('click', () => { sections.push({ titre: null, colonnes: [[]] }); refresh(); });
-      wrap.appendChild(addBtn);
-    };
-    refresh();
-    return wrap;
-  }
-
-  function _buildSectionCard(sections, section, idx, refreshAll, pagesStyle) {
-    if (!section.colonnes || !section.colonnes.length) section.colonnes = [[]];
-    const card = el('div', 'ed-section-card');
+    opts = opts || {};
+    const card = el('div', 'm2-section');
     applySectionBoxStyle(card, section.style);
+    const hasTitre = section.titre && String(section.titre).trim();
+    if (hasTitre) {
+      const titreEl = txt('div', 'm2-section__titre', section.titre);
+      applySectionStyle(titreEl, pagesStyle.section);
+      card.appendChild(titreEl);
+      if (opts.onElement) opts.onElement(titreEl, 'sectionTitle', section);
+    }
 
-    const bar = el('div', 'ed-section-card__bar');
-    const titreInp = document.createElement('input');
-    titreInp.type = 'text'; titreInp.className = 'ed-section-titre-input';
-    titreInp.placeholder = 'Titre de la section (optionnel)';
-    titreInp.value = section.titre || '';
-    titreInp.addEventListener('input', () => { section.titre = titreInp.value; });
-    applySectionStyle(titreInp, pagesStyle.section);
-    bar.appendChild(titreInp);
-
-    const acts = el('div', 'ed-section-card__actions');
-    if (idx > 0) acts.appendChild(_ib('▲', 'Monter', '', () => { sections.splice(idx - 1, 0, sections.splice(idx, 1)[0]); refreshAll(); }));
-    if (idx < sections.length - 1) acts.appendChild(_ib('▼', 'Descendre', '', () => { sections.splice(idx + 1, 0, sections.splice(idx, 1)[0]); refreshAll(); }));
-    let addColBtn, delColBtn;
-    const colsWrap = el('div', 'ed-doc-cols');
-    const renderCols = () => {
-      colsWrap.innerHTML = '';
-      section.colonnes.forEach((_, ci) => colsWrap.appendChild(_buildColEditor(sections, section, ci, renderCols, pagesStyle)));
-      addColBtn.disabled = section.colonnes.length >= 4;
-      delColBtn.disabled = section.colonnes.length <= 1;
-    };
-    addColBtn = _ib('+☰', '+ Colonne', '', () => { if (section.colonnes.length < 4) { section.colonnes.push([]); renderCols(); } });
-    delColBtn = _ib('-☰', '- Colonne', '', () => {
-      if (section.colonnes.length > 1) {
-        const removed = section.colonnes.pop();
-        removed.forEach(b => section.colonnes[section.colonnes.length - 1].push(b));
-        renderCols();
-      }
+    const cols = el('div', 'm2-section__cols');
+    (section.colonnes || []).forEach((colBlocks, ci) => {
+      const col = el('div', 'm2-section__col');
+      (colBlocks || []).forEach(block => {
+        const blockEl = renderBlock(block, pagesStyle, opts);
+        if (blockEl) col.appendChild(blockEl);
+      });
+      cols.appendChild(col);
+      if (opts.onElement) opts.onElement(col, 'col', section, ci);
     });
-    acts.appendChild(addColBtn);
-    acts.appendChild(delColBtn);
-    acts.appendChild(_ib('🎨', 'Style de la section (fond, bordure)', '', () => _openSectionStylePopup(section, card)));
-    acts.appendChild(_ib('×', 'Supprimer la section', 'ed-icon-btn--del', () => {
-      if (confirm('Supprimer cette section ?')) { sections.splice(idx, 1); refreshAll(); }
-    }));
-    bar.appendChild(acts);
-    card.appendChild(bar);
-    card.appendChild(colsWrap);
-    renderCols();
+    card.appendChild(cols);
+    if (opts.onElement) opts.onElement(card, 'section', section);
     return card;
   }
 
-  /** Popup de style d'une section : fond (optionnel) et bordure, appliqués en
-   *  direct sur `card` avec possibilité d'annuler. Écrit dans `section.style`. */
-  function _openSectionStylePopup(section, card) {
-    const original = clone(section.style);
-    const style = Object.assign({}, DEFAULT_SECTION_BOX_STYLE, section.style || {});
-    const apply = () => { section.style = style; applySectionBoxStyle(card, style); };
-
-    const overlay = el('div', 'ed-popup-overlay');
-    const popup = el('div', 'ed-popup');
-    popup.appendChild(txt('div', 'ed-popup__title', 'Style de la section'));
-
-    // Case + bloc de champs : décochée, la fonction est désactivée (pas de fond /
-    // pas de bordure) et le bloc masqué, sans perdre les valeurs déjà choisies
-    // si on la recoche.
-    function toggleGroup(labelText, checked, onToggle) {
-      const head = el('label', 'ed-field');
-      head.style.cssText = 'flex-direction:row;align-items:center;gap:8px;cursor:pointer;';
-      const check = document.createElement('input');
-      check.type = 'checkbox'; check.checked = checked;
-      head.appendChild(check);
-      head.appendChild(txt('span', 'ed-label', labelText));
-      const body = el('div');
-      body.style.display = checked ? '' : 'none';
-      check.addEventListener('change', () => {
-        body.style.display = check.checked ? '' : 'none';
-        onToggle(check.checked);
-        syncRadius();
-      });
-      popup.appendChild(head);
-      popup.appendChild(body);
-      return { body, check };
+  function renderBlock(block, pagesStyle, opts) {
+    pagesStyle = pagesStyle || {};
+    opts = opts || {};
+    const src = path => opts.resolveSrc ? opts.resolveSrc(path) : 'documents/' + path;
+    let wrap = null;
+    if (block.type === 'DOCUMENTS') {
+      wrap = el('div', 'm2-bloc-image');
+      let media;
+      if (isVideoPath(block.fichier)) {
+        media = _videoEl(src(block.fichier));
+      } else if (isAudioPath(block.fichier)) {
+        media = _audioEl(src(block.fichier));
+      } else {
+        media = document.createElement('img');
+        media.src = src(block.fichier);
+        media.alt = ''; media.loading = 'lazy';
+        if (!opts.editing) media.addEventListener('click', () => openLightbox(media.src));
+      }
+      if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
+      if (media.tagName !== 'AUDIO') applyImageStyle(media, pagesStyle.image);
+      wrap.appendChild(media);
+    } else if (block.type === 'TEXTE') {
+      wrap = el('div', 'm2-bloc-texte');
+      wrap.innerHTML = block.html || '';
+      applyBlocTexteStyle(wrap, pagesStyle.blocTexte, block.style);
+      if (block.align && block.align !== 'left') wrap.style.textAlign = block.align;
+      if (block.width) wrap.style.width = block.width + '%';
+    } else if (block.type === 'HTML') {
+      wrap = el('div', 'm2-bloc-html');
+      wrap.innerHTML = block.html || '';
     }
-
-    function syncRadius() {
-      radiusBody.style.display = (bg.check.checked || border.check.checked) ? '' : 'none';
-    }
-
-    let lastBg = style.bg || '#f1f5f9ff';
-    const bg = toggleGroup('Couleur de fond', !!style.bg, on => {
-      style.bg = on ? lastBg : null; apply();
-    });
-    const bgField = buildColorAlphaField('', () => lastBg, v => {
-      lastBg = v;
-      if (bg.check.checked) { style.bg = v; apply(); }
-    });
-    bgField.removeChild(bgField.firstChild); // le libellé est porté par la case à cocher
-    bg.body.appendChild(bgField);
-
-    let lastWidth = style.borderWidth > 0 ? style.borderWidth : 1;
-    const border = toggleGroup('Bordure', style.borderWidth > 0, on => {
-      style.borderWidth = on ? (lastWidth || 1) : 0; apply();
-    });
-    border.body.appendChild(buildColorAlphaField('Couleur de la bordure', () => style.borderColor, v => {
-      style.borderColor = v; apply();
-    }));
-    buildNumberField(border.body, 'Épaisseur (px)', lastWidth, 1, 20, v => {
-      lastWidth = v;
-      if (border.check.checked) { style.borderWidth = v; apply(); }
-    });
-
-    // L'arrondi vaut pour un fond comme pour une bordure : affiché dès que l'une
-    // des deux cases est cochée, masqué (et sans effet) quand les deux sont
-    // décochées.
-    const radiusBody = el('div');
-    buildNumberField(radiusBody, 'Arrondi (px)', style.borderRadius, 0, 200, v => {
-      style.borderRadius = v; apply();
-    });
-    popup.appendChild(radiusBody);
-    syncRadius();
-
-    const btnRow = el('div', 'ed-popup__btns');
-    const okBtn = el('button', 'ed-btn ed-btn--save');
-    okBtn.type = 'button'; okBtn.textContent = 'OK';
-    okBtn.addEventListener('click', () => document.body.removeChild(overlay));
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    cancelBtn.addEventListener('click', () => {
-      if (original) section.style = original; else delete section.style;
-      applySectionBoxStyle(card, section.style);
-      document.body.removeChild(overlay);
-    });
-    btnRow.appendChild(okBtn); btnRow.appendChild(cancelBtn);
-    popup.appendChild(btnRow);
-
-    overlay.appendChild(popup);
-    document.body.appendChild(overlay);
-  }
-
-  function _buildColEditor(sections, section, colIdx, renderCols, pagesStyle) {
-    const colBlocks = section.colonnes[colIdx];
-    const col = el('div', 'ed-doc-col');
-    const blockList = el('div', 'ed-block-list');
-    col.appendChild(blockList);
-
-    const refreshBlocks = () => {
-      blockList.innerHTML = '';
-      colBlocks.forEach((block, bi) => {
-        const bwrap = _buildBlockEditor(sections, section, block, bi, colBlocks, renderCols, colIdx, pagesStyle);
-        bwrap.setAttribute('draggable', 'true');
-        bwrap.addEventListener('dragstart', e => {
-          _dragPayload = { section, fromCol: colIdx, fromIdx: bi };
-          bwrap.classList.add('ed-dragging');
-          e.dataTransfer.effectAllowed = 'move';
-        });
-        bwrap.addEventListener('dragend', () => bwrap.classList.remove('ed-dragging'));
-        blockList.appendChild(bwrap);
-      });
-      const addRow = el('div', 'ed-add-block-row');
-      [['+ Document', 'DOCUMENTS'], ['+ Texte', 'TEXTE'], ['+ HTML', 'HTML']].forEach(([lbl, type]) => {
-        const btn = el('button', 'ed-add-btn'); btn.type = 'button'; btn.textContent = lbl;
-        btn.addEventListener('click', () => {
-          let newBlock;
-          if (type === 'TEXTE') newBlock = { type, html: '', align: 'left' };
-          else if (type === 'HTML') newBlock = { type, html: '' };
-          else newBlock = { type, fichier: '', width: 100 };
-          colBlocks.push(newBlock);
-          refreshBlocks();
-        });
-        addRow.appendChild(btn);
-      });
-      blockList.appendChild(addRow);
-    };
-
-    col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('ed-drop-over'); });
-    col.addEventListener('dragleave', () => col.classList.remove('ed-drop-over'));
-    col.addEventListener('drop', e => {
-      e.preventDefault(); col.classList.remove('ed-drop-over');
-      if (!_dragPayload || _dragPayload.section !== section) return;
-      const src = _dragPayload.section.colonnes[_dragPayload.fromCol];
-      const [moved] = src.splice(_dragPayload.fromIdx, 1);
-      colBlocks.push(moved);
-      _dragPayload = null;
-      renderCols();
-    });
-
-    refreshBlocks();
-    return col;
-  }
-
-  function _buildBlockEditor(sections, section, block, blockIdx, colBlocks, renderCols, colIdx, pagesStyle) {
-    const wrap = el('div', 'ed-block-editor');
-    if (block.type === 'DOCUMENTS') _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx, pagesStyle);
-    else if (block.type === 'HTML') _buildHtmlBlockEditor(wrap, block, blockIdx, colBlocks, renderCols);
-    else _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols, pagesStyle);
+    if (wrap && opts.onElement) opts.onElement(wrap, 'block', block);
     return wrap;
   }
 
-  function _buildHtmlBlockEditor(wrap, block, blockIdx, colBlocks, renderCols) {
-    wrap.classList.add('ed-html-block');
-
-    const bar = el('div', 'ed-html-block__bar');
-    bar.appendChild(txt('span', 'ed-html-block__label', '</> HTML brut'));
-    const acts = el('div', 'ed-block-editor__acts');
-    if (blockIdx > 0) acts.appendChild(_ib('▲', 'Monter', '', () => { colBlocks.splice(blockIdx - 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); }));
-    if (blockIdx < colBlocks.length - 1) acts.appendChild(_ib('▼', 'Descendre', '', () => { colBlocks.splice(blockIdx + 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); }));
-    acts.appendChild(_ib('×', 'Supprimer', 'ed-icon-btn--del', () => { colBlocks.splice(blockIdx, 1); renderCols(); }));
-    bar.appendChild(acts);
-    wrap.appendChild(bar);
-
-    const textarea = document.createElement('textarea');
-    textarea.className = 'ed-html-block__textarea';
-    textarea.placeholder = '<table>...</table>';
-    textarea.value = block.html || '';
-    textarea.spellcheck = false;
-    textarea.addEventListener('input', () => { block.html = textarea.value; });
-    textarea.addEventListener('mousedown', () => {
-      const bwrap = textarea.closest('[draggable]');
-      if (bwrap) {
-        bwrap.setAttribute('draggable', 'false');
-        const restore = () => { bwrap.setAttribute('draggable', 'true'); window.removeEventListener('mouseup', restore); };
-        window.addEventListener('mouseup', restore);
-      }
-    });
-    wrap.appendChild(textarea);
-  }
-
-  function _buildDocBlockEditor(wrap, sections, section, block, blockIdx, colBlocks, renderCols, colIdx, pagesStyle) {
-    wrap.classList.add('ed-img-block');
-
-    const imgWrap = el('div', 'ed-img-block__img');
-    imgWrap.title = 'Cliquer pour choisir un document';
-
-    function _refreshPreview(path) {
-      imgWrap.innerHTML = '';
-      if (path) {
-        let media;
-        if (isVideoPath(path)) {
-          media = _videoEl(path, false);
-        } else if (isAudioPath(path)) {
-          // Contrôles actifs pour pouvoir écouter depuis l'éditeur : le clic
-          // sur le lecteur ne doit pas ouvrir l'explorateur.
-          media = _audioEl(path);
-          media.addEventListener('click', e => e.stopPropagation());
-        } else {
-          media = document.createElement('img');
-          media.src = 'documents/' + path; media.alt = '';
-        }
-        if (block.width && block.width !== 100) media.style.maxWidth = block.width + '%';
-        if (media.tagName !== 'AUDIO') applyImageStyle(media, pagesStyle.image);
-        imgWrap.appendChild(media);
-      } else {
-        imgWrap.appendChild(txt('span', 'ed-img-placeholder', '📷 Cliquer pour choisir un document'));
-      }
-    }
-    _refreshPreview(block.fichier);
-
-    function _openBrowser() {
-      const cur = block.fichier || '';
-      let initialDir;
-      if (cur.includes('/')) {
-        initialDir = cur.replace(/\/[^/]+$/, '');
-      } else {
-        initialDir = _findNearestDir(sections, section, colIdx) || _lastUsedDir;
-      }
-      FileBrowser.open(path => {
-        block.fichier = path;
-        _refreshPreview(path);
-        pathInp.value = path;
-        errEl.textContent = '';
-        if (path.includes('/')) _lastUsedDir = path.replace(/\/[^/]+$/, '');
-      }, { initialDir, type: 'media' });
-    }
-    imgWrap.addEventListener('click', _openBrowser);
-    wrap.appendChild(imgWrap);
-
-    const pathRow = el('div', 'ed-img-path-row');
-    const pathInp = document.createElement('input');
-    pathInp.type = 'text'; pathInp.className = 'ed-input ed-input--sm';
-    pathInp.placeholder = 'ex : demo/photo.jpg, demo/film.mp4 ou demo/son.mp3'; pathInp.value = block.fichier || '';
-
-    const browseBtn = el('button', 'ed-icon-btn');
-    browseBtn.type = 'button'; browseBtn.title = 'Parcourir…'; browseBtn.textContent = '📁';
-    browseBtn.addEventListener('click', _openBrowser);
-
-    const errEl = txt('div', 'ed-img-path-error', '');
-
-    function _validate(path) {
-      if (!path) return null;
-      if (/\.\./.test(path)) return 'Le chemin ne doit pas contenir ".."';
-      if (/^[/\\]/.test(path)) return 'Chemin absolu interdit';
-      if (/^[a-zA-Z]:[/\\]/.test(path)) return 'Chemin absolu interdit';
-      if (/^https?:\/\//i.test(path)) return 'URL externe interdite';
-      return null;
-    }
-    pathInp.addEventListener('input', () => {
-      const val = pathInp.value.trim();
-      const err = _validate(val);
-      errEl.textContent = err || '';
-      if (!err) { block.fichier = val; _refreshPreview(val); }
-    });
-
-    pathRow.appendChild(pathInp);
-    pathRow.appendChild(browseBtn);
-    wrap.appendChild(pathRow);
-    wrap.appendChild(errEl);
-
-    const sizeRow = el('div', 'ed-img-size-row');
-    const sizeLabel = txt('span', '', 'Largeur : ');
-    const sizeVal = txt('span', 'ed-img-size-val', (block.width || 100) + ' %');
-    const sizeInp = document.createElement('input');
-    sizeInp.type = 'range'; sizeInp.min = 10; sizeInp.max = 100; sizeInp.step = 5;
-    sizeInp.value = block.width || 100;
-    sizeInp.className = 'ed-img-size-range';
-    sizeInp.addEventListener('mousedown', () => {
-      const bwrap = wrap.closest('[draggable]');
-      if (bwrap) {
-        bwrap.setAttribute('draggable', 'false');
-        const restore = () => { bwrap.setAttribute('draggable', 'true'); window.removeEventListener('mouseup', restore); };
-        window.addEventListener('mouseup', restore);
-      }
-    });
-    sizeInp.addEventListener('input', () => {
-      block.width = +sizeInp.value;
-      sizeVal.textContent = block.width + ' %';
-      const media = imgWrap.querySelector('img, video, audio');
-      if (media) media.style.maxWidth = block.width + '%';
-    });
-    sizeRow.appendChild(sizeLabel);
-    sizeRow.appendChild(sizeInp);
-    sizeRow.appendChild(sizeVal);
-    wrap.appendChild(sizeRow);
-
-    const overlay = el('div', 'ed-img-block__overlay');
-    if (blockIdx > 0) overlay.appendChild(_ib('▲', 'Monter', '', () => { colBlocks.splice(blockIdx - 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); }));
-    if (blockIdx < colBlocks.length - 1) overlay.appendChild(_ib('▼', 'Descendre', '', () => { colBlocks.splice(blockIdx + 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); }));
-    overlay.appendChild(_ib('×', 'Supprimer', 'ed-icon-btn--del', () => { colBlocks.splice(blockIdx, 1); renderCols(); }));
-    wrap.appendChild(overlay);
-  }
-
-  function _buildTextBlockEditor(wrap, block, blockIdx, colBlocks, renderCols, pagesStyle) {
-    const { bar, content } = RichText.buildEditor(block, (toolbar) => {
-      if (blockIdx > 0) {
-        const up = el('button', 'ed-txt-btn'); up.type = 'button'; up.title = 'Monter'; up.textContent = '▲';
-        up.addEventListener('click', () => { colBlocks.splice(blockIdx - 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); });
-        toolbar.appendChild(up);
-      }
-      if (blockIdx < colBlocks.length - 1) {
-        const dn = el('button', 'ed-txt-btn'); dn.type = 'button'; dn.title = 'Descendre'; dn.textContent = '▼';
-        dn.addEventListener('click', () => { colBlocks.splice(blockIdx + 1, 0, colBlocks.splice(blockIdx, 1)[0]); renderCols(); });
-        toolbar.appendChild(dn);
-      }
-      const del = el('button', 'ed-txt-btn ed-icon-btn--del'); del.type = 'button'; del.title = 'Supprimer'; del.textContent = '×';
-      del.addEventListener('click', () => { colBlocks.splice(blockIdx, 1); renderCols(); });
-      toolbar.appendChild(del);
-    });
-    content.addEventListener('mousedown', () => {
-      const bwrap = content.closest('[draggable]');
-      if (bwrap) {
-        bwrap.setAttribute('draggable', 'false');
-        const restore = () => { bwrap.setAttribute('draggable', 'true'); window.removeEventListener('mouseup', restore); };
-        window.addEventListener('mouseup', restore);
-      }
-    });
-    applyBlocTexteStyle(content, pagesStyle.blocTexte);
-    wrap.appendChild(bar);
-    wrap.appendChild(content);
-    if (block.width) content.style.width = block.width + '%';
-  }
-
   return {
-    render, buildEditor, openLightbox,
-    applySectionStyle, applySectionBoxStyle, applyBlocTexteStyle, applyPageTitleStyle, applyImageStyle,
+    render, renderSection, renderBlock, openLightbox,
+    applySectionStyle, applySectionBoxStyle, applyBlocTexteStyle, applyPageTitleStyle, applyImageStyle, applyTextExtras,
     DEFAULT_SECTION_STYLE, DEFAULT_SECTION_BOX_STYLE, DEFAULT_BLOC_TEXTE_STYLE, DEFAULT_PAGE_TITLE_STYLE, DEFAULT_IMAGE_STYLE, DEFAULT_FOOTER_ICON,
   };
 })();

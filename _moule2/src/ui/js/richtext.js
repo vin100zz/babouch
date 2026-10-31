@@ -167,26 +167,20 @@ const RichText = (function () {
     sel.removeAllRanges(); sel.addRange(range);
   }
 
-  const _alignSVG = {
-    left:   '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0"  width="14" height="2"/><rect x="0" y="4"  width="9"  height="2"/><rect x="0" y="8"  width="12" height="2"/><rect x="0" y="12" width="7"  height="2"/></svg>',
-    center: '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0"  width="14" height="2"/><rect x="2" y="4"  width="10" height="2"/><rect x="1" y="8"  width="12" height="2"/><rect x="3" y="12" width="8"  height="2"/></svg>',
-    right:  '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0"  width="14" height="2"/><rect x="5" y="4"  width="9"  height="2"/><rect x="2" y="8"  width="12" height="2"/><rect x="7" y="12" width="7"  height="2"/></svg>',
-  };
-
   /**
-   * Construit la barre d'outils + la zone contentEditable pour un bloc TEXTE.
-   * block = { html, align }. Mute block.html/block.align en place.
-   * extraButtons(bar) est appelé pour laisser l'appelant ajouter déplacer/supprimer.
+   * Rend éditable en place un élément déjà rendu (le bloc TEXTE de la page,
+   * voir page-editor.js) : saisie, sauts de ligne, collage nettoyé, édition
+   * des liens existants. Mute block.html à chaque frappe, puis appelle
+   * onChange(). Renvoie une fonction qui désactive l'édition.
    */
-  function buildEditor(block, extraButtons) {
-    const bar = el('div', 'ed-txt-toolbar');
-    const edDiv = el('div', 'ed-txt-content');
-    edDiv.contentEditable = 'true'; edDiv.spellcheck = true;
+  function attach(edDiv, block, onChange) {
     edDiv.innerHTML = (block.html || '').replace(/\t/g, '').replace(/\n/g, '<br>').replace(/<br\/>/gi, '<br>');
-    edDiv.addEventListener('input', () => { block.html = _serializeRichText(edDiv); });
-    edDiv.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); _insertBr(edDiv); } });
+    edDiv.contentEditable = 'true'; edDiv.spellcheck = true;
+    const sync = () => { block.html = _serializeRichText(edDiv); if (onChange) onChange(); };
 
-    edDiv.addEventListener('paste', e => {
+    const onInput = () => sync();
+    const onKeydown = e => { if (e.key === 'Enter') { e.preventDefault(); _insertBr(edDiv); sync(); } };
+    const onPaste = e => {
       e.preventDefault();
       const cd = e.clipboardData || window.clipboardData;
       if (!cd) return;
@@ -195,19 +189,14 @@ const RichText = (function () {
         ? _sanitizePastedHtml(html)
         : _escapePastedText(cd.getData('text/plain') || '').replace(/\r\n|\r|\n/g, '<br>');
       document.execCommand('insertHTML', false, _trimPastedHtml(cleanHtml));
-      block.html = _serializeRichText(edDiv);
-    });
-
-    edDiv.addEventListener('mouseover', e => {
+      sync();
+    };
+    const onOver = e => {
       const a = e.target.closest('a');
       if (a && edDiv.contains(a)) _showLinkTooltip(a.getAttribute('href') || '', e.clientX, e.clientY);
-    });
-    edDiv.addEventListener('mousemove', e => {
-      const a = e.target.closest('a');
-      if (a && edDiv.contains(a)) _showLinkTooltip(a.getAttribute('href') || '', e.clientX, e.clientY);
-    });
-    edDiv.addEventListener('mouseout', e => { if (e.target.closest('a')) _hideLinkTooltip(); });
-    edDiv.addEventListener('click', e => {
+    };
+    const onOut = e => { if (e.target.closest('a')) _hideLinkTooltip(); };
+    const onClick = e => {
       const a = e.target.closest('a');
       if (!a || !edDiv.contains(a)) return;
       e.preventDefault();
@@ -215,75 +204,71 @@ const RichText = (function () {
       _openLinkPopup(a.textContent, a.getAttribute('href') || '', 'Modifier le lien', 'Modifier', (text, url) => {
         a.href = url;
         a.textContent = text || url;
-        block.html = _serializeRichText(edDiv);
+        sync();
       });
-    });
+    };
+    edDiv.addEventListener('input', onInput);
+    edDiv.addEventListener('keydown', onKeydown);
+    edDiv.addEventListener('paste', onPaste);
+    edDiv.addEventListener('mouseover', onOver);
+    edDiv.addEventListener('mousemove', onOver);
+    edDiv.addEventListener('mouseout', onOut);
+    edDiv.addEventListener('click', onClick);
 
-    [['<b>G</b>', 'bold', 'Gras'], ['<i>I</i>', 'italic', 'Italique'], ['<u>S</u>', 'underline', 'Souligné']].forEach(([lbl, cmd, title]) => {
-      const btn = el('button', 'ed-txt-btn'); btn.type = 'button'; btn.title = title; btn.innerHTML = lbl;
-      btn.addEventListener('mousedown', e => { e.preventDefault(); document.execCommand(cmd, false, null); });
-      bar.appendChild(btn);
-    });
-
-    const linkBtn = el('button', 'ed-txt-btn'); linkBtn.type = 'button'; linkBtn.title = 'Insérer un lien';
-    linkBtn.innerHTML = '🔗';
-    linkBtn.addEventListener('mousedown', e => {
-      e.preventDefault();
-      const sel = window.getSelection();
-      let savedRange = null;
-      if (sel && sel.rangeCount) {
-        const r = sel.getRangeAt(0);
-        if (edDiv.contains(r.commonAncestorContainer)) savedRange = r.cloneRange();
-      }
-      const defaultText = savedRange ? savedRange.toString() : '';
-      _openLinkPopup(defaultText, '', 'Insérer un lien', 'Insérer', (text, url) => {
-        edDiv.focus();
-        const sel2 = window.getSelection();
-        sel2.removeAllRanges();
-        if (savedRange) {
-          sel2.addRange(savedRange);
-        } else {
-          const r = document.createRange();
-          r.selectNodeContents(edDiv);
-          r.collapse(false);
-          sel2.addRange(r);
-        }
-        const range = sel2.getRangeAt(0);
-        range.deleteContents();
-        const a = document.createElement('a');
-        a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.textContent = text || url;
-        range.insertNode(a);
-        range.setStartAfter(a); range.setEndAfter(a);
-        sel2.removeAllRanges(); sel2.addRange(range);
-        block.html = _serializeRichText(edDiv);
-      });
-    });
-    bar.appendChild(linkBtn);
-
-    bar.appendChild(txt('span', 'ed-txt-sep', ''));
-    const alignBtns = {};
-    [['left', 'Aligner à gauche'], ['center', 'Centrer'], ['right', 'Aligner à droite']].forEach(([align, title]) => {
-      const btn = el('button', 'ed-txt-btn ed-txt-align-btn'); btn.type = 'button'; btn.title = title; btn.innerHTML = _alignSVG[align];
-      btn.addEventListener('mousedown', e => {
-        e.preventDefault();
-        block.align = align;
-        edDiv.style.textAlign = align;
-        Object.values(alignBtns).forEach(b => b.classList.remove('ed-txt-btn--active'));
-        btn.classList.add('ed-txt-btn--active');
-      });
-      alignBtns[align] = btn;
-      bar.appendChild(btn);
-    });
-    const initAlign = block.align || 'left';
-    edDiv.style.textAlign = initAlign;
-    if (alignBtns[initAlign]) alignBtns[initAlign].classList.add('ed-txt-btn--active');
-
-    bar.appendChild(txt('span', 'ed-txt-sep', ''));
-    if (extraButtons) extraButtons(bar);
-
-    return { bar, content: edDiv };
+    return function detach() {
+      edDiv.contentEditable = 'false';
+      edDiv.removeEventListener('input', onInput);
+      edDiv.removeEventListener('keydown', onKeydown);
+      edDiv.removeEventListener('paste', onPaste);
+      edDiv.removeEventListener('mouseover', onOver);
+      edDiv.removeEventListener('mousemove', onOver);
+      edDiv.removeEventListener('mouseout', onOut);
+      edDiv.removeEventListener('click', onClick);
+      _hideLinkTooltip();
+    };
   }
 
-  return { buildEditor, sanitizeUrl: _sanitizeUrl };
+  /** Gras / italique / souligné sur la sélection courante d'un élément attaché. */
+  function format(edDiv, block, cmd, onChange) {
+    document.execCommand(cmd, false, null);
+    block.html = _serializeRichText(edDiv);
+    if (onChange) onChange();
+  }
+
+  /** Insère un lien à la place de la sélection (ou en fin de texte). La
+   *  sélection est mémorisée avant l'ouverture de la popup, qui prend le focus. */
+  function insertLink(edDiv, block, onChange) {
+    const sel = window.getSelection();
+    let savedRange = null;
+    if (sel && sel.rangeCount) {
+      const r = sel.getRangeAt(0);
+      if (edDiv.contains(r.commonAncestorContainer)) savedRange = r.cloneRange();
+    }
+    const defaultText = savedRange ? savedRange.toString() : '';
+    _openLinkPopup(defaultText, '', 'Insérer un lien', 'Insérer', (text, url) => {
+      edDiv.focus();
+      const sel2 = window.getSelection();
+      sel2.removeAllRanges();
+      if (savedRange) {
+        sel2.addRange(savedRange);
+      } else {
+        const r = document.createRange();
+        r.selectNodeContents(edDiv);
+        r.collapse(false);
+        sel2.addRange(r);
+      }
+      const range = sel2.getRangeAt(0);
+      range.deleteContents();
+      const a = document.createElement('a');
+      a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = text || url;
+      range.insertNode(a);
+      range.setStartAfter(a); range.setEndAfter(a);
+      sel2.removeAllRanges(); sel2.addRange(range);
+      block.html = _serializeRichText(edDiv);
+      if (onChange) onChange();
+    });
+  }
+
+  return { attach, format, insertLink, sanitizeUrl: _sanitizeUrl };
 })();

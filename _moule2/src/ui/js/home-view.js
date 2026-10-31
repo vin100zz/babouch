@@ -34,6 +34,12 @@ const HomeView = (function () {
     return family;
   }
 
+  /** Valeur CSS font-family d'un texte : police personnalisée (fichier du
+   *  dossier style/) prioritaire, sinon famille standard, sinon '' (CSS). */
+  function cssFontFamily(font, fontFile) {
+    return fontFile ? '"' + ensureFontFace(fontFile) + '"' : (font || '');
+  }
+
   /** Applique le style de header (fond couleur/image, titre) à un `.m2-header`
    *  déjà construit (avec un `.m2-header__left` contenant `.m2-header__title`).
    *  Utilisé à l'identique en lecture (app.js) et en édition (tree-editor.js).
@@ -60,14 +66,27 @@ const HomeView = (function () {
       headerEl.style.backgroundSize = '';
       headerEl.style.backgroundPosition = '';
     }
+    // Marge intérieure facultative : absente (sites antérieurs), on garde
+    // le padding d'app.css.
+    headerEl.style.paddingTop = headerEl.style.paddingBottom = style.padY != null ? style.padY + 'px' : '';
+    headerEl.style.paddingLeft = headerEl.style.paddingRight = style.padX != null ? style.padX + 'px' : '';
     const left = headerEl.querySelector('.m2-header__left');
     if (left) left.style.justifyContent = ALIGN_TO_JUSTIFY[style.titleAlign] || 'flex-start';
     const title = headerEl.querySelector('.m2-header__title');
     if (title) {
       title.style.color = style.titleColor;
       title.style.fontSize = style.titleSize + 'px';
-      title.style.fontFamily = style.titleFontFile ? '"' + ensureFontFace(style.titleFontFile) + '"' : (style.titleFont || '');
+      title.style.fontFamily = cssFontFamily(style.titleFont, style.titleFontFile);
     }
+  }
+
+  /** Police/taille/couleur du texte affiché sous une image (img.texteStyle,
+   *  facultatif) ; propriétés absentes remises à '' pour retomber sur le CSS. */
+  function applyLabelStyle(label, ts) {
+    ts = ts || {};
+    label.style.fontFamily = cssFontFamily(ts.font, ts.fontFile);
+    label.style.fontSize = ts.size ? ts.size + 'px' : '';
+    label.style.color = ts.color || '';
   }
 
   /** Applique le style de fond (couleur + image, choisie dans le dossier
@@ -123,11 +142,15 @@ const HomeView = (function () {
     imgWrap.appendChild(im);
     thumb.appendChild(imgWrap);
 
-    if (img.texte) thumb.appendChild(txt('span', 'm2-thumb__label', img.texte));
+    if (img.texte) {
+      const label = txt('span', 'm2-thumb__label', img.texte);
+      applyLabelStyle(label, img.texteStyle);
+      thumb.appendChild(label);
+    }
 
     if (opts.editable) {
       _makeDraggable(thumb, img, opts);
-      _addResizeHandles(imgWrap, im, img, thumb);
+      _addResizeHandles(imgWrap, im, img, thumb, opts);
     }
 
     return thumb;
@@ -165,16 +188,24 @@ const HomeView = (function () {
         .filter(g => g.thumb)
         .map(g => ({ img: g.img, thumb: g.thumb, x: g.img.x, y: g.img.y }));
 
+      // Échelle d'affichage (page réduite en édition) : un déplacement de la
+      // souris en pixels d'écran vaut dx / k pixels de la page.
+      const k = opts.scale ? opts.scale() : 1;
       const onMove = ev => {
         if (!dragging) return;
-        const dx = ev.clientX - startX, dy = ev.clientY - startY;
-        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) moved = true;
+        const dx = (ev.clientX - startX) / k, dy = (ev.clientY - startY) / k;
+        if (!moved && (Math.abs(dx) > 2 || Math.abs(dy) > 2)) {
+          moved = true;
+          // Instantané pour « Annuler », pris une seule fois par glissé.
+          if (opts.onBeforeChange) opts.onBeforeChange();
+        }
+        if (!moved) return;
         // Ne jamais laisser passer sous la limite visible du canevas (qui ne
         // défile pas dans les valeurs négatives), sinon l'image deviendrait
         // impossible à rattraper.
         group.forEach(g => {
-          g.img.x = Math.max(-CANVAS_ORIGIN_X, g.x + dx);
-          g.img.y = Math.max(-CANVAS_ORIGIN_Y, g.y + dy);
+          g.img.x = Math.max(-CANVAS_ORIGIN_X, Math.round(g.x + dx));
+          g.img.y = Math.max(-CANVAS_ORIGIN_Y, Math.round(g.y + dy));
           g.thumb.style.left = (g.img.x + CANVAS_ORIGIN_X) + 'px';
           g.thumb.style.top = (g.img.y + CANVAS_ORIGIN_Y) + 'px';
         });
@@ -185,6 +216,7 @@ const HomeView = (function () {
         window.removeEventListener('mousemove', onMove);
         window.removeEventListener('mouseup', onUp);
         if (!moved && opts.onClick) opts.onClick(img, thumb);
+        if (moved && opts.onChange) opts.onChange();
       };
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onUp);
@@ -207,12 +239,13 @@ const HomeView = (function () {
    * tirer le coin bas-droit ne bouge que ce coin, le coin haut-gauche ne
    * bouge pas).
    */
-  function _addResizeHandles(imgWrap, im, img, thumb) {
+  function _addResizeHandles(imgWrap, im, img, thumb, opts) {
     HANDLES.forEach(dir => {
       const handle = el('div', 'm2-thumb__handle m2-thumb__handle--' + dir);
       handle.addEventListener('mousedown', e => {
         e.preventDefault();
         e.stopPropagation();
+        if (opts.onBeforeChange) opts.onBeforeChange();
         const a = ANCHORS[dir];
         const rect = im.getBoundingClientRect();
         const anchorX = rect.left + a.ox * rect.width;
@@ -222,21 +255,24 @@ const HomeView = (function () {
         const startCenterX = rect.left + rect.width / 2;
         const startCenterY = rect.top + rect.height / 2;
         const startImgX = img.x, startImgY = img.y;
+        // Calculs en pixels d'écran (rect, souris), convertis en pixels de
+        // la page (÷ k) au moment d'écrire largeur et position.
+        const k = opts.scale ? opts.scale() : 1;
         imgWrap.classList.add('m2-thumb__imgwrap--resizing');
 
         const onMove = ev => {
           const dist = Math.hypot(ev.clientX - anchorX, ev.clientY - anchorY);
-          let newWidth = Math.round(startWidth * (dist / startDist));
-          newWidth = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, newWidth));
-          const newHeight = newWidth * (rect.height / rect.width);
+          const newWidth = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, Math.round(startWidth * (dist / startDist) / k)));
+          const screenWidth = newWidth * k;
+          const screenHeight = screenWidth * (rect.height / rect.width);
 
           // Nouveau centre de l'image tel qu'il serait si le coin ancré
           // restait immobile, puis report de ce déplacement sur x/y du thumb
           // (le thumb entier est déplacé du même delta, label compris).
-          const newCenterX = anchorX + a.sx * (newWidth / 2);
-          const newCenterY = anchorY + a.sy * (newHeight / 2);
-          img.x = Math.max(-CANVAS_ORIGIN_X, startImgX + (newCenterX - startCenterX));
-          img.y = Math.max(-CANVAS_ORIGIN_Y, startImgY + (newCenterY - startCenterY));
+          const newCenterX = anchorX + a.sx * (screenWidth / 2);
+          const newCenterY = anchorY + a.sy * (screenHeight / 2);
+          img.x = Math.max(-CANVAS_ORIGIN_X, Math.round(startImgX + (newCenterX - startCenterX) / k));
+          img.y = Math.max(-CANVAS_ORIGIN_Y, Math.round(startImgY + (newCenterY - startCenterY) / k));
           img.width = newWidth;
 
           _applyWidth(im, img);
@@ -247,6 +283,7 @@ const HomeView = (function () {
           imgWrap.classList.remove('m2-thumb__imgwrap--resizing');
           window.removeEventListener('mousemove', onMove);
           window.removeEventListener('mouseup', onUp);
+          if (opts.onChange) opts.onChange();
         };
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
@@ -264,14 +301,18 @@ const HomeView = (function () {
     if (img.texte) {
       if (!label) { label = txt('span', 'm2-thumb__label', ''); thumb.appendChild(label); }
       label.textContent = img.texte;
+      applyLabelStyle(label, img.texteStyle);
     } else if (label) {
       label.parentNode.removeChild(label);
     }
+    thumb.style.left = (img.x + CANVAS_ORIGIN_X) + 'px';
+    thumb.style.top = (img.y + CANVAS_ORIGIN_Y) + 'px';
   }
 
   return {
     render, buildThumb, updateThumb,
-    applyHeaderStyle, applyBackgroundStyle,
+    applyHeaderStyle, applyBackgroundStyle, applyLabelStyle,
+    ensureFontFace, cssFontFamily,
     DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND,
   };
 })();

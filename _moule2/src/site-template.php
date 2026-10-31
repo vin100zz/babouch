@@ -38,11 +38,15 @@ $engineBase = str_repeat('../', substr_count($sitePath, '/') + 1) . basename(dir
 
 // Unique numéro de version à incrémenter après toute modification de
 // _moule2/src/ui/**, pour invalider le cache navigateur sur tous les sites.
-$version = 70;
+$version = 75;
 
 $title = ucfirst(str_replace(array('_', '-'), ' ', $site));
 
-$scripts = array('util', 'api', 'richtext', 'filebrowser', 'home-view', 'content-editor', 'tree-editor', 'app');
+$scripts = array(
+    'util', 'api', 'richtext', 'filebrowser', 'home-view', 'content-editor', 'site-chrome',
+    'props-panel', 'editor-shell', 'style-items', 'home-editor', 'style-editor', 'page-editor', 'tree-editor',
+    'app',
+);
 
 // style.css optionnel, propre à chaque site (<site>/style/style.css) : permet
 // de surcharger certaines propriétés du moule sans toucher à _moule2. Chargé
@@ -59,6 +63,7 @@ $customCssVersion = is_file($customCssPath) ? filemtime($customCssPath) : null;
   <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></title>
   <link rel="stylesheet" href="<?php echo $engineBase; ?>/src/ui/css/app.css?v=<?php echo $version; ?>">
   <link rel="stylesheet" href="<?php echo $engineBase; ?>/src/ui/css/editor.css?v=<?php echo $version; ?>">
+  <link rel="stylesheet" href="<?php echo $engineBase; ?>/src/ui/css/studio.css?v=<?php echo $version; ?>">
 <?php if ($customCssVersion !== null): ?>
   <link rel="stylesheet" href="style/style.css?v=<?php echo $customCssVersion; ?>">
 <?php endif; ?>

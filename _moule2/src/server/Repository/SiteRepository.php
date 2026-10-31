@@ -120,7 +120,7 @@ class SiteRepository
             if (!is_array($img)) {
                 continue;
             }
-            $images[] = array(
+            $clean = array(
                 'id'     => isset($img['id']) ? (string) $img['id'] : uniqid('img_'),
                 'image'  => isset($img['image']) ? (string) $img['image'] : '',
                 'x'      => isset($img['x']) ? (int) $img['x'] : 0,
@@ -130,6 +130,12 @@ class SiteRepository
                 'texte'  => (isset($img['texte']) && $img['texte'] !== '') ? (string) $img['texte'] : null,
                 'lien'   => (isset($img['lien']) && $img['lien'] !== '') ? (string) $img['lien'] : null,
             );
+            // Police/taille/couleur du texte affiché sous l'image (facultatif).
+            $texteStyle = $this->cleanTextExtras(isset($img['texteStyle']) ? $img['texteStyle'] : null);
+            if (!empty($texteStyle)) {
+                $clean['texteStyle'] = $texteStyle;
+            }
+            $images[] = $clean;
         }
         return array(
             'images'      => $images,
@@ -146,7 +152,7 @@ class SiteRepository
      */
     private function cleanHeaderStyle($style)
     {
-        return array(
+        $clean = array(
             'bg'           => $this->cleanColor(isset($style['bg']) ? $style['bg'] : null, '#1e293b'),
             'titleColor'   => $this->cleanColor(isset($style['titleColor']) ? $style['titleColor'] : null, '#ffffff'),
             'titleSize'    => isset($style['titleSize']) ? max(10, min(150, (int) $style['titleSize'])) : 18,
@@ -156,6 +162,13 @@ class SiteRepository
             'image'        => $this->cleanRelPath(isset($style['image']) ? $style['image'] : null),
             'mode'         => in_array(isset($style['mode']) ? $style['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $style['mode'] : 'cover',
         );
+        // Marge intérieure du header (facultative, absente = padding du CSS).
+        foreach (array('padY', 'padX') as $k) {
+            if (isset($style[$k]) && is_numeric($style[$k])) {
+                $clean[$k] = max(0, min(300, (int) $style[$k]));
+            }
+        }
+        return $clean;
     }
 
     /** Couleur + image (optionnelle) + mode d'affichage du fond de la page d'accueil. */
@@ -210,7 +223,10 @@ class SiteRepository
         );
     }
 
-    /** Fond + texte + bordure (couleur/épaisseur/arrondi) : sections et blocs TEXTE. */
+    /**
+     * Fond + texte + bordure (couleur/épaisseur/arrondi) : titres de page, de
+     * section et blocs TEXTE, plus leurs réglages de police/marges facultatifs.
+     */
     private function cleanColorTextPair($v, $defaults)
     {
         return array_merge(
@@ -218,8 +234,48 @@ class SiteRepository
                 'bg'        => $this->cleanColor(isset($v['bg']) ? $v['bg'] : null, $defaults['bg']),
                 'textColor' => $this->cleanColor(isset($v['textColor']) ? $v['textColor'] : null, $defaults['textColor']),
             ),
-            $this->cleanBorder($v, $defaults['borderColor'], $defaults['borderWidth'], $defaults['borderRadius'])
+            $this->cleanBorder($v, $defaults['borderColor'], $defaults['borderWidth'], $defaults['borderRadius']),
+            $this->cleanTextExtras($v)
         );
+    }
+
+    /**
+     * Police, taille, couleur, alignement et marges d'un texte. Toutes ces clés
+     * sont facultatives et ne sont écrites que si elles sont présentes : un
+     * site enregistré avant leur ajout garde un JSON identique, et son rendu
+     * retombe sur les valeurs d'app.css.
+     */
+    private function cleanTextExtras($v)
+    {
+        $out = array();
+        if (!is_array($v)) {
+            return $out;
+        }
+        if (isset($v['font']) && is_string($v['font']) && $v['font'] !== '') {
+            $out['font'] = $v['font'];
+        }
+        $fontFile = $this->cleanRelPath(isset($v['fontFile']) ? $v['fontFile'] : null);
+        if ($fontFile !== null) {
+            $out['fontFile'] = $fontFile;
+        }
+        if (isset($v['size']) && is_numeric($v['size'])) {
+            $out['size'] = max(8, min(150, (int) $v['size']));
+        }
+        if (isset($v['color'])) {
+            $color = $this->cleanColor($v['color'], '');
+            if ($color !== '') {
+                $out['color'] = $color;
+            }
+        }
+        if (isset($v['align']) && in_array($v['align'], array('left', 'center', 'right'), true)) {
+            $out['align'] = $v['align'];
+        }
+        foreach (array('padY', 'padX', 'mTop', 'mBottom') as $k) {
+            if (isset($v[$k]) && is_numeric($v[$k])) {
+                $out[$k] = max(0, min(300, (int) $v[$k]));
+            }
+        }
+        return $out;
     }
 
     private function cleanImageStyle($v)
@@ -338,11 +394,20 @@ class SiteRepository
                 continue;
             }
             if ($bloc['type'] === 'TEXTE') {
-                $out[] = array(
+                $clean = array(
                     'type'  => 'TEXTE',
                     'html'  => isset($bloc['html']) ? (string) $bloc['html'] : '',
                     'align' => in_array(isset($bloc['align']) ? $bloc['align'] : '', array('left', 'center', 'right'), true) ? $bloc['align'] : 'left',
                 );
+                // Facultatifs : largeur (%) et police/taille/couleur propres à ce bloc.
+                if (isset($bloc['width']) && is_numeric($bloc['width'])) {
+                    $clean['width'] = max(10, min(100, (int) $bloc['width']));
+                }
+                $style = $this->cleanTextExtras(isset($bloc['style']) ? $bloc['style'] : null);
+                if (!empty($style)) {
+                    $clean['style'] = $style;
+                }
+                $out[] = $clean;
             } elseif ($bloc['type'] === 'DOCUMENTS') {
                 $out[] = array(
                     'type'   => 'DOCUMENTS',

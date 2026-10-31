@@ -1,6 +1,6 @@
 'use strict';
 
-// ── Application _moule2 : routage + rendu lecture + bascule édition ────────
+// ── Application _moule2 : routage + rendu lecture + ouverture des éditeurs ──
 // Chaque page consommatrice (générée par _moule2/src/site-template.php)
 // définit SITE_NAME et ENGINE_BASE puis charge ce fichier en dernier.
 
@@ -27,237 +27,66 @@
     return location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   }
 
-  // Descend l'arbre selon les segments de chemin.
-  // Retourne { configs: [...noeuds traversés avec cumulativePath], found: bool }
-  function resolvePath(pathSegments) {
-    let current = SITE.chapitres;
-    let cumulative = '';
-    const configs = [];
-    for (const seg of pathSegments) {
-      const node = (current || []).find(c => c.keyword === seg);
-      if (!node) return { configs, found: false };
-      cumulative = cumulative ? cumulative + '/' + seg : seg;
-      configs.push({ node, cumulativePath: cumulative });
-      current = node.chapitres;
-    }
-    return { configs, found: true };
-  }
-
-  // Vrai si la route actuelle mène à l'éditeur de contenu d'une page (feuille,
-  // sans enfants) ; faux pour la page d'accueil et les pages hub/sous-menu,
-  // qui ouvrent l'éditeur du site (TreeEditor). Sert à la fois au libellé du
-  // bouton Modifier et reflète exactement la logique de bascule d'édition
-  // (onEditClick, plus bas).
-  function _isLeafRoute() {
-    const path = currentPath();
-    if (path.length === 0) return false;
-    const { configs, found } = resolvePath(path);
-    if (!found) return false;
-    const last = configs[configs.length - 1];
-    return !(last.node.chapitres && last.node.chapitres.length > 0);
-  }
-
   function route() {
     if (editing) return; // ne pas re-router pendant une édition en cours
     const path = currentPath();
     if (path.length === 0) { renderHome(); return; }
-    const { configs, found } = resolvePath(path);
+    const { configs, found } = SiteChrome.resolvePath(SITE, path);
     if (!found) { renderNotFound(); return; }
     const last = configs[configs.length - 1];
-    renderBreadcrumb(configs);
     if (last.node.chapitres && last.node.chapitres.length > 0) {
-      renderSubmenu(last.node, last.cumulativePath);
+      renderSubmenu(last.node, last.cumulativePath, configs);
     } else {
-      renderLeaf(last.node, last.cumulativePath);
+      renderLeaf(last.node, configs);
     }
   }
 
-  // ── En-tête / fil d'Ariane ────────────────────────────────────────────────
+  // ── Menu crayon : actions d'édition selon le type de page ────────────────
+  // « Modifier cette page » : accueil et pages de contenu (feuilles) ; une
+  // rubrique (liste de sous-pages, générée automatiquement) n'a rien à
+  // modifier en propre.
 
-  // `context` : 'home' (image de fond du header propre à la page d'accueil)
-  // ou 'pages' (image de fond propre aux autres pages) — même header, même
-  // couleur/police (home.headerStyle), mais image de fond distincte possible.
-  function buildHeader(context) {
-    const header = el('div', 'm2-header');
-    // Fixe, en dehors de `.m2-header__left` : toujours en haut à gauche de la
-    // page quel que soit l'alignement du titre, et uniquement sur la page
-    // d'accueil (le contexte 'pages' ne l'affiche pas).
-    if (context === 'home') header.appendChild(_buildNavMenu());
-    const left = el('div', 'm2-header__left');
-    left.appendChild(txt('span', 'm2-header__title', SITE.titre_site || SITE_NAME));
-    header.appendChild(left);
-
-    const right = el('div', 'm2-header__right');
-    right.appendChild(_buildSearchBox());
-
-    const editBtn = el('button', 'm2-edit-toggle');
-    editBtn.type = 'button';
-    editBtn.textContent = _isLeafRoute() ? '✏️ Modifier la page' : '✏️ Modifier le site';
-    editBtn.addEventListener('click', onEditClick);
-    right.appendChild(editBtn);
-    header.appendChild(right);
-
-    const imageStyle = context === 'pages'
-      ? (SITE.pagesStyle && SITE.pagesStyle.headerBackground)
-      : (SITE.home && SITE.home.headerStyle);
-    HomeView.applyHeaderStyle(header, SITE.home && SITE.home.headerStyle, imageStyle);
-    return header;
-  }
-
-  function _buildSearchBox() {
-    const searchWrap = el('div', 'm2-search');
-    const input = document.createElement('input');
-    input.type = 'text'; input.placeholder = '🔍 Rechercher';
-    const list = el('ul', 'm2-search__list'); list.hidden = true;
-    const allEntries = _flattenForSearch(SITE.chapitres, '');
-    input.addEventListener('input', () => {
-      const q = input.value.trim().toLowerCase();
-      list.innerHTML = '';
-      if (q.length < 2) { list.hidden = true; return; }
-      const matches = allEntries.filter(e => e.label.toLowerCase().includes(q)).slice(0, 20);
-      matches.forEach(m => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = '#/' + m.path; a.textContent = m.label;
-        a.addEventListener('click', () => { input.value = ''; list.hidden = true; });
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-      list.hidden = matches.length === 0;
-    });
-    searchWrap.appendChild(input);
-    searchWrap.appendChild(list);
-    return searchWrap;
-  }
-
-  // Icône « sandwich » + menu arborescent : ouverture au survol (comme la
-  // liste de frères du fil d'Ariane et la cascade des sous-niveaux), clic
-  // possible aussi en complément (utile au clavier/tactile). Atteint
-  // n'importe quelle page sans repasser par les sous-menus intermédiaires.
-  function _buildNavMenu() {
-    const wrap = el('div', 'm2-navmenu');
-    const btn = el('button', 'm2-hamburger-btn');
-    btn.type = 'button'; btn.title = 'Naviguer dans le site';
-    // Barres dessinées en CSS plutôt que le caractère ☰ : ce dernier n'est pas
-    // centré verticalement de façon fiable selon les polices (métriques du
-    // glyphe), les barres, elles, sont centrées par construction.
-    btn.appendChild(el('span', 'm2-hamburger-btn__bars'));
-    wrap.appendChild(btn);
-
-    const menu = el('ul', 'm2-treemenu');
-    _buildTreeMenuItems(menu, SITE.chapitres, '', null);
-    wrap.appendChild(menu);
-
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const wasOpen = wrap.classList.contains('m2-navmenu--open');
-      _closeNavMenus();
-      if (!wasOpen) wrap.classList.add('m2-navmenu--open');
-    });
-    return wrap;
-  }
-
-  // `currentNode`, si fourni, reçoit une mise en avant visuelle (utilisé par
-  // le fil d'Ariane pour repérer la page actuelle dans la liste des frères).
-  function _buildTreeMenuItems(ulEl, nodes, prefix, currentNode) {
-    (nodes || []).forEach(node => {
-      const path = prefix ? prefix + '/' + node.keyword : node.keyword;
-      const li = el('li', 'm2-treemenu__item');
-      const a = document.createElement('a');
-      a.href = '#/' + path;
-      a.appendChild(document.createTextNode(node.label || node.keyword));
-      if (currentNode && node === currentNode) a.classList.add('m2-treemenu__link--current');
-      if (node.chapitres && node.chapitres.length) {
-        a.appendChild(txt('span', 'm2-treemenu__arrow', '›'));
-        const sub = el('ul', 'm2-treemenu__submenu');
-        _buildTreeMenuItems(sub, node.chapitres, path, currentNode);
-        li.appendChild(a);
-        li.appendChild(sub);
-      } else {
-        li.appendChild(a);
-      }
-      ulEl.appendChild(li);
-    });
-  }
-
-  function _closeNavMenus() {
-    document.querySelectorAll('.m2-navmenu--open').forEach(w => w.classList.remove('m2-navmenu--open'));
-  }
-  document.addEventListener('click', _closeNavMenus);
-
-  function renderBreadcrumbBar(configs) {
-    const bar = el('div', 'm2-breadcrumb');
-    const home = document.createElement('a');
-    home.className = 'm2-breadcrumb__home';
-    home.href = '#/'; home.textContent = '🏠';
-    bar.appendChild(home);
-    configs.forEach((c, i) => {
-      const siblings = i === 0 ? SITE.chapitres : configs[i - 1].node.chapitres;
-      const parentPath = i === 0 ? '' : configs[i - 1].cumulativePath;
-      bar.appendChild(_buildBreadcrumbSep(siblings, parentPath, c.node));
-
-      if (i === configs.length - 1) {
-        bar.appendChild(txt('span', 'm2-breadcrumb__current', c.node.label || c.node.keyword));
-      } else {
-        const a = document.createElement('a');
-        a.href = '#/' + c.cumulativePath;
-        a.textContent = c.node.label || c.node.keyword;
-        bar.appendChild(a);
-      }
-    });
-    return bar;
-  }
-
-  // Sépare deux niveaux du breadcrumb ; si le niveau a plusieurs pages
-  // (frères), la flèche devient cliquable/survolable et ouvre la liste des
-  // pages disponibles à ce niveau (permet de sauter vers un frère sans
-  // repasser par la page parente).
-  function _buildBreadcrumbSep(siblings, parentPath, currentNode) {
-    const wrap = el('span', 'm2-breadcrumb__sepwrap');
-    const sep = el('button', 'm2-breadcrumb__sep');
-    sep.type = 'button';
-    sep.innerHTML = '<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 1.5L7 5L3.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    wrap.appendChild(sep);
-
-    if (siblings && siblings.length > 1) {
-      wrap.classList.add('m2-breadcrumb__sepwrap--has-dropdown');
-      // Même construction récursive que le menu sandwich : un frère qui a
-      // lui-même des enfants cascade à son tour au survol, au lieu d'une
-      // simple liste plate d'un seul niveau.
-      const dropdown = el('ul', 'm2-treemenu m2-breadcrumb__dropdown');
-      _buildTreeMenuItems(dropdown, siblings, parentPath, currentNode);
-      wrap.appendChild(dropdown);
-      sep.addEventListener('click', e => {
-        e.stopPropagation();
-        const wasOpen = wrap.classList.contains('m2-breadcrumb__sepwrap--open');
-        _closeAllBreadcrumbDropdowns();
-        if (!wasOpen) wrap.classList.add('m2-breadcrumb__sepwrap--open');
-      });
-    } else {
-      sep.disabled = true;
+  function editMenu(kind) {
+    const items = [];
+    if (kind === 'home') {
+      items.push({ label: 'Modifier cette page', sub: "Blocs, en-tête et fond de l'accueil",
+        onClick: () => openEditor(c => HomeEditor.open(c, SITE, onEditDone)) });
+    } else if (kind === 'leaf') {
+      const path = currentPath();
+      items.push({ label: 'Modifier cette page', sub: 'Textes, images et sections',
+        onClick: () => openEditor(c => PageEditor.open(c, SITE, path, onEditDone)) });
     }
-    return wrap;
+    items.push({ label: 'Style des pages', sub: 'Couleurs, polices et bordures de tout le site',
+      onClick: () => openEditor(c => StyleEditor.open(c, SITE, onEditDone)) });
+    items.push({ label: 'Plan du site', sub: 'Ajouter, renommer, déplacer des pages',
+      onClick: () => openEditor(c => TreeEditor.open(c, SITE, onTreeDone)) });
+    return items;
   }
 
-  function _closeAllBreadcrumbDropdowns() {
-    document.querySelectorAll('.m2-breadcrumb__sepwrap--open').forEach(w => w.classList.remove('m2-breadcrumb__sepwrap--open'));
+  function openEditor(openFn) {
+    editing = true;
+    window.scrollTo(0, 0);
+    openFn(root);
   }
-  document.addEventListener('click', _closeAllBreadcrumbDropdowns);
 
-  let _lastConfigs = [];
-  function renderBreadcrumb(configs) { _lastConfigs = configs; }
+  function onEditDone(savedData) {
+    editing = false;
+    if (savedData) SITE = savedData;
+    route();
+  }
+
+  // Le plan du site peut se fermer sur une page à afficher (nav.path), voire
+  // à ouvrir directement dans l'éditeur de page (nav.edit).
+  function onTreeDone(savedData, nav) {
+    editing = false;
+    if (savedData) SITE = savedData;
+    if (!nav) { route(); return; }
+    if (location.hash === '#/' + nav.path) route();
+    else location.hash = '#/' + nav.path;
+    if (nav.edit) openEditor(c => PageEditor.open(c, SITE, nav.path.split('/'), onEditDone));
+  }
 
   // ── Page d'accueil ───────────────────────────────────────────────────────
-
-  function _flattenForSearch(chapitres, prefix) {
-    let out = [];
-    (chapitres || []).forEach(node => {
-      const path = prefix ? prefix + '/' + node.keyword : node.keyword;
-      if (node.label) out.push({ label: node.label, path });
-      if (node.chapitres && node.chapitres.length) out = out.concat(_flattenForSearch(node.chapitres, path));
-    });
-    return out;
-  }
 
   function renderHome() {
     root.innerHTML = '';
@@ -267,7 +96,7 @@
     // le header, visible à travers lui dès qu'il a de la transparence.
     const page = el('div', 'm2-home-page');
     HomeView.applyBackgroundStyle(page, SITE.home && SITE.home.background);
-    page.appendChild(buildHeader('home'));
+    page.appendChild(SiteChrome.header(SITE, 'home', { editMenu: editMenu('home') }));
 
     const wrap = el('div', 'm2-home');
     const images = (SITE.home && SITE.home.images) || [];
@@ -285,37 +114,22 @@
   // Header + breadcrumb + contenu partagent un même fond de page (voir
   // renderHome pour le même principe côté page d'accueil) : le fond continue
   // derrière le header, visible à travers lui dès qu'il a de la transparence.
-  function _buildContentPage(configs) {
+  function _buildContentPage(configs, kind) {
     const page = el('div', 'm2-content-page');
     HomeView.applyBackgroundStyle(page, SITE.pagesStyle && SITE.pagesStyle.background);
     // Header + fil d'Ariane regroupés dans un même bloc collant (voir
     // .m2-page-topbar) : ainsi ils restent fixes ensemble au scroll, sans
     // dépendre de la hauteur (variable, personnalisable) du header.
     const topbar = el('div', 'm2-page-topbar');
-    topbar.appendChild(buildHeader('pages'));
-    if (configs) topbar.appendChild(renderBreadcrumbBar(configs));
+    topbar.appendChild(SiteChrome.header(SITE, 'pages', { editMenu: editMenu(kind) }));
+    if (configs) topbar.appendChild(SiteChrome.breadcrumb(SITE, configs));
     page.appendChild(topbar);
     return page;
   }
 
-  // Icône de fin de page (dossier style/), affichée en bas de toutes les
-  // pages sauf la page d'accueil ; absente tant qu'aucune image n'a été
-  // choisie (voir l'onglet Style des pages en édition).
-  function _buildPageFooterIcon() {
-    const cfg = SITE.pagesStyle && SITE.pagesStyle.footerIcon;
-    if (!cfg || !cfg.image) return null;
-    const wrap = el('div', 'm2-page-footer');
-    const img = document.createElement('img');
-    img.src = 'style/' + cfg.image;
-    img.alt = '';
-    img.style.width = (cfg.width || 40) + 'px';
-    wrap.appendChild(img);
-    return wrap;
-  }
-
-  function renderSubmenu(node, cumulativePath) {
+  function renderSubmenu(node, cumulativePath, configs) {
     root.innerHTML = '';
-    const page = _buildContentPage(_lastConfigs);
+    const page = _buildContentPage(configs, 'hub');
 
     const wrap = el('div', 'm2-submenu');
     wrap.appendChild(txt('div', 'm2-submenu__title', node.label || node.keyword));
@@ -334,9 +148,9 @@
 
   // ── Page de contenu (feuille) ────────────────────────────────────────────
 
-  function renderLeaf(node, cumulativePath) {
+  function renderLeaf(node, configs) {
     root.innerHTML = '';
-    const page = _buildContentPage(_lastConfigs);
+    const page = _buildContentPage(configs, 'leaf');
 
     const wrap = el('div', 'm2-page');
     const titleEl = txt('div', 'm2-page__title', node.label || node.keyword);
@@ -349,88 +163,16 @@
       wrap.appendChild(ContentView.render(sections, SITE.pagesStyle));
     }
     page.appendChild(wrap);
-    const footer = _buildPageFooterIcon();
+    const footer = SiteChrome.footerIcon(SITE);
     if (footer) page.appendChild(footer);
     root.appendChild(page);
   }
 
   function renderNotFound() {
     root.innerHTML = '';
-    const page = _buildContentPage();
+    const page = _buildContentPage(null, 'hub');
     page.appendChild(txt('div', 'm2-error', 'Page introuvable.'));
     root.appendChild(page);
-  }
-
-  // ── Bascule édition ──────────────────────────────────────────────────────
-
-  function onEditClick() {
-    const path = currentPath();
-    editing = true;
-    root.innerHTML = '';
-
-    if (path.length === 0) {
-      TreeEditor.open(root, SITE, onEditDone, 'home');
-      return;
-    }
-    const { configs, found } = resolvePath(path);
-    if (!found) { editing = false; route(); return; }
-    const last = configs[configs.length - 1];
-    if (last.node.chapitres && last.node.chapitres.length > 0) {
-      TreeEditor.open(root, SITE, onEditDone, 'tree');
-    } else {
-      openLeafEditor(last.node);
-    }
-  }
-
-  function onEditDone(savedData) {
-    editing = false;
-    if (savedData) SITE = savedData;
-    route();
-  }
-
-  function openLeafEditor(node) {
-    const bar = el('div', 'ed-bar');
-    bar.id = 'ed-fixed-bar';
-    const saveBtn = el('button', 'ed-btn ed-btn--save');
-    saveBtn.type = 'button'; saveBtn.textContent = 'Enregistrer';
-    const cancelBtn = el('button', 'ed-btn ed-btn--cancel');
-    cancelBtn.type = 'button'; cancelBtn.textContent = 'Annuler';
-    bar.appendChild(saveBtn); bar.appendChild(cancelBtn);
-    document.body.appendChild(bar);
-
-    const workingNode = clone(node);
-    if (!workingNode.sections) workingNode.sections = [];
-
-    const wrap = el('div', 'm2-page');
-    wrap.style.paddingTop = '20px';
-    // Titre de la page en contexte (lecture seule ici ; se renomme depuis
-    // l'onglet Arborescence) : sans lui, on ne sait plus quelle page on édite
-    // une fois descendu dans la liste des sections.
-    const titleEl = txt('div', 'm2-page__title', node.label || node.keyword);
-    ContentView.applyPageTitleStyle(titleEl, SITE.pagesStyle && SITE.pagesStyle.pageTitle);
-    wrap.appendChild(titleEl);
-    wrap.appendChild(ContentView.buildEditor(workingNode.sections, SITE.pagesStyle));
-    root.appendChild(wrap);
-
-    cancelBtn.addEventListener('click', () => {
-      bar.parentNode.removeChild(bar);
-      editing = false;
-      route();
-    });
-    saveBtn.addEventListener('click', async () => {
-      saveBtn.disabled = true; saveBtn.textContent = 'Enregistrement…';
-      try {
-        node.sections = workingNode.sections;
-        const saved = await Api.saveSite(SITE);
-        SITE = saved.data;
-        bar.parentNode.removeChild(bar);
-        editing = false;
-        route();
-      } catch (e) {
-        alert('Erreur lors de la sauvegarde :\n' + e.message);
-        saveBtn.disabled = false; saveBtn.textContent = 'Enregistrer';
-      }
-    });
   }
 
   boot();
