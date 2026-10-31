@@ -10,15 +10,24 @@ const PropsPanel = (function () {
   // Groupes repliés par l'utilisateur, mémorisés d'une sélection à l'autre.
   const _collapsed = {};
 
+  // Polices système (aucun téléchargement) : présentes sur Windows et macOS,
+  // remplacées par la famille générique indiquée en fin de valeur ailleurs
+  // (Android, Linux). Les valeurs déjà enregistrées ne doivent pas changer.
   const FONT_CHOICES = [
-    ['', 'Police par défaut'],
-    ['Georgia, serif', 'Georgia'],
-    ['"Times New Roman", serif', 'Times New Roman'],
+    ['Arial, Helvetica, sans-serif', 'Arial'],
+    ['"Arial Black", Gadget, sans-serif', 'Arial Black'],
+    ['"Comic Sans MS", "Comic Sans", cursive', 'Comic Sans MS'],
     ['"Courier New", monospace', 'Courier New'],
+    ['Georgia, serif', 'Georgia'],
+    ['Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif', 'Impact'],
+    ['"Lucida Console", Monaco, monospace', 'Lucida Console'],
+    ['"Palatino Linotype", Palatino, "Book Antiqua", serif', 'Palatino'],
+    ['"Segoe UI", sans-serif', 'Segoe UI'],
+    ['Tahoma, Geneva, sans-serif', 'Tahoma'],
+    ['"Times New Roman", serif', 'Times New Roman'],
     ['"Trebuchet MS", sans-serif', 'Trebuchet MS'],
     ['Verdana, sans-serif', 'Verdana'],
-    ['"Segoe UI", sans-serif', 'Segoe UI'],
-  ];
+  ].sort((a, b) => a[1].localeCompare(b[1], 'fr'));
   const ALIGN_OPTIONS = [
     ['left', 'Aligner à gauche', 'M4 6h16M4 10h10M4 14h16M4 18h10'],
     ['center', 'Centrer', 'M4 6h16M7 10h10M4 14h16M7 18h10'],
@@ -296,32 +305,54 @@ const PropsPanel = (function () {
       });
     },
 
-    // Police : familles standard, police personnalisée en cours, ou choix
-    // d'un autre fichier du dossier style/.
+    // Police : familles standard, polices Google, police personnalisée en
+    // cours, ou choix d'un autre fichier du dossier style/. Chaque option (et
+    // la liste elle-même) est écrite dans sa police pour servir d'aperçu.
     font(val, it, id) {
       const cur = it.get();
+      const gfCur = HomeView.googleFont(cur.font);
       const sel = document.createElement('select');
       sel.id = id; sel.className = 'pp-input';
-      const options = FONT_CHOICES.slice();
-      if (cur.fontFile) options.push(['file:' + cur.fontFile, cur.fontFile.split('/').pop() + ' (votre police)']);
-      else if (cur.font && !FONT_CHOICES.some(([v]) => v === cur.font)) options.push([cur.font, cur.font]);
-      options.push(['__pick', 'Autre police (dossier style/)…']);
-      const selected = cur.fontFile ? 'file:' + cur.fontFile : (cur.font || '');
-      options.forEach(([v, l]) => {
-        const opt = document.createElement('option');
-        opt.value = v; opt.textContent = l;
-        if (v === selected) opt.selected = true;
-        sel.appendChild(opt);
+      const extras = [];
+      if (cur.fontFile && !gfCur) extras.push(['file:' + cur.fontFile, cur.fontFile.split('/').pop() + ' (votre police)']);
+      else if (cur.font && !gfCur && !FONT_CHOICES.some(([v]) => v === cur.font)) extras.push([cur.font, cur.font]);
+      extras.push(['__pick', 'Autre police (dossier style/)…']);
+      const groups = [
+        [null, [['', 'Police par défaut']]],
+        ['Polices système', FONT_CHOICES],
+        ['Google Fonts', HomeView.GOOGLE_FONTS.map(f => ['gf:' + f.name, f.name])],
+        [null, extras],
+      ];
+      // Fichiers téléchargés seulement quand une option s'affiche.
+      HomeView.ensureGoogleFonts(HomeView.GOOGLE_FONTS.map(f => f.name));
+      const selected = gfCur ? cur.font : (cur.fontFile ? 'file:' + cur.fontFile : (cur.font || ''));
+      const preview = v => {
+        if (v.startsWith('file:')) return HomeView.cssFontFamily(null, v.slice(5));
+        const gf = HomeView.googleFont(v);
+        if (gf) return '"' + gf.name + '", ' + gf.generic;
+        return v === '__pick' ? '' : v;
+      };
+      groups.forEach(([label, options]) => {
+        let parent = sel;
+        if (label) { parent = document.createElement('optgroup'); parent.label = label; sel.appendChild(parent); }
+        options.forEach(([v, l]) => {
+          const opt = document.createElement('option');
+          opt.value = v; opt.textContent = l;
+          opt.style.fontFamily = preview(v);
+          if (v === selected) opt.selected = true;
+          parent.appendChild(opt);
+        });
       });
+      sel.style.fontFamily = preview(selected);
       sel.addEventListener('change', () => {
         const v = sel.value;
         if (v === '__pick') {
           sel.value = selected;
           FileBrowser.open(path => it.set(null, path), { root: 'style', rootLabel: 'style', type: 'font' });
-        } else if (v.startsWith('file:')) {
-          it.set(null, v.slice(5));
         } else {
-          it.set(v || null, null);
+          sel.style.fontFamily = preview(v);
+          if (v.startsWith('file:')) it.set(null, v.slice(5));
+          else it.set(v || null, null);
         }
       });
       val.appendChild(sel);

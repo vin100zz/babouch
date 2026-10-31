@@ -30,7 +30,7 @@ if (!is_array($data)) {
 try {
     $repo = new SiteRepository($site);
     $saved = $repo->save($data);
-    Response::json(array('ok' => true, 'data' => $saved));
+    Response::json(array('ok' => true, 'data' => $saved, 'warnings' => $repo->getWarnings()));
 } catch (RuntimeException $e) {
     Response::error($e->getMessage(), 500);
 }

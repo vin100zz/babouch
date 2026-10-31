@@ -17,26 +17,104 @@ const HomeView = (function () {
   const DEFAULT_BACKGROUND = { color: '#fafbfc', image: null, mode: 'cover' };
   const ALIGN_TO_JUSTIFY = { left: 'flex-start', center: 'center', right: 'flex-end' };
 
+  // Polices Google proposées : [nom, famille générique de secours, existe en
+  // gras]. Une police choisie est enregistrée sous la forme font = 'gf:<nom>' ;
+  // à l'enregistrement, le serveur télécharge ses fichiers dans style/fonts/
+  // (<Nom>.ttf et, si elle existe en gras, <Nom>-bold.ttf) et renseigne
+  // fontFile : les visiteurs n'appellent alors jamais Google.
+  const GOOGLE_FONTS = [
+    ['Abril Fatface', 'serif', false],
+    ['Amatic SC', 'cursive', true],
+    ['Bebas Neue', 'sans-serif', false],
+    ['Bitter', 'serif', true],
+    ['Caveat', 'cursive', true],
+    ['Cinzel', 'serif', true],
+    ['Comfortaa', 'sans-serif', true],
+    ['Cormorant Garamond', 'serif', true],
+    ['Courier Prime', 'monospace', true],
+    ['Crimson Text', 'serif', true],
+    ['Dancing Script', 'cursive', true],
+    ['EB Garamond', 'serif', true],
+    ['Great Vibes', 'cursive', false],
+    ['Indie Flower', 'cursive', false],
+    ['Josefin Sans', 'sans-serif', true],
+    ['Lato', 'sans-serif', true],
+    ['Libre Baskerville', 'serif', true],
+    ['Lobster', 'cursive', false],
+    ['Lora', 'serif', true],
+    ['Merriweather', 'serif', true],
+    ['Montserrat', 'sans-serif', true],
+    ['Nunito', 'sans-serif', true],
+    ['Open Sans', 'sans-serif', true],
+    ['Oswald', 'sans-serif', true],
+    ['Pacifico', 'cursive', false],
+    ['Playfair Display', 'serif', true],
+    ['Poppins', 'sans-serif', true],
+    ['PT Serif', 'serif', true],
+    ['Quicksand', 'sans-serif', true],
+    ['Raleway', 'sans-serif', true],
+    ['Righteous', 'sans-serif', false],
+    ['Roboto', 'sans-serif', true],
+    ['Roboto Mono', 'monospace', true],
+    ['Satisfy', 'cursive', false],
+    ['Shadows Into Light', 'cursive', false],
+    ['Source Code Pro', 'monospace', true],
+    ['Source Sans 3', 'sans-serif', true],
+    ['Special Elite', 'cursive', false],
+    ['Work Sans', 'sans-serif', true],
+  ].map(([name, generic, bold]) => ({ name, generic, bold }));
+
+  /** Entrée de GOOGLE_FONTS pour une valeur 'gf:<nom>', sinon null. */
+  function googleFont(font) {
+    if (typeof font !== 'string' || !font.startsWith('gf:')) return null;
+    const name = font.slice(3);
+    return GOOGLE_FONTS.find(f => f.name === name) || null;
+  }
+
+  // Polices pas encore téléchargées (choisies dans l'éditeur mais pas encore
+  // enregistrées, ou téléchargement échoué) : chargées depuis Google.
+  const _googleLinked = new Set();
+  function ensureGoogleFonts(names) {
+    names = names.filter(n => !_googleLinked.has(n));
+    if (!names.length) return;
+    names.forEach(n => _googleLinked.add(n));
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?' + names.map(n => 'family=' + n.replace(/ /g, '+')).join('&') + '&display=swap';
+    document.head.appendChild(link);
+  }
+
   // Polices personnalisées (dossier style/) : une règle @font-face par fichier,
   // injectée une seule fois dans <head>, partagée entre lecture et édition.
+  // `boldPath` (facultatif) : fichier de la même police en gras.
   const _injectedFontFaces = new Set();
   function _fontFamilyForFile(path) {
     return 'm2font-' + path.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
-  function ensureFontFace(path) {
+  function ensureFontFace(path, boldPath) {
     const family = _fontFamilyForFile(path);
     if (!_injectedFontFaces.has(family)) {
       _injectedFontFaces.add(family);
       const styleTag = document.createElement('style');
-      styleTag.textContent = '@font-face { font-family: "' + family + '"; src: url("style/' + path + '"); font-display: swap; }';
+      styleTag.textContent = '@font-face { font-family: "' + family + '"; src: url("style/' + path + '"); font-display: swap; }'
+        + (boldPath ? '@font-face { font-family: "' + family + '"; src: url("style/' + boldPath + '"); font-weight: 700; font-display: swap; }' : '');
       document.head.appendChild(styleTag);
     }
     return family;
   }
 
-  /** Valeur CSS font-family d'un texte : police personnalisée (fichier du
-   *  dossier style/) prioritaire, sinon famille standard, sinon '' (CSS). */
+  /** Valeur CSS font-family d'un texte : police Google (fichiers téléchargés
+   *  dans style/fonts/, sinon chargée depuis Google), police personnalisée
+   *  (fichier du dossier style/), famille standard, sinon '' (CSS). */
   function cssFontFamily(font, fontFile) {
+    const gf = googleFont(font);
+    if (gf && fontFile) {
+      return '"' + ensureFontFace(fontFile, gf.bold ? fontFile.replace(/\.ttf$/, '-bold.ttf') : null) + '", ' + gf.generic;
+    }
+    if (gf) {
+      ensureGoogleFonts([gf.name]);
+      return '"' + gf.name + '", ' + gf.generic;
+    }
     return fontFile ? '"' + ensureFontFace(fontFile) + '"' : (font || '');
   }
 
@@ -312,7 +390,7 @@ const HomeView = (function () {
   return {
     render, buildThumb, updateThumb,
     applyHeaderStyle, applyBackgroundStyle, applyLabelStyle,
-    ensureFontFace, cssFontFamily,
+    ensureFontFace, cssFontFamily, ensureGoogleFonts, googleFont, GOOGLE_FONTS,
     DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND,
   };
 })();

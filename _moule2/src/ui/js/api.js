@@ -42,8 +42,11 @@ const Api = (function () {
     getSite() {
       return _get('site.php', {});
     },
-    saveSite(data) {
-      return _post('save.php', { site: SITE_PATH, data });
+    async saveSite(data) {
+      const r = await _post('save.php', { site: SITE_PATH, data });
+      // Enregistré, mais avec un souci non bloquant (ex. police Google non téléchargée).
+      if (r.warnings && r.warnings.length) alert(r.warnings.join('\n\n'));
+      return r;
     },
     listDocuments(dir, opts) {
       opts = opts || {};

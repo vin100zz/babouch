@@ -13,6 +13,12 @@ class SiteRepository
     private $site;
     private $path;
 
+    /** Problèmes non bloquants du dernier save() (ex. police Google non téléchargée). */
+    private $warnings = array();
+
+    /** Nom de police Google → fichier dans style/ (ou null), une fois par save(). */
+    private $googleFonts = array();
+
     /** @param string $site chemin du site relatif à la racine (ex. 'espace2', 'r1/sardaigne') */
     public function __construct($site)
     {
@@ -78,6 +84,119 @@ class SiteRepository
         fclose($fp);
 
         return $clean;
+    }
+
+    /** @return string[] */
+    public function getWarnings()
+    {
+        return $this->warnings;
+    }
+
+    /**
+     * Police Google (font = 'gf:<nom>') : renseigne fontFile avec la copie
+     * locale de la police dans style/fonts/, téléchargée au premier
+     * enregistrement qui l'utilise. Les visiteurs ne contactent ainsi jamais
+     * Google. En cas d'échec, fontFile reste null : le site charge alors la
+     * police depuis Google (voir HomeView.cssFontFamily), et le prochain
+     * enregistrement retente le téléchargement.
+     */
+    private function localizeGoogleFont(&$font, &$fontFile)
+    {
+        if (!is_string($font) || strpos($font, 'gf:') !== 0) {
+            return;
+        }
+        $fontFile = null;
+        $name = substr($font, 3);
+        if (!preg_match('/^[A-Za-z0-9 ]{1,60}$/', $name)) {
+            $font = '';
+            return;
+        }
+        if (!array_key_exists($name, $this->googleFonts)) {
+            $this->googleFonts[$name] = $this->downloadGoogleFont($name);
+        }
+        $fontFile = $this->googleFonts[$name];
+    }
+
+    /**
+     * Télécharge une police Google dans <site>/style/fonts/ : <Nom>.ttf
+     * (normal) et, si la police existe en gras, <Nom>-bold.ttf. Sans
+     * User-Agent de navigateur, l'API de Google renvoie un seul fichier
+     * TrueType complet par graisse (tous alphabets), au lieu de fichiers woff2
+     * découpés par alphabet.
+     * @return string|null chemin relatif à style/ du fichier normal
+     */
+    private function downloadGoogleFont($name)
+    {
+        $slug = str_replace(' ', '-', $name);
+        $rel = 'fonts/' . $slug . '.ttf';
+        $dir = dirname($this->path) . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR . 'fonts';
+        $regular = $dir . DIRECTORY_SEPARATOR . $slug . '.ttf';
+        if (is_file($regular)) {
+            return $rel;
+        }
+        $fail = 'La police « ' . $name . ' » n\'a pas pu être copiée sur le site'
+            . ' (%s) : elle reste chargée depuis Google. Un prochain enregistrement réessaiera.';
+
+        $css = $this->httpGet('https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $name) . ':wght@400;700');
+        if ($css === null) {
+            $css = $this->httpGet('https://fonts.googleapis.com/css2?family=' . str_replace(' ', '+', $name));
+        }
+        $urls = array();
+        if ($css !== null && preg_match_all('#font-weight:\s*(\d+);\s*src:\s*url\((https://fonts\.gstatic\.com/[^)\s]+\.ttf)\)#', $css, $m, PREG_SET_ORDER)) {
+            foreach ($m as $face) {
+                $urls[$face[1]] = $face[2];
+            }
+        }
+        if (!isset($urls['400'])) {
+            $this->warnings[] = sprintf($fail, 'Google Fonts injoignable depuis le serveur');
+            return null;
+        }
+        if (!is_dir($dir) && !@mkdir($dir, 0755, true)) {
+            $this->warnings[] = sprintf($fail, 'impossible de créer le dossier style/fonts');
+            return null;
+        }
+        // Le gras d'abord : le fichier normal, qui sert de témoin « déjà
+        // téléchargée », n'est écrit qu'une fois tout le reste réussi.
+        $targets = array('700' => $dir . DIRECTORY_SEPARATOR . $slug . '-bold.ttf', '400' => $regular);
+        foreach ($targets as $weight => $file) {
+            if (!isset($urls[$weight])) {
+                continue;
+            }
+            $data = $this->httpGet($urls[$weight]);
+            if ($data === null || strlen($data) < 1000) {
+                $this->warnings[] = sprintf($fail, 'téléchargement du fichier échoué');
+                return null;
+            }
+            if (@file_put_contents($file, $data) === false) {
+                $this->warnings[] = sprintf($fail, 'écriture dans style/fonts impossible');
+                return null;
+            }
+        }
+        return $rel;
+    }
+
+    /** Corps d'une réponse HTTP 200, ou null (erreur, autre statut, aucun moyen d'accès). */
+    private function httpGet($url)
+    {
+        if (function_exists('curl_init')) {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+            $body = curl_exec($ch);
+            $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            return ($body !== false && $status == 200) ? $body : null;
+        }
+        if (ini_get('allow_url_fopen')) {
+            $ctx = stream_context_create(array('http' => array('timeout' => 30, 'ignore_errors' => true, 'header' => "User-Agent: moule2\r\n")));
+            $body = @file_get_contents($url, false, $ctx);
+            if ($body === false || !isset($http_response_header[0]) || !preg_match('#^HTTP/\S+\s+200\b#', $http_response_header[0])) {
+                return null;
+            }
+            return $body;
+        }
+        return null;
     }
 
     /**
@@ -162,6 +281,7 @@ class SiteRepository
             'image'        => $this->cleanRelPath(isset($style['image']) ? $style['image'] : null),
             'mode'         => in_array(isset($style['mode']) ? $style['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $style['mode'] : 'cover',
         );
+        $this->localizeGoogleFont($clean['titleFont'], $clean['titleFontFile']);
         // Marge intérieure du header (facultative, absente = padding du CSS).
         foreach (array('padY', 'padX') as $k) {
             if (isset($style[$k]) && is_numeric($style[$k])) {
@@ -251,10 +371,12 @@ class SiteRepository
         if (!is_array($v)) {
             return $out;
         }
-        if (isset($v['font']) && is_string($v['font']) && $v['font'] !== '') {
-            $out['font'] = $v['font'];
-        }
+        $font = (isset($v['font']) && is_string($v['font'])) ? $v['font'] : '';
         $fontFile = $this->cleanRelPath(isset($v['fontFile']) ? $v['fontFile'] : null);
+        $this->localizeGoogleFont($font, $fontFile);
+        if ($font !== '') {
+            $out['font'] = $font;
+        }
         if ($fontFile !== null) {
             $out['fontFile'] = $fontFile;
         }
