@@ -16,6 +16,9 @@ const HomeView = (function () {
   const DEFAULT_HEADER_BACKGROUND = { image: null, mode: 'cover' };
   const DEFAULT_BACKGROUND = { color: '#fafbfc', image: null, mode: 'cover' };
   const ALIGN_TO_JUSTIFY = { left: 'flex-start', center: 'center', right: 'flex-end' };
+  // Apparence du titre du site : réglée séparément sur l'accueil
+  // (home.headerStyle) et sur les autres pages (pagesStyle.headerTitle).
+  const TITLE_KEYS = ['titleColor', 'titleSize', 'titleFont', 'titleFontFile', 'titleAlign'];
 
   // Polices Google proposées : [nom, famille générique de secours, existe en
   // gras]. Une police choisie est enregistrée sous la forme font = 'gf:<nom>' ;
@@ -121,10 +124,10 @@ const HomeView = (function () {
   /** Applique le style de header (fond couleur/image, titre) à un `.m2-header`
    *  déjà construit (avec un `.m2-header__left` contenant `.m2-header__title`).
    *  Utilisé à l'identique en lecture (app.js) et en édition (tree-editor.js).
-   *  `imageStyle` ({image, mode}) est distinct de `style` pour permettre une
-   *  image de fond différente sur la page d'accueil et sur les autres pages
-   *  (même header, même couleur/police partagées, image propre à chaque
-   *  contexte) ; par défaut (non fourni), `style` lui-même sert d'imageStyle. */
+   *  `style` vient de headerStyleFor (titre propre à l'accueil ou aux autres
+   *  pages). `imageStyle` ({image, mode}) est distinct de `style` pour
+   *  permettre une image de fond différente sur la page d'accueil et sur les
+   *  autres pages ; par défaut (non fourni), `style` lui-même sert d'imageStyle. */
   function applyHeaderStyle(headerEl, style, imageStyle) {
     style = Object.assign({}, DEFAULT_HEADER_STYLE, style || {});
     imageStyle = imageStyle || style;
@@ -158,6 +161,24 @@ const HomeView = (function () {
     }
   }
 
+  /** Titre du site sur les pages autres que l'accueil : pagesStyle.headerTitle,
+   *  clé par clé, sinon celui de l'accueil (sites enregistrés avant que les
+   *  deux soient séparés). */
+  function pagesTitleStyle(site) {
+    const hs = (site.home && site.home.headerStyle) || {};
+    const own = (site.pagesStyle && site.pagesStyle.headerTitle) || {};
+    const out = {};
+    TITLE_KEYS.forEach(k => { out[k] = k in own ? own[k] : hs[k]; });
+    return out;
+  }
+
+  /** Style complet du header pour `context` ('home' ou 'pages') : fond et
+   *  marges communs (home.headerStyle), titre propre à chaque contexte. */
+  function headerStyleFor(site, context) {
+    const hs = (site.home && site.home.headerStyle) || {};
+    return context === 'pages' ? Object.assign({}, hs, pagesTitleStyle(site)) : hs;
+  }
+
   /** Police/taille/couleur du texte affiché sous une image (img.texteStyle,
    *  facultatif) ; propriétés absentes remises à '' pour retomber sur le CSS. */
   function applyLabelStyle(label, ts) {
@@ -165,6 +186,13 @@ const HomeView = (function () {
     label.style.fontFamily = cssFontFamily(ts.font, ts.fontFile);
     label.style.fontSize = ts.size ? ts.size + 'px' : '';
     label.style.color = ts.color || '';
+  }
+
+  /** Décalage du texte par rapport à sa place sous l'image (img.texteX/Y, en
+   *  px) : une translation, qui ne bouge ni l'image ni le centre du bloc. */
+  function _applyLabelOffset(label, img) {
+    label.style.transform = (img.texteX || img.texteY)
+      ? 'translate(' + (img.texteX || 0) + 'px, ' + (img.texteY || 0) + 'px)' : '';
   }
 
   /** Applique le style de fond (couleur + image, choisie dans le dossier
@@ -223,6 +251,7 @@ const HomeView = (function () {
     if (img.texte) {
       const label = txt('span', 'm2-thumb__label', img.texte);
       applyLabelStyle(label, img.texteStyle);
+      _applyLabelOffset(label, img);
       thumb.appendChild(label);
     }
 
@@ -380,6 +409,7 @@ const HomeView = (function () {
       if (!label) { label = txt('span', 'm2-thumb__label', ''); thumb.appendChild(label); }
       label.textContent = img.texte;
       applyLabelStyle(label, img.texteStyle);
+      _applyLabelOffset(label, img);
     } else if (label) {
       label.parentNode.removeChild(label);
     }
@@ -389,8 +419,8 @@ const HomeView = (function () {
 
   return {
     render, buildThumb, updateThumb,
-    applyHeaderStyle, applyBackgroundStyle, applyLabelStyle,
+    applyHeaderStyle, headerStyleFor, pagesTitleStyle, applyBackgroundStyle, applyLabelStyle,
     ensureFontFace, cssFontFamily, ensureGoogleFonts, googleFont, GOOGLE_FONTS,
-    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND,
+    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND, TITLE_KEYS,
   };
 })();

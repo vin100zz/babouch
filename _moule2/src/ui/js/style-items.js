@@ -33,6 +33,8 @@ const StyleItems = (function () {
     const ps = site.pagesStyle = site.pagesStyle || {};
     ps.background = Object.assign({}, HomeView.DEFAULT_BACKGROUND, ps.background || {});
     ps.headerBackground = Object.assign({}, HomeView.DEFAULT_HEADER_BACKGROUND, ps.headerBackground || {});
+    // Titre des autres pages : au départ, celui de l'accueil.
+    ps.headerTitle = HomeView.pagesTitleStyle(site);
     ps.section = Object.assign({}, ContentView.DEFAULT_SECTION_STYLE, ps.section || {});
     ps.blocTexte = Object.assign({}, ContentView.DEFAULT_BLOC_TEXTE_STYLE, ps.blocTexte || {});
     ps.pageTitle = Object.assign({}, ContentView.DEFAULT_PAGE_TITLE_STYLE, ps.pageTitle || {});
@@ -43,12 +45,13 @@ const StyleItems = (function () {
   }
 
   /** En-tête : titre du site (texte, police…), remplissage, image de fond
-   *  (propre à l'accueil ou aux autres pages selon `context`), marge intérieure. */
+   *  (titre et image propres à l'accueil ou aux autres pages selon `context`),
+   *  marge intérieure. */
   function header(site, context, change) {
     const hs = site.home.headerStyle;
     const img = context === 'home' ? hs : site.pagesStyle.headerBackground;
     return [
-      ...siteTitle(site, change, 'Titre du site'),
+      ...siteTitle(site, context, change, 'Titre du site'),
       { group: 'Remplissage' },
       ...PropsPanel.fillRows(() => hs.bg, v => change('header.bg', () => { hs.bg = v; })),
       { group: 'Image de fond' },
@@ -64,10 +67,11 @@ const StyleItems = (function () {
     ];
   }
 
-  /** Titre du site : texte + le widget Texte commun (police, taille,
-   *  couleur, alignement), sur les clés title* historiques du header. */
-  function siteTitle(site, change, group) {
-    const hs = site.home.headerStyle;
+  /** Titre du site : texte (commun à tout le site) + le widget Texte commun
+   *  (police, taille, couleur, alignement), sur les clés title* du header de
+   *  l'accueil ou de celui des autres pages selon `context`. */
+  function siteTitle(site, context, change, group) {
+    const hs = context === 'home' ? site.home.headerStyle : site.pagesStyle.headerTitle;
     const KEYS = { font: 'titleFont', fontFile: 'titleFontFile', size: 'titleSize', color: 'titleColor', align: 'titleAlign' };
     return [
       { group: group || 'Texte' },

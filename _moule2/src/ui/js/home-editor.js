@@ -308,7 +308,7 @@ const HomeEditor = (function () {
       switch (sel[0]) {
         case 'bg': return StyleItems.background(site.home.background, change);
         case 'header': return StyleItems.header(site, 'home', change);
-        case 'title': return StyleItems.siteTitle(site, change);
+        case 'title': return StyleItems.siteTitle(site, 'home', change);
         default: return [{ hint: 'Cliquez sur un élément de la page pour le modifier.' }];
       }
     }
@@ -335,6 +335,10 @@ const HomeEditor = (function () {
           get: () => img.lien || '', set: v => change('lien', () => { img.lien = v || null; }) },
         { group: 'Texte' },
         ...labelText([img]),
+        // Décalage du texte par rapport à sa place par défaut, sous l'image.
+        { type: 'xy', label: 'Position',
+          getX: () => img.texteX || 0, setX: v => change('texteX.' + img.id, () => { img.texteX = v || null; }),
+          getY: () => img.texteY || 0, setY: v => change('texteY.' + img.id, () => { img.texteY = v || null; }) },
         { group: 'Taille et position' },
         { type: 'range', label: 'Largeur', min: 30, max: 1000, unit: ' px',
           get: () => img.width || _size(img).w, set: v => change('width.' + img.id, () => { img.width = v; }) },
@@ -349,6 +353,8 @@ const HomeEditor = (function () {
       ];
     }
 
+    function common(values) { return values.every(v => v === values[0]) ? values[0] : null; }
+
     function multiItems(imgs) {
       const widths = imgs.map(i => i.width || _size(i).w);
       return [
@@ -360,9 +366,15 @@ const HomeEditor = (function () {
         ] },
         { group: 'Texte' },
         ...labelText(imgs),
+        // Valeur commune, ou case vide si les blocs diffèrent.
+        { type: 'xy', label: 'Position',
+          getX: () => common(imgs.map(i => i.texteX || 0)),
+          setX: v => change('texteX.multi', () => imgs.forEach(i => { i.texteX = v || null; })),
+          getY: () => common(imgs.map(i => i.texteY || 0)),
+          setY: v => change('texteY.multi', () => imgs.forEach(i => { i.texteY = v || null; })) },
         { group: 'Taille' },
         { type: 'range', label: 'Largeur', min: 30, max: 1000, unit: ' px',
-          get: () => widths.every(w => w === widths[0]) ? widths[0] : null,
+          get: () => common(widths),
           set: v => change('width.multi', () => imgs.forEach(i => { i.width = v; })) },
         { actions: [
           { label: 'Premier plan', onClick: () => bringToFront(imgs) },

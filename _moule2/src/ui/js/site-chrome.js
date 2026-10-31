@@ -27,7 +27,8 @@ const SiteChrome = (function () {
 
   // `context` : 'home' (image de fond du header propre à la page d'accueil)
   // ou 'pages' (image de fond propre aux autres pages) — même header, même
-  // couleur/police (home.headerStyle), mais image de fond distincte possible.
+  // remplissage et marges (home.headerStyle), mais titre (police, taille,
+  // couleur, alignement) et image de fond propres à chaque contexte.
   // `opts.editMenu` : entrées du menu crayon [{label, sub, onClick}], en
   // lecture seulement (en édition, la barre d'édition le remplace).
   function header(site, context, opts) {
@@ -49,7 +50,7 @@ const SiteChrome = (function () {
     const imageStyle = context === 'pages'
       ? (site.pagesStyle && site.pagesStyle.headerBackground)
       : (site.home && site.home.headerStyle);
-    HomeView.applyHeaderStyle(header, site.home && site.home.headerStyle, imageStyle);
+    HomeView.applyHeaderStyle(header, HomeView.headerStyleFor(site, context), imageStyle);
     return header;
   }
 

@@ -53,7 +53,10 @@ class SiteRepository
         $clean = array(
             'titre_site' => isset($data['titre_site']) ? (string) $data['titre_site'] : $this->site,
             'home'       => $this->cleanHome(isset($data['home']) ? $data['home'] : array()),
-            'pagesStyle' => $this->cleanPagesStyle(isset($data['pagesStyle']) ? $data['pagesStyle'] : array()),
+            'pagesStyle' => $this->cleanPagesStyle(
+                isset($data['pagesStyle']) ? $data['pagesStyle'] : array(),
+                isset($data['home']['headerStyle']) && is_array($data['home']['headerStyle']) ? $data['home']['headerStyle'] : array()
+            ),
             'chapitres'  => $this->cleanChapitres(isset($data['chapitres']) ? $data['chapitres'] : array()),
         );
 
@@ -227,7 +230,7 @@ class SiteRepository
                 'headerStyle' => $this->cleanHeaderStyle(array()),
                 'background'  => $this->cleanBackground(array()),
             ),
-            'pagesStyle' => $this->cleanPagesStyle(array()),
+            'pagesStyle' => $this->cleanPagesStyle(array(), array()),
             'chapitres'  => array(),
         );
     }
@@ -254,6 +257,12 @@ class SiteRepository
             if (!empty($texteStyle)) {
                 $clean['texteStyle'] = $texteStyle;
             }
+            // Décalage du texte (px) par rapport à sa place sous l'image.
+            foreach (array('texteX', 'texteY') as $k) {
+                if (isset($img[$k]) && is_numeric($img[$k]) && (int) $img[$k] !== 0) {
+                    $clean[$k] = max(-2000, min(2000, (int) $img[$k]));
+                }
+            }
             $images[] = $clean;
         }
         return array(
@@ -265,29 +274,40 @@ class SiteRepository
 
     /**
      * Couleur/image de fond + apparence du titre (taille/couleur/police/
-     * alignement) du header. `image`/`mode` ici sont ceux utilisés quand le
-     * header s'affiche sur la page d'accueil (voir cleanPagesStyle pour
-     * l'équivalent propre aux autres pages).
+     * alignement) du header. `image`/`mode` et le titre ici sont ceux utilisés
+     * quand le header s'affiche sur la page d'accueil (voir cleanPagesStyle
+     * pour l'équivalent propre aux autres pages).
      */
     private function cleanHeaderStyle($style)
     {
-        $clean = array(
-            'bg'           => $this->cleanColor(isset($style['bg']) ? $style['bg'] : null, '#1e293b'),
-            'titleColor'   => $this->cleanColor(isset($style['titleColor']) ? $style['titleColor'] : null, '#ffffff'),
-            'titleSize'    => isset($style['titleSize']) ? max(10, min(150, (int) $style['titleSize'])) : 18,
-            'titleFont'    => isset($style['titleFont']) ? (string) $style['titleFont'] : '',
-            'titleFontFile'=> $this->cleanRelPath(isset($style['titleFontFile']) ? $style['titleFontFile'] : null),
-            'titleAlign'   => in_array(isset($style['titleAlign']) ? $style['titleAlign'] : '', array('left', 'center', 'right'), true) ? $style['titleAlign'] : 'left',
-            'image'        => $this->cleanRelPath(isset($style['image']) ? $style['image'] : null),
-            'mode'         => in_array(isset($style['mode']) ? $style['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $style['mode'] : 'cover',
+        $clean = array_merge(
+            array('bg' => $this->cleanColor(isset($style['bg']) ? $style['bg'] : null, '#1e293b')),
+            $this->cleanHeaderTitle($style),
+            array(
+                'image' => $this->cleanRelPath(isset($style['image']) ? $style['image'] : null),
+                'mode'  => in_array(isset($style['mode']) ? $style['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $style['mode'] : 'cover',
+            )
         );
-        $this->localizeGoogleFont($clean['titleFont'], $clean['titleFontFile']);
         // Marge intérieure du header (facultative, absente = padding du CSS).
         foreach (array('padY', 'padX') as $k) {
             if (isset($style[$k]) && is_numeric($style[$k])) {
                 $clean[$k] = max(0, min(300, (int) $style[$k]));
             }
         }
+        return $clean;
+    }
+
+    /** Apparence du titre du site dans le header (clés title*). */
+    private function cleanHeaderTitle($style)
+    {
+        $clean = array(
+            'titleColor'   => $this->cleanColor(isset($style['titleColor']) ? $style['titleColor'] : null, '#ffffff'),
+            'titleSize'    => isset($style['titleSize']) ? max(10, min(150, (int) $style['titleSize'])) : 18,
+            'titleFont'    => isset($style['titleFont']) ? (string) $style['titleFont'] : '',
+            'titleFontFile'=> $this->cleanRelPath(isset($style['titleFontFile']) ? $style['titleFontFile'] : null),
+            'titleAlign'   => in_array(isset($style['titleAlign']) ? $style['titleAlign'] : '', array('left', 'center', 'right'), true) ? $style['titleAlign'] : 'left',
+        );
+        $this->localizeGoogleFont($clean['titleFont'], $clean['titleFontFile']);
         return $clean;
     }
 
@@ -304,18 +324,19 @@ class SiteRepository
     /**
      * Style des pages de contenu (sous-menus/feuilles, hors page d'accueil) :
      * fond de page + apparence des titres de section, blocs TEXTE et bordure
-     * des images. Le header (couleur, police, taille, alignement) reste géré
-     * par home.headerStyle (un seul header, partagé par toutes les pages du
-     * site) ; seule son image de fond peut différer ici (headerBackground),
-     * pour permettre une image propre à la page d'accueil et une autre aux
-     * autres pages.
+     * des images. Le remplissage et les marges du header restent gérés par
+     * home.headerStyle (communs à toutes les pages du site) ; son image de
+     * fond (headerBackground) et l'apparence du titre (headerTitle) sont
+     * propres aux autres pages. Sans headerTitle (site enregistré avant), le
+     * titre de l'accueil (`$homeHeader`) est repris.
      */
-    private function cleanPagesStyle($ps)
+    private function cleanPagesStyle($ps, $homeHeader)
     {
         if (!is_array($ps)) {
             $ps = array();
         }
         $hb = (isset($ps['headerBackground']) && is_array($ps['headerBackground'])) ? $ps['headerBackground'] : array();
+        $ht = (isset($ps['headerTitle']) && is_array($ps['headerTitle'])) ? $ps['headerTitle'] : $homeHeader;
         $fi = (isset($ps['footerIcon']) && is_array($ps['footerIcon'])) ? $ps['footerIcon'] : array();
         return array(
             'background'      => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
@@ -323,6 +344,7 @@ class SiteRepository
                 'image' => $this->cleanRelPath(isset($hb['image']) ? $hb['image'] : null),
                 'mode'  => in_array(isset($hb['mode']) ? $hb['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $hb['mode'] : 'cover',
             ),
+            'headerTitle'     => $this->cleanHeaderTitle($ht),
             'section'    => $this->cleanColorTextPair(
                 isset($ps['section']) && is_array($ps['section']) ? $ps['section'] : array(),
                 array('bg' => '#d0e4ff', 'textColor' => '#1e293b', 'borderColor' => '#b8d4f8', 'borderWidth' => 1, 'borderRadius' => 0)

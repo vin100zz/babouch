@@ -145,7 +145,7 @@ const StyleEditor = (function () {
       switch (sel) {
         case 'bg': return StyleItems.background(ps().background, change);
         case 'header': return StyleItems.header(site, 'pages', change);
-        case 'title': return StyleItems.siteTitle(site, change);
+        case 'title': return StyleItems.siteTitle(site, 'pages', change);
         case 'pageTitle': case 'section': case 'blocTexte': return boxItems(sel);
         case 'image': return imageItems();
         case 'footerIcon': return footerItems();
