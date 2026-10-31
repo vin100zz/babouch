@@ -21,6 +21,9 @@ Le téléphone doit être en ARM 64 bits (quasiment tous les téléphones depuis
 ## Utilisation
 
 1. **Autoriser l'affichage par-dessus les autres applis** (bouton dans l'appli).
+   Si Android répond « L'accès a été refusé à cette appli » (restriction des applis installées hors
+   Play Store, Android 13+) : Paramètres → Applis → Échecs Overlay → menu ⋮ → « Autoriser les paramètres
+   restreints », puis réessayer.
 2. **▶ Démarrer** → Android demande l'autorisation d'enregistrer l'écran : choisir **« Tout l'écran »**.
    Une bulle ♞ apparaît (déplaçable en la faisant glisser).
 3. **Calibrer, une fois par jeu de pièces** : dans l'appli d'échecs, afficher une position initiale

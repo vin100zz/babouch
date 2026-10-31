@@ -28,6 +28,8 @@ class MainActivity : Activity() {
     private lateinit var prefs: Prefs
     private lateinit var overlayStatus: TextView
     private lateinit var overlayButton: Button
+    private lateinit var restrictedHelp: TextView
+    private lateinit var appInfoButton: Button
     private lateinit var calibrationStatus: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +100,14 @@ class MainActivity : Activity() {
         overlayButton = button("Autoriser l'affichage par-dessus") {
             startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")))
         }
+        restrictedHelp = para(
+            "Si Android répond « L'accès a été refusé à cette appli » : touchez le bouton ci-dessous, " +
+                "puis le menu ⋮ en haut à droite → « Autoriser les paramètres restreints » (confirmez avec " +
+                "votre code). Revenez ensuite ici et touchez à nouveau « Autoriser l'affichage par-dessus ».",
+        )
+        appInfoButton = button("Ouvrir les infos de l'appli") {
+            startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")))
+        }
 
         heading("2. Lancer la capture")
         para(
@@ -160,6 +170,8 @@ class MainActivity : Activity() {
         val ok = Settings.canDrawOverlays(this)
         overlayStatus.text = if (ok) "✓ Autorisé" else "✗ Pas encore autorisé"
         overlayButton.visibility = if (ok) View.GONE else View.VISIBLE
+        restrictedHelp.visibility = if (ok) View.GONE else View.VISIBLE
+        appInfoButton.visibility = if (ok) View.GONE else View.VISIBLE
         val n = TemplateStore.load(this).size / 64
         calibrationStatus.text = if (n == 0) "✗ Aucune calibration" else "✓ $n calibration(s) en mémoire"
     }
