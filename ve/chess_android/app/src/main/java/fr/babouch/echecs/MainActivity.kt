@@ -13,6 +13,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.TypedValue
 import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RadioButton
@@ -31,13 +33,45 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefs = Prefs(this)
-        title = "Échecs Overlay"
-
         val col = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(20), dp(16), dp(20), dp(32))
         }
-        setContentView(ScrollView(this).apply { addView(col) })
+        val scroll = ScrollView(this).apply {
+            addView(col)
+            clipToPadding = false
+            setBackgroundColor(Color.WHITE)
+        }
+        // Android 15+ affiche l'appli « bord à bord » : on laisse la place aux barres système
+        // (barre d'état en haut, barre de navigation en bas) pour que rien ne soit caché.
+        scroll.setOnApplyWindowInsetsListener { v, insets ->
+            if (Build.VERSION.SDK_INT >= 30) {
+                val i = insets.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
+                v.setPadding(i.left, i.top, i.right, i.bottom)
+            } else {
+                @Suppress("DEPRECATION")
+                v.setPadding(
+                    insets.systemWindowInsetLeft, insets.systemWindowInsetTop,
+                    insets.systemWindowInsetRight, insets.systemWindowInsetBottom,
+                )
+            }
+            insets
+        }
+        setContentView(scroll)
+        if (Build.VERSION.SDK_INT >= 30) {
+            // Icônes sombres dans les barres système, lisibles sur le fond blanc.
+            val light = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS or
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+            window.insetsController?.setSystemBarsAppearance(light, light)
+        }
+
+        TextView(this).apply {
+            text = "♞ Échecs Overlay"
+            textSize = 24f
+            setTypeface(typeface, Typeface.BOLD)
+            setTextColor(0xFF2E7D32.toInt())
+            col.addView(this)
+        }
 
         fun heading(t: String) = TextView(this).apply {
             text = t
