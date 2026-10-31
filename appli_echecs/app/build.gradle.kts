@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URI
 
 plugins {
     id("com.android.application")
@@ -70,7 +71,7 @@ val downloadStockfish by tasks.registering {
     doLast {
         if (!stockfishTar.exists() || stockfishTar.length() < 1_000_000) {
             stockfishTar.parentFile.mkdirs()
-            val url = java.net.URI(
+            val url = URI(
                 "https://github.com/official-stockfish/Stockfish/releases/download/" +
                     "$stockfishVersion/stockfish-android-armv8.tar",
             ).toURL()
