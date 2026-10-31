@@ -1,0 +1,273 @@
+{
+  "titre_site": "François Marius PAYAN",
+  "home": {
+    "images": [
+      {
+        "id": "img_6",
+        "image": "bleu.png",
+        "x": 975,
+        "y": 555,
+        "width": null,
+        "texte": "Le temps des malheurs",
+        "lien": "3_malheurs"
+      },
+      {
+        "id": "img_7",
+        "image": "bleu.png",
+        "x": -11,
+        "y": 634,
+        "width": null,
+        "texte": "Le patron du \"46\"",
+        "lien": "2_patron"
+      },
+      {
+        "id": "img_8",
+        "image": "bleu.png",
+        "x": 978,
+        "y": 622,
+        "width": null,
+        "texte": "Leurs descendants",
+        "lien": "4_descendants"
+      },
+      {
+        "id": "img_14",
+        "image": "bleu.png",
+        "x": -12,
+        "y": 561,
+        "width": null,
+        "texte": "Leur jeunesse",
+        "lien": "1_jeunesse"
+      },
+      {
+        "id": "img_nbr4hctv",
+        "image": "1b.jpg",
+        "x": 489,
+        "y": 340,
+        "width": null,
+        "texte": null,
+        "lien": null
+      }
+    ],
+    "headerStyle": {
+      "bg": "#1e293b96",
+      "titleColor": "#ffffff",
+      "titleSize": 80,
+      "titleFont": "\"Trebuchet MS\", sans-serif",
+      "titleFontFile": null,
+      "titleAlign": "center",
+      "image": "footer.png",
+      "mode": "cover"
+    },
+    "background": {
+      "color": "#fafbfc",
+      "image": null,
+      "mode": "cover"
+    }
+  },
+  "pagesStyle": {
+    "background": {
+      "color": "#fafbfc",
+      "image": null,
+      "mode": "cover"
+    },
+    "headerBackground": {
+      "image": "header.png",
+      "mode": "cover"
+    },
+    "header": {
+      "bg": "#1e293b96",
+      "titleColor": "#ffffff",
+      "titleSize": 80,
+      "titleFont": "\"Trebuchet MS\", sans-serif",
+      "titleFontFile": null,
+      "titleAlign": "center"
+    },
+    "section": {
+      "bg": "#011a44ff",
+      "textColor": "#ccccccff",
+      "borderColor": "#011a44ff",
+      "borderWidth": 1,
+      "borderRadius": 0
+    },
+    "blocTexte": {
+      "bg": "#ffffffff",
+      "textColor": "#1e293b",
+      "borderColor": "#1e293bff",
+      "borderWidth": 1,
+      "borderRadius": 0
+    },
+    "pageTitle": {
+      "bg": "#011a44ff",
+      "textColor": "#ffffffff",
+      "borderColor": "#011a44ff",
+      "borderWidth": 0,
+      "borderRadius": 0
+    },
+    "image": {
+      "borderColor": "#333333",
+      "borderWidth": 1,
+      "borderRadius": 0
+    },
+    "footerIcon": {
+      "image": "footer.png",
+      "width": 40
+    },
+    "breadcrumb": {
+      "bg": "#f1f5f9",
+      "textColor": "#1e293b"
+    }
+  },
+  "chapitres": [
+    {
+      "keyword": "1_jeunesse",
+      "label": "Leur jeunesse",
+      "chapitres": [
+        {
+          "keyword": "1_fmp",
+          "label": "Marius",
+          "chapitres": [],
+          "sections": [
+            {
+              "titre": "1849 : la naissance",
+              "style": null,
+              "colonnes": [
+                [
+                  {
+                    "type": "TEXTE",
+                    "html": "François Marius Payan naît à Marseille en 1849. Il est baptisé dans la paroisse Saint-Cannat, dont le registre est conservé aux archives.",
+                    "align": "left"
+                  }
+                ],
+                [
+                  {
+                    "type": "DOCUMENTS",
+                    "fichier": "1_jeunesse/1_fmp/registre.jpg",
+                    "width": 50
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "keyword": "2_marie",
+          "label": "Marie",
+          "chapitres": [],
+          "sections": []
+        },
+        {
+          "keyword": "3_mariage",
+          "label": "Le mariage",
+          "chapitres": [],
+          "sections": []
+        }
+      ],
+      "sections": []
+    },
+    {
+      "keyword": "2_patron",
+      "label": "Le patron du \"46\"",
+      "chapitres": [
+        {
+          "keyword": "1_boucher",
+          "label": "Boucher",
+          "chapitres": [],
+          "sections": []
+        },
+        {
+          "keyword": "2_proprietaire",
+          "label": "Propriétaire du 46",
+          "chapitres": [],
+          "sections": []
+        },
+        {
+          "keyword": "3_enfants",
+          "label": "Une grande famille avant 1914",
+          "chapitres": [],
+          "sections": []
+        }
+      ],
+      "sections": []
+    },
+    {
+      "keyword": "3_malheurs",
+      "label": "Le temps des malheurs",
+      "chapitres": [
+        {
+          "keyword": "0_prediction",
+          "label": "Une sombre prédiction",
+          "chapitres": [],
+          "sections": [
+            {
+              "titre": null,
+              "style": null,
+              "colonnes": [
+                [
+                  {
+                    "type": "DOCUMENTS",
+                    "fichier": "14_aster/aster/1.jpg",
+                    "width": 100
+                  }
+                ],
+                [
+                  {
+                    "type": "DOCUMENTS",
+                    "fichier": "14_aster/aster/2.jpg",
+                    "width": 100
+                  }
+                ],
+                [
+                  {
+                    "type": "DOCUMENTS",
+                    "fichier": "14_aster/aster/3.jpg",
+                    "width": 100
+                  }
+                ]
+              ]
+            },
+            {
+              "titre": null,
+              "style": null,
+              "colonnes": [
+                [
+                  {
+                    "type": "DOCUMENTS",
+                    "fichier": "14_aster/aster/tableau.jpg",
+                    "width": 100
+                  }
+                ]
+              ]
+            },
+            {
+              "titre": null,
+              "style": null,
+              "colonnes": [
+                [
+                  {
+                    "type": "DOCUMENTS",
+                    "fichier": "14_aster/aster/100.jpg",
+                    "width": 100
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "keyword": "4_descendants",
+      "label": "Leurs descendants",
+      "chapitres": [
+        {
+          "keyword": "1_reunions",
+          "label": "Des réunions",
+          "chapitres": [],
+          "sections": []
+        }
+      ],
+      "sections": []
+    }
+  ]
+}

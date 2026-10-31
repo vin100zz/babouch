@@ -60,6 +60,10 @@
       onClick: () => openEditor(c => StyleEditor.open(c, SITE, onEditDone)) });
     items.push({ label: 'Plan du site', sub: 'Ajouter, renommer, déplacer des pages',
       onClick: () => openEditor(c => TreeEditor.open(c, SITE, onTreeDone)) });
+    // Ouvert sur la vidéo qui correspond à la page affichée.
+    const tuto = kind === 'home' ? 'accueil' : (kind === 'leaf' ? 'page' : 'plan');
+    items.push({ label: 'Tutoriels vidéo', sub: 'Voir comment modifier le site', separate: true,
+      onClick: () => VideoTutorials.open(tuto) });
     return items;
   }
 

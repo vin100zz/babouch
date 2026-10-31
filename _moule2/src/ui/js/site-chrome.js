@@ -71,7 +71,7 @@ const SiteChrome = (function () {
     menu.setAttribute('role', 'menu');
     menu.hidden = true;
     items.forEach(item => {
-      const b = el('button', 'm2-editmenu__item');
+      const b = el('button', 'm2-editmenu__item' + (item.separate ? ' m2-editmenu__item--sep' : ''));
       b.type = 'button'; b.setAttribute('role', 'menuitem');
       b.appendChild(txt('span', 'm2-editmenu__label', item.label));
       if (item.sub) b.appendChild(txt('span', 'm2-editmenu__sub', item.sub));

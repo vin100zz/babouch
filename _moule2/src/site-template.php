@@ -38,14 +38,14 @@ $engineBase = str_repeat('../', substr_count($sitePath, '/') + 1) . basename(dir
 
 // Unique numéro de version à incrémenter après toute modification de
 // _moule2/src/ui/**, pour invalider le cache navigateur sur tous les sites.
-$version = 76;
+$version = 78;
 
 $title = ucfirst(str_replace(array('_', '-'), ' ', $site));
 
 $scripts = array(
     'util', 'api', 'richtext', 'filebrowser', 'home-view', 'content-editor', 'site-chrome',
     'props-panel', 'editor-shell', 'style-items', 'home-editor', 'style-editor', 'page-editor', 'tree-editor',
-    'app',
+    'tutorials', 'app',
 );
 
 // style.css optionnel, propre à chaque site (<site>/style/style.css) : permet

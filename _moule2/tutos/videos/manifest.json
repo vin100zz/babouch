@@ -1,0 +1,26 @@
+{
+  "accueil": {
+    "titre": "Comment éditer la page d'accueil ?",
+    "versionMoteur": 78,
+    "date": "2026-10-31",
+    "duree": 156
+  },
+  "style": {
+    "titre": "Comment éditer le style des pages ?",
+    "versionMoteur": 78,
+    "date": "2026-10-31",
+    "duree": 74
+  },
+  "page": {
+    "titre": "Comment éditer une page ?",
+    "versionMoteur": 78,
+    "date": "2026-10-31",
+    "duree": 89
+  },
+  "plan": {
+    "titre": "Comment éditer le plan du site ?",
+    "versionMoteur": 78,
+    "date": "2026-10-31",
+    "duree": 71
+  }
+}
