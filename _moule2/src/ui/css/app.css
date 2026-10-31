@@ -26,6 +26,17 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
+/* Conteneurs qui portent le fond de page (voir renderHome/_buildContentPage
+   dans app.js) : toute la hauteur de l'écran, même quand le contenu est court,
+   sinon le fond s'arrête sous le dernier élément et laisse le body visible.
+   flow-root : empêche la marge basse du dernier enfant (ex. .m2-submenu) de
+   déborder hors du conteneur, ce qui couperait le fond juste sous le contenu. */
+.m2-home-page,
+.m2-content-page {
+  min-height: 100vh;
+  display: flow-root;
+}
+
 /* ── En-tête + bouton bascule édition ────────────────────────────────────── */
 
 /* Regroupe header + fil d'Ariane pour qu'ils restent fixes ensemble au
