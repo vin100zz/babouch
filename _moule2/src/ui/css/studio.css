@@ -464,7 +464,10 @@
   font: 600 13px system-ui, sans-serif;
   cursor: pointer;
 }
+/* Les « + Ajouter » des colonnes vides sont créés après le menu : sans
+   z-index, ils passeraient par-dessus. */
 .st-menu {
+  z-index: 1;
   display: flex;
   gap: 4px;
   padding: 5px;

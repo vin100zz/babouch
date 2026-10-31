@@ -420,7 +420,13 @@ const PageEditor = (function () {
       else if (where === 'bottom-center') { x = r.left + r.width / 2 - w / 2; y = r.bottom - h / 2; }
       else if (where === 'bottom-right') { x = r.right - w / 2; y = r.bottom - h / 2; }
       else if (where === 'below') { x = r.left + r.width / 2 - w / 2; y = r.bottom + 6; }
-      else if (where === 'inside-top') { x = r.left + r.width / 2 - w / 2; y = Math.max(r.top, minTop) + 44; }
+      else if (where === 'inside-top') {
+        // Sous le libellé si la colonne est assez haute, sinon centré dessus :
+        // le menu ne déborde jamais de la colonne vers la section suivante.
+        x = r.left + r.width / 2 - w / 2;
+        y = Math.max(r.top, minTop) + 44;
+        if (y + h > r.bottom - 4) y = Math.max(r.top + (r.height - h) / 2, minTop);
+      }
       elm.style.left = Math.max(0, x + window.scrollX) + 'px';
       elm.style.top = Math.max(0, y + window.scrollY) + 'px';
     }
