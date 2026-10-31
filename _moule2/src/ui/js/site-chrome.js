@@ -7,7 +7,9 @@
 
 const SiteChrome = (function () {
 
-  const PENCIL_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>';
+  // Valeurs d'app.css (fond du fil d'Ariane, couleur de texte héritée).
+  const DEFAULT_BREADCRUMB_STYLE = { bg: '#f1f5f9', textColor: '#1e293b' };
+  const PENCIL_SVG ='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>';
 
   /** Descend l'arbre selon les segments de chemin.
    *  Retourne { configs: [...noeuds traversés avec cumulativePath], found: bool } */
@@ -192,8 +194,13 @@ const SiteChrome = (function () {
   }
   document.addEventListener('click', _closeNavMenus);
 
+  // Fond et couleur du texte réglés dans Style des pages (pagesStyle.breadcrumb) ;
+  // la page actuelle et les flèches reprennent la couleur du texte, atténuée.
   function breadcrumb(site, configs) {
     const bar = el('div', 'm2-breadcrumb');
+    const style = Object.assign({}, DEFAULT_BREADCRUMB_STYLE, site.pagesStyle && site.pagesStyle.breadcrumb);
+    bar.style.background = style.bg;
+    bar.style.color = style.textColor;
     const home = document.createElement('a');
     home.className = 'm2-breadcrumb__home';
     home.href = '#/'; home.textContent = '🏠';
@@ -266,5 +273,5 @@ const SiteChrome = (function () {
     return wrap;
   }
 
-  return { resolvePath, header, breadcrumb, footerIcon };
+  return { resolvePath, header, breadcrumb, footerIcon, DEFAULT_BREADCRUMB_STYLE };
 })();

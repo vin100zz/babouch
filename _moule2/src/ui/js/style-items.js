@@ -41,6 +41,7 @@ const StyleItems = (function () {
     ps.pageTitle = Object.assign({}, ContentView.DEFAULT_PAGE_TITLE_STYLE, ps.pageTitle || {});
     ps.image = Object.assign({}, ContentView.DEFAULT_IMAGE_STYLE, ps.image || {});
     ps.footerIcon = Object.assign({}, ContentView.DEFAULT_FOOTER_ICON, ps.footerIcon || {});
+    ps.breadcrumb = Object.assign({}, SiteChrome.DEFAULT_BREADCRUMB_STYLE, ps.breadcrumb || {});
     if (!Array.isArray(site.chapitres)) site.chapitres = [];
     return site;
   }

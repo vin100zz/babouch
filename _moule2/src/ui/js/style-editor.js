@@ -41,7 +41,7 @@ const StyleEditor = (function () {
       text: { size: 17 }, spacing: null },
   };
   const NAMES = {
-    bg: 'Fond des pages', header: 'En-tête', title: 'Titre du site', pageTitle: 'Titre de page',
+    bg: 'Fond des pages', header: 'En-tête', title: 'Titre du site', breadcrumb: "Fil d'Ariane", pageTitle: 'Titre de page',
     section: 'Titres de section', blocTexte: 'Blocs de texte', image: 'Images et vidéos', footerIcon: 'Icône de fin de page',
   };
 
@@ -89,10 +89,11 @@ const StyleEditor = (function () {
       const topbar = el('div', 'm2-page-topbar');
       const headerEl = SiteChrome.header(site, 'pages');
       topbar.appendChild(headerEl);
-      topbar.appendChild(SiteChrome.breadcrumb(site, [
+      const breadcrumbEl = SiteChrome.breadcrumb(site, [
         { node: { keyword: 'chapitre', label: 'Un chapitre' }, cumulativePath: 'chapitre' },
         { node: { keyword: 'exemple', label: "Page d'exemple" }, cumulativePath: 'chapitre/exemple' },
-      ]));
+      ]);
+      topbar.appendChild(breadcrumbEl);
       contentPage.appendChild(topbar);
 
       const wrap = el('div', 'm2-page');
@@ -126,6 +127,7 @@ const StyleEditor = (function () {
       studio.track(contentPage, 'bg', NAMES.bg);
       studio.track(headerEl, 'header', NAMES.header);
       studio.track(headerEl.querySelector('.m2-header__title'), 'title', NAMES.title);
+      studio.track(breadcrumbEl, 'breadcrumb', NAMES.breadcrumb);
       studio.track(titleEl, 'pageTitle', NAMES.pageTitle);
       studio.track(footer.firstChild, 'footerIcon', NAMES.footerIcon);
     }
@@ -146,6 +148,7 @@ const StyleEditor = (function () {
         case 'bg': return StyleItems.background(ps().background, change);
         case 'header': return StyleItems.header(site, 'pages', change);
         case 'title': return StyleItems.siteTitle(site, 'pages', change);
+        case 'breadcrumb': return breadcrumbItems();
         case 'pageTitle': case 'section': case 'blocTexte': return boxItems(sel);
         case 'image': return imageItems();
         case 'footerIcon': return footerItems();
@@ -172,6 +175,16 @@ const StyleEditor = (function () {
         { type: 'range', label: 'Arrondi', min: 0, max: 60, unit: ' px', get: () => s.borderRadius, set: set('borderRadius') },
         cfg.spacing && { group: 'Marges' },
         ...(cfg.spacing ? PropsPanel.spacingRows(k => s[k] != null ? s[k] : cfg.spacing[k], (k, v) => change(key + '.' + k, () => { s[k] = v; })) : []),
+      ];
+    }
+
+    function breadcrumbItems() {
+      const s = ps().breadcrumb;
+      return [
+        { group: 'Remplissage' },
+        ...PropsPanel.fillRows(() => s.bg, v => change('breadcrumb.bg', () => { s.bg = v; })),
+        { group: 'Texte' },
+        { type: 'color', label: 'Couleur', get: () => s.textColor, set: v => change('breadcrumb.text', () => { s.textColor = v; }) },
       ];
     }
 

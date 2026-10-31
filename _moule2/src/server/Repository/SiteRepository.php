@@ -332,7 +332,8 @@ class SiteRepository
      * Style des pages de contenu (sous-menus/feuilles, hors page d'accueil) :
      * fond de page + apparence des titres de section, blocs TEXTE et bordure
      * des images, et header propre aux autres pages : remplissage, titre et
-     * marges (header), image de fond (headerBackground). Sans `header` (site
+     * marges (header), image de fond (headerBackground), fond et couleur du
+     * texte du fil d'Ariane (breadcrumb). Sans `header` (site
      * enregistré avant), on reprend headerTitle (titre seul, version
      * précédente) par-dessus le header de l'accueil (`$homeHeader`).
      */
@@ -348,6 +349,7 @@ class SiteRepository
             $h = array_merge($homeHeader, (isset($ps['headerTitle']) && is_array($ps['headerTitle'])) ? $ps['headerTitle'] : array());
         }
         $fi = (isset($ps['footerIcon']) && is_array($ps['footerIcon'])) ? $ps['footerIcon'] : array();
+        $bc = (isset($ps['breadcrumb']) && is_array($ps['breadcrumb'])) ? $ps['breadcrumb'] : array();
         return array(
             'background'      => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
             'headerBackground'=> array(
@@ -375,6 +377,10 @@ class SiteRepository
             'footerIcon' => array(
                 'image' => $this->cleanRelPath(isset($fi['image']) ? $fi['image'] : null),
                 'width' => isset($fi['width']) ? max(12, min(300, (int) $fi['width'])) : 40,
+            ),
+            'breadcrumb' => array(
+                'bg'        => $this->cleanColor(isset($bc['bg']) ? $bc['bg'] : null, '#f1f5f9'),
+                'textColor' => $this->cleanColor(isset($bc['textColor']) ? $bc['textColor'] : null, '#1e293b'),
             ),
         );
     }
