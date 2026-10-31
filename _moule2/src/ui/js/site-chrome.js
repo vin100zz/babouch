@@ -25,10 +25,9 @@ const SiteChrome = (function () {
     return { configs, found: true };
   }
 
-  // `context` : 'home' (image de fond du header propre à la page d'accueil)
-  // ou 'pages' (image de fond propre aux autres pages) — même header, même
-  // remplissage et marges (home.headerStyle), mais titre (police, taille,
-  // couleur, alignement) et image de fond propres à chaque contexte.
+  // `context` : 'home' (header propre à la page d'accueil) ou 'pages' (header
+  // propre aux autres pages) — même structure, mais remplissage, titre (police,
+  // taille, couleur, alignement), marges et image de fond réglés séparément.
   // `opts.editMenu` : entrées du menu crayon [{label, sub, onClick}], en
   // lecture seulement (en édition, la barre d'édition le remplace).
   function header(site, context, opts) {

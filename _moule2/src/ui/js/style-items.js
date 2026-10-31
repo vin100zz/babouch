@@ -33,8 +33,9 @@ const StyleItems = (function () {
     const ps = site.pagesStyle = site.pagesStyle || {};
     ps.background = Object.assign({}, HomeView.DEFAULT_BACKGROUND, ps.background || {});
     ps.headerBackground = Object.assign({}, HomeView.DEFAULT_HEADER_BACKGROUND, ps.headerBackground || {});
-    // Titre des autres pages : au départ, celui de l'accueil.
-    ps.headerTitle = HomeView.pagesTitleStyle(site);
+    // Header des autres pages : au départ, celui de l'accueil.
+    ps.header = HomeView.pagesHeaderStyle(site);
+    delete ps.headerTitle;
     ps.section = Object.assign({}, ContentView.DEFAULT_SECTION_STYLE, ps.section || {});
     ps.blocTexte = Object.assign({}, ContentView.DEFAULT_BLOC_TEXTE_STYLE, ps.blocTexte || {});
     ps.pageTitle = Object.assign({}, ContentView.DEFAULT_PAGE_TITLE_STYLE, ps.pageTitle || {});
@@ -44,11 +45,16 @@ const StyleItems = (function () {
     return site;
   }
 
-  /** En-tête : titre du site (texte, police…), remplissage, image de fond
-   *  (titre et image propres à l'accueil ou aux autres pages selon `context`),
-   *  marge intérieure. */
+  /** Style du header réglé pour `context` : celui de l'accueil ou celui des
+   *  autres pages. */
+  function headerOf(site, context) {
+    return context === 'home' ? site.home.headerStyle : site.pagesStyle.header;
+  }
+
+  /** En-tête : titre du site (texte, police…), remplissage, image de fond,
+   *  marge intérieure, propres à l'accueil ou aux autres pages selon `context`. */
   function header(site, context, change) {
-    const hs = site.home.headerStyle;
+    const hs = headerOf(site, context);
     const img = context === 'home' ? hs : site.pagesStyle.headerBackground;
     return [
       ...siteTitle(site, context, change, 'Titre du site'),
@@ -71,7 +77,7 @@ const StyleItems = (function () {
    *  (police, taille, couleur, alignement), sur les clés title* du header de
    *  l'accueil ou de celui des autres pages selon `context`. */
   function siteTitle(site, context, change, group) {
-    const hs = context === 'home' ? site.home.headerStyle : site.pagesStyle.headerTitle;
+    const hs = headerOf(site, context);
     const KEYS = { font: 'titleFont', fontFile: 'titleFontFile', size: 'titleSize', color: 'titleColor', align: 'titleAlign' };
     return [
       { group: group || 'Texte' },

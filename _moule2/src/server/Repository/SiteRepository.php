@@ -286,15 +286,22 @@ class SiteRepository
             array(
                 'image' => $this->cleanRelPath(isset($style['image']) ? $style['image'] : null),
                 'mode'  => in_array(isset($style['mode']) ? $style['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $style['mode'] : 'cover',
-            )
+            ),
+            $this->cleanHeaderPadding($style)
         );
-        // Marge intérieure du header (facultative, absente = padding du CSS).
+        return $clean;
+    }
+
+    /** Marge intérieure du header (facultative, absente = padding du CSS). */
+    private function cleanHeaderPadding($style)
+    {
+        $out = array();
         foreach (array('padY', 'padX') as $k) {
             if (isset($style[$k]) && is_numeric($style[$k])) {
-                $clean[$k] = max(0, min(300, (int) $style[$k]));
+                $out[$k] = max(0, min(300, (int) $style[$k]));
             }
         }
-        return $clean;
+        return $out;
     }
 
     /** Apparence du titre du site dans le header (clés title*). */
@@ -324,11 +331,10 @@ class SiteRepository
     /**
      * Style des pages de contenu (sous-menus/feuilles, hors page d'accueil) :
      * fond de page + apparence des titres de section, blocs TEXTE et bordure
-     * des images. Le remplissage et les marges du header restent gérés par
-     * home.headerStyle (communs à toutes les pages du site) ; son image de
-     * fond (headerBackground) et l'apparence du titre (headerTitle) sont
-     * propres aux autres pages. Sans headerTitle (site enregistré avant), le
-     * titre de l'accueil (`$homeHeader`) est repris.
+     * des images, et header propre aux autres pages : remplissage, titre et
+     * marges (header), image de fond (headerBackground). Sans `header` (site
+     * enregistré avant), on reprend headerTitle (titre seul, version
+     * précédente) par-dessus le header de l'accueil (`$homeHeader`).
      */
     private function cleanPagesStyle($ps, $homeHeader)
     {
@@ -336,7 +342,11 @@ class SiteRepository
             $ps = array();
         }
         $hb = (isset($ps['headerBackground']) && is_array($ps['headerBackground'])) ? $ps['headerBackground'] : array();
-        $ht = (isset($ps['headerTitle']) && is_array($ps['headerTitle'])) ? $ps['headerTitle'] : $homeHeader;
+        if (isset($ps['header']) && is_array($ps['header'])) {
+            $h = $ps['header'];
+        } else {
+            $h = array_merge($homeHeader, (isset($ps['headerTitle']) && is_array($ps['headerTitle'])) ? $ps['headerTitle'] : array());
+        }
         $fi = (isset($ps['footerIcon']) && is_array($ps['footerIcon'])) ? $ps['footerIcon'] : array();
         return array(
             'background'      => $this->cleanBackground(isset($ps['background']) && is_array($ps['background']) ? $ps['background'] : array()),
@@ -344,7 +354,11 @@ class SiteRepository
                 'image' => $this->cleanRelPath(isset($hb['image']) ? $hb['image'] : null),
                 'mode'  => in_array(isset($hb['mode']) ? $hb['mode'] : '', array('cover', 'contain', 'repeat'), true) ? $hb['mode'] : 'cover',
             ),
-            'headerTitle'     => $this->cleanHeaderTitle($ht),
+            'header'          => array_merge(
+                array('bg' => $this->cleanColor(isset($h['bg']) ? $h['bg'] : null, '#1e293b')),
+                $this->cleanHeaderTitle($h),
+                $this->cleanHeaderPadding($h)
+            ),
             'section'    => $this->cleanColorTextPair(
                 isset($ps['section']) && is_array($ps['section']) ? $ps['section'] : array(),
                 array('bg' => '#d0e4ff', 'textColor' => '#1e293b', 'borderColor' => '#b8d4f8', 'borderWidth' => 1, 'borderRadius' => 0)

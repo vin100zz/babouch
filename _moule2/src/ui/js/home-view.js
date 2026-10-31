@@ -16,9 +16,9 @@ const HomeView = (function () {
   const DEFAULT_HEADER_BACKGROUND = { image: null, mode: 'cover' };
   const DEFAULT_BACKGROUND = { color: '#fafbfc', image: null, mode: 'cover' };
   const ALIGN_TO_JUSTIFY = { left: 'flex-start', center: 'center', right: 'flex-end' };
-  // Apparence du titre du site : réglée séparément sur l'accueil
-  // (home.headerStyle) et sur les autres pages (pagesStyle.headerTitle).
-  const TITLE_KEYS = ['titleColor', 'titleSize', 'titleFont', 'titleFontFile', 'titleAlign'];
+  // Header (remplissage, titre du site, marges) : réglé séparément sur
+  // l'accueil (home.headerStyle) et sur les autres pages (pagesStyle.header).
+  const HEADER_KEYS = ['bg', 'titleColor', 'titleSize', 'titleFont', 'titleFontFile', 'titleAlign', 'padY', 'padX'];
 
   // Polices Google proposées : [nom, famille générique de secours, existe en
   // gras]. Une police choisie est enregistrée sous la forme font = 'gf:<nom>' ;
@@ -161,22 +161,24 @@ const HomeView = (function () {
     }
   }
 
-  /** Titre du site sur les pages autres que l'accueil : pagesStyle.headerTitle,
-   *  clé par clé, sinon celui de l'accueil (sites enregistrés avant que les
-   *  deux soient séparés). */
-  function pagesTitleStyle(site) {
-    const hs = (site.home && site.home.headerStyle) || {};
-    const own = (site.pagesStyle && site.pagesStyle.headerTitle) || {};
+  /** Header des pages autres que l'accueil, clé par clé : pagesStyle.header,
+   *  sinon pagesStyle.headerTitle (titre seul, version précédente), sinon le
+   *  header de l'accueil (sites enregistrés avant que les deux soient séparés).
+   *  Image de fond à part, dans pagesStyle.headerBackground. */
+  function pagesHeaderStyle(site) {
+    const ps = site.pagesStyle || {};
+    const sources = [ps.header, ps.headerTitle, site.home && site.home.headerStyle].filter(Boolean);
     const out = {};
-    TITLE_KEYS.forEach(k => { out[k] = k in own ? own[k] : hs[k]; });
+    HEADER_KEYS.forEach(k => {
+      const src = sources.find(s => s[k] !== undefined);
+      if (src) out[k] = src[k];
+    });
     return out;
   }
 
-  /** Style complet du header pour `context` ('home' ou 'pages') : fond et
-   *  marges communs (home.headerStyle), titre propre à chaque contexte. */
+  /** Style du header pour `context` ('home' ou 'pages'). */
   function headerStyleFor(site, context) {
-    const hs = (site.home && site.home.headerStyle) || {};
-    return context === 'pages' ? Object.assign({}, hs, pagesTitleStyle(site)) : hs;
+    return context === 'pages' ? pagesHeaderStyle(site) : ((site.home && site.home.headerStyle) || {});
   }
 
   /** Police/taille/couleur du texte affiché sous une image (img.texteStyle,
@@ -419,8 +421,8 @@ const HomeView = (function () {
 
   return {
     render, buildThumb, updateThumb,
-    applyHeaderStyle, headerStyleFor, pagesTitleStyle, applyBackgroundStyle, applyLabelStyle,
+    applyHeaderStyle, headerStyleFor, pagesHeaderStyle, applyBackgroundStyle, applyLabelStyle,
     ensureFontFace, cssFontFamily, ensureGoogleFonts, googleFont, GOOGLE_FONTS,
-    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND, TITLE_KEYS,
+    DEFAULT_HEADER_STYLE, DEFAULT_BACKGROUND, DEFAULT_HEADER_BACKGROUND,
   };
 })();
